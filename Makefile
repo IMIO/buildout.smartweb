@@ -1,4 +1,5 @@
 #!/usr/bin/make
+all: buildout
 
 buildout.cfg:
 	ln -fs dev.cfg buildout.cfg
