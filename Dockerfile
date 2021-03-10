@@ -66,7 +66,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     wv
 
 COPY --chown=imio --from=builder /plone .
-COPY --from=builder /usr/local/lib/python3.8/site-packages /usr/local/lib/python3.8/site-packages
 COPY --from=builder /usr/local/lib/python3.8/dist-packages /usr/local/lib/python3.8/dist-packages
 COPY --chown=imio docker-initialize.py docker-entrypoint.sh /
 
