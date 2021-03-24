@@ -1,0 +1,44 @@
+---
+default_stages:
+  - commit
+  - push
+repos:
+  - repo: 'https://github.com/pre-commit/pre-commit-hooks'
+    rev: v3.2.0
+    hooks:
+      - id: trailing-whitespace
+        exclude: '^doc'
+      - id: check-json
+      - id: check-yaml
+      - id: check-json
+      - id: check-merge-conflict
+      - id: fix-encoding-pragma
+      - id: check-symlinks
+  - repo: 'https://github.com/jumanjihouse/pre-commit-hooks.git'
+    rev: 2.1.4
+    hooks:
+      - id: shellcheck
+      - id: shfmt
+  - repo: 'https://github.com/asottile/yesqa'
+    rev: v1.2.2
+    hooks:
+      - id: yesqa
+  - repo: 'https://github.com/adrienverge/yamllint'
+    rev: v1.25.0
+    hooks:
+      - id: yamllint
+  - repo: 'https://github.com/jorisroovers/gitlint.git'
+    rev: v0.13.1
+    hooks:
+      - id: gitlint
+        stages:
+          - commit-msg
+  - repo: local
+    hooks:
+      - id: check-dockerfile
+        name: 'Check dockerfile'
+        entry: 'bash -c "docker run --rm -i hadolint/hadolint < Dockerfile"'
+        pass_filenames: false
+        language: system
+        types:
+          - dockerfile
