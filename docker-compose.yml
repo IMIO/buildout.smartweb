@@ -2,6 +2,9 @@
 version: '2.4'
 services:
   instance:
+    build:
+      context: .
+      dockerfile: Dockerfile
     image: smartweb/mutual
     ports:
       - "8080:8080"
