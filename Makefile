@@ -1,7 +1,6 @@
 #!/usr/bin/make
 all: buildout
 
-
 IMAGE_NAME="docker-staging.imio.be/smartweb/mutual:latest"
 
 buildout.cfg:
@@ -31,5 +30,6 @@ eggs:  ## Copy eggs from docker image to speed up docker build
 	-docker run --entrypoint='' $(IMAGE_NAME) tar -c -C /plone eggs | tar x
 	mkdir -p eggs
 
-docker-image: eggs
-	docker build --pull -t smartweb/mutual:latest .
+docker-image: eggs  ## Build docker image
+	mkdir -p eggs
+	docker build --pull -t $(IMAGE_NAME) .
