@@ -1,0 +1,47 @@
+---
+version: '2.4'
+services:
+  instance:
+    image: smartweb/mutual
+    ports:
+      - "8080:8080"
+    links:
+      - postgres:db
+    depends_on:
+      - postgres
+      - reverse-proxy
+    volumes:
+      - ./zodbconvert.cfg:/plone/zodbconvert.cfg
+    command: bin/instance fg
+    environment:
+      - MEMCACHE_SERVER=172.17.0.1
+      - MEMCACHE_DEFAULT_AGE=10800
+      - ENV=dev
+      - CACHING_SERVERS=http://varnish.staging.imio.be:5000
+      - DOMAINS=localhost
+      - RELSTORAGE_DB=zope
+      - RELSTORAGE_USER=zope
+      - RELSTORAGE_PASSWORD=zope
+    healthcheck:
+      test: ['CMD', 'nc', '-z', '-w5', '127.0.0.1', '8080']
+  reverse-proxy:
+    image: traefik:v2.4
+    command: --api.insecure=true --providers.docker
+    ports:
+      - "80:80"      # The HTTP port
+      - "8000:8080"  # The Web UI (enabled by --api)
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock  # So that Traefik can listen to the Docker events
+  postgres:
+    image: postgres:11.10
+    environment:
+      - POSTGRES_DB=zope
+      - POSTGRES_USER=zope
+      - POSTGRES_PASSWORD=zope
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+  memcached:
+    image: memcached:1.5.20
+    command:
+      - "-m"
+      - "1024"
