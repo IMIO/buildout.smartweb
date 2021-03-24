@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: smartweb/mutual
+    image: docker-staging.imio.be/smartweb/mutual:latest
     ports:
       - "8080:8080"
     links:
@@ -15,7 +15,7 @@ services:
       - reverse-proxy
     volumes:
       - ./zodbconvert.cfg:/plone/zodbconvert.cfg
-    command: bin/instance fg
+      - smartweb-blobstorage:/data/blobstorage
     environment:
       - MEMCACHE_SERVER=172.17.0.1
       - MEMCACHE_DEFAULT_AGE=10800
@@ -42,9 +42,11 @@ services:
       - POSTGRES_USER=zope
       - POSTGRES_PASSWORD=zope
     volumes:
-      - ./postgres:/var/lib/postgresql/data
+      - smartweb-postgres:/var/lib/postgresql/data
   memcached:
     image: memcached:1.5.20
     command:
       - "-m"
       - "1024"
+volumes:
+  smartweb-postgres:
