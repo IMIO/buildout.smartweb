@@ -1,5 +1,5 @@
 FROM imiobe/base:py3-ubuntu-20.04 as builder
-MAINTAINER iMio
+LABEL maintainer="Benoît Suttor <benoit.suttor@imio.be>"
 ENV PIP=19.3.1 \
   ZC_BUILDOUT=2.13.2 \
   SETUPTOOLS=45.3.0 \
@@ -7,7 +7,8 @@ ENV PIP=19.3.1 \
   PLONE_MAJOR=5.2 \
   PLONE_VERSION=5.2.4
 
-RUN apt-get update && apt-get install -y --no-install-recommends $buildDeps \
+# hadolint ignore=DL3008
+RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     gcc \
     git \
@@ -16,6 +17,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends $buildDeps \
     libffi-dev \
     libjpeg62-dev \
     libopenjp2-7-dev \
+    libmemcached-dev \
     libpcre3-dev \
     libpq-dev \
     libreadline-dev \
@@ -26,7 +28,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends $buildDeps \
     python3-pip \
     wget \
     zlib1g-dev \
-  && pip3 install pip==$PIP setuptools==$SETUPTOOLS zc.buildout==$ZC_BUILDOUT
+  && pip3 install --no-cache-dir pip==$PIP setuptools==$SETUPTOOLS zc.buildout==$ZC_BUILDOUT
 
 WORKDIR /plone
 RUN chown imio:imio -R /plone && mkdir /data && chown imio:imio -R /data
@@ -53,9 +55,11 @@ VOLUME /data/blobstorage
 VOLUME /data/filestorage
 WORKDIR /plone
 
+# hadolint ignore=DL3008
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libjpeg62 \
     libopenjp2-7 \
+    libpq5 \
     libtiff5 \
     libxml2 \
     libxslt1.1 \
@@ -63,7 +67,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     netcat \
     poppler-utils \
     rsync \
-    wv
+    wv \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
 
 COPY --chown=imio --from=builder /plone .
 COPY --from=builder /usr/local/lib/python3.8/dist-packages /usr/local/lib/python3.8/dist-packages
