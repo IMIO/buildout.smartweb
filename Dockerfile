@@ -66,6 +66,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     lynx \
     netcat \
     poppler-utils \
+    python3-distutils \
     rsync \
     wv \
   && apt-get clean \
@@ -82,4 +83,3 @@ HEALTHCHECK --interval=1m --timeout=5s --start-period=30s \
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["console"]
-
