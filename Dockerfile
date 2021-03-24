@@ -71,7 +71,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     wv \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
-
+RUN curl -L https://github.com/Yelp/dumb-init/releases/download/v1.2.5/dumb-init_1.2.5_amd64.deb > /tmp/dumb-init.deb && dpkg -i /tmp/dumb-init.deb && rm /tmp/dumb-init.deb
 COPY --chown=imio --from=builder /plone .
 COPY --from=builder /usr/local/lib/python3.8/dist-packages /usr/local/lib/python3.8/dist-packages
 COPY --chown=imio docker-initialize.py docker-entrypoint.sh /
