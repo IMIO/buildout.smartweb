@@ -25,6 +25,8 @@ services:
       - RELSTORAGE_DB=zope
       - RELSTORAGE_USER=zope
       - RELSTORAGE_PASSWORD=zope
+      - SITE_NAME=demo
+      - MEMCACHED_SERVER=memcached
     healthcheck:
       test: ['CMD', 'nc', '-z', '-w5', '127.0.0.1', '8080']
   reverse-proxy:

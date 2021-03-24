@@ -57,6 +57,7 @@ WORKDIR /plone
 # hadolint ignore=DL3008
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libjpeg62 \
+    libmemcached11 \
     libopenjp2-7 \
     libpq5 \
     libtiff5 \
