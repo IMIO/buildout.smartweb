@@ -49,4 +49,5 @@ services:
       - "-m"
       - "1024"
 volumes:
+  smartweb-blobstorage:
   smartweb-postgres:
