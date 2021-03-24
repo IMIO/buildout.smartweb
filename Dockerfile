@@ -50,7 +50,7 @@ ENV PIP=19.3.1 \
   HOSTNAME_HOST=local \
   PROJECT_ID=smartweb
 
-RUN mkdir /data && chown imio:imio -R /data
+RUN mkdir -p /data/blobstorage && chown imio:imio -R /data
 VOLUME /data/blobstorage
 WORKDIR /plone
 
