@@ -52,7 +52,6 @@ ENV PIP=19.3.1 \
 
 RUN mkdir /data && chown imio:imio -R /data
 VOLUME /data/blobstorage
-VOLUME /data/filestorage
 WORKDIR /plone
 
 # hadolint ignore=DL3008
