@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/dumb-init /bin/bash
 set -e
 COMMANDS="debug help logtail show stop adduser fg kill quit run wait console foreground logreopen reload shell status"
 START="start restart zeoserver"
