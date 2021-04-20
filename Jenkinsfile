@@ -1,4 +1,4 @@
-Library('jenkins-pipeline-scripts') _
+@Library('jenkins-pipeline-scripts') _
 
 dockerDeliveryPipeline (
   imageName: "smartweb/mutual",
