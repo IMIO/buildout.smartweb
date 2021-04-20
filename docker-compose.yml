@@ -1,5 +1,8 @@
 ---
-version: '2.4'
+version: '2.1'
+volumes:
+  smartweb-blobstorage:
+  smartweb-postgres:
 services:
   instance:
     build:
@@ -25,10 +28,17 @@ services:
       - RELSTORAGE_DB=zope
       - RELSTORAGE_USER=zope
       - RELSTORAGE_PASSWORD=zope
+      - RELSTORAGE_HOSTNAME=db
       - SITE_NAME=demo
       - MEMCACHED_SERVER=memcached
     healthcheck:
       test: ['CMD', 'nc', '-z', '-w5', '127.0.0.1', '8080']
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.http.routers.instance.rule=Host(`portal.localhost`)'
+      - 'traefik.http.services.instance.loadbalancer.server.port=8080'
+      - "traefik.http.routers.instance.middlewares=add-plone"
+      - "traefik.http.middlewares.add-plone.addprefix.prefix=/VirtualHostBase/http/portal.localhost:8080/Plone/VirtualHostRoot"
   reverse-proxy:
     image: traefik:v2.4
     command: --api.insecure=true --providers.docker
@@ -50,6 +60,3 @@ services:
     command:
       - "-m"
       - "1024"
-volumes:
-  smartweb-blobstorage:
-  smartweb-postgres:
