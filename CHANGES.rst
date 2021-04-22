@@ -1,4 +1,4 @@
-5.2.3-1 (unreleased)
+6.0.0a1-1 (unreleased)
 --------------------
 
 - Initial release
