@@ -29,6 +29,7 @@ services:
       - RELSTORAGE_USER=zope
       - RELSTORAGE_PASSWORD=zope
       - RELSTORAGE_HOSTNAME=db
+      - RELSTORAGE_PORT=5432
       - PROJECT_ID=test
     healthcheck:
       test: ['CMD', 'nc', '-z', '-w5', '127.0.0.1', '8080']
