@@ -24,7 +24,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libssl-dev \
     libxml2-dev \
     libxslt1-dev \
-    openssl-dev \
     python3-dev \
     python3-pip \
     wget \
