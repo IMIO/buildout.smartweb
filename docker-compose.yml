@@ -31,6 +31,9 @@ services:
       - RELSTORAGE_HOSTNAME=db
       - RELSTORAGE_PORT=5432
       - PROJECT_ID=test
+      - PLONE_EXTENSION_IDS=plone.app.caching:default,plonetheme.barceloneta:default,imio.smartweb.policy:default
+      - DEFAULT_LANGUAGE=fr
+      - ACTIVE_BIGBANG=True
     healthcheck:
       test: ['CMD', 'nc', '-z', '-w5', '127.0.0.1', '8080']
     labels:
