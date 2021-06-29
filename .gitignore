@@ -15,7 +15,7 @@ eggs/
 htmlcov/
 include/
 lib/
-lib64/
+lib64
 local/
 node_modules/
 parts/
