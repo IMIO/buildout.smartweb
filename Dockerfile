@@ -75,6 +75,7 @@ RUN curl -L https://github.com/Yelp/dumb-init/releases/download/v1.2.5/dumb-init
 COPY --chown=imio --from=builder /plone .
 COPY --from=builder /usr/local/lib/python3.8/dist-packages /usr/local/lib/python3.8/dist-packages
 COPY --chown=imio docker-initialize.py docker-entrypoint.sh /
+COPY --chown=imio pack.conf /plone
 
 USER imio
 EXPOSE 8080
