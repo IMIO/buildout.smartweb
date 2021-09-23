@@ -23,6 +23,7 @@ reports/
 share/
 src/
 var/
+solr/plone/*/data
 # files
 .coverage
 .installed.cfg
