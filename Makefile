@@ -36,3 +36,6 @@ docker-image: eggs  ## Build docker image
 
 lint:
 	pre-commit run --all
+
+solr:
+	docker-compose -f docker-compose-solr.yml up
