@@ -118,23 +118,23 @@
     <field name="sortable_title" type="string" indexed="true" stored="true" />
 
     <!-- Specific fields -->
-    <field name="category" type="string" indexed="true" stored="true"  multiValued="true"/>
+    <field name="breadcrumb" type="string" indexed="true" stored="true" />
     <field name="cmf_uid" type="string" indexed="true" stored="true" />
     <field name="commentators" type="string" indexed="true" stored="true"  multiValued="true"/>
+    <field name="contact_type" type="string" indexed="true" stored="true" />
     <field name="enableAutopublishing" type="string" indexed="true" stored="true" />
-    <field name="exclude_from_parent_listing" type="boolean" indexed="true" stored="true" />
+    <field name="facilities" type="string" indexed="true" stored="true"  multiValued="true"/>
     <field name="getObjPositionInParent" type="tint" indexed="true" stored="true" />
     <field name="getRawRelatedItems" type="string" indexed="true" stored="true"  multiValued="true"/>
-    <field name="has_leadimage" type="boolean" indexed="true" stored="true" />
     <field name="iam" type="string" indexed="true" stored="true"  multiValued="true"/>
     <field name="in_reply_to" type="string" indexed="true" stored="true" />
     <field name="is_default_page" type="boolean" indexed="true" stored="true" />
+    <field name="is_geolocated" type="string" indexed="true" stored="true" />
     <field name="latitude" type="string" indexed="true" stored="true" />
     <field name="longitude" type="string" indexed="true" stored="true" />
-    <field name="related_quickaccess" type="string" indexed="true" stored="true" />
+    <field name="selected_entities" type="string" indexed="true" stored="true"  multiValued="true"/>
     <field name="sync_uid" type="string" indexed="true" stored="true" />
-    <field name="taxonomy_page_category" type="string" indexed="true" stored="true"  multiValued="true"/>
-    <field name="taxonomy_procedure_category" type="string" indexed="true" stored="true"  multiValued="true"/>
+    <field name="taxonomy_contact_category" type="string" indexed="true" stored="true"  multiValued="true"/>
     <field name="topics" type="string" indexed="true" stored="true"  multiValued="true"/>
     <field name="total_comments" type="string" indexed="true" stored="true" />
 

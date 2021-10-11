@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-
-<schema name="plone2" version="1.5">
-
+<schema name="plone" version="1.5">
   <uniqueKey>UID</uniqueKey>
 
   <types>
@@ -32,10 +30,10 @@
 
     <!-- A general text field that has reasonable, generic
          cross-language defaults: it tokenizes with StandardTokenizer,
-	       removes stop words from case-insensitive "stopwords.txt"
-	       (empty by default), and down cases.  At query time only, it
-	       also applies synonyms.
-	  -->
+         removes stop words from case-insensitive "stopwords.txt"
+         (empty by default), and down cases.  At query time only, it
+         also applies synonyms.
+    -->
     <fieldType name="text_general" class="solr.TextField" positionIncrementGap="100" multiValued="true">
       <analyzer type="index">
         <tokenizer class="solr.StandardTokenizerFactory"/>
@@ -89,76 +87,62 @@
     <field name="_version_" type="long" indexed="true" stored="true"/>
 
     <!-- Plone Core Fields -->
-    <!-- name:allowedRolesAndUsers   type:string stored:true multivalued:true -->
-    <field name="allowedRolesAndUsers" type="string" indexed="true" stored="true" multiValued="true" />
-    <!-- name:created                type:date stored:true -->
-    <field name="created" type="date" indexed="true" stored="true" />
-    <!-- name:Creator                type:string stored:true -->
     <field name="Creator" type="string" indexed="true" stored="true" />
-    <!-- name:Date                   type:date stored:true -->
     <field name="Date" type="date" indexed="true" stored="true" />
-    <!-- name:default                type:text indexed:true stored:false multivalued:true -->
-    <field name="default" type="text" indexed="true" stored="false" multiValued="true" />
-    <!-- name:Description            type:text copyfield:default stored:true -->
     <field name="Description" type="text" indexed="true" stored="true" />
-    <!-- name:effective              type:date stored:true -->
-    <field name="effective" type="date" indexed="true" stored="true" />
-    <!-- name:exclude_from_nav       type:boolean indexed:false stored:true -->
-    <field name="exclude_from_nav" type="boolean" indexed="false" stored="true" />
-    <!-- name:expires                type:date stored:true -->
-    <field name="expires" type="date" indexed="true" stored="true" />
-    <!-- name:getIcon                type:string indexed:false stored:true -->
-    <field name="getIcon" type="string" indexed="false" stored="true" />
-    <!-- name:getId                  type:string indexed:false stored:true -->
-    <field name="getId" type="string" indexed="false" stored="true" />
-    <!-- name:getRemoteUrl           type:string indexed:false stored:true -->
-    <field name="getRemoteUrl" type="string" indexed="false" stored="true" />
-    <!-- name:is_folderish           type:boolean stored:true -->
-    <field name="is_folderish" type="boolean" indexed="true" stored="true" />
-    <!-- name:Language               type:string stored:true -->
     <field name="Language" type="string" indexed="true" stored="true" />
-    <!-- name:modified               type:date stored:true -->
-    <field name="modified" type="date" indexed="true" stored="true" />
-    <!-- name:object_provides        type:string stored:true multivalued:true -->
-    <field name="object_provides" type="string" indexed="true" stored="true" multiValued="true" />
-    <!-- name:path_depth             type:integer indexed:true stored:true -->
-    <field name="path_depth" type="tint" indexed="true" stored="true" />
-    <!-- name:path_parents           type:string indexed:true stored:true multivalued:true -->
-    <field name="path_parents" type="string" indexed="true" stored="true" multiValued="true" />
-    <!-- name:path_string            type:string indexed:false stored:true -->
-    <field name="path_string" type="string" indexed="false" stored="true" />
-    <!-- name:portal_type            type:string stored:true -->
-    <field name="portal_type" type="string" indexed="true" stored="true" />
-    <!-- name:review_state           type:string stored:true -->
-    <field name="review_state" type="string" indexed="true" stored="true" />
-    <!-- name:SearchableText         type:text copyfield:default stored:true -->
     <field name="SearchableText" type="text" indexed="true" stored="true" />
-    <!-- name:searchwords            type:string stored:true multivalued:true -->
+    <field name="Subject" type="string" indexed="true" stored="true" multiValued="true" />
+    <field name="Title" type="text" indexed="true" stored="true" />
+    <field name="Type" type="string" indexed="true" stored="true" />
+    <field name="UID" type="string" indexed="true" stored="true" required="false" />
+    <field name="allowedRolesAndUsers" type="string" indexed="true" stored="true" multiValued="true" />
+    <field name="created" type="date" indexed="true" stored="true" />
+    <field name="default" type="text" indexed="true" stored="false" multiValued="true" />
+    <field name="effective" type="date" indexed="true" stored="true" />
+    <field name="exclude_from_nav" type="boolean" indexed="false" stored="true" />
+    <field name="expires" type="date" indexed="true" stored="true" />
+    <field name="getIcon" type="string" indexed="false" stored="true" />
+    <field name="getId" type="string" indexed="false" stored="true" />
+    <field name="getRemoteUrl" type="string" indexed="false" stored="true" />
+    <field name="is_folderish" type="boolean" indexed="true" stored="true" />
+    <field name="modified" type="date" indexed="true" stored="true" />
+    <field name="object_provides" type="string" indexed="true" stored="true" multiValued="true" />
+    <field name="path_depth" type="tint" indexed="true" stored="true" />
+    <field name="path_parents" type="string" indexed="true" stored="true" multiValued="true" />
+    <field name="path_string" type="string" indexed="false" stored="true" />
+    <field name="portal_type" type="string" indexed="true" stored="true" />
+    <field name="review_state" type="string" indexed="true" stored="true" />
     <field name="searchwords" type="string" indexed="true" stored="true" multiValued="true" />
-    <!-- name:showinsearch           type:boolean stored:true -->
     <field name="showinsearch" type="boolean" indexed="true" stored="true" />
     <field name="sortable_title" type="string" indexed="true" stored="true" />
-    <!-- name:Subject                type:string copyfield:default stored:true multivalued:true -->
-    <field name="Subject" type="string" indexed="true" stored="true" multiValued="true" />
-    <!-- name:Title                  type:text copyfield:default stored:true -->
-    <field name="Title" type="text" indexed="true" stored="true" />
-    <!-- name:Type                   type:string stored:true -->
-    <field name="Type" type="string" indexed="true" stored="true" />
-    <!-- name:UID                    type:string stored:true required:true -->
-    <field name="UID" type="string" indexed="true" stored="true" required="false" />
-    <!--
-      The geolocation field and the additionalFieldConfig is purely optional and
-      just included in this configuration, to be able to run tests for the
-      geospatial solr features
-    -->
-    <field name="geolocation" type="location" indexed="true" stored="true" />
 
+    <!-- Specific fields -->
+    <field name="breadcrumb" type="string" indexed="true" stored="true" />
+    <field name="category" type="string" indexed="true" stored="true"  multiValued="true"/>
+    <field name="category_and_topics" type="string" indexed="true" stored="true"  multiValued="true"/>
+    <field name="cmf_uid" type="string" indexed="true" stored="true" />
+    <field name="commentators" type="string" indexed="true" stored="true"  multiValued="true"/>
+    <field name="enableAutopublishing" type="string" indexed="true" stored="true" />
+    <field name="facilities" type="string" indexed="true" stored="true"  multiValued="true"/>
+    <field name="getObjPositionInParent" type="tint" indexed="true" stored="true" />
+    <field name="getRawRelatedItems" type="string" indexed="true" stored="true"  multiValued="true"/>
+    <field name="iam" type="string" indexed="true" stored="true"  multiValued="true"/>
+    <field name="in_reply_to" type="string" indexed="true" stored="true" />
+    <field name="is_default_page" type="boolean" indexed="true" stored="true" />
+    <field name="latitude" type="string" indexed="true" stored="true" />
+    <field name="longitude" type="string" indexed="true" stored="true" />
+    <field name="selected_agendas" type="string" indexed="true" stored="true"  multiValued="true"/>
+    <field name="sync_uid" type="string" indexed="true" stored="true" />
+    <field name="taxonomy_event_public" type="string" indexed="true" stored="true"  multiValued="true"/>
+    <field name="topics" type="string" indexed="true" stored="true"  multiValued="true"/>
+    <field name="total_comments" type="string" indexed="true" stored="true" />
+
+    <!-- copy -->
     <copyField source="Title" dest="default"/>
     <copyField source="Description" dest="default"/>
     <copyField source="Subject" dest="default"/>
 
     <copyField source="default" dest="SearchableText"/>
-
   </fields>
-
 </schema>
