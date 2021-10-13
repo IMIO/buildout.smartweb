@@ -122,6 +122,7 @@
     <field name="category_and_topics" type="string" indexed="true" stored="true"  multiValued="true"/>
     <field name="cmf_uid" type="string" indexed="true" stored="true" />
     <field name="commentators" type="string" indexed="true" stored="true"  multiValued="true"/>
+    <field name="container_uid" type="string" indexed="true" stored="true" />
     <field name="enableAutopublishing" type="string" indexed="true" stored="true" />
     <field name="getObjPositionInParent" type="tint" indexed="true" stored="true" />
     <field name="getRawRelatedItems" type="string" indexed="true" stored="true"  multiValued="true"/>
