@@ -3,7 +3,7 @@
 dockerDeliveryPipeline (
   imageName: "smartweb/mutual",
   productId: "smartweb",
-  updateStagingRundeckJobId: "33264c07-b8ac-4872-95a2-a06e6d114a43",
+  updateStagingRundeckJobId: "7b0df9bf-40ba-4bc6-8549-f5370a0fc06a",
   updateRundeckJobId: "",
   updateNowRundeckJobId: "",
   suffixEmail: "support-web",
