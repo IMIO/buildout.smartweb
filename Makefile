@@ -32,7 +32,7 @@ eggs:  ## Copy eggs from docker image to speed up docker build
 
 docker-image: eggs  ## Build docker image
 	mkdir -p eggs
-	docker build --pull -t smartweb/mutual:latest .
+	docker build --pull --no-cache -t smartweb/mutual:latest .
 
 lint:
 	pre-commit run --all
