@@ -1,7 +1,10 @@
 1.0a3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.0a13
+  
+  - Change url for fetch search filters data.
+    [thomlamb]
 
 
 1.0a2 (2021-11-16)
