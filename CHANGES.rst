@@ -1,10 +1,33 @@
 1.0a3 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.0a14
+  
+    - Force endpoints returning values as JSON 
+      [laulaz]
+    
+    - Update news root and refactor code 
+      [thomlamb]
+    
+    - prettify code and delete useless state 
+      [thomlamb]
+    
+    - Add responsible 16:9 ratio on embed videos 
+      [laulaz]
+    
+    - Add collapsable option for sections (click on section title opens section body) 
+      [laulaz]
+    
+    - Add SVG icon option for block links, with icon resolver and basic icons set 
+      [laulaz]
+    
+    - Cleanup useless code 
+      [laulaz]
+
 - imio.smartweb.core 1.0a13
   
-  - Change url for fetch search filters data.
-    [thomlamb]
+    - Change url for fetch search filters data.
+      [thomlamb]
 
 
 1.0a2 (2021-11-16)
