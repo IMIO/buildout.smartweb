@@ -1,6 +1,11 @@
 1.0a3 (unreleased)
 ------------------
 
+- imio.smartweb.common 1.0a4
+
+    - Add utility to get a vocabulary
+      [boulch]
+
 - imio.smartweb.core 1.0a14
   
     - Force endpoints returning values as JSON 
