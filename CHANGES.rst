@@ -1,4 +1,4 @@
-1.0a3 (unreleased)
+1.0a3 (2021-11-24)
 ------------------
 
 - imio.smartweb.policy 1.0a6
