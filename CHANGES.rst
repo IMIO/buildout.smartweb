@@ -1,10 +1,59 @@
 1.0a3 (unreleased)
 ------------------
 
+- imio.smartweb.policy 1.0a6
+
+    - Add upgrade to restrict collections views (will always be faceted layouts)
+      [laulaz]
+
+
+- imio.smartweb.locales 1.0a7
+
+    - Add missing translations
+      [laulaz]
+
+
 - imio.smartweb.common 1.0a4
 
     - Add utility to get a vocabulary
       [boulch]
+
+
+- imio.smartweb.core 1.0a15
+
+    - Allow to override / limit icons TTW (portal_resources)
+      [laulaz]
+
+    - React Routge improvement
+      [thomlamb]
+
+    - Refactor css className
+      [thomlamb]
+
+    - fix a problem or react call the endpoint several times
+      [thomlamb]
+
+    - New react build
+      [thomlamb]
+
+    - Allow from 1 to 8 links per batch in links section
+      [laulaz]
+
+    - Add more icons and use English names and titles for icons
+      [laulaz]
+
+    - Change HTML field help to describe how to use it
+      [laulaz]
+
+    - Hide icons profile from installer
+      [laulaz]
+
+    - Fix banner not displaying in minisites
+      [laulaz]
+
+    - Remove "Hide/Display banner from this item" link on banner in Preview mode
+      [laulaz]
+
 
 - imio.smartweb.core 1.0a14
   
@@ -28,6 +77,7 @@
     
     - Cleanup useless code 
       [laulaz]
+
 
 - imio.smartweb.core 1.0a13
   
