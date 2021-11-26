@@ -1,7 +1,52 @@
 1.0a4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.0a16
+
+    - Add profile to handle bundles last_compilation dates
+      [laulaz]
+
+    - Add new css styles
+      [thomlamb]
+
+    - Udpate data for content items view
+      [thomlamb]
+
+    - Refactor css className
+      [thomlamb]
+
+    - Add moment js to parsed date
+      [thomlamb]
+
+    - New build of react vue
+      [thomlamb]
+
+    - Disallow hiding title on a collapsable section
+      [laulaz]
+
+    - Fix bootstrap classes for table batches
+      [laulaz]
+
+    - Can define specific events to get (instead of all events from an agenda)
+      [boulch]
+
+    - Use Swiper instead of Bootstrap carousel
+      [thomlamb, laulaz]
+
+
+- imio.smartweb.policy 1.0a7
+
+    - Restore Default workflow on Link type
+      [laulaz]
+
+    - Change 'en-un-click' to ifind folder and add iam folder with some links + upgrade steps.
+      [boulch]
+
+
+- imio.smartweb.locales 1.0a8
+
+    - Add missing translations
+      [laulaz]
 
 
 1.0a3 (2021-11-24)
