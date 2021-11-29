@@ -7,6 +7,18 @@
 1.0a4-quick (2021-11-26)
 ------------------------
 
+- imio.smartweb.core 1.0a17
+
+    - Move background_style (img background) out of sections (section-container div) and put it in pages view (sortable-section div). This simplifying css styling.
+      [boulch]
+    
+    - Split section macros to "manage macros" to manage sections and "title macros" to print sections title + add default Plone "container" css class.
+      [boulch]
+    
+    - Change generated url for the news and event sections for compatibility with react router
+      [thomamb]
+
+
 - imio.smartweb.core 1.0a16
 
     - Add profile to handle bundles last_compilation dates
