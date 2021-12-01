@@ -1,6 +1,24 @@
 1.0a5 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.0a18
+
+    - Avoid batching on vocabularies : contact categories and entity events
+      [laulaz]
+
+    - Add plone.shortname behavior on all sections
+      [laulaz]
+
+    - Restrict search inside minisites
+      [laulaz]
+
+    - Fix footer viewlet markup to be included in Plone footer
+      [laulaz]
+
+    - Add faceted layout class to body if a faceted layout is define.
+      [boulch]
+
+
 - imio.smartweb.core 1.0a17
 
     - Move background_style (img background) out of sections (section-container div) and put it in pages view (sortable-section div). This simplifying css styling.
