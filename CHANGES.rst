@@ -1,4 +1,4 @@
-1.0a5 (unreleased)
+1.0a5 (2021-12-01)
 ------------------
 
 - imio.smartweb.core 1.0a19
