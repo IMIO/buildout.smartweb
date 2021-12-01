@@ -23,10 +23,10 @@
 
     - Move background_style (img background) out of sections (section-container div) and put it in pages view (sortable-section div). This simplifying css styling.
       [boulch]
-    
+
     - Split section macros to "manage macros" to manage sections and "title macros" to print sections title + add default Plone "container" css class.
       [boulch]
-    
+
     - Change generated url for the news and event sections for compatibility with react router
       [thomamb]
 
@@ -140,31 +140,31 @@
 
 
 - imio.smartweb.core 1.0a14
-  
-    - Force endpoints returning values as JSON 
+
+    - Force endpoints returning values as JSON
       [laulaz]
-    
-    - Update news root and refactor code 
+
+    - Update news root and refactor code
       [thomlamb]
-    
-    - prettify code and delete useless state 
+
+    - prettify code and delete useless state
       [thomlamb]
-    
-    - Add responsible 16:9 ratio on embed videos 
+
+    - Add responsible 16:9 ratio on embed videos
       [laulaz]
-    
-    - Add collapsable option for sections (click on section title opens section body) 
+
+    - Add collapsable option for sections (click on section title opens section body)
       [laulaz]
-    
-    - Add SVG icon option for block links, with icon resolver and basic icons set 
+
+    - Add SVG icon option for block links, with icon resolver and basic icons set
       [laulaz]
-    
-    - Cleanup useless code 
+
+    - Cleanup useless code
       [laulaz]
 
 
 - imio.smartweb.core 1.0a13
-  
+
     - Change url for fetch search filters data.
       [thomlamb]
 
