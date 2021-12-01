@@ -1,12 +1,6 @@
 1.0a5 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
-
-1.0a4-quick (2021-11-26)
-------------------------
-
 - imio.smartweb.core 1.0a17
 
     - Move background_style (img background) out of sections (section-container div) and put it in pages view (sortable-section div). This simplifying css styling.
@@ -18,6 +12,9 @@
     - Change generated url for the news and event sections for compatibility with react router
       [thomamb]
 
+
+1.0a4-quick (2021-11-26)
+------------------------
 
 - imio.smartweb.core 1.0a16
 
