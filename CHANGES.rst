@@ -1,6 +1,11 @@
 1.0a5 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.0a19
+
+    - Avoid an unwanted behavior with path index combined with SolR and virtual host
+      [mpeeters]
+
 - imio.smartweb.core 1.0a18
 
     - Avoid batching on vocabularies : contact categories and entity events
