@@ -1,7 +1,16 @@
 1.0a6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.0a20
+
+    - Change markup and css classes for carousel / table templates
+      [laulaz]
+
+    - Set SolR connections for external sources
+      [mpeeters]
+
+    - Add routing for react search vue.
+      [thomamb]
 
 
 1.0a5 (2021-12-01)
@@ -11,6 +20,7 @@
 
     - Avoid an unwanted behavior with path index combined with SolR and virtual host
       [mpeeters]
+
 
 - imio.smartweb.core 1.0a18
 
