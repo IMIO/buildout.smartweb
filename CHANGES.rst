@@ -1,7 +1,8 @@
 1.0a7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Set threads to 2 to decrease connections to postgres cluster #WEB-3578.
+  [bsuttor]
 
 
 1.0a6 (2021-12-06)
