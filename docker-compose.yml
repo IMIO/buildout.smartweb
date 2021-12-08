@@ -1,7 +1,6 @@
 ---
 version: '2.1'
 volumes:
-  smartweb-blobstorage:
   smartweb-postgres:
 services:
   instance:
@@ -18,7 +17,6 @@ services:
       - reverse-proxy
     volumes:
       - ./zodbconvert.cfg:/plone/zodbconvert.cfg
-      - smartweb-blobstorage:/data/blobstorage
     environment:
       - MEMCACHE_SERVER=172.17.0.1
       - MEMCACHE_DEFAULT_AGE=10800

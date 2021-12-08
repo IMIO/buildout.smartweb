@@ -1,4 +1,4 @@
-1.0a7 (unreleased)
+1.0a7 (2021-12-08)
 ------------------
 
 - Set threads to 2 to decrease connections to postgres cluster #WEB-3578.
