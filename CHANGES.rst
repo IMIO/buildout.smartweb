@@ -1,4 +1,4 @@
-1.0a8 (unreleased)
+1.0a8 (2021-12-16)
 ------------------
 
 - imio.smartweb.common 1.0a5
