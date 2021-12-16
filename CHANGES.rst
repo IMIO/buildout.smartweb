@@ -1,7 +1,64 @@
 1.0a8 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- imio.smartweb.common 1.0a5
+
+    - Fix vocabulary term translation (missing lang)
+      [laulaz]
+
+
+- imio.smartweb.policy 1.0a8
+
+    - Add caching configuration
+      [sverbois]
+
+
+- imio.smartweb.core 1.0a21
+
+    - Adding load more button for react list element
+      [thomlamb]
+
+    - Improvement js of the Schedule popup
+      [thomlamb]
+
+    - Change image size scales (that were too small)
+      [laulaz]
+
+    - Add events dates in events section
+      [laulaz]
+
+    - Make HTML section folderish (can contain Images and Files)
+      [laulaz]
+
+    - Add description on HTML section
+      [laulaz]
+
+    - Section contact : Share address into 3 parts (street, entity, country) and display these parts into span
+      [boulch]
+
+    - Javascript refactoring
+      [thomlamb]
+
+    - Distribution of css in the global file
+      [thomlamb]
+
+    - Add global style for all component.
+      [thomlamb]
+
+    - Add removeAccents js for string url
+      [thomlamb]
+
+    - Add "with-background" css class on sections that have a background image
+      [laulaz]
+
+    - Add items category in news / events section
+      [laulaz]
+
+    - Add news items publication date in news section
+      [laulaz]
+
+    - Add option to display items descriptions in news / events / selection sections
+      [laulaz]
 
 
 1.0a7 (2021-12-08)
