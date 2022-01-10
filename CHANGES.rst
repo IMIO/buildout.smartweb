@@ -1,7 +1,8 @@
 1.0a9 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Switch collective.anysurfer branch to master.
+  [boulch]
 
 
 1.0a8 (2021-12-16)
