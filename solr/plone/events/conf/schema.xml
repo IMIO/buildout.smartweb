@@ -121,11 +121,12 @@
     <field name="breadcrumb" type="string" indexed="true" stored="true" />
     <field name="category" type="string" indexed="true" stored="true" multiValued="true" />
     <field name="category_and_topics" type="string" indexed="true" stored="true" multiValued="true" />
+    <field name="category_title" type="string" indexed="true" stored="true" />
     <field name="cmf_uid" type="string" indexed="true" stored="true" />
     <field name="commentators" type="string" indexed="true" stored="true" multiValued="true" />
     <field name="container_uid" type="string" indexed="true" stored="true" />
     <field name="enableAutopublishing" type="string" indexed="true" stored="true" />
-    <field name="facilities" type="string" indexed="true" stored="true" multiValued="true" />
+    <field name="event_type" type="string" indexed="true" stored="true" />
     <field name="getObjPositionInParent" type="tint" indexed="true" stored="true" />
     <field name="getRawRelatedItems" type="string" indexed="true" stored="true" multiValued="true" />
     <field name="has_leadimage" type="boolean" indexed="true" stored="true" />
