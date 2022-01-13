@@ -1,8 +1,36 @@
 1.0a9 (unreleased)
 ------------------
 
-- Switch collective.anysurfer branch to master.
-  [boulch]
+- imio.smartweb.common 1.0a6
+
+    - Add cookies opt-in support for analytics and iframes
+      [laulaz]
+
+    - Override colophon viewlet to display legal mention, accessibility info and
+      copyright links (dependency on imio.gdpr)
+      [laulaz]
+
+
+- imio.smartweb.core 1.0a22
+
+    - Add dynamic style for leaflet. + general styles
+      [thomlamb]
+
+
+- imio.smartweb.locales 1.0a9
+
+    - Add missing translations
+      [laulaz]
+
+
+- imio.smartweb.policy 1.0a9
+
+    - Restore Plone colophon viewlet in footer
+      [laulaz]
+
+
+- Switch collective.anysurfer & collective.autopublishing to master
+  [boulch, laulaz]
 
 
 1.0a8 (2021-12-16)
