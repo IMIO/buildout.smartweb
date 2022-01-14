@@ -29,6 +29,10 @@
       [laulaz]
 
 
+- Use released version for collective.complexrecordsproxy
+  [laulaz]
+
+
 - Switch collective.anysurfer & collective.autopublishing to master
   [boulch, laulaz]
 
