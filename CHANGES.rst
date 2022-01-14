@@ -1,7 +1,8 @@
 1.0a10 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Update buildout & packages to use Plone 6.0.0a2 released version
+  [laulaz]
 
 
 1.0a9-quick (2022-01-14)
