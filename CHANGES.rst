@@ -1,6 +1,39 @@
 1.0a10 (unreleased)
 -------------------
 
+- imio.smartweb.policy 1.0a10
+
+    - Update buildout to use Plone 6.0.0a2 released version
+      [laulaz]
+
+    - Get some missing upgrades steps from plone6 dev to plone6 released
+      [boulch]
+
+    - Load/register caching configuration + move upgrades steps in an upgrades folder.
+      [boulch]
+
+    - Remove client caching in terseCaching
+      [sverbois]
+
+- imio.smartweb.core 1.0a23
+
+    - Update buildout to use Plone 6.0.0a2 released version
+      [laulaz]
+
+    - Avoid traceback when trying to display an empty schedule
+      [laulaz]
+
+    - Add breadcrumb to some select box in smartweb settings.
+      [boulch]
+
+- imio.smartweb.common 1.0a7
+
+    - Update buildout to use Plone 6.0.0a2 released version
+      [laulaz]
+
+    - Remove portal messages from cookies settings overlay
+      [laulaz]
+
 - Use released version for collective.anysurfer & pas.plugins.imio
   [laulaz]
 
