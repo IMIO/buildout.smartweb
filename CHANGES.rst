@@ -1,6 +1,9 @@
 1.0a10 (unreleased)
 -------------------
 
+- Use released version for pas.plugins.imio
+  [laulaz]
+
 - Update buildout & packages to use Plone 6.0.0a2 released version
   [laulaz]
 
