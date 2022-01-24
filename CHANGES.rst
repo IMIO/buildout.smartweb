@@ -1,6 +1,38 @@
 1.0a10 (unreleased)
 -------------------
 
+- imio.smartweb.locales 1.0a10
+
+    - Add / change cookies related translations
+      [laulaz]
+
+    - Update buildout to use Plone 6.0.0a2 packages versions
+      [laulaz]
+
+- imio.smartweb.common 1.0a8
+
+    - Change colophon copyright position
+      [laulaz]
+
+    - Change cookies viewlet / overlay logic. We now show (simplified) overlay only
+      to see detailed options about cookies because viewlet allows to Accept / Refuse
+      all cookies directly
+      [laulaz]
+
+    - Add Cookies preferences link in colophon
+      [laulaz]
+
+    - Change some cookies-related texts
+      [laulaz]
+
+    - Fix iframes transform with existing classes or when there are several iframes
+      [laulaz]
+
+- iaweb.privacy 1.0a2
+
+    - SUP-21477: Change default cookies texts
+      [laulaz]
+
 - imio.smartweb.policy 1.0a10
 
     - Update buildout to use Plone 6.0.0a2 released version
