@@ -1,6 +1,17 @@
 1.0a10 (unreleased)
 -------------------
 
+1.2.1 (2022-01-25)
+------------------
+
+- imio.gdpr 1.2.1
+
+    - Add icons for control panel settings (Plone5 / 6 size)
+      [boulch]
+
+    - Override a plone.app.registry template to have structured (html) description
+      [boulch]
+
 - imio.smartweb.locales 1.0a10
 
     - Add / change cookies related translations
