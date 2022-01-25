@@ -4,6 +4,9 @@
 1.2.1 (2022-01-25)
 ------------------
 
+- Use released version for pas.plugins.authomatic
+  [laulaz]
+
 - imio.gdpr 1.2.1
 
     - Add icons for control panel settings (Plone5 / 6 size)
