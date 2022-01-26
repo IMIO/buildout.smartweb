@@ -4,6 +4,11 @@
 1.2.1 (2022-01-25)
 ------------------
 
+- Update Dockerfile to match Plone6 buildout
+  PIP=21.0.1, ZC_BUILDOUT=3.0.0b2, SETUPTOOLS=54.0.0A, PLONE_MAJOR=6.0, PLONE_VERSION=6.0.0a2
+  [boulch]
+
+
 - Use released version for pas.plugins.authomatic
   [laulaz]
 
