@@ -1,6 +1,31 @@
 1.0a10 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.0a24
+
+    - New react build
+      [thomlamb]
+
+    - Adding loadmore for react vue
+      [thomlamb]
+
+    - Improved query for search filters
+      [thomlamb]
+
+    - Link changes for search results.
+      [thomlamb]
+
+    - Update generated url for search items to match with react vue.
+      [thomlamb]
+
+    - Fix street address formatting (number after street name)
+      [laulaz]
+
+    - Add new css class in text section to stylize figure based on their size
+      [boulch]
+
+    - Add @@is_eguichet_aware view to get e-guichet configuration/connexion status
+      [boulch]
 
 - Update Dockerfile to match Plone6 buildout
   PIP=21.0.1, ZC_BUILDOUT=3.0.0b2, SETUPTOOLS=54.0.0A, PLONE_MAJOR=6.0, PLONE_VERSION=6.0.0a2
