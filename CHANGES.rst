@@ -1,6 +1,22 @@
 1.0a11 (unreleased)
 -------------------
 
+- imio.smartweb.policy 1.0a11
+
+    - Fix Plone translations override
+      [laulaz]
+
+- imio.smartweb.core 1.0a26
+
+    - Disable input search limit
+      [thomlamb]
+
+    - Small correction of rendered data in views and scss
+      [thomlamb]
+
+    - Fix local search when no text in input
+      [thomlamb]
+
 - imio.smartweb.core 1.0a25
 
     - Avoid page reload after gallery spolight close
