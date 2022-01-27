@@ -1,7 +1,8 @@
 1.0a11 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add products : collective.themefragments = 2.12
+  [boulch]
 
 
 1.0a10 (2022-01-26)
