@@ -1,6 +1,29 @@
 1.0a11 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.0a25
+
+    - Avoid page reload after gallery spolight close
+      [laulaz]
+
+    - Fix default value for search filters
+      [thomlamb]
+
+    - Fix open_in_new_tab option for BlockLinks
+      [laulaz]
+
+    - Allow some python modules in restricted python (Usefull for collective.themefragments modules)
+      [boulch]
+
+    - Add offcanvas bootstrap component in a viewlet and inherit from search browserview
+      [boulch, thomlamb]
+
+    - Always keep (empty) placeholder div in carousel/table templates even if item has no image
+      [laulaz]
+
+    - Fix traceback when section selection target has no description
+      [laulaz]
+
 - Add products : collective.themefragments = 2.12
   [boulch]
 
