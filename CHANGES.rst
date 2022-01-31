@@ -1,6 +1,13 @@
 1.0a11 (unreleased)
 -------------------
 
+- Update Dockerfile to match Plone6 buildout
+  PIP=21.3.1, ZC_BUILDOUT=3.0.0rc1, SETUPTOOLS=59.6.0, PLONE_MAJOR=6.0, PLONE_VERSION=6.0.0a3
+  [boulch]
+
+- By default, comment debug-products to avoid many pdb with solr
+  [boulch]
+
 - imio.smartweb.core 1.0a27
 
     - Add upgrade step to check contact itinerary if address is in visible blocks
@@ -38,7 +45,7 @@
     - Change translation for short name
       [laulaz]
 
-- Update buildout to use Plone 6.0.0a2 packages versions
+- Update buildout to use Plone 6.0.0a3 packages versions
   [boulch]
 
 - Set zodb-cache-size and zeo-client-cache-size from env variables.
