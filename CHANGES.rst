@@ -1,6 +1,9 @@
 1.0a11 (unreleased)
 -------------------
 
+- Update buildout to use Plone 6.0.0a2 packages versions
+  [boulch]
+
 - Set zodb-cache-size and zeo-client-cache-size from env variables.
   [bsuttor]
 
