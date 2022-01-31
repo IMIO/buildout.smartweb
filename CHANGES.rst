@@ -1,6 +1,9 @@
 1.0a11 (unreleased)
 -------------------
 
+- Set zodb-cache-size and zeo-client-cache-size from env variables.
+  [bsuttor]
+
 - imio.smartweb.policy 1.0a11
 
     - Fix Plone translations override
