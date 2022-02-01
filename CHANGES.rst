@@ -1,6 +1,34 @@
 1.0a11 (unreleased)
 -------------------
 
+- imio.smartweb.common 1.0a9
+
+    - Update buildout to use Plone 6.0.0a3 packages versions
+      [boulch]
+
+    - Remove unneeded override: it has been included in plone.app.z3c.form
+      See https://github.com/plone/plone.app.z3cform/issues/138
+      [laulaz]
+
+- imio.smarweb.core 1.0a28
+
+    - Fix navigation in subsites after navtree_depth property removal
+      See https://github.com/plone/plone.app.layout/commit/7e2178d2ae11780d9211c71d8c97e4f81cd27620
+      [laulaz]
+
+    - Update buildout to use Plone 6.0.0a3 packages versions
+      [boulch]
+
+    - Allow collections as folders default view
+      [laulaz]
+
+    - Add links on folder titles in navigation
+      [laulaz]
+
+    - Fix double escaped navigation items
+      See https://github.com/plone/plone.app.layout/issues/280
+      [laulaz]
+
 - Update Dockerfile to match Plone6 buildout
   PIP=21.3.1, ZC_BUILDOUT=3.0.0rc1, SETUPTOOLS=59.6.0, PLONE_MAJOR=6.0, PLONE_VERSION=6.0.0a3
   [boulch]
