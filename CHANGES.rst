@@ -1,6 +1,9 @@
 1.0a11 (unreleased)
 -------------------
 
+- Update Sendinblue packages to use v3 API key
+  [laulaz]
+
 - imio.smartweb.common 1.0a9
 
     - Update buildout to use Plone 6.0.0a3 packages versions
