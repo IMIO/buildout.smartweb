@@ -1,6 +1,30 @@
 1.0a11 (unreleased)
 -------------------
 
+- imio.smartweb.locales 1.0a12
+
+    - Add e_guichet view and taxonomies instance behaviors translations
+      [laulaz]
+
+- imio.smartweb.policy 1.0a14
+
+    - Add collective.z3cform.select2 as a dependency
+      [boulch]
+
+- imio.smartweb.core 1.0a30
+
+    - Allow to set instance behaviors on page or on procedure objects
+      [boulch, laulaz]
+
+    - Improve react vue for mobile
+      [thomlamb]
+
+    - Change static js and css for mobile responsive search
+      [thomlamb]
+
+    - Simplifying faceted macros
+      [boulch]
+
 - imio.smartweb.core 1.0a29
 
     - Fix error in navigation when filtering on workflow state
