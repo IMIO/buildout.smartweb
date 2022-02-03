@@ -1,6 +1,26 @@
 1.0a11 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.0a29
+
+    - Fix error in navigation when filtering on workflow state
+      [laulaz]
+
+    - Adapt faceted macros to discern section video and other contents. Fix video redirect link thanks to css.
+      [boulch]
+
+- imio.smartweb.policy 1.0a13
+
+    - Upgrade step : Reload portal types to add imio.smartweb.listing behavior on links
+      [boulch]
+
+    - Patch ALL caching operations to add Cache-Control header even when
+      intercepting a 304 NOT MODIFIED
+      [laulaz]
+
+    - Update buildout to use Plone 6.0.0a3 packages versions
+      [boulch]
+
 - Update Sendinblue packages to use v3 API key
   [laulaz]
 
