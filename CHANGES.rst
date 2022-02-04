@@ -1,6 +1,27 @@
 1.0a11 (unreleased)
 -------------------
 
+- imio.smartweb.policy 1.0a15
+
+    - Activate plone.app.caching.moderateCaching.lastModified
+      [sverbois, laulaz]
+
+    - Use auto-checkout for collective.z3cform.select2 (Plone 6)
+      [laulaz]
+
+- imio.smartweb.locales 1.0a13
+
+    - Add event dates related translations
+      [laulaz]
+
+- imio.smartweb.core 1.0a31
+
+    - Disable sticky map on mobile
+      [thomlamb]
+  
+    - Refactor : Displaying dates from section event is now in a macro to have more html flexibility
+      [boulch, laulaz]
+
 - imio.smartweb.locales 1.0a12
 
     - Add e_guichet view and taxonomies instance behaviors translations
