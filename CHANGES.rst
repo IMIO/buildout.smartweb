@@ -1,7 +1,40 @@
 1.0a12 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.0a32
+
+    - Change Youtube & Parking base icons, and add Twitter
+      [laulaz] 
+
+    - Add id on sections containers to ease styling
+      [laulaz]
+
+    - Be sure to reindex the container (& change modification date for cachinig) when
+      a page has been modified
+      [laulaz]
+
+    - Reorder SectionContact template + modify some translations
+      [boulch]
+
+    - Fix generated url for search results
+      [thomlamb]
+
+    - Unauthorize to add imio.smartweb.SectionSendinblue on a Page but authorize it on PortalPage.
+      [boulch]
+
+    - Include source item url for `@search` service results
+      [mpeeters]
+
+    - Enforce using SolR for `@search` service
+      [mpeeters]
+
+    - Fix translation domain for event macro
+      [laulaz]
+
+- imio.smartweb.locales 1.0a14
+
+    - Add social network translation
+      [laulaz]
 
 
 1.0a11-quick (2022-02-04)
