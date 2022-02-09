@@ -1,4 +1,4 @@
-1.0a13 (unreleased)
+1.0a13 (2022-02-09)
 -------------------
 
 - imio.smartweb.core 1.0a34
