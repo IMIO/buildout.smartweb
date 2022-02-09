@@ -1,7 +1,17 @@
 1.0a13 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.0a34
+
+    - Fix missing permissions to add footer
+      [laulaz] 
+
+    - Fix default item view for a collection when anonymous
+      [laulaz] 
+
+    - Fix double escaped navigation items in quick accesses
+      See https://github.com/plone/plone.app.layout/issues/280
+      [laulaz] 
 
 
 1.0a12-quick (2022-02-08)
