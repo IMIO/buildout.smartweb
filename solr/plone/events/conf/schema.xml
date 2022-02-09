@@ -126,6 +126,7 @@
     <field name="commentators" type="string" indexed="true" stored="true" multiValued="true" />
     <field name="container_uid" type="string" indexed="true" stored="true" />
     <field name="enableAutopublishing" type="string" indexed="true" stored="true" />
+    <field name="event_dates" type="string" indexed="true" stored="true" multiValued="true" />
     <field name="event_type" type="string" indexed="true" stored="true" />
     <field name="getObjPositionInParent" type="tint" indexed="true" stored="true" />
     <field name="getRawRelatedItems" type="string" indexed="true" stored="true" multiValued="true" />
