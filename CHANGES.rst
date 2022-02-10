@@ -1,7 +1,8 @@
 1.0a14 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Up RelStorage to 3.4.5
+  [laulaz] 
 
 
 1.0a13 (2022-02-09)
