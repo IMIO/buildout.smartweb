@@ -1,7 +1,33 @@
 1.0a15 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.0a35
+
+    - Use css class & background style also on footers sections
+      [laulaz]
+
+    - Correction of spelling mistakes
+      [thomlamb]
+
+    - Get events with new event_dates index
+      [laulaz]
+
+    - Change footer markup to have only one row
+      [laulaz]
+
+    - Add new e-guichet icon
+      [laulaz]
+
+    - Remove GDPR link from footer (it is already in colophon)
+      [laulaz]
+
+    - Restore removed class to help styling carousel by batch size
+      [laulaz]
+
+- imio.smartweb.common 1.0a10
+
+    - Hide ical import related actions
+      [laulaz]
 
 
 1.0a14-quick (2022-02-10)
