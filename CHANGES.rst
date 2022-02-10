@@ -1,6 +1,11 @@
 1.0a14 (unreleased)
 -------------------
 
+- imio.smartweb.policy 1.0a16
+
+    - Add imio.prometheus dependency to get metrics view.
+      [bsuttor]
+
 - Up RelStorage to 3.4.5
   [laulaz] 
 
