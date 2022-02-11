@@ -33,7 +33,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 WORKDIR /plone
 RUN chown imio:imio -R /plone && mkdir /data && chown imio:imio -R /data
 
-COPY --chown=imio eggs /plone/eggs/
+#COPY --chown=imio eggs /plone/eggs/
 COPY --chown=imio *.cfg /plone/
 COPY --chown=imio scripts /plone/scripts
 RUN su -c "buildout -c prod.cfg -t 30 -N" -s /bin/sh imio
