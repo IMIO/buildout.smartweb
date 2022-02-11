@@ -9,26 +9,26 @@ ENV PIP=21.3.1 \
 
 # hadolint ignore=DL3008
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential \
-    gcc \
-    git \
-    libbz2-dev \
-    libc6-dev \
-    libffi-dev \
-    libjpeg62-dev \
-    libopenjp2-7-dev \
-    libmemcached-dev \
-    libpcre3-dev \
-    libpq-dev \
-    libreadline-dev \
-    libssl-dev \
-    libxml2-dev \
-    libxslt1-dev \
-    python3-dev \
-    python3-pip \
-    wget \
-    zlib1g-dev \
-  && pip3 install --no-cache-dir pip==$PIP setuptools==$SETUPTOOLS zc.buildout==$ZC_BUILDOUT
+  build-essential \
+  gcc \
+  git \
+  libbz2-dev \
+  libc6-dev \
+  libffi-dev \
+  libjpeg62-dev \
+  libopenjp2-7-dev \
+  libmemcached-dev \
+  libpcre3-dev \
+  libpq-dev \
+  libreadline-dev \
+  libssl-dev \
+  libxml2-dev \
+  libxslt1-dev \
+  python3-dev \
+  python3-pip \
+  wget \
+  zlib1g-dev \
+  && pip3 install --no-cache-dir pip==$PIP setuptools==$SETUPTOOLS zc.buildout==$ZC_BUILDOUT py-spy
 
 WORKDIR /plone
 RUN chown imio:imio -R /plone && mkdir /data && chown imio:imio -R /data
@@ -56,22 +56,23 @@ WORKDIR /plone
 
 # hadolint ignore=DL3008
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    libjpeg62 \
-    libmemcached11 \
-    libopenjp2-7 \
-    libpq5 \
-    libtiff5 \
-    libxml2 \
-    libxslt1.1 \
-    lynx \
-    netcat \
-    poppler-utils \
-    python3-distutils \
-    rsync \
-    wv \
+  libjpeg62 \
+  libmemcached11 \
+  libopenjp2-7 \
+  libpq5 \
+  libtiff5 \
+  libxml2 \
+  libxslt1.1 \
+  lynx \
+  netcat \
+  poppler-utils \
+  python3-distutils \
+  rsync \
+  wv \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 RUN curl -L https://github.com/Yelp/dumb-init/releases/download/v1.2.5/dumb-init_1.2.5_amd64.deb > /tmp/dumb-init.deb && dpkg -i /tmp/dumb-init.deb && rm /tmp/dumb-init.deb
+COPY --from=builder /usr/local/bin/py-spy /usr/local/bin/py-spy
 COPY --chown=imio --from=builder /plone .
 COPY --from=builder /usr/local/lib/python3.8/dist-packages /usr/local/lib/python3.8/dist-packages
 COPY --chown=imio docker-initialize.py docker-entrypoint.sh /
