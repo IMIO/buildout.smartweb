@@ -1,7 +1,29 @@
 1.0a16 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.0a36
+
+    - Update e-guichet icon file & add new shopping icon
+      [laulaz]
+
+    - Change default value for batch size in files section
+      [laulaz]
+
+    - Improve css
+      [thomlamb]
+
+    - Avoid fetching contact from authentic source multiple times on the same view
+      [laulaz]
+
+- imio.smartweb.policy 1.0a17
+
+    - Send BAN request after a messageviewlet creation / modification / removal
+      [laulaz]
+
+- imio.smartweb.locales 1.0a15
+
+    - Add new icons translations (e-guichet & shopping)
+      [laulaz]
 
 
 1.0a15 (2022-02-10)
