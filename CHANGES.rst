@@ -1,6 +1,11 @@
 1.0a17 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.0a38
+
+    - Fix condition to display search items img
+      [thomlamb]
+
 - imio.smartweb.core 1.0a37
 
     - Fix problem with react event map
