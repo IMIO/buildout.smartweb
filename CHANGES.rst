@@ -1,7 +1,8 @@
 1.0a17 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix some auto-checkout to revisions instead of branches
+  [boulch]
 
 
 1.0a16-quick (2022-02-11)
