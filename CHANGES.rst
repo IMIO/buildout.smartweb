@@ -1,7 +1,10 @@
 1.0a19 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.0a40
+
+    - Fix bug with react import img
+      [thomlamb]
 
 
 1.0a18-quick (2022-02-14)
