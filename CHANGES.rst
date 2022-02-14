@@ -1,6 +1,30 @@
 1.0a17 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.0a37
+
+    - Fix problem with react event map
+      [thomlamb]
+
+    - Add background image for result search items
+      [thomlamb]
+
+    - Refactor all js indent
+      [thomlamb]
+
+    - Add placeholder class on contact logo & leadimage when they are empty
+      [laulaz]
+
+    - Change/fix max number (30) of possible sections in pages before paging
+      [boulch]
+
+    - Add new div with a nb-items-batch-[N] class
+      to ease stylizing multi items templates (table, carousel)
+      [boulch]
+
+    - Fix bad css value
+      [thomlamb]
+
 - Fix some auto-checkout to revisions instead of branches
   [boulch]
 
