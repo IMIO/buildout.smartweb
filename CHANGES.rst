@@ -1,7 +1,10 @@
 1.0a18 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.0a39
+
+  - Fix missing value for placeholder 
+    [thomlamb]
 
 
 1.0a17-quick (2022-02-14)
