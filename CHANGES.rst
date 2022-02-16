@@ -1,7 +1,20 @@
 1.0a20 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.0a41
+
+    - Fix loadmore react views
+      [thomlamb]
+
+    - Update Axios module to 26.0
+      [thomlamb]
+
+    - Add AbortController to prevent unnecessary requests
+      [thomlamb]
+
+    - Use `use_site_search_settings` parameters by default to inherit query parameters from site search settings
+      for `@search` endpoint
+      [mpeeters]
 
 
 1.0a19-quick (2022-02-14)
