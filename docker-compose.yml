@@ -1,5 +1,5 @@
 ---
-version: '2.1'
+version: '2.4'
 volumes:
   smartweb-postgres:
 services:
@@ -7,7 +7,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: docker-staging.imio.be/smartweb/mutual:latest
     ports:
       - "8080:8080"
     links:
@@ -28,12 +27,14 @@ services:
       - RELSTORAGE_PASSWORD=zope
       - RELSTORAGE_HOSTNAME=db
       - RELSTORAGE_PORT=5432
+      - ZODB_CACHE_SIZE=30000
+      - ZEO_CLIENT_CACHE_SIZE=256MB
       - PROJECT_ID=test
       - PLONE_EXTENSION_IDS=plone.app.caching:default,plonetheme.barceloneta:default,imio.smartweb.policy:default
       - DEFAULT_LANGUAGE=fr
       - ACTIVE_BIGBANG=True
     healthcheck:
-      test: ['CMD', 'nc', '-z', '-w5', '127.0.0.1', '8080']
+      test: [ 'CMD', 'nc', '-z', '-w5', '127.0.0.1', '8080' ]
     labels:
       - 'traefik.enable=true'
       - 'traefik.http.routers.instance.rule=Host(`portal.localhost`)'
@@ -44,10 +45,10 @@ services:
     image: traefik:v2.4
     command: --api.insecure=true --providers.docker
     ports:
-      - "80:80"      # The HTTP port
-      - "8000:8080"  # The Web UI (enabled by --api)
+      - "80:80" # The HTTP port
+      - "8000:8080" # The Web UI (enabled by --api)
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock  # So that Traefik can listen to the Docker events
+      - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can listen to the Docker events
   postgres:
     image: postgres:11.10
     environment:
