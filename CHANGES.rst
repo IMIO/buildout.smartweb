@@ -1,6 +1,14 @@
 1.0a20 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.0a42
+
+    - Fix bad html link for news items
+      [thomlamb]
+
+    - Fix removed section subscriber. if we removed a folder, pages with sections stayed in catalog
+      [boulch]
+
 - imio.smartweb.core 1.0a41
 
     - Fix loadmore react views
