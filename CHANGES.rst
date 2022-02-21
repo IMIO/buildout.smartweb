@@ -1,6 +1,19 @@
 1.0a20 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.0a43
+
+    - Limitate usage of site search settings to current website search
+      [mpeeters]
+
+- imio.smartweb.common 1.0a11
+
+    - Load Analytics via JS call to avoid non-privacy aware caching
+      [laulaz]
+    
+    - Change privacy views permissions to zope.Public 
+      [laulaz]
+
 - imio.smartweb.core 1.0a42
 
     - Fix bad html link for news items
