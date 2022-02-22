@@ -1,6 +1,35 @@
 1.0a20 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.0
+
+    - Add description in sendinblue section
+      [boulch]
+
+    - Add conditions on faceted and folder view (with images).
+      When we select one of this view and if a content hasn't image we display a no-image class
+      [boulch]
+
+    - Fix css for news items
+      [thomlamb]
+
+    - Change event contact icon
+      [thomlamb]
+
+    - Override social tags generation to get scaled images instead of full size.
+      We didn't override syndication to avoid any side effects in RSS / Atom
+      [laulaz]
+
+- imio.smartweb.policy 1.0
+
+    - Install and set collective autoscaling with some default values
+      [boulch]
+
+- imio.smartweb.locales 1.0a16
+
+    - Fix translation
+      [laulaz]
+
 - imio.smartweb.core 1.0a43
 
     - Limitate usage of site search settings to current website search
