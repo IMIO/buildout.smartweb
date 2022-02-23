@@ -2,6 +2,8 @@
 all: buildout
 
 IMAGE_NAME="docker-staging.imio.be/smartweb/mutual:latest"
+BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
+#BRANCH := $(shell git for-each-ref --format='%(objectname) %(refname:short)' refs/heads | awk "/^$$(git rev-parse HEAD)/ {print \$$2}")
 
 buildout.cfg:
 	ln -fs dev.cfg buildout.cfg
@@ -32,7 +34,7 @@ eggs:  ## Copy eggs from docker image to speed up docker build
 
 docker-image: eggs  ## Build docker image
 	mkdir -p eggs
-	docker build --pull --no-cache -t smartweb/mutual:latest .
+	docker build --pull --no-cache -t smartweb/mutual:$(BRANCH)  .
 
 lint:
 	pre-commit run --all
