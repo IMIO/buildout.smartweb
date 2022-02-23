@@ -36,6 +36,8 @@ RUN chown imio:imio -R /plone && mkdir /data && chown imio:imio -R /data
 COPY --chown=imio eggs /plone/eggs/
 COPY --chown=imio *.cfg /plone/
 COPY --chown=imio scripts /plone/scripts
+COPY --chown=imio templates /plone/templates
+
 RUN su -c "buildout -c prod.cfg -t 30 -N" -s /bin/sh imio
 
 FROM imiobe/base:py3-ubuntu-20.04
@@ -76,6 +78,7 @@ COPY --from=builder /usr/local/bin/py-spy /usr/local/bin/py-spy
 COPY --chown=imio --from=builder /plone .
 COPY --from=builder /usr/local/lib/python3.8/dist-packages /usr/local/lib/python3.8/dist-packages
 COPY --chown=imio docker-initialize.py docker-entrypoint.sh /
+RUN sed -i 's/ZServer/gunicorn/g' parts/omelette/Products/CMFPlone/controlpanel/browser/overview.py # HACK for overview-controlpanel view
 
 USER imio
 EXPOSE 8080
