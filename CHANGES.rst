@@ -1,6 +1,31 @@
 1.0.1 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.0.1
+
+    - Removal of the pointer if it is located at Imio (event and library view)
+      [thomlamb]
+
+    - Added times and fixed date display for event views
+      [thomlamb]
+
+    - Override eea.facetednavigation select widget template.
+      Display label as first value in select fields
+      [boulch]
+
+    - Add placeholder to faceted text search (xml) + upgrade step
+      [boulch]
+
+    - Fix : Add a missing tal instruction
+      [boulch]
+
+    - Use new icons radio widget to select SVG icon for links
+      [laulaz]
+
+    - Avoid problems with minisite & subsite simultaneous activation (for example,
+      through a cached action)
+      [laulaz]
+
 - Improve docker HEALTHCHECK.
   [bsuttor]
 
