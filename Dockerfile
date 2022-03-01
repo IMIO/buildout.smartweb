@@ -50,7 +50,9 @@ ENV PIP=21.3.1 \
   ZEO_HOST=db \
   ZEO_PORT=8100 \
   HOSTNAME_HOST=local \
-  PROJECT_ID=smartweb
+  PROJECT_ID=smartweb \
+  PLONE_EXTENSION_IDS=plone.app.caching:default,plonetheme.barceloneta:default,imio.smartweb.policy:default \
+  DEFAULT_LANGUAGE=fr
 
 RUN mkdir -p /data/blobstorage && chown imio:imio -R /data && mkdir /plone && chown imio:imio -R /plone
 VOLUME /data/blobstorage
