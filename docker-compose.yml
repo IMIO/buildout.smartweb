@@ -33,6 +33,11 @@ services:
       - PLONE_EXTENSION_IDS=plone.app.caching:default,plonetheme.barceloneta:default,imio.smartweb.policy:default
       - DEFAULT_LANGUAGE=fr
       - ACTIVE_BIGBANG=True
+      - COLLECTIVE_SOLR_HOST=solr
+      - COLLECTIVE_SOLR_PORT=8983
+      - COLLECTIVE_SOLR_BASE=/solr/web
+      - COLLECTIVE_SOLR_LOGIN=solr
+      - COLLECTIVE_SOLR_PASSWORD=SolrRocks
     healthcheck:
       test: [ 'CMD', 'nc', '-z', '-w5', '127.0.0.1', '8080' ]
     labels:
@@ -62,3 +67,9 @@ services:
     command:
       - "-m"
       - "1024"
+  solr:
+    image: solr:8.10.0-slim
+    ports:
+      - "8983:8983"
+    volumes:
+      - ./solr:/var/solr/data/plone
