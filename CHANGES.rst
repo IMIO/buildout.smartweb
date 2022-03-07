@@ -1,6 +1,9 @@
 1.0.1 (unreleased)
 ------------------
 
+- Use collective.recipe.template 2.2 to avoid use_2to3 errors on Github
+  [laulaz]
+
 - imio.smartweb.core 1.0.1
 
     - Removal of the pointer if it is located at Imio (event and library view)
