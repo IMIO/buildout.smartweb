@@ -1,6 +1,32 @@
 1.0.1 (unreleased)
 ------------------
 
+- imio.smartweb.locales 1.0
+
+    - Change 'minisite' to 'site partenaire' in French
+      [laulaz]
+
+    - Add icon field related translations
+      [laulaz]
+
+- imio.smartweb.common 1.0
+
+    - Avoid traceback if @@get_analytics is called outside Plone site
+      [laulaz]
+
+- imio.smartweb.core 1.0.2
+
+    - Add missing init file for faceted widgets
+      [laulaz]
+
+- imio.smartweb.policy 1.0.2
+
+    - Add/install select2 widget for faceted
+      [boulch]
+
+    - Fix BAN request when we change a message
+      [boulch, laulaz]
+
 - Add pytest to verify policy is installed.
   [bsuttor]
 
