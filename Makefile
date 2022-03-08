@@ -34,6 +34,7 @@ lint:
 	pre-commit run --all
 
 test-image: bin/pip
+	bin/pip install -U pip
 	bin/pip install -r tests/requirements.txt
 	bin/pytest -s tests
 
