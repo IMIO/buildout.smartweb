@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from distutils.log import debug
-import pdb
 from compose.cli.main import project_from_options
 from compose.cli.main import TopLevelCommand
 from docker import APIClient
@@ -14,22 +12,22 @@ import requests
 import time
 
 options = {
-    "--detach": True,
     "--no-deps": False,
+    "--always-recreate-deps": False,
     "--abort-on-container-exit": False,
     "SERVICE": "",
-    "--remove-orphans": False,
-    "--no-recreate": True,
-    "--force-recreate": False,
+    "--remove-orphans": True,
+    "--detach": True,
+    "--no-recreate": False,
+    "--force-recreate": True,
     "--build": True,
     "--no-build": False,
     "--no-color": False,
-    "--rmi": "none",
+    "--rmi": "all",
     "--volumes": "",
     "--follow": False,
     "--timestamps": False,
     "--tail": "all",
-    "--always-recreate-deps": False,
     "--scale": "",
     # "-p": "../",
 }
@@ -50,9 +48,9 @@ def docker_compose(request: FixtureRequest):
     def finalize():
         cmd.down(
             {
-                "--rmi": False,
+                "--rmi": "local",
                 "--volumes": True,
-                "--remove-orphans": False,
+                "--remove-orphans": True,
             }
         )
 

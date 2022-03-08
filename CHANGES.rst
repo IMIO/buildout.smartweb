@@ -1,6 +1,17 @@
 1.0.1 (unreleased)
 ------------------
 
+- Add pytest to verify policy is installed.
+  [bsuttor]
+
+- imio.smartweb.policy 1.0.1
+
+    - Add missing zcml include of collective.autoscaling
+      [laulaz]
+
+    - Fix faceted criteria update when installing from code (without browser request)
+      [laulaz]
+
 - Use collective.recipe.template 2.2 to avoid use_2to3 errors on Github
   [laulaz]
 
