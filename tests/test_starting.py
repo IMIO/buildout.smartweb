@@ -29,7 +29,7 @@ options = {
     "--timestamps": False,
     "--tail": "all",
     "--scale": "",
-    # "-p": "../",
+    "-p": "../",
 }
 
 
