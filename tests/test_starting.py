@@ -29,7 +29,7 @@ options = {
     "--timestamps": False,
     "--tail": "all",
     "--scale": "",
-    "-p": "../",
+    # "-p": "../",
 }
 
 
@@ -65,7 +65,7 @@ def test_start_instance(docker_compose):
     client = docker.from_env()
     container = client.containers.get(container_name)
     is_plone_ready = False
-    timeout = time.time() + 30
+    timeout = time.time() + 60
     while not is_plone_ready:
         time.sleep(1)
         if container not in client.containers.list():
