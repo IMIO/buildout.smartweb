@@ -36,7 +36,7 @@ lint:
 test-image: bin/pip
 	./bin/pip install pip==21.3.1
 	docker-compose up --no-start postgres # create network
-	chmod 777 -R solr
+	docker-compose run --rm solr chmod 777 -R /var/solr/data/plone
 	make local-test-image
 
 local-test-image:
