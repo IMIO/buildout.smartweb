@@ -8,12 +8,12 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8080"
+      - "8080:8080"
     links:
       - postgres:db
     depends_on:
       - postgres
-      - reverse-proxy
+      - solr
     volumes:
       - ./zodbconvert.cfg:/plone/zodbconvert.cfg
     environment:
@@ -51,7 +51,7 @@ services:
     command: --api.insecure=true --providers.docker
     ports:
       - "80:80" # The HTTP port
-      - "8080" # The Web UI (enabled by --api)
+      - "8001:8080" # The Web UI (enabled by --api)
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can listen to the Docker events
   postgres:

@@ -15,11 +15,11 @@ options = {
     "--no-deps": False,
     "--always-recreate-deps": False,
     "--abort-on-container-exit": False,
-    "SERVICE": "",
+    "SERVICE": ["instance"],
     "--remove-orphans": True,
     "--detach": True,
-    "--no-recreate": False,
-    "--force-recreate": True,
+    "--no-recreate": True,
+    "--force-recreate": False,
     "--build": True,
     "--no-build": False,
     "--no-color": False,
@@ -98,7 +98,7 @@ def test_policy_installed(docker_compose):
     # installed_package_id = "plone.restapi"
     installed_package_id = "imio.smartweb.policy"
     package_info = requests.get(
-        f"http://portal.localhost/@addons/{installed_package_id}",
+        f"http://localhost:8080/Plone/@addons/{installed_package_id}",
         headers={"Accept": "application/json"},
         auth=("admin", "admin"),
     ).json()
