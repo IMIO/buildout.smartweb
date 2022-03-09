@@ -33,10 +33,18 @@ docker-image:
 lint:
 	pre-commit run --all
 
-test-image:
+test-image: bin/pip
+	./bin/pip install pip==21.3.1
+	make local-test-image
+
+local-test-image:
 	python3 -m venv .
 	./bin/pip install -r tests/requirements.txt
 	./bin/pytest -s tests
+
+docker-test-image:
+	docker build -f Dockerfile.test -t smartweb-test:latest .
+	docker run  -v /var/run/docker.sock:/var/run/docker.sock smartweb-test
 
 .PHONY: solr
 solr:
