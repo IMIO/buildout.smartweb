@@ -34,10 +34,11 @@ lint:
 	pre-commit run --all
 
 test-image: bin/pip
-	./bin/pip install pip==21.3.1
-	docker-compose up --no-start postgres # create network
-	docker-compose run --rm -u root solr chmod 777 -R /var/solr/data/plone
-	make local-test-image
+	echo test
+	#./bin/pip install pip==21.3.1
+	#docker-compose up --no-start postgres # create network
+	#docker-compose run --rm -u root solr chmod 777 -R /var/solr/data/plone
+	#make local-test-image
 
 local-test-image:
 	python3 -m venv .
