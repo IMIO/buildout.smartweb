@@ -1,6 +1,17 @@
 1.0.1 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.0.3
+
+    - Change leaflet style
+      [thomlamb]
+
+    - Adding info popup on leaflet marker
+      [thomlamb]
+
+    - Add correct href on search link for tab navigation
+      [thomlamb]
+
 - imio.smartweb.locales 1.0
 
     - Change 'minisite' to 'site partenaire' in French
