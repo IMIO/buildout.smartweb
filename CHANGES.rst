@@ -1,6 +1,11 @@
 1.0.1 (unreleased)
 ------------------
 
+- imio.smartweb.common 1.0.1
+
+    - Allow readers, editors and reviewers to see inactive (expired) contents
+      [laulaz]
+
 - Update collective.solr checkout revision to include inactive content fix
   [laulaz]
 
