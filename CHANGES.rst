@@ -1,6 +1,9 @@
 1.0.1 (unreleased)
 ------------------
 
+- Update collective.solr checkout revision to include inactive content fix
+  [laulaz]
+
 - Use https:// instead of git:// protocol
   See https://github.blog/2021-09-01-improving-git-protocol-security-github/
   [laulaz]
