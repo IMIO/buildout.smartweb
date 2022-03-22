@@ -1,7 +1,14 @@
 1.0.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- imio.gdpr 1.2.2
+  
+    - Remove plone.app.registry template override as it is now released:
+      Plone 6.0.0a3 / plone.app.registry 2.0.0a7
+      [laulaz]
+
+    - Add specific controlpanel permission and give this permission to site administrator
+      [boulch]
 
 
 1.0.1-quick (2022-03-16)
