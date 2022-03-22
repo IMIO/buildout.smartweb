@@ -52,3 +52,11 @@ docker-test-image:
 .PHONY: solr
 solr:
 	docker-compose -f docker-compose-solr.yml up
+
+
+.PHONY: put-blob-on-host
+put-blob-on-host:
+	mkdir -p var/migrate/filestorage
+	bin/zodbconvert zodbconvert-from-postgres-to-datafs.cfg
+	psql -U $(RELSTORAGE_USER) -h $(RELSTORAGE_HOSTNAME) -p $(RELSTORAGE_PORT) -w $(RELSTORAGE_PASSWORD) -c 'DROP TABLE IF EXISTS $(RELSTORAGE_DB)'
+	bin/zodbconvert zodbconvert-from-datafs-to-postgres.cfg

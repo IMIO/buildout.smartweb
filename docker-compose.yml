@@ -7,24 +7,28 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    ports:
-      - "8080:8080"
+    # ports:
+    #   - "8080:8080"
     links:
       - postgres:db
     depends_on:
       - postgres
-      - solr
-    volumes:
-      - ./zodbconvert.cfg:/plone/zodbconvert.cfg
+      - reverse-proxy
+    #volumes:
+    #  - ./zodbconvert.cfg:/plone/zodbconvert.cfg
+    #  - ./parts/instance/etc/zope.conf:/plone/parts/instance/etc/zope.conf
+    #  - ./var:/plone/var
     environment:
       - MEMCACHE_SERVER=172.17.0.1
       - MEMCACHE_DEFAULT_AGE=10800
       - ENV=dev
       - CACHING_SERVERS=http://varnish.staging.imio.be:5000
       - DOMAINS=localhost
-      - RELSTORAGE_DB=zope
-      - RELSTORAGE_USER=zope
-      - RELSTORAGE_PASSWORD=zope
+      - ZODB_CACHE_SIZE=30000
+      - ZEO_CLIENT_CACHE_SIZE=256MB
+      - RELSTORAGE_DB=smartweb_brainelalleud_production
+      - RELSTORAGE_USER=smartweb_brainelalleud_production
+      - RELSTORAGE_PASSWORD=yaeGu6meiph6fa
       - RELSTORAGE_HOSTNAME=db
       - RELSTORAGE_PORT=5432
       - ZODB_CACHE_SIZE=30000
@@ -32,12 +36,7 @@ services:
       - PROJECT_ID=test
       - PLONE_EXTENSION_IDS=plone.app.caching:default,plonetheme.barceloneta:default,imio.smartweb.policy:default
       - DEFAULT_LANGUAGE=fr
-      - ACTIVE_BIGBANG=True
-      - COLLECTIVE_SOLR_HOST=solr
-      - COLLECTIVE_SOLR_PORT=8983
-      - COLLECTIVE_SOLR_BASE=/solr/web
-      - COLLECTIVE_SOLR_LOGIN=solr
-      - COLLECTIVE_SOLR_PASSWORD=SolrRocks
+      - ACTIVE_BIGBANG=False
     healthcheck:
       test: [ 'CMD', 'nc', '-z', '-w5', '127.0.0.1', '8080' ]
     labels:
@@ -51,17 +50,18 @@ services:
     command: --api.insecure=true --providers.docker
     ports:
       - "80:80" # The HTTP port
-      - "8001:8080" # The Web UI (enabled by --api)
+      - "8000:8080" # The Web UI (enabled by --api)
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can listen to the Docker events
   postgres:
     image: postgres:11.10
     environment:
-      - POSTGRES_DB=zope
-      - POSTGRES_USER=zope
-      - POSTGRES_PASSWORD=zope
+      - POSTGRES_DB=smartweb_brainelalleud_production
+      - POSTGRES_USER=smartweb_brainelalleud_production
+      - POSTGRES_PASSWORD=yaeGu6meiph6fa
     volumes:
       - smartweb-postgres:/var/lib/postgresql/data
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
   memcached:
     image: memcached:1.5.20
     command:

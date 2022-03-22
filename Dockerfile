@@ -36,6 +36,7 @@ RUN chown imio:imio -R /plone && mkdir /data && chown imio:imio -R /data
 # COPY --chown=imio eggs /plone/eggs/
 COPY --chown=imio --from=docker-staging.imio.be/smartweb/mutual:latest /plone/eggs/ /plone/eggs/
 COPY --chown=imio *.cfg /plone/
+COPY --chown=imio Makefile /plone/
 COPY --chown=imio scripts /plone/scripts
 COPY --chown=imio templates /plone/templates
 
@@ -75,6 +76,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   rsync \
   wget \
   wv \
+  postgresql-client \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 RUN curl -L https://github.com/Yelp/dumb-init/releases/download/v1.2.5/dumb-init_1.2.5_amd64.deb > /tmp/dumb-init.deb && dpkg -i /tmp/dumb-init.deb && rm /tmp/dumb-init.deb
