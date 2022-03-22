@@ -1,5 +1,163 @@
-1.0a20 (unreleased)
--------------------
+1.0.2 (unreleased)
+------------------
+
+- imio.gdpr 1.2.2
+  
+    - Remove plone.app.registry template override as it is now released:
+      Plone 6.0.0a3 / plone.app.registry 2.0.0a7
+      [laulaz]
+
+    - Add specific controlpanel permission and give this permission to site administrator
+      [boulch]
+
+
+1.0.1-quick (2022-03-16)
+------------------------
+
+- imio.smartweb.common 1.0.1
+
+    - Allow readers, editors and reviewers to see inactive (expired) contents
+      [laulaz]
+
+- Update collective.solr checkout revision to include inactive content fix
+  [laulaz]
+
+- Use https:// instead of git:// protocol
+  See https://github.blog/2021-09-01-improving-git-protocol-security-github/
+  [laulaz]
+
+- imio.smartweb.core 1.0.3
+
+    - Change leaflet style
+      [thomlamb]
+
+    - Adding info popup on leaflet marker
+      [thomlamb]
+
+    - Add correct href on search link for tab navigation
+      [thomlamb]
+
+- imio.smartweb.locales 1.0
+
+    - Change 'minisite' to 'site partenaire' in French
+      [laulaz]
+
+    - Add icon field related translations
+      [laulaz]
+
+- imio.smartweb.common 1.0
+
+    - Avoid traceback if @@get_analytics is called outside Plone site
+      [laulaz]
+
+- imio.smartweb.core 1.0.2
+
+    - Add missing init file for faceted widgets
+      [laulaz]
+
+- imio.smartweb.policy 1.0.2
+
+    - Add/install select2 widget for faceted
+      [boulch]
+
+    - Fix BAN request when we change a message
+      [boulch, laulaz]
+
+- Add pytest to verify policy is installed.
+  [bsuttor]
+
+- imio.smartweb.policy 1.0.1
+
+    - Add missing zcml include of collective.autoscaling
+      [laulaz]
+
+    - Fix faceted criteria update when installing from code (without browser request)
+      [laulaz]
+
+- Use collective.recipe.template 2.2 to avoid use_2to3 errors on Github
+  [laulaz]
+
+- imio.smartweb.core 1.0.1
+
+    - Removal of the pointer if it is located at Imio (event and library view)
+      [thomlamb]
+
+    - Added times and fixed date display for event views
+      [thomlamb]
+
+    - Override eea.facetednavigation select widget template.
+      Display label as first value in select fields
+      [boulch]
+
+    - Add placeholder to faceted text search (xml) + upgrade step
+      [boulch]
+
+    - Fix : Add a missing tal instruction
+      [boulch]
+
+    - Use new icons radio widget to select SVG icon for links
+      [laulaz]
+
+    - Avoid problems with minisite & subsite simultaneous activation (for example,
+      through a cached action)
+      [laulaz]
+
+- Improve docker HEALTHCHECK.
+  [bsuttor]
+
+
+1.0-quick (2022-02-23)
+----------------------
+
+- imio.smartweb.core 1.0
+
+    - Add description in sendinblue section
+      [boulch]
+
+    - Add conditions on faceted and folder view (with images).
+      When we select one of this view and if a content hasn't image we display a no-image class
+      [boulch]
+
+    - Fix css for news items
+      [thomlamb]
+
+    - Change event contact icon
+      [thomlamb]
+
+    - Override social tags generation to get scaled images instead of full size.
+      We didn't override syndication to avoid any side effects in RSS / Atom
+      [laulaz]
+
+- imio.smartweb.policy 1.0
+
+    - Install and set collective autoscaling with some default values
+      [boulch]
+
+- imio.smartweb.locales 1.0a16
+
+    - Fix translation
+      [laulaz]
+
+- imio.smartweb.core 1.0a43
+
+    - Limitate usage of site search settings to current website search
+      [mpeeters]
+
+- imio.smartweb.common 1.0a11
+
+    - Load Analytics via JS call to avoid non-privacy aware caching
+      [laulaz]
+    
+    - Change privacy views permissions to zope.Public 
+      [laulaz]
+
+- imio.smartweb.core 1.0a42
+
+    - Fix bad html link for news items
+      [thomlamb]
+
+    - Fix removed section subscriber. if we removed a folder, pages with sections stayed in catalog
+      [boulch]
 
 - imio.smartweb.core 1.0a41
 

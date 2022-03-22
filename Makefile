@@ -1,7 +1,8 @@
 #!/usr/bin/make
 all: buildout
 
-IMAGE_NAME="docker-staging.imio.be/smartweb/mutual:latest"
+BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
+#BRANCH := $(shell git for-each-ref --format='%(objectname) %(refname:short)' refs/heads | awk "/^$$(git rev-parse HEAD)/ {print \$$2}")
 
 buildout.cfg:
 	ln -fs dev.cfg buildout.cfg
@@ -26,17 +27,36 @@ cleanall:
 upgrade-steps:
 	bin/instance -O plone run scripts/run_portal_upgrades.py
 
-eggs:  ## Copy eggs from docker image to speed up docker build
-	-docker run --entrypoint='' $(IMAGE_NAME) tar -c -C /plone eggs | tar x
-	mkdir -p eggs
-
-docker-image: eggs  ## Build docker image
-	mkdir -p eggs
-	docker build --pull --no-cache -t smartweb/mutual:latest .
+docker-image:
+	docker build --pull --no-cache -t smartweb/mutual:$(BRANCH)  .
 
 lint:
 	pre-commit run --all
 
+test-image: bin/pip
+	echo test
+	#./bin/pip install pip==21.3.1
+	#docker-compose up --no-start postgres # create network
+	#docker-compose run --rm -u root solr chmod 777 -R /var/solr/data/plone
+	#make local-test-image
+
+local-test-image:
+	python3 -m venv .
+	./bin/pip install -r tests/requirements.txt
+	./bin/pytest -s tests
+
+docker-test-image:
+	docker build -f Dockerfile.test -t smartweb-test:latest .
+	docker run  -v /var/run/docker.sock:/var/run/docker.sock smartweb-test
+
 .PHONY: solr
 solr:
 	docker-compose -f docker-compose-solr.yml up
+
+
+.PHONY: put-blob-on-host
+put-blob-on-host:
+	mkdir -p var/migrate/filestorage
+	bin/zodbconvert zodbconvert-from-postgres-to-datafs.cfg
+	psql -U $(RELSTORAGE_USER) -h $(RELSTORAGE_HOSTNAME) -p $(RELSTORAGE_PORT) -w $(RELSTORAGE_PASSWORD) -c 'DROP TABLE IF EXISTS $(RELSTORAGE_DB)'
+	bin/zodbconvert zodbconvert-from-datafs-to-postgres.cfg
