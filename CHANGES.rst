@@ -1,6 +1,9 @@
 1.0.2 (unreleased)
 ------------------
 
+- Switch collective.solr from auto-checkout to 9.0.0a6 pinned version
+  [boulch]
+
 - imio.gdpr 1.2.2
   
     - Remove plone.app.registry template override as it is now released:
