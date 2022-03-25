@@ -1,6 +1,17 @@
 1.0.2 (unreleased)
 ------------------
 
+- imio.smartweb.policy 1.0.3
+  
+    - add logger to get some informations about BAN with Varnish
+      [boulch]
+
+    - Fix collective autoscaling default values
+      [boulch]
+
+- Switch collective.solr from auto-checkout to 9.0.0a6 pinned version
+  [boulch]
+
 - imio.gdpr 1.2.2
   
     - Remove plone.app.registry template override as it is now released:
