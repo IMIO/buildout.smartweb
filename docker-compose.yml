@@ -20,7 +20,7 @@ services:
       - MEMCACHE_SERVER=172.17.0.1
       - MEMCACHE_DEFAULT_AGE=10800
       - ENV=dev
-      - CACHING_SERVERS=http://varnish.staging.imio.be:5000
+      - CACHING_SERVERS=varnish.staging.imio.be:5000
       - DOMAINS=localhost
       - RELSTORAGE_DB=zope
       - RELSTORAGE_USER=zope
