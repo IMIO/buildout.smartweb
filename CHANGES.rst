@@ -1,6 +1,59 @@
 1.0.2 (unreleased)
 ------------------
 
+- imio.smartweb.policy 1.0.4
+
+    - Add etags userid and roles in caching configuration
+      [sverbois, boulch]
+
+    - Adapt ban_for_message to cover multi varnish servers and add http to correctly ban
+      [boulch]
+
+    - Allow some Python modules in RestrictedPython (code moved from smartweb.core)
+      This is useful for collective.themefragments fragments
+      [boulch]
+
+- imio.smartweb.core 1.0.5
+
+    - Add local permissions and a "Local Manager" role.
+      Permissions : imio.smartweb.core.CanEditMinisiteLogo, imio.smartweb.core.CanManageSectionHTML
+      [boulch]
+
+    - Updated queries for search to only run with specific filters
+      [thomlamb]
+
+    - Handle inline SVG images for portal logo and minisite logo
+      [laulaz]
+
+    - Add show_items_lead_image attributes on files section.
+      Add no-image css class in table template when there is no image to display
+      [boulch]
+
+    - Add sections to procedure content type to be similar as page content type
+      [boulch]
+
+    - Add a portrait mode on section contact leadimage
+      [boulch]
+
+    - Exclude parents (folders) messages to traverse into partners sites
+      [boulch]
+
+    - Exclude Footers from parent listings by default
+      [laulaz]
+
+- imio.smartweb.locales 1.0.1
+
+    - Add missing translation for Local Manager & lead image portrait mode
+      [laulaz]
+
+- imio.smartweb.core 1.0.4
+
+    - Improve leaflet css
+      [thomlamb]
+
+    - Change leaflet tilelayer style
+      [thomlamb]
+
 - imio.smartweb.policy 1.0.3
   
     - add logger to get some informations about BAN with Varnish
