@@ -14,10 +14,10 @@ services:
     depends_on:
       - postgres
       - reverse-proxy
-    #volumes:
-    #  - ./zodbconvert.cfg:/plone/zodbconvert.cfg
-    #  - ./parts/instance/etc/zope.conf:/plone/parts/instance/etc/zope.conf
-    #  - ./var:/plone/var
+      - solr
+    volumes:
+      - ./var/blobstorage:/data/blobstorage
+      - ./var/migrate:/plone/var/migrate
     environment:
       - MEMCACHE_SERVER=172.17.0.1
       - MEMCACHE_DEFAULT_AGE=10800
@@ -31,8 +31,6 @@ services:
       - RELSTORAGE_PASSWORD=yaeGu6meiph6fa
       - RELSTORAGE_HOSTNAME=db
       - RELSTORAGE_PORT=5432
-      - ZODB_CACHE_SIZE=30000
-      - ZEO_CLIENT_CACHE_SIZE=256MB
       - PROJECT_ID=test
       - PLONE_EXTENSION_IDS=plone.app.caching:default,plonetheme.barceloneta:default,imio.smartweb.policy:default
       - DEFAULT_LANGUAGE=fr
@@ -59,9 +57,10 @@ services:
       - POSTGRES_DB=smartweb_brainelalleud_production
       - POSTGRES_USER=smartweb_brainelalleud_production
       - POSTGRES_PASSWORD=yaeGu6meiph6fa
+      - PGPASSWORD=yaeGu6meiph6fa
     volumes:
       - smartweb-postgres:/var/lib/postgresql/data
-      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      # - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
   memcached:
     image: memcached:1.5.20
     command:
