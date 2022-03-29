@@ -1,6 +1,9 @@
 1.0.2 (unreleased)
 ------------------
 
+- Remove gunicorn timeout to allow long requests
+  [laulaz]
+
 - imio.smartweb.policy 1.0.4
 
     - Add etags userid and roles in caching configuration
