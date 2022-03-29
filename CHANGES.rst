@@ -1,6 +1,11 @@
 1.0.2 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.0.6
+
+    - Fix: Change Leaflet Tilelayer map for fix bad attribution url
+      [thomlamb]
+
 - Remove gunicorn timeout to allow long requests
   [laulaz]
 
