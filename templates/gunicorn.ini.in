@@ -3,6 +3,7 @@ use = egg:gunicorn#main
 host = 0.0.0.0
 port = 8080
 proc_name = plone
+timeout = 0
 
 [app:zope]
 use = egg:Zope#main
