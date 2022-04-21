@@ -41,7 +41,7 @@ COPY --chown=imio templates /plone/templates
 
 RUN su -c "buildout -c prod.cfg -t 30 -N" -s /bin/sh imio
 # clean up old eggs
-RUN for egg in `ls /plone/eggs/ | cut -d '-' -f 1 | uniq`; do rm -rfv `ls -td /plone/eggs/$egg-* | awk 'NR>1'`; done
+# RUN for egg in `ls /plone/eggs/ | cut -d '-' -f 1 | uniq`; do rm -rfv `ls -td /plone/eggs/$egg-* | awk 'NR>1'`; done
 
 FROM imiobe/base:py3-ubuntu-20.04
 ENV PIP=21.3.1 \

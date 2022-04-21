@@ -1,9 +1,5 @@
 1.0.3 (unreleased)
 ------------------
-- pas.plugins.imio 1.0.10
-
-    - Set supports_csrf_protection to false. Try to fix "Unable to retrieve stored state!" error.
-    [bsuttor]
 
 - Use released version for collective.z3cform.select2
   [laulaz]
