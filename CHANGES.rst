@@ -1,7 +1,22 @@
 1.0.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.0.2
+
+    - Hide unwanted upgrades from site-creation and quickinstaller
+      [boulch]
+
+    - Add local manager role and sharing permissions rolemap
+      [boulch]
+
+    - Add help text on lead image fields
+      [boulch]
+
+    - Fix privacy views JS calls (sometimes called on Zope root instead of Plone root)
+      [laulaz]
+
+    - Add Subject keywords to SearchableText index
+      [laulaz]
 
 
 1.0.3-quick (2022-04-25)
