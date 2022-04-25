@@ -1,6 +1,27 @@
 1.0.3 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.0.7
+
+    - Improve slide view html 
+      [thomlamb]
+    
+    - Clean core css 
+      [thomlamb]
+
+    - Fix herobanner when there is a default (portal)page on site root or on partner sites
+      [boulch]
+
+    - Hide unwanted upgrades from site-creation and quickinstaller
+      [boulch]
+
+    - Move local manager role and sharing permissions to imio.smartweb.common 
+      Use new common.interfaces.ILocalManagerAware to mark a locally manageable content
+      [boulch]
+
+    - Add hero banner feature
+      [boulch]
+
 - Use released version for collective.z3cform.select2
   [laulaz]
 
