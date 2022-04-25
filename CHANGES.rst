@@ -1,4 +1,4 @@
-1.0.4 (unreleased)
+1.0.4 (2022-04-25)
 ------------------
 
 - imio.smartweb.policy 1.0.5
