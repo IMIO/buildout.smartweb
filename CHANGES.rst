@@ -1,7 +1,18 @@
 1.0.4 (unreleased)
 ------------------
 
-- imio.smartweb.core 1.0.2
+- imio.smartweb.policy 1.0.5
+
+    - Uninstall collective.z3cform.select2, not needed anymore for faceted
+      [laulaz]
+
+    - Hide unwanted upgrades from site-creation and quickinstaller
+      [boulch]
+
+    - Add missing viewlet + reorder viewlets
+      [boulch]
+
+- imio.smartweb.common 1.0.2
 
     - Hide unwanted upgrades from site-creation and quickinstaller
       [boulch]
