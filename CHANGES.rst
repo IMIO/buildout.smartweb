@@ -1,7 +1,10 @@
 1.0.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- imio.smartweb.locales 1.0.2
+
+    - Add Hero banner related translations
+      [laulaz]
 
 
 1.0.4-quick (2022-04-25)
