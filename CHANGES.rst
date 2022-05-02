@@ -1,6 +1,40 @@
 1.0.5 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.0.9
+
+    - Remove duplicate / useless new icons & change default workinfos icon
+      [laulaz]
+
+- imio.smartweb.core 1.0.8
+
+    - Add new icons
+      [boulch]
+
+    - Fix section edition display for herobanner / content-core / footer
+      [laulaz]
+
+    - HeroBanner can't be a folder default view
+      [boulch]
+
+- imio.smartweb.common 1.0.3
+
+    - Hide faceted actions
+      [boulch]
+
+- imio.smartweb.policy 1.0.6
+
+    - Remove collective.z3cform.select2. We don't use full product anymore
+      [boulch]
+
+- imio.smartweb.locales 1.0.3
+
+    - Add translation for image upload
+      [laulaz]
+
+    - Add translations for new icons
+      [laulaz]
+
 - imio.smartweb.locales 1.0.2
 
     - Add Hero banner related translations
