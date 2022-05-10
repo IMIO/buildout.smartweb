@@ -1,7 +1,22 @@
 1.0.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.0.10
+
+    - Add description for directory items
+      [thomlamb]
+
+    - Fix css for react items
+      [thomlamb]
+
+    - Adaptation of the jsx to be able to render the markdown to html
+      [thomlamb]
+
+    - Adapt `@search` endpoint to exclude expired elements and events in the past
+      [mpeeters]
+
+    - Remove forced placeholder for image in react pages
+      [thomlamb]
 
 
 1.0.5-quick (2022-05-02)
