@@ -1,6 +1,19 @@
 1.0.6 (unreleased)
 ------------------
 
+- imio.smartweb.common 1.0.5
+
+  - Refactor rich description to retrieve html on a any description (from context or from other ways)
+    [boulch]
+
+- imio.smartweb.common 1.0.4
+
+  - Limit uploaded files sizes to 20Mo with JS (without reaching the server)
+    [laulaz]
+
+  - Add help text on lead image field also on edit forms
+    [laulaz]
+
 - imio.smartweb.core 1.0.10
 
     - Add description for directory items
