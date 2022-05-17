@@ -1,6 +1,26 @@
 1.0.7 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.0.11
+
+    - Update display for date in news view
+      [thomlamb]
+
+    - Add video,social,web url for news view
+      [thomlamb]
+
+    - Update regex for routing items
+      [thomlamb]
+
+    - Add carousel and gallery in contact view
+      [boulch]
+
+    - Fix batch size (40) for pages pagination
+      [laulaz]
+
+    - Add new content type : imio.smartweb.SectionPostit
+      [boulch, laulaz]
+
 - imio.smartweb.locales 1.0.4
 
     - Add translations for contact gallery
