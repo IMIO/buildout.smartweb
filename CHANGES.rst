@@ -1,7 +1,13 @@
 1.0.7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- imio.smartweb.locales 1.0.4
+
+    - Add translations for contact gallery
+      [laulaz]
+
+    - Add translations for post-it section
+      [laulaz]
 
 
 1.0.6 (2022-05-16)
