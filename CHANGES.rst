@@ -1,7 +1,8 @@
 1.0.8 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Change p.a.imagecropping source to stay at the same rev (waiting for Plone next release)
+  [laulaz]
 
 
 1.0.7 (2022-05-17)
