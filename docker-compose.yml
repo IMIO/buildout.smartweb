@@ -1,5 +1,5 @@
 ---
-version: '2.4'
+version: "2.4"
 volumes:
   smartweb-postgres:
 services:
@@ -38,12 +38,19 @@ services:
       - COLLECTIVE_SOLR_BASE=/solr/web
       - COLLECTIVE_SOLR_LOGIN=solr
       - COLLECTIVE_SOLR_PASSWORD=SolrRocks
+      - service_ou=0841470248
+      - service_slug=local-iasmartweb
+      - consumer_key_agents=6ccfcf9c-f587-4bf1-9491-b31382a4d461
+      - consumer_secret_agents=bfb6e1e6-a6e1-48fe-a44c-9cab652bb0db
+      - authentic_usagers_hostname=usagers.staging.imio.be
+      - authentic_agents_hostname=agents.staging.imio.be
+
     healthcheck:
-      test: [ 'CMD', 'nc', '-z', '-w5', '127.0.0.1', '8080' ]
+      test: ["CMD", "nc", "-z", "-w5", "127.0.0.1", "8080"]
     labels:
-      - 'traefik.enable=true'
-      - 'traefik.http.routers.instance.rule=Host(`portal.localhost`)'
-      - 'traefik.http.services.instance.loadbalancer.server.port=8080'
+      - "traefik.enable=true"
+      - "traefik.http.routers.instance.rule=Host(`portal.localhost`)"
+      - "traefik.http.services.instance.loadbalancer.server.port=8080"
       - "traefik.http.routers.instance.middlewares=add-plone"
       - "traefik.http.middlewares.add-plone.addprefix.prefix=/VirtualHostBase/http/portal.localhost:8080/Plone/VirtualHostRoot"
   reverse-proxy:
