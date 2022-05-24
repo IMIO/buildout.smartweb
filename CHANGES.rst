@@ -1,6 +1,9 @@
 1.0.8 (unreleased)
 ------------------
 
+- Update buildout and setuptools.
+  [bsuttor]
+
 - Change p.a.imagecropping source to stay at the same rev (waiting for Plone next release)
   [laulaz]
 
