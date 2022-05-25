@@ -51,4 +51,4 @@ docker-test-image:
 
 .PHONY: solr
 solr:
-	docker-compose up -d solr
+	docker-compose up solr
