@@ -62,7 +62,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can listen to the Docker events
   postgres:
-    image: postgres:11.10
+    image: postgres:14.2
     environment:
       - POSTGRES_DB=zope
       - POSTGRES_USER=zope
