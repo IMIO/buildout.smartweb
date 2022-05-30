@@ -1,4 +1,4 @@
-1.0.8 (unreleased)
+1.0.8 (2022-05-30)
 ------------------
 
 - Upgrade collective.taxonomy to 2.2.1
