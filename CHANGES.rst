@@ -1,6 +1,9 @@
 1.0.8 (unreleased)
 ------------------
 
+- Upgrade collective.taxonomy to 2.2.1
+  [laulaz]
+
 - Update buildout and setuptools.
   [bsuttor]
 
