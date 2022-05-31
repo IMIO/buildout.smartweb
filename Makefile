@@ -52,3 +52,7 @@ docker-test-image:
 .PHONY: solr
 solr:
 	docker-compose up solr
+
+.PHONY: solr-cluster
+solr-cluster:
+	docker-compose -f docker-compose-solr-cluster.yml up
