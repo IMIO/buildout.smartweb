@@ -1,7 +1,22 @@
 1.0.9 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- pas.plugins.imio 2.0
+
+    - Get userid and user login for user connected by JWT.
+      [bsuttor]
+
+    - Allow user search on any parts of id/login/email (not just the start)
+      [laulaz]
+
+    - Use uuid as plone user.id instead of username.
+      [bsuttor, laulaz]
+
+    - Be aware of next url when you call auhentic users api.
+      [bsuttor]
+
+    - Add zmi view of users.
+      [bsuttor]
 
 
 1.0.8 (2022-05-30)
