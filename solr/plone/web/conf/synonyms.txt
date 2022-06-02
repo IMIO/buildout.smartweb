@@ -1,3 +1,5 @@
-# pkw, auto, automobil
-# pkw => mercedes, opel, audi
-# fruits => bananas, apples
+# Examples :
+# associate "viande" with "boucher", both terms will be returned
+# viande,boucher
+# search for "boucher" when search input is "viande"
+# viande => boucher
