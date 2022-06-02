@@ -31,3 +31,24 @@ Update a collection schema
 Update a collection
 docker exec -ti solr1 bash -c "cd /solr-config && /opt/solr/bin/solr zk upconfig -d web -n web"
 docker exec -ti solr1 bash -c "cd /solr-config && /opt/solr/bin/solr zk upconfig -d web -n smartweb_test"
+
+
+Warnings
+--------
+
+Some changes need a restart of SolR :
+- Adapting filters in field types
+- Adapting synonyms (synonyms.txt file)
+
+
+Fuzzy search
+------------
+
+A fuzzy search can be used to have a spellcheck. The fuzzy search use Damerau-Levenshtein Distance.
+To make a fuzzy search just add "~" at the end of the searched term(s).
+
+An optional distance parameter specifies the maximum number of edits allowed, between 0 and 2, defaulting to 2. For example:
+
+test~2
+
+More documentation : https://solr.apache.org/guide/8_10/the-standard-query-parser.html#fuzzy-searches
