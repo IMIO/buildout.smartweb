@@ -25,7 +25,7 @@ cleanall:
 	rm -fr develop-eggs downloads eggs parts .installed.cfg lib lib64 include bin .mr.developer.cfg local/
 
 upgrade-steps:
-	bin/instance -O plone run scripts/run_portal_upgrades.py
+	bin/instance -O Plone run scripts/run_portal_upgrades.py
 
 docker-image:
 	docker build --pull --no-cache -t smartweb/mutual:$(BRANCH)  .
