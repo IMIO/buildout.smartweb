@@ -1,6 +1,36 @@
 1.0.9 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.0.12
+    
+    - [WEB-3663] Fix contact schedule. Use Decimal instead of float. ( float("8.30") = 8.3. 8h03 != 8h30 )
+      [boulch]
+
+    - Update static css for edit view
+      [thomlamb]
+
+    - Fix NaN value for batchsize in swiper
+      [thomlamb]
+    
+    - Ban required URL when Footer or HeroBanner modified
+      [boulch, laulaz]
+    
+    - Omit some fields in slide section layout fieldset
+      [boulch]
+
+- imio.smartweb.policy 1.0.7
+
+    - Adapt SolR config to use tika for file indexing
+      [mpeeters]
+
+    - Move/adapt ban_physicalpath method into imio.smartweb.common
+      [boulch, laulaz]
+
+- imio.smartweb.common 1.0.6
+    
+    - Add ban_physicalpath method (taken from policy)
+      [boulch, laulaz]
+
 - pas.plugins.imio 2.0
 
     - Get userid and user login for user connected by JWT.
