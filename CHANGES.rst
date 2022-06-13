@@ -1,4 +1,4 @@
-1.0.9 (unreleased)
+1.0.9 (2022-06-13)
 ------------------
 
 - imio.smartweb.locales 1.0.5
