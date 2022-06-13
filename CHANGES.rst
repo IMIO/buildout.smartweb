@@ -1,6 +1,16 @@
 1.0.9 (unreleased)
 ------------------
 
+- imio.smartweb.locales 1.0.5
+
+    - Add translation for Agent connection
+      [laulaz]
+
+- imio.smartweb.common 1.0.7
+
+    - Add connection link in colophon
+      [laulaz]
+
 - imio.smartweb.core 1.0.12
     
     - [WEB-3663] Fix contact schedule. Use Decimal instead of float. ( float("8.30") = 8.3. 8h03 != 8h30 )
