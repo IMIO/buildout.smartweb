@@ -9,8 +9,7 @@ warnings.simplefilter("always", DeprecationWarning)
 
 
 class Environment(object):
-    """ Configure container via environment variables
-    """
+    """Configure container via environment variables"""
 
     def __init__(
         self,
@@ -27,8 +26,7 @@ class Environment(object):
         self.zeoserver_conf = zeoserver_conf
 
     def zeoclient(self):
-        """ ZEO Client
-        """
+        """ZEO Client"""
         server = self.env.get("ZEO_ADDRESS", None)
         if not server:
             return
@@ -64,8 +62,7 @@ class Environment(object):
             cfile.write(config)
 
     def zeopack(self):
-        """ ZEO Pack
-        """
+        """ZEO Pack"""
         server = self.env.get("ZEO_ADDRESS", None)
         if not server:
             return
@@ -85,8 +82,7 @@ class Environment(object):
             cfile.write(text)
 
     def zeoserver(self):
-        """ ZEO Server
-        """
+        """ZEO Server"""
         pack_keep_old = self.env.get("ZEO_PACK_KEEP_OLD", "")
         if pack_keep_old.lower() in ("false", "no", "0", "n", "f"):
             with open(self.zeoserver_conf, "r") as cfile:
@@ -100,8 +96,7 @@ class Environment(object):
                 cfile.write(text)
 
     def buildout(self):
-        """ Buildout from environment variables
-        """
+        """Buildout from environment variables"""
         # Already configured
         if os.path.exists(self.custom_conf):
             return
@@ -180,8 +175,7 @@ zcml += {zcml}
 
 
 def initialize():
-    """ Configure Plone instance as ZEO Client
-    """
+    """Configure Plone instance as ZEO Client"""
     environment = Environment()
     environment.setup()
 
