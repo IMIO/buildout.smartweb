@@ -1,7 +1,8 @@
 1.0.10 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Upgrade collective.taxonomy to 2.2.2 (to allow edition for site administrators)
+  [laulaz]
 
 
 1.0.9 (2022-06-13)
