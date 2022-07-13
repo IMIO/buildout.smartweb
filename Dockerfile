@@ -88,7 +88,7 @@ RUN sed -i 's/ZServer/gunicorn/g' parts/omelette/Products/CMFPlone/controlpanel/
 
 USER imio
 EXPOSE 8080
-HEALTHCHECK --interval=10s --timeout=5s --start-period=20s \
+HEALTHCHECK --interval=15s --timeout=10s --start-period=20s --retries=5 \
   CMD wget -q http://127.0.0.1:8080/ok -O - | grep OK || exit 1
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
