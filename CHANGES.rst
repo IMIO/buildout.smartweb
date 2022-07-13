@@ -1,4 +1,4 @@
-1.0.10 (unreleased)
+1.0.10 (2022-07-13)
 -------------------
 
 - Upgrade collective.taxonomy to 2.2.2 (to allow edition for site administrators)
