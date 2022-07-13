@@ -1,7 +1,13 @@
 1.0.11 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- pas.plugins.imio 2.0.4
+
+  - Temporary remove pas.app.users override because it do not work on Plone 6.
+    [bsuttor]
+
+  - Add possibility to remove old user (without login).
+    [bsuttor]
 
 
 1.0.10 (2022-07-13)
@@ -32,7 +38,7 @@
       [laulaz]
 
 - imio.smartweb.core 1.0.12
-    
+
     - [WEB-3663] Fix contact schedule. Use Decimal instead of float. ( float("8.30") = 8.3. 8h03 != 8h30 )
       [boulch]
 
@@ -41,10 +47,10 @@
 
     - Fix NaN value for batchsize in swiper
       [thomlamb]
-    
+
     - Ban required URL when Footer or HeroBanner modified
       [boulch, laulaz]
-    
+
     - Omit some fields in slide section layout fieldset
       [boulch]
 
@@ -57,7 +63,7 @@
       [boulch, laulaz]
 
 - imio.smartweb.common 1.0.6
-    
+
     - Add ban_physicalpath method (taken from policy)
       [boulch, laulaz]
 
