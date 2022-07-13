@@ -1,7 +1,10 @@
 1.0.11 (unreleased)
 -------------------
 
-- pas.plugins.imio 2.0.4
+- pas.plugins.imio 2.0.5
+
+  - Keep old roles on migration of users.
+    [bsuttor]
 
   - Temporary remove pas.app.users override because it do not work on Plone 6.
     [bsuttor]
