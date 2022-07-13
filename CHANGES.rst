@@ -4,6 +4,13 @@
 - Upgrade collective.taxonomy to 2.2.2 (to allow edition for site administrators)
   [laulaz]
 
+- pas.plugins.imio 2.0.3
+
+  - Migration code refactoring & add tests
+    [laulaz]
+
+  - Add migration code (to new userid) for local roles / ownership
+    [laulaz]
 
 1.0.9 (2022-06-13)
 ------------------
