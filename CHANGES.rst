@@ -1,7 +1,10 @@
 1.0.13 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.0.14
+
+    - Avoid error on broken objects (reindex_all_pages upgrade step)
+      [laulaz]
 
 
 1.0.12-quick (2022-07-14)
