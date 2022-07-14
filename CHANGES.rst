@@ -1,7 +1,42 @@
 1.0.12 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.0.13
+
+  - Adding button for add news,events,contacts
+    [thomlamb]
+  
+  - Avoid traceback if a selection item relation is broken
+    [laulaz]
+
+  - Use rich description on contact sections
+    [laulaz]
+  
+  - [WEB-3674]Fix itinerary links
+    [remdub]
+  
+  - [WEB-3661]Set b_size to 100 on search results
+    [remdub]
+  
+  - Add collective.faceted.map with custom template & markers popups
+    [boulch, laulaz]
+  
+  - Allow pages to be geolocalized (latitude/longitude indexes) via their first map section
+    [laulaz]
+  
+  - Use new registry settings to store URL of news/events/contact proposal form
+    [laulaz]
+
+- imio.smartweb.locales 1.0.6
+  
+  - Add Dutch translations files
+    [laulaz]
+  
+  - Add faceted map translation
+    [laulaz]
+  
+  - Add propose URLs translations
+    [laulaz]
 
 
 1.0.11 (2022-07-13)
