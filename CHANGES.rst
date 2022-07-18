@@ -1,7 +1,10 @@
 1.0.14 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- pas.plugins.imio 2.0.6
+
+  - Do not verify_signature for jwt call because of error: "Could not deserialize key data".
+  [bsuttor]
 
 
 1.0.13 (2022-07-14)
