@@ -1,7 +1,13 @@
 1.0.15 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.0.15
+
+  - WEB-3687: Add botpress viewlet in footer
+    [remdub]
+
+  - Change class and css to make herobanner slider work
+    [thomlamb]
 
 
 1.0.14-quick (2022-07-18)
@@ -10,7 +16,7 @@
 - pas.plugins.imio 2.0.6
 
   - Do not verify_signature for jwt call because of error: "Could not deserialize key data".
-  [bsuttor]
+    [bsuttor]
 
 
 1.0.13 (2022-07-14)
@@ -18,8 +24,8 @@
 
 - imio.smartweb.core 1.0.14
 
-    - Avoid error on broken objects (reindex_all_pages upgrade step)
-      [laulaz]
+  - Avoid error on broken objects (reindex_all_pages upgrade step)
+    [laulaz]
 
 
 1.0.12-quick (2022-07-14)
