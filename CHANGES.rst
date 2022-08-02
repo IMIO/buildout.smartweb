@@ -1,13 +1,18 @@
 1.0.15 (unreleased)
 -------------------
 
-- imio.smartweb.core 1.0.15
+  - imio.smartweb.core 1.0.16
 
-  - WEB-3687: Add botpress viewlet in footer
-    [remdub]
+    - Fix rich description display on contact section
+      [laulaz]
 
-  - Change class and css to make herobanner slider work
-    [thomlamb]
+  - imio.smartweb.core 1.0.15
+
+    - WEB-3687: Add botpress viewlet in footer
+      [remdub]
+
+    - Change class and css to make herobanner slider work
+      [thomlamb]
 
 
 1.0.14-quick (2022-07-18)
