@@ -1,7 +1,10 @@
 1.0.16 (unreleased)
 -------------------
 
-- Nothing changed yet.
+  - imio.smartweb.common 1.0.8
+
+    - MWEB-54 : Update TinyMCE : Add non breaking space option
+      [boulch]
 
 
 1.0.15 (2022-08-02)
