@@ -1,6 +1,11 @@
 1.0.16 (unreleased)
 -------------------
 
+- imio.smartweb.policy 1.0.8
+
+    - WEB-3731 : Automatically publish GDPR article
+      [boulch]
+
 - imio.smartweb.common 1.0.8
 
     - MWEB-54 : Update TinyMCE : Add non breaking space option
