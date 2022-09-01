@@ -1,7 +1,7 @@
 1.0.16 (unreleased)
 -------------------
 
-  - imio.smartweb.common 1.0.8
+- imio.smartweb.common 1.0.8
 
     - MWEB-54 : Update TinyMCE : Add non breaking space option
       [boulch]
@@ -10,12 +10,12 @@
 1.0.15 (2022-08-02)
 -------------------
 
-  - imio.smartweb.core 1.0.16
+- imio.smartweb.core 1.0.16
 
     - Fix rich description display on contact section
       [laulaz]
 
-  - imio.smartweb.core 1.0.15
+- imio.smartweb.core 1.0.15
 
     - WEB-3687: Add botpress viewlet in footer
       [remdub]
@@ -29,8 +29,8 @@
 
 - pas.plugins.imio 2.0.6
 
-  - Do not verify_signature for jwt call because of error: "Could not deserialize key data".
-    [bsuttor]
+    - Do not verify_signature for jwt call because of error: "Could not deserialize key data".
+      [bsuttor]
 
 
 1.0.13 (2022-07-14)
@@ -38,8 +38,8 @@
 
 - imio.smartweb.core 1.0.14
 
-  - Avoid error on broken objects (reindex_all_pages upgrade step)
-    [laulaz]
+    - Avoid error on broken objects (reindex_all_pages upgrade step)
+      [laulaz]
 
 
 1.0.12-quick (2022-07-14)
@@ -47,40 +47,40 @@
 
 - imio.smartweb.core 1.0.13
 
-  - Adding button for add news,events,contacts
-    [thomlamb]
-  
-  - Avoid traceback if a selection item relation is broken
-    [laulaz]
+    - Adding button for add news,events,contacts
+      [thomlamb]
 
-  - Use rich description on contact sections
-    [laulaz]
-  
-  - [WEB-3674]Fix itinerary links
-    [remdub]
-  
-  - [WEB-3661]Set b_size to 100 on search results
-    [remdub]
-  
-  - Add collective.faceted.map with custom template & markers popups
-    [boulch, laulaz]
-  
-  - Allow pages to be geolocalized (latitude/longitude indexes) via their first map section
-    [laulaz]
-  
-  - Use new registry settings to store URL of news/events/contact proposal form
-    [laulaz]
+    - Avoid traceback if a selection item relation is broken
+      [laulaz]
+
+    - Use rich description on contact sections
+      [laulaz]
+
+    - [WEB-3674]Fix itinerary links
+      [remdub]
+
+    - [WEB-3661]Set b_size to 100 on search results
+      [remdub]
+
+    - Add collective.faceted.map with custom template & markers popups
+      [boulch, laulaz]
+
+    - Allow pages to be geolocalized (latitude/longitude indexes) via their first map section
+      [laulaz]
+
+    - Use new registry settings to store URL of news/events/contact proposal form
+      [laulaz]
 
 - imio.smartweb.locales 1.0.6
-  
-  - Add Dutch translations files
-    [laulaz]
-  
-  - Add faceted map translation
-    [laulaz]
-  
-  - Add propose URLs translations
-    [laulaz]
+
+    - Add Dutch translations files
+      [laulaz]
+
+    - Add faceted map translation
+      [laulaz]
+
+    - Add propose URLs translations
+      [laulaz]
 
 
 1.0.11 (2022-07-13)
@@ -88,14 +88,14 @@
 
 - pas.plugins.imio 2.0.5
 
-  - Keep old roles on migration of users.
-    [bsuttor]
+    - Keep old roles on migration of users.
+      [bsuttor]
 
-  - Temporary remove pas.app.users override because it do not work on Plone 6.
-    [bsuttor]
+    - Temporary remove pas.app.users override because it do not work on Plone 6.
+      [bsuttor]
 
-  - Add possibility to remove old user (without login).
-    [bsuttor]
+    - Add possibility to remove old user (without login).
+      [bsuttor]
 
 
 1.0.10 (2022-07-13)
@@ -106,11 +106,12 @@
 
 - pas.plugins.imio 2.0.3
 
-  - Migration code refactoring & add tests
-    [laulaz]
+    - Migration code refactoring & add tests
+      [laulaz]
 
-  - Add migration code (to new userid) for local roles / ownership
-    [laulaz]
+    - Add migration code (to new userid) for local roles / ownership
+      [laulaz]
+
 
 1.0.9 (2022-06-13)
 ------------------
@@ -332,10 +333,10 @@
 
 - imio.smartweb.core 1.0.7
 
-    - Improve slide view html 
+    - Improve slide view html
       [thomlamb]
-    
-    - Clean core css 
+
+    - Clean core css
       [thomlamb]
 
     - Fix herobanner when there is a default (portal)page on site root or on partner sites
@@ -344,7 +345,7 @@
     - Hide unwanted upgrades from site-creation and quickinstaller
       [boulch]
 
-    - Move local manager role and sharing permissions to imio.smartweb.common 
+    - Move local manager role and sharing permissions to imio.smartweb.common
       Use new common.interfaces.ILocalManagerAware to mark a locally manageable content
       [boulch]
 
@@ -420,7 +421,7 @@
       [thomlamb]
 
 - imio.smartweb.policy 1.0.3
-  
+
     - add logger to get some informations about BAN with Varnish
       [boulch]
 
@@ -431,7 +432,7 @@
   [boulch]
 
 - imio.gdpr 1.2.2
-  
+
     - Remove plone.app.registry template override as it is now released:
       Plone 6.0.0a3 / plone.app.registry 2.0.0a7
       [laulaz]
@@ -576,8 +577,8 @@
 
     - Load Analytics via JS call to avoid non-privacy aware caching
       [laulaz]
-    
-    - Change privacy views permissions to zope.Public 
+
+    - Change privacy views permissions to zope.Public
       [laulaz]
 
 - imio.smartweb.core 1.0a42
@@ -618,7 +619,7 @@
 
 - imio.smartweb.core 1.0a39
 
-    - Fix missing value for placeholder 
+    - Fix missing value for placeholder
       [thomlamb]
 
 
@@ -727,7 +728,7 @@
       [bsuttor]
 
 - Up RelStorage to 3.4.5
-  [laulaz] 
+  [laulaz]
 
 
 1.0a13 (2022-02-09)
@@ -736,14 +737,14 @@
 - imio.smartweb.core 1.0a34
 
     - Fix missing permissions to add footer
-      [laulaz] 
+      [laulaz]
 
     - Fix default item view for a collection when anonymous
-      [laulaz] 
+      [laulaz]
 
     - Fix double escaped navigation items in quick accesses
       See https://github.com/plone/plone.app.layout/issues/280
-      [laulaz] 
+      [laulaz]
 
 
 1.0a12-quick (2022-02-08)
@@ -757,7 +758,7 @@
 - imio.smartweb.core 1.0a32
 
     - Change Youtube & Parking base icons, and add Twitter
-      [laulaz] 
+      [laulaz]
 
     - Add id on sections containers to ease styling
       [laulaz]
@@ -810,7 +811,7 @@
 
     - Disable sticky map on mobile
       [thomlamb]
-  
+
     - Refactor : Displaying dates from section event is now in a macro to have more html flexibility
       [boulch, laulaz]
 
