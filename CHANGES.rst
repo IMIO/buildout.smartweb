@@ -1,6 +1,24 @@
 1.0.16 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.0.17
+
+    - WEB-3741 : Fix items in selectbox contact categories in rest view @search-filters endpoint ("match" with items in edit selectbox)
+      Fix contacts results depends of selected category in rest view (@search endpoint)
+      [boulch]
+
+    - WEB-3732 : Add smartweb settings to customize sendinblue subscribing button (text and position)
+      [boulch]
+
+    - Fix bad position for swipper-button in herobanner
+      [thomlamb]
+
+    - Ensure navigation elements don't use an already reserved/existing css Class
+      [boulch]
+
+    - WEB-3730 : By default, Plone open external (Section text / Tiny) links in new tab
+      [boulch]
+
 - imio.smartweb.policy 1.0.8
 
     - WEB-3731 : Automatically publish GDPR article
