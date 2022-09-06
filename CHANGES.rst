@@ -1,7 +1,10 @@
 1.0.17 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.0.18
+
+    - Fix css to display none accueil item in nav
+      [thomlamb]
 
 
 1.0.16 (2022-09-04)
