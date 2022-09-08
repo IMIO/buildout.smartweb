@@ -1,7 +1,11 @@
 1.0.18 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.0.19
+
+    - WEB-3750 : Fix topics, categories and facilities items in selectboxes view when there is no preset selected categories
+      [boulch]
+
 
 
 1.0.17-quick (2022-09-06)
