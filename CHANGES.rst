@@ -1,7 +1,36 @@
 1.0.19 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.policy 1.0.9
+
+    - WEB-3733 : Restrict permissions for "site admin" in control panel. Some options are only available for manager
+      [boulch]
+
+    - Change s-maxage for new Varnish strategy based on grace
+      [sverbois]
+
+- imio.smartweb.core 1.0.20
+
+    - Fix React-moment: replace 'day' by 'minute' in sratOf fuction to fix bad hours display in news view
+      [thomlamb]
+  
+    - Add fullobjects=1 to get inner events and inner directory contents
+      [boulch]
+
+    - Adding section files download and gallery in react content view
+      [thomlamb]
+
+    - Update svg plone-icon for better compatibility with color css
+      [thomlamb]
+
+    - Use unique scale path (with hash) for better cache management
+      [boulch, laz]
+
+    - Memoize EventsTypesVocabulary because that almost never change !
+      [boulch]
+
+    - WEB-3684 : Add fullobjects=1 to get inner news contents
+      [boulch]
 
 
 1.0.18-quick (2022-09-08)
