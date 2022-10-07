@@ -1,6 +1,10 @@
 1.0.19 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.0.21
+    - Waiting for authentics sources Plone6betaX to get automaticaly images scale hash on objects
+      [boulch]
+
 - imio.smartweb.policy 1.0.9
 
     - WEB-3733 : Restrict permissions for "site admin" in control panel. Some options are only available for manager
