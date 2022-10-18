@@ -1,7 +1,26 @@
 1.0.20 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.0.22
+
+  - Fix problem with images urls in faceted navigation
+    [laulaz]
+  
+  - WEB-3766 : Ensure displaying pages / footers even if sections in error (+ display section in error)
+    [boulch, laulaz]
+  
+  - WEB-3764 : Fix : We Ensure we always compare Decimal
+    [boulch]
+
+- collective.anysurfer 1.4.7
+
+  - Change permissions : By default, configlet should be accessible for Manager AND Site Administrator
+    [boulch]
+
+- collective.anysurfer 1.4.6
+
+  - Fix import error for ILanguageSchema on Plone 5.2 / 6
+    [laulaz]
 
 
 1.0.19 (2022-10-17)
