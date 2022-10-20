@@ -1,7 +1,10 @@
 1.0.21 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.0.23
+
+  - Fix problem with images urls in collections
+    [boulch]
 
 
 1.0.20 (2022-10-18)
