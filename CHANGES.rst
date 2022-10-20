@@ -1,7 +1,10 @@
 1.0.22 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.0.24
+
+  - Fix problem with images url in logo
+    [boulch]
 
 
 1.0.21-quick (2022-10-20)
