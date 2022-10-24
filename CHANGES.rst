@@ -1,7 +1,13 @@
 1.0.23 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- collective.sendinblue 2.0.3
+
+  - Handle double opt-in
+    [boulch, laz]
+
+  - Fix typo in French
+    [remdub]
 
 
 1.0.22 (2022-10-21)
