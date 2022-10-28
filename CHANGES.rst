@@ -1,6 +1,30 @@
 1.0.23 (unreleased)
 -------------------
 
+- imio.smartweb.locales 1.0.7
+
+  - Add some directory fields translations
+    [boulch]
+  
+  - Exclude profiles.zcml from translations
+    [laulaz]
+
+- imio.smartweb.core 1.0.25
+
+  - WEB-3771 : Harmonize procedure button label
+    [boulch]
+
+  - WEB-3777 : Fix DirectoryEndpoint filter by category
+    [boulch, laulaz]
+
+  - WEB-3759 : Add portrait class even if there is no lead image to set placeholder with a good size
+    [boulch]
+
+- imio.smartweb.policy 1.0.10
+
+  - Remove unneeded caching patches for 304 NOT MODIFIED requests Those are not needed anymore with the new cache configuration
+    [laulaz]
+
 - collective.sendinblue 2.0.3
 
   - Handle double opt-in
