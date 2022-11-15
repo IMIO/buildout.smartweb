@@ -1,7 +1,20 @@
 1.0.24 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.common 1.0.9
+
+    - Add helper method to get language from smartweb REST requests
+      This is needed for multilingual authentic sources
+      [laulaz]
+
+    - Allow to translate vocabulary terms titles in search-filters endpoint
+      This is needed for multilingual authentic sources
+      [laulaz]
+
+- imio.smartweb.locales 1.0.8
+
+    - Add missing French translations (Sendinblue, multilingual)
+      [laulaz]
 
 
 1.0.23 (2022-10-30)
