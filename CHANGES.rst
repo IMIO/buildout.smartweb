@@ -1,6 +1,19 @@
 1.0.24 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.0.26
+
+    - WEB-3729 : Add site admin permission on action for managing taxonomies on specific contents
+      [boulch]
+
+    - WEB-3777: Make nb_results field work on React views (as batch size)
+      [laulaz, thomlamb]
+
+- imio.smartweb.common 1.0.10
+
+    - Ignore batch related query parameters for search-filters endpoint
+      [laulaz]
+
 - imio.smartweb.common 1.0.9
 
     - Add helper method to get language from smartweb REST requests
