@@ -1,6 +1,11 @@
 1.0.24 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.0.27
+
+    - Add check for multiple categories directory views This is used to decide if the field will be changed to single category
+      [laulaz]
+
 - imio.smartweb.core 1.0.26
 
     - WEB-3729 : Add site admin permission on action for managing taxonomies on specific contents
