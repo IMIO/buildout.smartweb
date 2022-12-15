@@ -1,6 +1,7 @@
 1.0.25 (unreleased)
 -------------------
 
+<<<<<<< HEAD
 - Nothing changed yet.
 
 
@@ -205,6 +206,9 @@
       [boulch]
 
 - imio.smartweb.common 1.0.8
+
+    - Migrate to Plone 6.0.0 final and clean useless auto-checkout
+      [boulch]
 
     - MWEB-54 : Update TinyMCE : Add non breaking space option
       [boulch]
