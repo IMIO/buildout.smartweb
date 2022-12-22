@@ -1,7 +1,6 @@
 1.0.25 (unreleased)
 -------------------
 
-<<<<<<< HEAD
 - Nothing changed yet.
 
 
