@@ -1,7 +1,33 @@
 1.0.25 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- collective.messagesviewlet 1.0b1
+
+    - Migrate to Plone 6.0.0: remove dexteritytextindexer, use new simplified resources registry, fix styles, fix icons, ...
+      [boulch, laulaz]
+
+    - Add local messages feature. Local messages can be added in any folderish content types and you can choose if / on which levels they display.
+      [boulch]
+
+    - Protect messages-config folder with one-state private workflow.
+      [boulch]
+
+    - Add control panel (with messages-config folder link).
+      [boulch]
+
+    - Use JS to show/hide messages when closed, to avoid caching problems (#12).
+      [laulaz]
+
+    - Update / improve translations.
+      [boulch, laulaz]
+
+- Migrate to Plone 6.0.0 final and clean useless auto-checkout
+  [boulch]
+
+- imio.smartweb.common 1.0.8
+
+    - MWEB-54 : Update TinyMCE : Add non breaking space option
+      [boulch]
 
 
 1.0.24-quick (2022-11-24)
@@ -48,7 +74,7 @@
 
   - Add some directory fields translations
     [boulch]
-  
+
   - Exclude profiles.zcml from translations
     [laulaz]
 
@@ -102,10 +128,10 @@
 
   - Fix problem with images urls in faceted navigation
     [laulaz]
-  
+
   - WEB-3766 : Ensure displaying pages / footers even if sections in error (+ display section in error)
     [boulch, laulaz]
-  
+
   - WEB-3764 : Fix : We Ensure we always compare Decimal
     [boulch]
 
@@ -139,7 +165,7 @@
 
     - Fix React-moment: replace 'day' by 'minute' in sratOf fuction to fix bad hours display in news view
       [thomlamb]
-  
+
     - Add fullobjects=1 to get inner events and inner directory contents
       [boulch]
 
@@ -205,9 +231,6 @@
       [boulch]
 
 - imio.smartweb.common 1.0.8
-
-    - Migrate to Plone 6.0.0 final and clean useless auto-checkout
-      [boulch]
 
     - MWEB-54 : Update TinyMCE : Add non breaking space option
       [boulch]
@@ -430,16 +453,16 @@
 
 - imio.smartweb.common 1.0.5
 
-  - Refactor rich description to retrieve html on a any description (from context or from other ways)
-    [boulch]
+    - Refactor rich description to retrieve html on a any description (from context or from other ways)
+      [boulch]
 
 - imio.smartweb.common 1.0.4
 
-  - Limit uploaded files sizes to 20Mo with JS (without reaching the server)
-    [laulaz]
+    - Limit uploaded files sizes to 20Mo with JS (without reaching the server)
+      [laulaz]
 
-  - Add help text on lead image field also on edit forms
-    [laulaz]
+    - Add help text on lead image field also on edit forms
+      [laulaz]
 
 - imio.smartweb.core 1.0.10
 
