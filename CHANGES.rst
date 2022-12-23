@@ -1,6 +1,38 @@
 1.0.25 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.1
+
+    - Update to Plone 6.0.0 final
+      [boulch]
+
+    - WEB-3795 : Add Proactive trigger code to chatbot.
+      [remdub]
+
+- imio.smartweb.common 1.1
+
+    - Add monkeypatch to fix TTW resource calling See plone/Products.CMFPlone#3705
+      [laulaz]
+
+    - Uninstall collective.js.jqueryui
+      [boulch]
+
+    - Remove faceted deprecated bundles
+      [boulch]
+
+    - Migrate to Plone 6 : remove dexteritytextindexer, use new simplified
+      resources registry, fix TinyMCE configuration and images scales,
+      manual minimized js
+      [laulaz, boulch]
+
+- imio.smartweb.policy 1.1
+
+    - Update to Plone 6.0.0 final
+      [boulch]
+
+    - WEB-3798 : Update caching profile (add lastModified to etags)
+      [sverbois, remdub, boulch]
+
 - collective.messagesviewlet 1.0b1
 
     - Migrate to Plone 6.0.0: remove dexteritytextindexer, use new simplified resources registry, fix styles, fix icons, ...
@@ -23,11 +55,6 @@
 
 - Migrate to Plone 6.0.0 final and clean useless auto-checkout
   [boulch]
-
-- imio.smartweb.common 1.0.8
-
-    - MWEB-54 : Update TinyMCE : Add non breaking space option
-      [boulch]
 
 
 1.0.24-quick (2022-11-24)
