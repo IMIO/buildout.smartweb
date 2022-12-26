@@ -1,6 +1,11 @@
 1.0.25 (unreleased)
 -------------------
 
+- collective.messagesviewlet 1.0b2
+
+    - Fix bundle registry upgrade step
+      [laulaz]
+
 - imio.smartweb.core 1.1
 
     - Update to Plone 6.0.0 final
