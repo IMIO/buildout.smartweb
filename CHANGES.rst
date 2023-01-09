@@ -1,4 +1,4 @@
-1.0.25 (unreleased)
+1.0.25 (2023-01-09)
 -------------------
 
 - imio.smartweb.locales 1.1
