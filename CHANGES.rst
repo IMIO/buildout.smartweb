@@ -1,7 +1,13 @@
 1.0.25 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.locales 1.1
+
+    - Add DE translations (with copied French sentences for now)
+      [laulaz]
+
+    - Update buildout to Plone 6.0.0 final
+      [laulaz]
 
 
 1.0.24-quick (2022-11-24)
