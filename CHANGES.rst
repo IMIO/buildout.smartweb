@@ -1,7 +1,8 @@
 1.0.26 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix messagesviewlet source
+  [boulch]
 
 
 1.0.25 (2023-01-09)
