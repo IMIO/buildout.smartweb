@@ -1,4 +1,4 @@
-1.0.26 (unreleased)
+1.0.26 (2023-01-09)
 -------------------
 
 - Fix messagesviewlet source
