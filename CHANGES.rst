@@ -1,7 +1,137 @@
 1.0.27 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.locales 1.1
+
+    - Add DE translations (with copied French sentences for now)
+      [laulaz]
+
+    - Update buildout to Plone 6.0.0 final
+      [laulaz]
+
+- imio.smartweb.policy 1.1.1
+
+    - Fix missing Plone icons (plone.staticresources)
+      [laulaz]
+
+    - Install and configure autopublishing (with 15 min tick subscriber)
+      [laulaz]
+
+    - Multilingual: add setup profile with content / default page migration to LRF
+      and navigation links creation, fix selector viewlet
+      [laulaz]
+
+    - Remove obsolete TinyMCE override
+      [laulaz]
+
+- imio.smartweb.core 1.1.1
+
+    - Use generated image scale urls to increase image caching
+      [boulch, laulaz]
+
+    - Forbid minisite to be copied / moved inside another minisite
+      [laulaz]
+
+    - Allow querying contact category with React filter (A) while also querying
+      multiple categories defined in directory REST endpoint (B, C): A and (B or C)
+      [laulaz]
+
+    - Enable autopublishing behavior on all types
+      [laulaz]
+
+    - Handle events occurences in REST endpoint
+      [laulaz]
+
+    - Multilingual: handle language in requests for REST views, handle LRF navigation
+      roots (minisites, footers, default pages, vocabularies), fix language selector
+      viewlet
+      [laulaz]
+
+    - Add upgrade step to change content types icons
+      [laulaz]
+
+    - Fix JS / CSS bundles names (restore old names : '-' instead of '.' separator)
+      [laulaz]
+
+- imio.smartweb.common 1.1.1
+
+    - Allow to choose language for vocabulary term translation
+      [laulaz]
+
+    - Use bootstrap dropdown-toggle for fieldsets collapse icon on edit forms
+      [laulaz]
+
+    - Fix TinyMCE menu bar and format menu
+      [laulaz]
+
+    - Update `widget.pt` override from `plone.app.z3cform.templates`
+      [laulaz]
+
+    - Improve monkeypatch to fix TTW resource calling
+      [laulaz]
+
+    - Update buildout to get Plone 6.0.0 final
+      [laulaz]
+
+- collective.messagesviewlet 1.0b2
+
+    - Fix bundle registry upgrade step
+      [laulaz]
+
+- imio.smartweb.core 1.1
+
+    - Update to Plone 6.0.0 final
+      [boulch]
+
+    - WEB-3795 : Add Proactive trigger code to chatbot.
+      [remdub]
+
+- imio.smartweb.common 1.1
+
+    - Add monkeypatch to fix TTW resource calling See plone/Products.CMFPlone#3705
+      [laulaz]
+
+    - Uninstall collective.js.jqueryui
+      [boulch]
+
+    - Remove faceted deprecated bundles
+      [boulch]
+
+    - Migrate to Plone 6 : remove dexteritytextindexer, use new simplified
+      resources registry, fix TinyMCE configuration and images scales,
+      manual minimized js
+      [laulaz, boulch]
+
+- imio.smartweb.policy 1.1
+
+    - Update to Plone 6.0.0 final
+      [boulch]
+
+    - WEB-3798 : Update caching profile (add lastModified to etags)
+      [sverbois, remdub, boulch]
+
+- collective.messagesviewlet 1.0b1
+
+    - Migrate to Plone 6.0.0: remove dexteritytextindexer, use new simplified resources registry, fix styles, fix icons, ...
+      [boulch, laulaz]
+
+    - Add local messages feature. Local messages can be added in any folderish content types and you can choose if / on which levels they display.
+      [boulch]
+
+    - Protect messages-config folder with one-state private workflow.
+      [boulch]
+
+    - Add control panel (with messages-config folder link).
+      [boulch]
+
+    - Use JS to show/hide messages when closed, to avoid caching problems (#12).
+      [laulaz]
+
+    - Update / improve translations.
+      [boulch, laulaz]
+
+- Migrate to Plone 6.0.0 final and clean useless auto-checkout
+  [boulch]
 
 
 1.0.26 (2023-01-09)
@@ -67,7 +197,7 @@
 
   - Add some directory fields translations
     [boulch]
-  
+
   - Exclude profiles.zcml from translations
     [laulaz]
 
@@ -121,10 +251,10 @@
 
   - Fix problem with images urls in faceted navigation
     [laulaz]
-  
+
   - WEB-3766 : Ensure displaying pages / footers even if sections in error (+ display section in error)
     [boulch, laulaz]
-  
+
   - WEB-3764 : Fix : We Ensure we always compare Decimal
     [boulch]
 
@@ -158,7 +288,7 @@
 
     - Fix React-moment: replace 'day' by 'minute' in sratOf fuction to fix bad hours display in news view
       [thomlamb]
-  
+
     - Add fullobjects=1 to get inner events and inner directory contents
       [boulch]
 
@@ -446,16 +576,16 @@
 
 - imio.smartweb.common 1.0.5
 
-  - Refactor rich description to retrieve html on a any description (from context or from other ways)
-    [boulch]
+    - Refactor rich description to retrieve html on a any description (from context or from other ways)
+      [boulch]
 
 - imio.smartweb.common 1.0.4
 
-  - Limit uploaded files sizes to 20Mo with JS (without reaching the server)
-    [laulaz]
+    - Limit uploaded files sizes to 20Mo with JS (without reaching the server)
+      [laulaz]
 
-  - Add help text on lead image field also on edit forms
-    [laulaz]
+    - Add help text on lead image field also on edit forms
+      [laulaz]
 
 - imio.smartweb.core 1.0.10
 
