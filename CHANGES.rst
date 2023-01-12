@@ -1,6 +1,78 @@
 1.0.25 (unreleased)
 -------------------
 
+- imio.smartweb.locales 1.1
+
+    - Add DE translations (with copied French sentences for now)
+      [laulaz]
+
+    - Update buildout to Plone 6.0.0 final
+      [laulaz]
+
+- imio.smartweb.policy 1.1.1
+
+    - Fix missing Plone icons (plone.staticresources)
+      [laulaz]
+
+    - Install and configure autopublishing (with 15 min tick subscriber)
+      [laulaz]
+
+    - Multilingual: add setup profile with content / default page migration to LRF
+      and navigation links creation, fix selector viewlet
+      [laulaz]
+
+    - Remove obsolete TinyMCE override
+      [laulaz]
+
+- imio.smartweb.core 1.1.1
+
+    - Use generated image scale urls to increase image caching
+      [boulch, laulaz]
+
+    - Forbid minisite to be copied / moved inside another minisite
+      [laulaz]
+
+    - Allow querying contact category with React filter (A) while also querying
+      multiple categories defined in directory REST endpoint (B, C): A and (B or C)
+      [laulaz]
+
+    - Enable autopublishing behavior on all types
+      [laulaz]
+
+    - Handle events occurences in REST endpoint
+      [laulaz]
+
+    - Multilingual: handle language in requests for REST views, handle LRF navigation
+      roots (minisites, footers, default pages, vocabularies), fix language selector
+      viewlet
+      [laulaz]
+
+    - Add upgrade step to change content types icons
+      [laulaz]
+
+    - Fix JS / CSS bundles names (restore old names : '-' instead of '.' separator)
+      [laulaz]
+
+- imio.smartweb.common 1.1.1
+
+    - Allow to choose language for vocabulary term translation
+      [laulaz]
+
+    - Use bootstrap dropdown-toggle for fieldsets collapse icon on edit forms
+      [laulaz]
+
+    - Fix TinyMCE menu bar and format menu
+      [laulaz]
+
+    - Update `widget.pt` override from `plone.app.z3cform.templates`
+      [laulaz]
+
+    - Improve monkeypatch to fix TTW resource calling
+      [laulaz]
+
+    - Update buildout to get Plone 6.0.0 final
+      [laulaz]
+
 - collective.messagesviewlet 1.0b2
 
     - Fix bundle registry upgrade step
