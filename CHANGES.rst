@@ -1,4 +1,4 @@
-1.0.25 (unreleased)
+1.0.27 (unreleased)
 -------------------
 
 - imio.smartweb.locales 1.1
@@ -132,6 +132,25 @@
 
 - Migrate to Plone 6.0.0 final and clean useless auto-checkout
   [boulch]
+
+
+1.0.26 (2023-01-09)
+-------------------
+
+- Fix messagesviewlet source
+  [boulch]
+
+
+1.0.25 (2023-01-09)
+-------------------
+
+- imio.smartweb.locales 1.1
+
+    - Add DE translations (with copied French sentences for now)
+      [laulaz]
+
+    - Update buildout to Plone 6.0.0 final
+      [laulaz]
 
 
 1.0.24-quick (2022-11-24)
