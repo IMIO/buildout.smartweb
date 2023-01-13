@@ -1,6 +1,9 @@
 1.0.27 (unreleased)
 -------------------
 
+- Update to Plone 6.0.0.2
+  [laulaz]
+
 - imio.smartweb.locales 1.1
 
     - Add DE translations (with copied French sentences for now)
