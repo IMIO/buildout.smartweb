@@ -1,6 +1,11 @@
 1.0.27 (unreleased)
 -------------------
 
+- imio.smartweb.policy 1.1.2
+
+    - By default authorize_local_message and show_local_message in messagesviewlet must be True in smartweb
+      [boulch]
+
 - Update to Plone 6.0.0.2
   [laulaz]
 
