@@ -1,6 +1,32 @@
 1.0.27 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.1.2
+
+    - Adding react-translated and translate static React txt
+      [thomlamb]
+
+    - Fix "zope.schema._bootstrapinterfaces.ConstraintNotSatisfied" in smartweb settings
+      [boulch]
+
+    - Add new content type : imio.smartweb.CirkwiView
+      [boulch, laulaz]
+
+    - Add authentic sources menu in toolbar
+      [boulch, laulaz]
+
+    - WEB-3755 : Adapt empty (without section) procedure message
+      [boulch, laulaz]
+
+    - Bring current-language attribute in rest views templates (useful for translations in JS)
+      [boulch]
+
+    - Handle search result types depending on available authentic sources for site
+      [Julien]
+
+    - Replacement of hard coded urls for images
+      [thomlamb]
+
 - imio.smartweb.policy 1.1.2
 
     - By default authorize_local_message and show_local_message in messagesviewlet must be True in smartweb
