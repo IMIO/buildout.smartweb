@@ -1,6 +1,19 @@
 1.0.27 (unreleased)
 -------------------
 
+- imio.smartweb.common 1.1.2
+
+    - Call @@consent-json view on navigation root (instead of context)
+      [laulaz]
+
+    - Ensure Ajax requests are always uncached
+      [laulaz]
+
+- imio.smartweb.core 1.1.3
+
+    - WEB-3819 : Update permission : local manager can manage their subsites
+      [boulch]
+
 - imio.smartweb.core 1.1.2
 
     - Adding react-translated and translate static React txt
