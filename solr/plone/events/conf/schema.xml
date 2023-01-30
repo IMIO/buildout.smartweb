@@ -153,11 +153,9 @@
     <field name="translated_in_nl" type="boolean" indexed="true" stored="true" />
     <field name="description_de" type="string" indexed="false" stored="true" />
     <field name="description_en" type="string" indexed="false" stored="true" />
-    <field name="description_fr" type="string" indexed="false" stored="true" />
     <field name="description_nl" type="string" indexed="false" stored="true" />
     <field name="title_de" type="string" indexed="false" stored="true" />
     <field name="title_en" type="string" indexed="false" stored="true" />
-    <field name="title_fr" type="string" indexed="false" stored="true" />
     <field name="title_nl" type="string" indexed="false" stored="true" />
     <field name="image_scales" type="string" indexed="false" stored="true" />
     <field name="image_field" type="string" indexed="false" stored="true" />
