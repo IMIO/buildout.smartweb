@@ -122,6 +122,9 @@
     <field name="sortable_title" type="string" indexed="true" stored="true" />
 
     <!-- Specific fields -->
+    <field name="SearchableText_de" type="text" indexed="true" stored="true" />
+    <field name="SearchableText_en" type="text" indexed="true" stored="true" />
+    <field name="SearchableText_nl" type="text" indexed="true" stored="true" />
     <field name="breadcrumb" type="string" indexed="true" stored="true" />
     <field name="category" type="string" indexed="true" stored="true" multiValued="true" />
     <field name="category_and_topics" type="string" indexed="true" stored="true" multiValued="true" />
@@ -140,6 +143,19 @@
     <field name="sync_uid" type="string" indexed="true" stored="true" />
     <field name="topics" type="string" indexed="true" stored="true" multiValued="true" />
     <field name="total_comments" type="string" indexed="true" stored="true" />
+    <field name="translated_in_de" type="boolean" indexed="true" stored="true" />
+    <field name="translated_in_en" type="boolean" indexed="true" stored="true" />
+    <field name="translated_in_nl" type="boolean" indexed="true" stored="true" />
+    <field name="description_de" type="string" indexed="false" stored="true" />
+    <field name="description_en" type="string" indexed="false" stored="true" />
+    <field name="description_fr" type="string" indexed="false" stored="true" />
+    <field name="description_nl" type="string" indexed="false" stored="true" />
+    <field name="title_de" type="string" indexed="false" stored="true" />
+    <field name="title_en" type="string" indexed="false" stored="true" />
+    <field name="title_fr" type="string" indexed="false" stored="true" />
+    <field name="title_nl" type="string" indexed="false" stored="true" />
+    <field name="image_scales" type="string" indexed="false" stored="true" />
+    <field name="image_field" type="string" indexed="false" stored="true" />
 
     <!-- copy -->
     <copyField source="Title" dest="default"/>
