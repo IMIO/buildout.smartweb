@@ -122,6 +122,7 @@
     <field name="sortable_title" type="string" indexed="true" stored="true" />
 
     <!-- Specific fields -->
+    <field name="TranslationGroup" type="string" indexed="true" stored="true" />
     <field name="category" type="string" indexed="true" stored="true" multiValued="true" />
     <field name="category_and_topics" type="string" indexed="true" stored="true" multiValued="true" />
     <field name="cmf_uid" type="string" indexed="true" stored="true" />
@@ -142,6 +143,8 @@
     <field name="taxonomy_procedure_category" type="string" indexed="true" stored="true" multiValued="true" />
     <field name="topics" type="string" indexed="true" stored="true" multiValued="true" />
     <field name="total_comments" type="string" indexed="true" stored="true" />
+    <field name="image_scales" type="string" indexed="false" stored="true" />
+    <field name="image_field" type="string" indexed="false" stored="true" />
 
     <!-- copy -->
     <copyField source="Title" dest="default"/>
