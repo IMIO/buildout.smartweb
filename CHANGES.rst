@@ -1,6 +1,11 @@
 1.0.27 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.1.4
+
+    - Fix loader on React vue + add visual loader
+      [thomlamb]
+
 - imio.smartweb.common 1.1.2
 
     - Call @@consent-json view on navigation root (instead of context)
