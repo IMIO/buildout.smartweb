@@ -1,6 +1,14 @@
 1.0.27 (unreleased)
 -------------------
 
+- plone.formwidget.geolocation > fix-geosearch
+
+    - Fix usage of default location from configuration
+      [mpeeters]
+
+    - Ensure that the marker is the main marker to fix geosearch
+      [mpeeters]
+
 - collective.faceted.map 1.0.0
     
     - Improve code to avoid to many refresh of the map
