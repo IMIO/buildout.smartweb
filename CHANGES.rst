@@ -1,6 +1,14 @@
 1.0.27 (unreleased)
 -------------------
 
+- imio.smartweb.policy 1.1.3
+
+    - WEB-3820 : Added collective.geotransform but we don't deploy it automaticaly
+      [boulch]
+
+    - WEB-3833 : Hide plone.app.multilingual in control panel installable products
+      [boulch]
+
 - plone.formwidget.geolocation > fix-geosearch
 
     - Fix usage of default location from configuration
