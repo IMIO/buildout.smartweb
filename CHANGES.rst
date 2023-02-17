@@ -1,6 +1,11 @@
 1.0.27 (unreleased)
 -------------------
 
+- collective.geotransform 3.0
+
+    - Add Plone 6 compatibility, drop Plone 5 support
+      [boulch]
+
 - imio.smartweb.core 1.1.4
 
     - Fix loader on React vue + add visual loader
