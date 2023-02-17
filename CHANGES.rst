@@ -1,6 +1,11 @@
 1.0.27 (unreleased)
 -------------------
 
+- collective.faceted.map 1.0.0
+    
+    - Improve code to avoid to many refresh of the map
+      [mpeeters]
+
 - collective.geotransform 3.0
 
     - Add Plone 6 compatibility, drop Plone 5 support
