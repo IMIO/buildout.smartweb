@@ -1,6 +1,26 @@
 1.0.27 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.1.5
+
+    - Delete lorem in React vue
+      [thomlamb]
+
+    - Fixed accessibility nav attribute
+      [thomlamb]
+
+    - Fixed faceted map
+      [boulch]
+
+    - WEB-3837 : Can define specific news to get (instead of all news from news folders)
+      [boulch]
+
+    - Adding display block on active dropdown
+      [thomlamb]
+
+    - Fix traduction ID for React
+      [thomlamb]  
+
 - imio.smartweb.policy 1.1.3
 
     - WEB-3820 : Added collective.geotransform but we don't deploy it automaticaly
