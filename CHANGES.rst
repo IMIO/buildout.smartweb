@@ -1,6 +1,11 @@
 1.0.27 (unreleased)
 -------------------
 
+- imio.smartweb.locales 1.1.1
+
+    - Add some new French translations (Cirkwi)
+      [boulch]
+
 - imio.smartweb.core 1.1.5
 
     - Delete lorem in React vue
