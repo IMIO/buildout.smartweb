@@ -1,7 +1,8 @@
 1.1.0 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Remove hack for overview-controlpanel from Dockerfile.
+  [bsuttor]
 
 
 1.1 (2023-02-20)
