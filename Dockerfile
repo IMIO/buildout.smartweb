@@ -84,7 +84,6 @@ COPY --from=builder /usr/local/bin/py-spy /usr/local/bin/py-spy
 COPY --chown=imio --from=builder /plone .
 COPY --from=builder /usr/local/lib/python3.8/dist-packages /usr/local/lib/python3.8/dist-packages
 COPY --chown=imio docker-initialize.py docker-entrypoint.sh /
-RUN sed -i 's/ZServer/gunicorn/g' parts/omelette/Products/CMFPlone/controlpanel/browser/overview.py # HACK for overview-controlpanel view
 
 USER imio
 EXPOSE 8080
