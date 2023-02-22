@@ -1,6 +1,24 @@
 1.1.0 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.1.6
+
+    - WEB-3863 : Fix some dates displaying
+      [boulch]
+
+    - WEB-3858 : Fix displaying of authentic sources menu
+      [boulch]
+
+- imio.smartweb.locales 1.1.2
+
+    - WEB-3848 : Add missing translations
+      [boulch]
+
+- imio.smartweb.common 1.1.3
+  
+    - WEB-3852 : Fix atom/syndication registry keys
+      [boulch]
+
 - Remove hack for overview-controlpanel from Dockerfile.
   [bsuttor]
 
