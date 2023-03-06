@@ -2,10 +2,10 @@ FROM imiobe/base:py3-ubuntu-20.04 as builder
 LABEL maintainer="Benoît Suttor <benoit.suttor@imio.be>"
 ENV PIP=22.3.1 \
   ZC_BUILDOUT=3.0.1 \
-  SETUPTOOLS=65.5.1 \
+  SETUPTOOLS=65.7.0 \
   WHEEL=0.38.4 \
   PLONE_MAJOR=6.0 \
-  PLONE_VERSION=6.0.0
+  PLONE_VERSION=6.0.2
 
 # hadolint ignore=DL3008
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -46,10 +46,10 @@ RUN su -c "buildout -c prod.cfg -t 30 -N" -s /bin/sh imio
 FROM imiobe/base:py3-ubuntu-20.04
 ENV PIP=22.3.1 \
   ZC_BUILDOUT=3.0.1 \
-  SETUPTOOLS=65.5.1 \
+  SETUPTOOLS=65.7.0 \
   WHEEL=0.38.4 \
   PLONE_MAJOR=6.0 \
-  PLONE_VERSION=6.0.0 \
+  PLONE_VERSION=6.0.2 \
   ZEO_HOST=db \
   ZEO_PORT=8100 \
   HOSTNAME_HOST=local \
