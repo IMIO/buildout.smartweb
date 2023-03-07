@@ -1,6 +1,26 @@
 1.1.1 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.1.7
+
+    - Improved react views to better match bootstrap media queries and fix no wrap buttons
+      [thomlamb]
+
+    - Fix no display img in news view
+      [thomlamb]
+
+    - Migrate to Plone 6.0.2
+      [boulch]
+
+    - WEB-3865 : Ordering news section and events section in their views thanks to a manualy order in their widgets
+      [boulch]
+
+    - Avoid auto-appending new lines to Datagrid fields when clicked
+      [laulaz]
+
+    - Fix annuaire, agenda, news sections with current language
+      [boulch]
+
 - Migrate to Plone 6.0.2
   [boulch]
 
