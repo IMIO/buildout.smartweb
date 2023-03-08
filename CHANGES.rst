@@ -1,5 +1,5 @@
-1.1.2 (unreleased)
-------------------
+1.1.2-quick (2023-03-08)
+------------------------
 
 - Develop collective.solr to fix an issue with image_scales metadata
   [mpeeters]
