@@ -1,7 +1,8 @@
 1.1.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Upgrade collective.solr to `9.1.1` to include the latest fix for image_scales metadata
+  [mpeeters]
 
 
 1.1.2-quick (2023-03-08)
