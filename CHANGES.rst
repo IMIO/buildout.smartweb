@@ -1,6 +1,17 @@
 1.1.3 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.1.8
+
+    - WEB-3888 : We overrided link_input template widget to allow any link format in external tab (without browser blocking)
+      [boulch]
+
+    - WEB-3769 : Get fullsize picture if scale is not present (ex: picture too small)
+      [boulch]
+
+    - SUP-27477 : Fix internal link in herobanner
+      [boulch]
+
 - imio.smartweb.locales 1.1.3
 
     - Add missing French translations (Cirkwi & image dimensions warning)
@@ -13,7 +24,6 @@
 
     - WEB-3862 : Patch (Remove select2) eea.facetednavigation jquery 
       [laulaz, boulch]
-
 
 - imio.smartweb.common 1.1.4
 
