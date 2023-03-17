@@ -1,6 +1,11 @@
 1.1.3 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.1.9
+
+    - WEB-3898 : Prevent error (error while rendering imio.smartweb.banner) if a content has his id = "banner"
+      [boulch]
+
 - imio.smartweb.core 1.1.8
 
     - WEB-3888 : We overrided link_input template widget to allow any link format in external tab (without browser blocking)
