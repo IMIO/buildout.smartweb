@@ -1,5 +1,5 @@
-1.1.4 (unreleased)
-------------------
+1.1.4-quick (2023-03-20)
+------------------------
 
 - Push images to prod registry.
   [bsuttor]
