@@ -34,7 +34,7 @@ WORKDIR /plone
 RUN chown imio:imio -R /plone && mkdir /data && chown imio:imio -R /data
 
 # COPY --chown=imio eggs /plone/eggs/
-COPY --chown=imio --from=docker-staging.imio.be/smartweb/mutual:latest /plone/eggs/ /plone/eggs/
+# COPY --chown=imio --from=docker-staging.imio.be/smartweb/mutual:latest /plone/eggs/ /plone/eggs/
 COPY --chown=imio *.cfg /plone/
 COPY --chown=imio scripts /plone/scripts
 COPY --chown=imio templates /plone/templates
