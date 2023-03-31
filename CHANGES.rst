@@ -1,7 +1,13 @@
 1.1.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.1.10
+
+    - WEB-3901 : Get fullsize picture if scale is not present (section collection)
+      [boulch]
+
+    - WEB-3908 : Call new @events endpoint to get events occurrences
+      [boulch]
 
 
 1.1.4-quick (2023-03-20)
