@@ -1,7 +1,10 @@
 1.1.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.1.11
+
+    - WEB-3913 : Leadimages should not appear on rest views
+      [boulch]
 
 
 1.1.5 (2023-04-02)
