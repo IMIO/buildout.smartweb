@@ -1,6 +1,25 @@
 1.1.6 (unreleased)
 ------------------
 
+- imio.smartweb.common 1.1.6
+
+    - Don't use image_scales metadata anymore (Fix faceted)
+      [boulch, laulaz]
+
+    - Update object modification date if cropping was removed/updated
+      [boulch, laulaz]
+
+- imio.smartweb.core 1.1.12
+
+    - WEB-3868 : Forbid creating content with same id as a parent field
+      [laulaz]
+
+    - Don't use image_scales metadata anymore to get images scales URLs because we
+      had problems with cropped scales (they were not indexed).
+      We now use a hash in URL (based on modification date) to allow strong caching.
+      See collective/plone.app.imagecropping#129
+      [laulaz, boulch]
+
 - imio.smartweb.core 1.1.11
 
     - WEB-3913 : Leadimages should not appear on rest views
