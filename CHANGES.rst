@@ -1,6 +1,11 @@
 1.1.6 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.1.13
+
+    - compile resources
+      [boulch]
+
 - imio.smartweb.common 1.1.6
 
     - Don't use image_scales metadata anymore (Fix faceted)
