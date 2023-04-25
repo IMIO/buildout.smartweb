@@ -1,6 +1,14 @@
 1.1.6 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.1.14
+
+    - Fix image display condition
+      [thomlamb]
+
+    - Fix json attributes to get the scaling pictures of news
+      [boulch]
+
 - imio.smartweb.core 1.1.13
 
     - compile resources
