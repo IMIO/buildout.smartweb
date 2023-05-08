@@ -1,6 +1,9 @@
 1.1.7 (unreleased)
 ------------------
 
+- WEB-3781 : Add autopublish script
+  [remdub]
+
 - Migrate to Plone 6.0.4
   [boulch]
 
