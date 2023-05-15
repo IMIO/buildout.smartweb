@@ -1,6 +1,9 @@
 1.1.7 (unreleased)
 ------------------
 
+- Rollback to Zope 5.8 for now because of a bug in POST requests with gunicorn
+  [boulch]
+
 - Migrate to Plone 6.0.4
   [boulch]
 
