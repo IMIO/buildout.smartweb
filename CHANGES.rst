@@ -1,6 +1,59 @@
 1.1.7 (unreleased)
 ------------------
 
+- imio.smartweb.policy 1.1.4
+
+    - Migrate to Plone 6.0.4
+      [boulch]
+
+    - Migrate to Plone 6.0.2
+      [boulch]
+
+    - WEB-3763 : Add new permission to manage configlets in control panel
+      [boulch]
+
+- imio.smartweb.locales 1.1.4
+
+    - Add missing French translation (folder_contents properties)
+      [laulaz]
+
+    - Migrate to Plone 6.0.4
+      [boulch]
+
+- imio.smartweb.core 1.1.15
+
+    - Fixed console error following unnecessary loading of js for swiper
+      [thomlamb]
+
+    - Avoid image cropping for banner scale (will have infinite height)
+      [laulaz]
+
+    - Cleanup folder_contents properties & add warning about Sections
+      [laulaz]
+
+    - Store hash in an annotation to refresh "dynamic" sections
+      [boulch, laulaz]
+
+    - WEB-3868 : Remove useless code (included in Plone 6.0.4) See plone/plone.base#37
+      [laulaz]
+
+    - Migrate to Plone 6.0.4
+      [boulch]
+
+    - Update static icon for better css implements
+      [thomlamb]
+
+    - SUP-30074 : Fix broken RelationValue "AttributeError: 'NoneType' object has no attribute 'UID'
+      [boulch]
+
+- imio.smartweb.common 1.1.7
+
+    - Change banner scale to have infinite height
+      [laulaz]
+
+    - Migrate to Plone 6.0.4
+      [boulch]
+
 - Rollback to Zope 5.8 for now because of a bug in POST requests with gunicorn
   [boulch]
 
