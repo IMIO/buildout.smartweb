@@ -20,6 +20,14 @@
     - Migrate to Plone 6.0.4
       [boulch]
 
+- imio.smartweb.core 1.1.16
+
+    - Fix faceted map size after page loading.
+      [thomlamb]
+
+    - Adapt `@search` endpoint to handle multilingual
+      [mpeeters]
+
 - imio.smartweb.core 1.1.15
 
     - Fixed console error following unnecessary loading of js for swiper
