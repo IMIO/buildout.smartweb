@@ -1,7 +1,14 @@
 1.1.8 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.1.17
+
+    - New React build
+      [thomlamb]
+
+    - Use hash in gallery images URL for directory, events and news rest views
+      (based on modification date) to allow strong caching.
+      [boulch, laulaz]
 
 
 1.1.7 (2023-05-30)
