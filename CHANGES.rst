@@ -1,7 +1,19 @@
 1.1.9 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.1.18
+
+    - Removal of unnecessary css in sections contact and gallery
+      [thomlamb]
+
+    - Add new browserview for Plausible
+      [remdub, boulch]
+
+    - Change some icons : SectionHTML and SectionExternalContent
+      [boulch]
+
+    - MWEBTUBA : Add new section : imio.smartweb.SectionExternalContent (Manage embeded contents)
+      [boulch]
 
 
 1.1.8 (2023-05-31)
