@@ -1,6 +1,29 @@
 1.1.9 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.1.19
+
+    - WEB-3956 : Update folder modification date when its layout changed to fix cache
+      [boulch]
+
+    - WEB-3934 : Hide image_size field
+      [boulch]
+
+    - WEB-3953 : Remove cropping from background_image field
+      [boulch]
+
+    - WEB-3952 : Disable image cropping on section text
+      [laulaz, boulch]
+
+    - Make "Image cropping" link conditional
+      [laulaz]
+
+    - Disable image cropping on Slide content type
+      [laulaz]
+
+    - Fix condition for image placeholder on React vue
+      [thomlamb]
+
 - imio.smartweb.core 1.1.18
 
     - Removal of unnecessary css in sections contact and gallery
