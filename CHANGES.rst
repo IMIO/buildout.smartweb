@@ -1,6 +1,9 @@
 1.1.9 (unreleased)
 ------------------
 
+- WEB-3781 : Upgrade `pas.plugins.imio` to fix issue with admin user
+  [laulaz]
+
 - imio.smartweb.common 1.1.8
 
     - WEB-3960 : Clean unhautorized xml chars out of text when added or modified contents Temporary patch.
