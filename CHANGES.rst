@@ -1,6 +1,43 @@
 1.1.9 (unreleased)
 ------------------
 
+- imio.smartweb.locales 1.1.5
+
+    - Add missing translations
+      [boulch]
+
+- imio.smartweb.common 1.1.9
+
+    - WEB-3974 : Add new registry key (imio.smartweb.common.log) to activate logging in smartweb / auth sources products
+      [boulch]
+
+    - Fix AttributeError in case of instance behaviors attributes that are not on all objects
+      [boulch]
+
+- imio.smartweb.core 1.1.20
+
+    - Fix display of hours on events react view
+      [thomlamb]
+
+    - Refactor React contact view
+      [thomlamb]
+
+    - Refactor section text : image_size field is no more required because field is now hidden!
+      [boulch]
+
+    - WEB-3957 : Add new "Please help!" menu in Plone toolbar
+      [boulch]
+
+    - Display logo if no image in react contact card.
+      Display blurry background if image is in portrait
+      [thomlamb]
+
+    - Fix of the calculation of the batch zise, ​​addition instead of concatenation
+      [thomlamb]
+
+    - WEB-3972 : Add "elloha" plugin in external content section
+      [boulch]
+
 - WEB-3781 : Upgrade `pas.plugins.imio` to fix issue with admin user
   [laulaz]
 
