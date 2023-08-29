@@ -1,6 +1,14 @@
 1.1.9 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.1.22
+
+    - Add smartweb content types icons (Message, MessagesConfig)
+      [boulch]
+
+    - Delete useless css for edition
+      [thomlamb]
+  
 - imio.smartweb.core 1.1.21
 
     - Add smartweb content types icons
