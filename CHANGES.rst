@@ -1,6 +1,20 @@
 1.1.9 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.1.21
+
+    - Add smartweb content types icons
+      [laulaz, boulch]
+
+    - Show help & authentic sources menus only if product is installed
+      [laulaz, boulch]
+
+    - Update compiled resources to fix help menu
+      [boulch]
+
+    - Refactor Plausible
+      [remdub]
+
 - imio.smartweb.locales 1.1.5
 
     - Add missing translations
