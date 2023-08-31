@@ -1,7 +1,13 @@
 1.1.11 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- pas.plugins.imio 2.0.9
+
+    - Fix login could be id of user.
+      [bsuttor]
+
+    - Fix byte convertion error on python3.
+      [bsuttor]
 
 
 1.1.10-quick (2023-08-31)
