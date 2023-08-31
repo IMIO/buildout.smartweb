@@ -1,5 +1,5 @@
-1.1.10 (unreleased)
--------------------
+1.1.10-quick (2023-08-31)
+-------------------------
 
 - Pinned elder 2.0.7 version of pas.plugins.imio to test in staging (2.0.8 have some issues)
   [boulch]
