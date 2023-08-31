@@ -1,7 +1,8 @@
 1.1.10 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Pinned elder 2.0.7 version of pas.plugins.imio to test in staging (2.0.8 have some issues)
+  [boulch]
 
 
 1.1.9 (2023-08-29)
