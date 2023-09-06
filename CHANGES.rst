@@ -1,7 +1,22 @@
 1.1.12 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.1.23
+
+    - WEB-3983 : Fix contacts bootstrap grid
+      [boulch]
+
+    - WEB-3980 : Fix help and authentic sources menus double displaying in folder_contents view
+      [boulch]
+
+    - fix calculating image size on loading (add async in useEffect)
+      [thomlamb]
+
+    - WEB-3981 : Add Cognitoforms as an external section
+      [boulch]
+
+    - WEB-3932 : Transform contact section to contactS section
+      [laulaz, boulch]
 
 
 1.1.11 (2023-08-31)
