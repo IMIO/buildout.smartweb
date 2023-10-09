@@ -1,6 +1,25 @@
 1.1.12 (unreleased)
 -------------------
 
+- imio.smartweb.policy 1.1.5
+
+    - Remove deprecated overrides because we removed picture managing out of Tiny
+      [boulch]
+
+- imio.smartweb.core 1.1.24
+
+    - WEB-3986 : Fix : email must be open thank to "mailto:" tag instead of "tel:"
+      [boulch]
+
+    - WEB-3984 : Remove deprecated cropping annotations on banner
+      [boulch, laulaz]
+
+    - WEB-3984 : Don't get banner scale anymore. Get full banner image directly
+      [boulch, laulaz]
+
+    - WEB-3984 : Remove banner field from cropping editor
+      [laulaz]
+
 - imio.smartweb.core 1.1.23
 
     - WEB-3983 : Fix contacts bootstrap grid
