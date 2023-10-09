@@ -1,7 +1,10 @@
 1.1.13 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.1.25
+
+    - SUP-32169 : Add new external content plugins : ArcgisPlugin
+      [boulch]
 
 
 1.1.12 (2023-10-09)
