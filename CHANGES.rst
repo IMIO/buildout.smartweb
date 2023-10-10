@@ -1,6 +1,19 @@
 1.1.13 (unreleased)
 -------------------
 
+- imio.smartweb.locales 1.1.6
+
+    - Add missing French translations (external content section and contact section)
+      [boulch]
+
+- imio.smartweb.core 1.1.26
+
+    - Add missing upgrade step to add leadimage behavior on external content section
+      [boulch]
+
+    - Fix some translations in external content plugins
+      [boulch]
+
 - imio.smartweb.core 1.1.25
 
     - SUP-32169 : Add new external content plugins : ArcgisPlugin
