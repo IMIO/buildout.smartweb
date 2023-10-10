@@ -1,6 +1,9 @@
 1.1.13 (unreleased)
 -------------------
 
+- Pinned psycopg2 = 2.9.9
+  [remdub, boulch]
+
 - Pinned RelStorage = 3.5.0
   [remdub, boulch]
 
