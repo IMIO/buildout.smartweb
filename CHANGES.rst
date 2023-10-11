@@ -1,7 +1,10 @@
 1.1.14 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.1.27
+
+    - Add <div> in view_argis.pt template to fix map displaying
+      [thomlamb, jhero]
 
 
 1.1.13 (2023-10-10)
