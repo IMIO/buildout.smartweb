@@ -1,7 +1,13 @@
 1.1.15 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- collective.pivot 1.0b2
+
+    - Fix translation function
+      [boulch]
+    
+    - Fix post_install when the targeted site not allow default Folder on plonesite root
+      [boulch]
 
 
 1.1.14 (2023-10-11)
