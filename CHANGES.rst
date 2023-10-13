@@ -1,6 +1,20 @@
 1.1.15 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.1.28
+
+    - WEB-3803 : Add upgrade step : collective.pivot.Family content type can be add in an imio.smartweb.Folder
+      [boulch]
+
+    - WEB-3998 : Set requests timeout to 8'' when we populate RemoteContacts vocabulary
+      [boulch]
+
+- imio.smartweb.policy 1.1.6
+
+    - WEB-3803 : Monkey patch imio/collective.pivot post_install method to create an imio.smartweb.Folder
+      to store defaults collective.pivot.Family contents
+      [boulch]
+
 - collective.pivot 1.0b2
 
     - Fix translation function
