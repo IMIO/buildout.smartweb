@@ -1,6 +1,15 @@
 1.1.15 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.1.29
+
+    - SUP-32814 : Add new external content plugins : GiveADayPlugin
+      see : https://github.com/IMIO/imio.smartweb.core/commit/a4dfca2
+      [boulch]
+
+    - WEB-4000 : Add display_map Bool field on directory and events views
+      [boulch]
+
 - imio.smartweb.core 1.1.28
 
     - WEB-3803 : Add upgrade step : collective.pivot.Family content type can be add in an imio.smartweb.Folder
