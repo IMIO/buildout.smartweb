@@ -1,6 +1,14 @@
 1.1.15 (unreleased)
 -------------------
 
+- imio.smartweb.locales 1.1.7
+
+    - Add missing French translations
+      [boulch]
+
+    - Update translations
+      [boulch]
+
 - imio.smartweb.core 1.1.30
 
     - Adaptation of react to show or hide the map
