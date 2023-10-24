@@ -1,6 +1,14 @@
 1.1.15 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.1.30
+
+    - Adaptation of react to show or hide the map
+      [thomlamb]
+
+    - WEB-3999 : Keep order of contacts in its view through manualy sorted related_contacts in edit form
+      [boulch]
+
 - imio.smartweb.core 1.1.29
 
     - SUP-32814 : Add new external content plugins : GiveADayPlugin
