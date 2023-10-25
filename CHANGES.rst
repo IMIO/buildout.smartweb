@@ -1,7 +1,42 @@
 1.1.16 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.2.1
+
+    - WEB-3985 : Fix traceback when cropping scale information is not present on image change
+      [laulaz]
+
+- imio.smartweb.core 1.2
+
+    - WEB-3985 : New portrait / paysage scales & logic.
+      We have re-defined the scales & sizes used in smartweb.
+      We let the user crop only 2 big portrait / paysage scales and make the calculation behind the scenes for all
+      other smaller scales.
+      We also fixed the cropping information clearing on images changes.
+      A new orientation behavior allow the editor to choose with type of image he wants.
+      [boulch, laulaz]
+
+    - Fix css for Event content view
+      [thomlamb]
+
+- imio.smartweb.common 1.2
+
+    - WEB-3985 : New portrait / paysage scales & logic.
+      We have re-defined the scales & sizes used in smartweb.
+      We let the user crop only 2 big portrait / paysage scales and make the calculation behind the scenes for all
+      other smaller scales.
+      We also fixed the cropping information clearing on images changes.
+      [boulch, laulaz]
+
+- imio.smartweb.policy 1.2
+
+    - WEB-3985 : Add orientation behavior on Collection type
+      [boulch, laulaz]
+
+- imio.smartweb.locales 1.1.8
+
+    - Add missing French translations
+      [laulaz]
 
 
 1.1.15 (2023-10-24)
