@@ -1,6 +1,17 @@
 1.1.16 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.2.2
+
+    - WEB-3985 : Fix condition to load image or logo in contact view
+      [thomlamb]
+
+    - WEB-3985 : Fix logo scale URL (no orientation there) for Directory view
+      [laulaz]
+
+    - WEB-3985 : Fix React build
+      [thomlamb]
+
 - imio.smartweb.core 1.2.1
 
     - WEB-3985 : Fix traceback when cropping scale information is not present on image change
