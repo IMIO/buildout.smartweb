@@ -1,6 +1,42 @@
 1.1.16 (unreleased)
 -------------------
 
+- imio.smartweb.policy 1.2.1
+
+    - Restore removed behaviors on Collection type
+      [laulaz]
+
+- imio.smartweb.common 1.2.1
+
+    - SUP-33128 : Fix eea.facetednavigation : Hide items with 0 results
+      [boulch, laz]
+
+    - Refactor less and js compilation + Add compilations files
+      [boulch]
+
+- imio.smartweb.core 1.2.3
+
+    - Migrate deprecated image scales from Section Contact / Gallery
+      [laulaz]
+
+    - Migrate "Is in portrait mode" option to orientation behavior for Section Contact
+      [laulaz]
+
+    - Handle image orientation on Collection & Foler types
+      [laulaz]
+
+    - Remove unused `gallery_view.pt` template
+      [laulaz]
+
+    - Change order of orientation options (default first)
+      [laulaz]
+
+    - Handle orientation in REST views images & fix galleries
+      [laulaz]
+
+    - Change default orientation to landscape
+      [laulaz]
+
 - imio.smartweb.core 1.2.2
 
     - WEB-3985 : Fix condition to load image or logo in contact view
