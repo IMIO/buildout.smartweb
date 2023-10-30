@@ -1,6 +1,9 @@
 1.1.16 (unreleased)
 -------------------
 
+- Develop collective.solr to implement https connection DEVOPS-3
+  [remdub]
+
 - imio.smartweb.policy 1.2.1
 
     - Restore removed behaviors on Collection type
