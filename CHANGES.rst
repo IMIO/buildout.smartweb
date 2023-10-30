@@ -1,6 +1,14 @@
 1.1.16 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.2.4
+
+    - Handle image orientation on faceted map layout
+      [laulaz]
+
+    - Remove unused Photo Gallery from collections layouts
+      [laulaz]
+
 - Develop collective.solr to implement https connection DEVOPS-3
   [remdub]
 
