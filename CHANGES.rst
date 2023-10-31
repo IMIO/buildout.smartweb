@@ -1,6 +1,9 @@
 1.1.16 (unreleased)
 -------------------
 
+- Use released version of `plone.formwidget.geolocation`
+  [laulaz]
+
 - imio.smartweb.core 1.2.4
 
     - Handle image orientation on faceted map layout
