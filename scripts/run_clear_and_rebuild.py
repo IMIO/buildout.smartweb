@@ -13,6 +13,7 @@ from zope.globalrequest import setRequest
 import logging
 
 logger = logging.getLogger("clear_and_rebuild")
+logger.setLevel(logging.INFO)
 
 
 def get_site(zopeapp=None):
@@ -28,7 +29,7 @@ def get_site(zopeapp=None):
         if IPloneSiteRoot.providedBy(obj):
             portal = obj
     if not portal:
-        raise ("Do not find portal")
+        raise ("Can't find portal")
     setSite(portal)
     return portal
 
@@ -42,16 +43,19 @@ def reindex_relations(portal):
     for brain in brains:
         try:
             obj = brain.getObject()
-            logger.warn(f"reindex_relations : {obj.getPhysicalPath()}")
             updateRelations(obj, None)
-        except:
-            logger.warn(f"reindex_relations Exception: {obj.getPhysicalPath()}")
+        except Exception as e:
+            logger.error(
+                f"reindex_relations failed for {obj.absolute_url()} with exception: {e}"
+            )
 
 
 def clear_and_rebuild(portal):
     catalog = portal.portal_catalog
     catalog.clearFindAndRebuild()
+    logger.info("Catalog cleared and rebuilt !")
     reindex_relations(portal)
+    logger.info("Relations updated !")
 
 
 if __name__ == "__main__":
