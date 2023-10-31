@@ -1,6 +1,9 @@
 1.1.16 (unreleased)
 -------------------
 
+- Add "run" script to clear and rebuild instances
+  [boulch]
+
 - Use released version of `plone.formwidget.geolocation`
   [laulaz]
 
