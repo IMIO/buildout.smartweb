@@ -1,6 +1,62 @@
 1.1.16 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.2.6
+
+    - Fix tests after scales dimensions change
+      [laulaz]
+
+- imio.smartweb.policy 1.2.2
+
+    - Improve collective autoscaling compression quality Also fix missing autoscaling settings for new instances
+      [laulaz]
+
+- imio.smartweb.common 1.2.3
+
+    - Improve image compression quality
+      [laulaz]
+
+    - Change portrait scales dimensions
+      [laulaz]
+
+- imio.smartweb.core 1.2.5
+
+    - Rebuild React to fix js errors
+      [thomlamb]
+
+    - WEB-4017 : Add Number 2 for items per batch
+      [thomlamb]
+
+    - Fix last upgrade steps: when run from command line, we need to adopt admin user to find private objects
+      [laulaz]
+
+    - Fix wrong type name in imio.smartweb.CirkwiView type profile
+      [laulaz]
+
+    - WEB-4014 : Display "websites" urls instead of labels (facebook, website, instagram, ...)
+      [boulch]
+
+    - WEB-4012 : Restored filter on related contacts field
+      [boulch]
+
+- imio.smartweb.common 1.2.2
+
+    - Fix missing values for facilities lists (causing `None` in REST views filters)
+      See https://github.com/collective/collective.solr/issues/366
+      [laulaz]
+
+    - Fix last upgrade steps: when run from command line, we need to adopt admin
+      user to find private objects
+      [laulaz]
+
+    - WEB-4003 : Fix missing TextField mimetypes
+      [laulaz]
+
+- imio.smartweb.locales 1.1.9
+
+    - WEB-4018 : Add missing French translations (new termes in directory vocabulary)
+      [boulch]
+
 - Add "run" script to clear and rebuild instances
   [boulch]
 
