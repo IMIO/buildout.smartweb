@@ -1,6 +1,14 @@
 1.1.16 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.2.7
+
+    - Fix image scales URLs for gallery view thumbnails
+      [laulaz]
+
+    - WEB-3992 : Uncheck icon when clincking on checked icon (in edit form of imio.smartweb.BlockLink)
+      [boulch]
+
 - imio.smartweb.core 1.2.6
 
     - Fix tests after scales dimensions change
