@@ -1,6 +1,9 @@
 1.2.0 (unreleased)
 ------------------
 
+- Fix use of bool env vars in `collective.solr`
+  [remdub]
+
 - imio.smartweb.core 1.2.8
 
     - Fix (lead) image sizes URLs for text section & migrate old values
