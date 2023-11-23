@@ -1,7 +1,10 @@
 1.2.0 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.2.8
+
+    - Fix (lead) image sizes URLs for text section & migrate old values
+      [boulch, laulaz]
 
 
 1.2 (2023-11-22)
