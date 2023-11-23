@@ -1,5 +1,5 @@
-1.2.0 (unreleased)
-------------------
+1.2.1-quick (2023-11-23)
+------------------------
 
 - Fix use of bool env vars in `collective.solr`
   [remdub]
