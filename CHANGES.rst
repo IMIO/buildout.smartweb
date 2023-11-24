@@ -1,7 +1,10 @@
 1.2.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.2.9
+
+    - WEB-4021 : Fix lead image displaying with files section
+      [boulch]
 
 
 1.2.2-quick (2023-11-23)
