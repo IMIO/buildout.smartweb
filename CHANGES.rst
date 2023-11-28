@@ -1,7 +1,10 @@
 1.2.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.2.10
+
+    - Add RequestForwarder views
+      [laulaz, boulch]
 
 
 1.2.3 (2023-11-24)
