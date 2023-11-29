@@ -1,6 +1,14 @@
 1.2.4 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.2.11
+
+    - Add Smartweb related URLs in forwarded json responses
+      [laulaz]
+
+    - Transform requests forwarders into REST API Services
+      [laulaz]
+
 - imio.smartweb.core 1.2.10
 
     - Add RequestForwarder views
