@@ -1,6 +1,11 @@
 1.2.4 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.2.13
+
+    - Use json for request forwarders body
+      [laulaz, boulch]
+
 - imio.smartweb.core 1.2.12
 
     - Deactivate Plone protect / Add token for queries
