@@ -1,6 +1,17 @@
 1.2.4 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.2.12
+
+    - Deactivate Plone protect / Add token for queries
+      [laulaz, boulch]
+
+    - Handle PATCH & DELETE in request forwarders
+      [laulaz]
+
+    - Fix smartweb url and fix metadatas if missing fullobject
+      [boulch]
+
 - imio.smartweb.core 1.2.11
 
     - Add Smartweb related URLs in forwarded json responses
