@@ -1,6 +1,11 @@
 1.2.4 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.2.14
+
+    - Fix parameters in `POST` / `PATCH` / `DELETE` requests
+      [laulaz]
+
 - imio.smartweb.core 1.2.13
 
     - Use json for request forwarders body
