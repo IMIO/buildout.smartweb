@@ -1,6 +1,11 @@
 1.2.4 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.2.17
+
+    - Refactor / optimize React code and upgrade packages
+      [thomlamb]
+
 - imio.smartweb.core 1.2.16
 
     - Handle single item json responses in request forwarders
