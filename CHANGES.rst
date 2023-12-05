@@ -1,6 +1,10 @@
 1.2.4 (unreleased)
 ------------------
 
+- WEB-4028 : Restore `fix-geosearch` fork of `plone.formwidget.geolocation`
+  We must wait for https://github.com/Patternslib/pat-leaflet/pull/36
+  [laulaz]
+
 - imio.smartweb.core 1.2.18
 
     - WEB-4022 : Create a new action menu with an utils view that redirect to stats (browser)view
