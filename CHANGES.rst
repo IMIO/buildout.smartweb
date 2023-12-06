@@ -1,6 +1,14 @@
 1.2.4 (unreleased)
 ------------------
 
+- imio.smartweb.locales 1.1.10
+
+    - Add missing translations (plausible/statistics)
+      [boulch]
+
+    - Update translations
+      [boulch]
+
 - imio.smartweb.core 1.2.19
 
     - WEB-4022 : Fix : Compiled edit.js
