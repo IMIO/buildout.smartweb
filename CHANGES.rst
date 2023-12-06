@@ -1,9 +1,16 @@
 1.2.4 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.2.19
+
+    - WEB-4022 : Fix : Compiled edit.js
+      [boulch]
+
+    - WEB-4022 : Fix : bad char in actions.xml (setup/upgrade step)
+      [boulch]
+
 - WEB-4028 : Restore `fix-geosearch` fork of `plone.formwidget.geolocation`
   We must wait for https://github.com/Patternslib/pat-leaflet/pull/36
-  [laulaz]
 
 - imio.smartweb.core 1.2.18
 
