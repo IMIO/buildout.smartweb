@@ -1,6 +1,19 @@
 1.2.4 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.2.20
+
+    - WEB-3783 : Update viewlet to set og:tags in rest views
+      [boulch]
+
+    - (Re)Activate external section
+      [boulch]
+
+- imio.smartweb.common 1.2.4
+
+    - WEB-3783 : Rebuild url with request.form datas (usefull with react views)
+      [boulch]
+
 - imio.smartweb.locales 1.1.10
 
     - Add missing translations (plausible/statistics)
