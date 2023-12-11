@@ -1,4 +1,4 @@
-1.2.4 (unreleased)
+1.2.4 (2023-12-11)
 ------------------
 
 - DEVOPS-37 : force upgrade steps on promote
