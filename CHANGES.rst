@@ -1,6 +1,9 @@
 1.2.4 (unreleased)
 ------------------
 
+- DEVOPS-37 : force upgrade steps on promote
+  [remdub,bsuttor]
+
 - imio.smartweb.core 1.2.20
 
     - WEB-3783 : Update viewlet to set og:tags in rest views
