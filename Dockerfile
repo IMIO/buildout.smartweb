@@ -1,4 +1,4 @@
-FROM imiobe/base:py3-ubuntu-22.04 as builder
+FROM harbor.imio.be/common/plone-base:6.0.4-ubuntu as builder
 
 LABEL maintainer="Benoît Suttor <benoit.suttor@imio.be>"
 ENV PIP=23.0.1 \
@@ -32,7 +32,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   && pip3 install --no-cache-dir pip==$PIP setuptools==$SETUPTOOLS zc.buildout==$ZC_BUILDOUT py-spy
 
 WORKDIR /plone
-RUN chown imio:imio -R /plone && mkdir /data && chown imio:imio -R /data
 
 # COPY --chown=imio eggs /plone/eggs/
 # COPY --chown=imio --from=docker-staging.imio.be/smartweb/mutual:latest /plone/eggs/ /plone/eggs/
@@ -44,7 +43,7 @@ RUN su -c "buildout -c prod.cfg -t 30 -N" -s /bin/sh imio
 # clean up old eggs
 # RUN for egg in `ls /plone/eggs/ | cut -d '-' -f 1 | uniq`; do rm -rfv `ls -td /plone/eggs/$egg-* | awk 'NR>1'`; done
 
-FROM imiobe/base:py3-ubuntu-22.04
+FROM harbor.imio.be/common/plone-base:6.0.4-ubuntu
 ENV PIP=23.0.1 \
   ZC_BUILDOUT=3.0.1 \
   SETUPTOOLS=67.6.1 \
@@ -56,7 +55,6 @@ ENV PIP=23.0.1 \
   PLONE_EXTENSION_IDS=plone.app.caching:default,plonetheme.barceloneta:default,imio.smartweb.policy:default \
   DEFAULT_LANGUAGE=fr
 
-RUN mkdir -p /data/blobstorage && chown imio:imio -R /data && mkdir /plone && chown imio:imio -R /plone
 VOLUME /data/blobstorage
 WORKDIR /plone
 
