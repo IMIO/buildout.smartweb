@@ -1,7 +1,13 @@
 1.2.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.2.21
+
+  - WEB-3992 : Fix svg to have base color. Add class for icon in table template
+    [thomlamb]
+
+  - SUP-34061 : Fix React Gallery img scales
+    [thomlamb]
 
 
 1.2.4 (2023-12-11)
