@@ -1,7 +1,14 @@
 1.2.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- imio.smartweb.common 1.2.5
+
+    - WEB-4007 : Get ContactProperties out of imio.smartweb.core to also use it in imio.directory.core and 
+      simplifying formated schedule displaying in REACT directory view
+      [boulch]
+
+    - WEB-4029 : File and Image content types don't have WF so we set effective date equal to created date
+      [boulch]
 
 
 1.2.5 (2023-12-18)
