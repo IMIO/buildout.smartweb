@@ -1,6 +1,11 @@
 1.2.6 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.2.22
+
+    - Refactor : Move ContactProperties (to build readable schedule) to imio.smartweb.common
+      [boulch]
+
 - imio.smartweb.common 1.2.5
 
     - WEB-4007 : Get ContactProperties out of imio.smartweb.core to also use it in imio.directory.core and 
