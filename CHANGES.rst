@@ -1,6 +1,16 @@
 1.2.6 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.2.23
+
+    - WEB-4041 : Handle new "carre" scale
+      [boulch]
+
+- imio.smartweb.common 1.2.6
+
+    - WEB-4041 : Add new "carre" scale
+      [boulch]
+
 - imio.smartweb.core 1.2.22
 
     - Refactor : Move ContactProperties (to build readable schedule) to imio.smartweb.common
