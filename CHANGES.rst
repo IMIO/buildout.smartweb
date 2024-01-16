@@ -1,6 +1,11 @@
 1.2.6 (unreleased)
 ------------------
 
+- imio.smartweb.policy 1.2.3
+
+    - WEB-4046 : Add "Skip to content" viewlet in portal top
+      [laulaz]
+
 - imio.smartweb.common 1.2.7
 
     - WEB-4046 : Add css for "Skip to content
