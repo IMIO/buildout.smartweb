@@ -1,6 +1,17 @@
 1.2.6 (unreleased)
 ------------------
 
+- imio.smartweb.common 1.2.7
+
+    - WEB-4046 : Add css for "Skip to content
+      [thomlamb]
+
+    - WEB-4046 : Add "Skip to content" link for a11y
+      [laulaz]
+
+    - WEB-4048 : Put focus on cookies accept button for a11y
+      [laulaz]
+
 - imio.smarteb.locales 1.1.11
 
     - WEB-4049 : Add missing german translationsAdd missing german / dutch translations
