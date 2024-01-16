@@ -1,6 +1,11 @@
 1.2.6 (unreleased)
 ------------------
 
+- imio.smarteb.locales 1.1.11
+
+    - WEB-4049 : Add missing german translationsAdd missing german / dutch translations
+      [boulch]
+
 - imio.smartweb.core 1.2.23
 
     - WEB-4041 : Handle new "carre" scale
