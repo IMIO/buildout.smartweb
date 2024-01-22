@@ -1,6 +1,17 @@
 1.2.6 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.2.24
+
+    - WEB-3802 : Get dates range for events in REST views. Coming from React.
+      [boulch]
+
+    - WEB-4050 : Fix : Loosing related_contacts ordering when changing any attributes in section
+      [boulch]
+
+    - WEB-4007 : Add Schedule in contact React view
+      [thomlamb]
+
 - imio.smartweb.policy 1.2.3
 
     - WEB-4046 : Add "Skip to content" viewlet in portal top
@@ -8,7 +19,7 @@
 
 - imio.smartweb.common 1.2.7
 
-    - WEB-4046 : Add css for "Skip to content
+    - WEB-4046 : Add css for "Skip to content"
       [thomlamb]
 
     - WEB-4046 : Add "Skip to content" link for a11y
@@ -19,7 +30,7 @@
 
 - imio.smarteb.locales 1.1.11
 
-    - WEB-4049 : Add missing german translationsAdd missing german / dutch translations
+    - WEB-4049 : Add missing german / dutch translations
       [boulch]
 
 - imio.smartweb.core 1.2.23
