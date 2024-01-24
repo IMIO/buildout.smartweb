@@ -1,6 +1,11 @@
 1.2.6 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.2.26
+
+    - WEB-3802 : Fix Axios Serializer to fix key in object request.
+      [thomlamb]
+
 - imio.smartweb.core 1.2.25
 
     - WEB-3802 : Adding perido filter in event React view
