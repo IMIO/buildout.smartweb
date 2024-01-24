@@ -1,6 +1,11 @@
 1.2.6 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.2.25
+
+    - WEB-3802 : Adding perido filter in event React view
+      [thomlamb]
+
 - imio.smartweb.core 1.2.24
 
     - WEB-3802 : Get dates range for events in REST views. Coming from React.
