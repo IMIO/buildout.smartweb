@@ -1,6 +1,17 @@
 1.2.6 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.2.28
+
+    - WEB-3802 : translate datepicker
+      [thomlamb]
+
+    - WEB-3802 : add nl traduction for React view.
+      [thomlamb]
+
+    - WEB-3802 : Fix datePicker filtre to no load on first date change
+      [thomlamb]
+
 - imio.smartweb.locales 1.1.12
 
     - Add missing translations
