@@ -1,6 +1,17 @@
 1.2.6 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.2.27
+
+    - WEB-3802 : Adding scss styles for new period filter
+      [thomlamb]
+
+    - WEB-3802 : Adding missing traduction for React view.
+      [thomlamb]
+
+    - WEB-4029 : Fix issue "invalid date" with pat-display-time and DateTime Zope/Plone format (with Firefox!)
+      [boulch]
+
 - imio.smartweb.core 1.2.26
 
     - WEB-3802 : Fix Axios Serializer to fix key in object request.
