@@ -1,6 +1,17 @@
 1.2.6 (unreleased)
 ------------------
 
+- imio.smartweb.locales 1.1.12
+
+    - Add missing translations
+      [boulch]
+
+    - Update translations
+      [boulch]
+
+    - WEB-4049 : Add missing german / dutch translations
+      [boulch]
+
 - imio.smartweb.core 1.2.27
 
     - WEB-3802 : Adding scss styles for new period filter
