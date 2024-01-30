@@ -1,7 +1,10 @@
 1.2.7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.2.29
+
+    - Quick fix : effective date can be a str type. So the news sections were broken
+      [boulch]
 
 
 1.2.6 (2024-01-29)
