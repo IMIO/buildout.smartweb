@@ -1,7 +1,10 @@
 1.2.8 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.2.30
+
+    - Quick fix : move date queries in inital component to avoid bad url
+      [thomlamb]
 
 
 1.2.7-quick (2024-01-30)
