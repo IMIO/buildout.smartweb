@@ -1,7 +1,32 @@
 1.2.9 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- imio.smartweb.common 1.2.8
+
+    - Fix skip content sr-only
+      [thomlamb]
+
+- imio.smartweb.policy 1.2.4
+
+    - Make content types translatable (with `plone.translatable` behavior) in
+      multilingual profile.
+      [laulaz]
+
+- imio.smartweb.core 1.2.31
+
+    - Add React Context to manage global language
+      [thomlamb]
+
+    - WEB-4063 : Create some views that redirect to main rest (directory, agenda, news) views (thank to registered uid) for e-guichet
+      [boulch]
+
+    - SUP-34498 : Fix url construction to fix 404 on external tab click on React items
+      [thomlamb]
+
+- imio.smartweb.core 1.2.30
+
+    - Quick fix : move date queries in inital component to avoid bad url
+      [thomlamb]
 
 
 1.2.8-quick (2024-01-30)
