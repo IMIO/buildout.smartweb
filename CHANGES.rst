@@ -1,6 +1,17 @@
 1.2.9 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.2.32
+
+    - Fix : Could not adapt (..interfaces.ITranslationManager) in single-language website when we set language param in url view
+      [boulch]
+
+    - Fix : rest_view_obj can be None if react view was removed
+      [boulch]
+
+    - Fix: bad condition to display search items number of results
+      [thomlamb]
+
 - imio.smartweb.common 1.2.8
 
     - Fix skip content sr-only
