@@ -154,12 +154,5 @@
     <field name="title_nl" type="string" indexed="false" stored="true" />
     <field name="image_scales" type="string" indexed="false" stored="true" />
     <field name="image_field" type="string" indexed="false" stored="true" />
-
-    <!-- copy -->
-    <copyField source="Title" dest="default"/>
-    <copyField source="Description" dest="default"/>
-    <copyField source="Subject" dest="default"/>
-
-    <copyField source="default" dest="SearchableText"/>
   </fields>
 </schema>

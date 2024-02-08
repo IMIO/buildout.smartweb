@@ -1,7 +1,9 @@
 1.2.10 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- WEB-4064 : Fix : remove copyfields on solr schema
+  to avoid loosing SearchableText on an element when updating its parent
+  [remdub]
 
 
 1.2.9 (2024-02-05)
