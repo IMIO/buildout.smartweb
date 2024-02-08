@@ -38,3 +38,4 @@ package-lock.json
 pip-selfcheck.json
 pyvenv.cfg
 report.html
+.envrc
