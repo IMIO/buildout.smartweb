@@ -1,6 +1,11 @@
 1.2.10 (unreleased)
 -------------------
 
+- imio.smartweb.common 1.2.9
+
+    - WEB-4064 : Reindex SolR because of changes in schema
+      [remdub]
+
 - WEB-4064 : Fix : remove copyfields on solr schema
   to avoid loosing SearchableText on an element when updating its parent
   [remdub]
