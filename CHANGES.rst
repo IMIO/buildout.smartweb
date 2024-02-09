@@ -1,6 +1,26 @@
 1.2.10 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.2.33
+
+    - WEB-4067 : Override plone.app.content.browser.vocabulary.VocabularyView to provide filtering items to AjaxSelectFieldWidget
+      [boulch]
+
+    - WEB-4001 : Override sitemap.xml.gz to improve SEO with react views
+      [boulch]
+
+    - Change datePicker date format.
+      [thomlamb]
+
+    - Add class on section text if there is collapsable
+      [thomlamb]
+
+    - WEB-4056 : Refactoring: Removed sha256 encoding (no longer needed)
+      [boulch]
+
+    - WEB-3966: Add close navigation menu on focusout to make it more accessible
+      [thomlamb]
+
 - imio.smartweb.common 1.2.9
 
     - WEB-4064 : Reindex SolR because of changes in schema
