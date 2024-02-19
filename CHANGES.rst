@@ -1,7 +1,13 @@
 1.2.11 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.2.34
+
+    - MWEBRCHA-13 : Add content rules to notify reviewers (Install via validation profile)
+      [laulaz]
+
+    - MWEBRCHA-13 : Fix plone versioning (Work on SectionText / Remove from SectionHTML)
+      [boulch]
 
 
 1.2.10 (2024-02-12)
