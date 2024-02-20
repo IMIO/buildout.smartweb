@@ -1,7 +1,8 @@
 1.2.11 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- WEB-3792 : Add containing context indexes to display it in search results
+  [remdub, laulaz]
 
 
 1.2.10 (2024-02-12)
