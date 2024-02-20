@@ -145,5 +145,7 @@
     <field name="total_comments" type="string" indexed="true" stored="true" />
     <field name="image_scales" type="string" indexed="false" stored="true" />
     <field name="image_field" type="string" indexed="false" stored="true" />
+    <field name="containing_context_type" type="string" indexed="false" stored="true" />
+    <field name="containing_context_title" type="string" indexed="false" stored="true" />
   </fields>
 </schema>
