@@ -1,6 +1,11 @@
 1.2.11 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.2.35
+
+    - WEB-4006 : Exclude some content types from search results
+      [remdub]
+
 - collective.solr 9.3.0
 
     - Add support of https connections
