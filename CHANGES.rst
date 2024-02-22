@@ -1,6 +1,14 @@
 1.2.11 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.2.36
+
+    - WEB-4072, WEB-4073 : Enable solr.fields behavior on some content types
+      [remdub]
+
+    - WEB-4001 : Refactoring the generation of sitemap.xml.gz
+      [boulch]
+
 - imio.smartweb.core 1.2.35
 
     - WEB-4006 : Exclude some content types from search results
