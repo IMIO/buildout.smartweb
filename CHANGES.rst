@@ -1,6 +1,14 @@
 1.2.12 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.2.38
+
+    - Fix React build
+      [thomlamb]
+
+    - Fix spelling mistake and react compilation
+      [boulch]
+
 - imio.smartweb.core 1.2.37
 
     - Add new plugin in external content section / refactor some code in external content section
