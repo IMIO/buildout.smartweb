@@ -1,7 +1,13 @@
 1.2.12 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.2.37
+
+    - Add new plugin in external content section / refactor some code in external content section
+      [boulch]
+
+    - Add figcaption content in alt attribute for images in section text
+      [thomlamb]
 
 
 1.2.11 (2024-03-05)
@@ -32,6 +38,9 @@
 
     - Add upgrade step for missing stopwords registry entries
       [remdub]
+
+- WEB-3862 : eea.facetednavigation 16.2
+  [boulch]
 
 - imio.smartweb.core 1.2.34
 
