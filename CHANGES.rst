@@ -1,6 +1,17 @@
 1.2.12 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.2.39
+
+    - MWEBPM-9 : Retrieve agenda id/title or news folder id/title and display it in "common templates" carousel
+      [boulch]
+
+    - MWEBPM-8 : Add "min" or "max" to queries depending to "only past events"
+      [thomlamb]
+
+    - MWEBPM-8 : Add field to manage "only past events" rest view
+      [boulch]
+
 - imio.smartweb.core 1.2.38
 
     - Fix React build
