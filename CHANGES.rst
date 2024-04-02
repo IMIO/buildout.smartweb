@@ -1,6 +1,30 @@
 1.2.12 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.2.40
+
+    - MWEBPM-9 : Add container_uid in rest views to retrieve agenda id/title or news folder id/title
+      [boulch]
+
+    - MWEBPM-9 : Retrieve agenda id/title or news folder id/title and display it in "common templates" table
+      [boulch]
+
+- imio.smartweb.locales 1.1.14
+
+    - Add missing fr, nl, de translations
+      [boulch]
+
+    - Update translations
+      [boulch]
+
+- imio.smartweb.locales 1.1.13
+
+    - Add missing fr, nl, de translations
+      [boulch]
+
+    - Update translations
+      [boulch]
+
 - imio.smartweb.core 1.2.39
 
     - MWEBPM-9 : Retrieve agenda id/title or news folder id/title and display it in "common templates" carousel
