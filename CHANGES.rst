@@ -1,6 +1,16 @@
 1.2.12 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.2.41
+
+    - Set higher timeout because retrieving some datas can take some time
+      [boulch]
+
+- imio.smartweb.locales 1.1.15
+
+    - Add missing fr, nl, de translations
+      [boulch]
+
 - imio.smartweb.core 1.2.40
 
     - MWEBPM-9 : Add container_uid in rest views to retrieve agenda id/title or news folder id/title
