@@ -1,6 +1,11 @@
 1.2.13 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.2.42
+
+    - SUP-36564 : Fix arcgis external content plugin
+      [boulch]
+
 - Migrate to Plone 6.0.9
   [boulch]
 
