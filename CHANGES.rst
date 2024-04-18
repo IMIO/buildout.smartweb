@@ -1,7 +1,19 @@
 1.2.14 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.2.43
+
+    - WEB-4099 : Resize sections in front-end thanks to htmx / jquery
+      [boulch]
+
+    - WEB-4098 : Add affiche scale for section on table view display and one element by lot
+      [thomlamb]
+
+    - WEB-4098 : Add new profile for imio.smartweb.orientation to section files
+      [thomlamb]
+
+    - SUP-35100 : Fix sitemap.xml.gz generation. When a "main" rest view was removed, continue to build sitemap for others rest views
+      [boulch]
 
 
 1.2.13 (2024-04-14)
