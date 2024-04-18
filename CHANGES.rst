@@ -1,6 +1,11 @@
 1.2.14 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.2.44
+
+    - WEB-4099 : Fix select name
+      [boulch]
+
 - imio.smartweb.core 1.2.43
 
     - WEB-4099 : Resize sections in front-end thanks to htmx / jquery
