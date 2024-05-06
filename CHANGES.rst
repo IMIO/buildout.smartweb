@@ -1,6 +1,53 @@
 1.2.14 (unreleased)
 -------------------
 
+- imio.smartweb.locales 1.1.16
+
+    - Add missing French translations for `Carre` & categories / topics display on items
+      [laulaz]
+
+    - Add missing fr, nl, de translations
+      [boulch]
+
+    - Update translations
+      [boulch]
+
+- imio.smartweb.common 1.2.12
+
+    - WEB-4102 : Add second skip to footer
+      [thomlamb]
+
+- imio.smartweb.common 1.2.11
+
+    - WEB-4101 : Fix vocabulary terms translation (for Topics only - for the moment)
+      when used with `AjaxSelectFieldWidget`
+      [laulaz]
+
+- imio.smartweb.common 1.2.10
+
+    - WEB-4101 : Change Topics field widget to keep value ordering
+      [laulaz]
+
+    - WEB-4088 : Implement some odwb utils and generic classes
+      [boulch]
+
+- imio.smartweb.core 1.2.45
+
+    - WEB-4101 : Allow to choose to display topic or category on event & news.
+      This affects all related content types: SectionNews, SectionEvents, NewsView, EventsView.
+      Local category is alway taken before category (1 value).
+      Topic is always the first in list (1 value).
+      [laulaz, thomlamb]
+
+    - Add end date on event cards
+      [thomlamb]
+
+    - Add tradcution for directory timetable
+      [thomlamb]
+
+    - SUP-36869 : Fix root ulr on Leaflet Marker.
+      [thomlamb]
+
 - imio.smartweb.core 1.2.44
 
     - WEB-4099 : Fix select name
