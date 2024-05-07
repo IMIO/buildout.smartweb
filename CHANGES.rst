@@ -1,6 +1,11 @@
 1.2.14 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.2.46
+
+    - WEB-4101 : fix React topic display
+      [thomlamb]
+
 - imio.smartweb.locales 1.1.16
 
     - Add missing French translations for `Carre` & categories / topics display on items
