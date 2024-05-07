@@ -1,6 +1,14 @@
 1.2.14 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.2.47
+
+    - fix React svg import and delete unused svg
+      [thomlamb]
+
+    - add missing React translations
+      [thomlamb]
+
 - imio.smartweb.core 1.2.46
 
     - WEB-4101 : fix React topic display
