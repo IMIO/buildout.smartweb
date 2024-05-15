@@ -1,7 +1,8 @@
 1.2.15 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- WEB-3862 : Pinned eea.facetednavigation 16.4
+  [boulch]
 
 
 1.2.14 (2024-05-07)
