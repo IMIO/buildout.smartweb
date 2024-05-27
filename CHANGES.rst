@@ -1,6 +1,62 @@
 1.2.15 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.2.48
+
+    - WEB-3802: Add grouped filter for category and local category in React filters
+      [thomlamb]
+
+    - WEB-4101 : Handle (local) categories translations correctly
+      [laulaz]
+
+    - SUP-36937: Add Recurrence dates in React event content view
+      [thomlamb]
+
+    - WEB-4104 : When change section size (front-office method), reindexParent to refresh cache
+      [boulch]
+
+    - WEB-4105 : Make text section smarter about its lead image format (portrait / landscape)
+      [boulch]
+
+- imio.smartweb.locales 1.1.16 => 1.1.18
+
+    - Add missing FR translations
+      [laulaz]
+
+- imio.smartweb.common 1.2.15
+
+    - Fix missing ZCML dependency
+      [laulaz]
+
+- imio.smartweb.common 1.2.14
+
+    - Fix bundles: Remove obsolete patterns bundle and fix a previous upgrade for
+      eea.facetednavigation
+      [laulaz]
+
+    - Fix translate call (was causing incorrect string in .po file)
+      [laulaz]
+
+    - Fix translation message string
+      [laulaz]
+
+- imio.smartweb.common 1.2.13
+
+    - WEB-4088 : Cover use case for sending data in odwb for a staging environment
+      [boulch]
+
+    - Ensure translation of vocabularies when used with `AjaxSelectFieldWidget`
+      [laulaz]
+
+    - Remove useless `container_uid` from `search-filters` results
+      [laulaz]
+
+    - WEB-3864 : Ensure that a taxonomy term that is deleted is not used anywhere
+      [boulch]
+
+    - WEB-3862 : Unpatch (restore original) eea.facetednavigation jquery
+      [laulaz]
+
 - WEB-3862 : Pinned eea.facetednavigation 16.4
   [boulch]
 
