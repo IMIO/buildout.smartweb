@@ -129,6 +129,13 @@
     <field name="category" type="string" indexed="true" stored="true" multiValued="true" />
     <field name="category_and_topics" type="string" indexed="true" stored="true" multiValued="true" />
     <field name="category_title" type="string" indexed="true" stored="true" />
+    <field name="category_title_nl" type="string" indexed="false" stored="true" />
+    <field name="category_title_de" type="string" indexed="false" stored="true" />
+    <field name="category_title_en" type="string" indexed="false" stored="true" />
+    <field name="local_category" type="string" indexed="true" stored="true" />
+    <field name="local_category_nl" type="string" indexed="false" stored="true" />
+    <field name="local_category_de" type="string" indexed="false" stored="true" />
+    <field name="local_category_en" type="string" indexed="false" stored="true" />
     <field name="cmf_uid" type="string" indexed="true" stored="true" />
     <field name="commentators" type="string" indexed="true" stored="true" multiValued="true" />
     <field name="container_uid" type="string" indexed="true" stored="true" />
