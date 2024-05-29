@@ -1,6 +1,14 @@
 1.2.15 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.2.49
+
+    - WEB-4101 : Encode URLs parameters for `search-filters`. This fixes issues with special chars.
+      [laulaz]
+
+    - WEB-3802: Fix after testing, complited traduction, optimize code
+      [thomlamb]
+
 - imio.smartweb.core 1.2.48
 
     - WEB-3802: Add grouped filter for category and local category in React filters
