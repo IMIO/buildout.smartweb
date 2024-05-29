@@ -14,10 +14,12 @@
   <!-- Load Data Import Handler and Apache Tika (extraction) libraries -->
   <lib dir="${solr.install.dir:../../../..}/dist/" regex="solr-dataimporthandler-.*\.jar" />
 
-  <lib dir="${solr.install.dir:../../../..}/contrib/extraction/lib" regex=".*\.jar" />
+  <!-- <lib dir="${solr.install.dir:../../../..}/contrib/extraction/lib" regex=".*\.jar" /> -->
+  <lib dir="${solr.install.dir:/opt/bitnami/solr}/modules/extraction/lib" regex=".*\.jar" />
   <lib dir="${solr.install.dir:../../../..}/dist/" regex="solr-cell-\d.*\.jar" />
 
-  <lib dir="${solr.install.dir:../../../..}/contrib/langid/lib/" regex=".*\.jar" />
+  <!-- <lib dir="${solr.install.dir:../../../..}/contrib/langid/lib/" regex=".*\.jar" /> -->
+  <lib dir="${solr.install.dir:/opt/bitnami/solr}/modules/langid/lib" regex=".*\.jar" />
   <lib dir="${solr.install.dir:../../../..}/dist/" regex="solr-langid-\d.*\.jar" />
 
   <lib dir="${solr.install.dir:../../../..}/contrib/velocity/lib" regex=".*\.jar" />
