@@ -1,6 +1,16 @@
 1.2.15 (unreleased)
 -------------------
 
+- imio.smartweb.common 1.2.16
+
+    - WEB-4107 : Update resource registries modification time (used as ETag) at Zope startup
+      [laulaz]
+
+- imio.smartweb.policy 1.2.5
+
+    - WEB-4107 : Use resourceRegistries ETag in caching configurations
+      [laulaz]
+
 - imio.smartweb.core 1.2.49
 
     - WEB-4101 : Encode URLs parameters for `search-filters`. This fixes issues with special chars.
