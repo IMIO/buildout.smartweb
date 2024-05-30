@@ -1,6 +1,11 @@
 1.2.15 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.2.50
+
+    - Fix loaded calcul of sticky filter menu in React view
+      [thomlamb]
+
 - imio.smartweb.common 1.2.16
 
     - WEB-4107 : Update resource registries modification time (used as ETag) at Zope startup
