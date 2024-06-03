@@ -1,7 +1,10 @@
 1.2.16 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.2.51
+
+    - Fix loaded of sticky filter menu in React view
+      [thomlamb]
 
 
 1.2.15 (2024-05-30)
