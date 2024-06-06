@@ -1,6 +1,17 @@
 1.2.17 (unreleased)
 -------------------
 
+- imio.smartweb.common 1.2.17
+
+    - WEB-4113 : Add `TranslatedAjaxSelectFieldWidget` to fix translations of initial
+      values in select2 fields
+      [laulaz]
+
+- imio.smartweb.core 1.2.53
+
+    - WEB-4113 : Use `TranslatedAjaxSelectWidget` to fix select2 values translation
+      [laulaz]
+
 - imio.smartweb.core 1.2.52
 
     - WEB-4113 : Inherit `getVocabulary` from `imio.smartweb.common` view to handle
