@@ -1,7 +1,11 @@
 1.2.17 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.2.52
+
+    - WEB-4113 : Inherit `getVocabulary` from `imio.smartweb.common` view to handle
+      vocabularies translations correctly
+      [laulaz]
 
 
 1.2.16 (2024-06-03)
