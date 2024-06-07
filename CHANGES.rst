@@ -1,6 +1,11 @@
 1.2.17 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.2.54
+
+    - WEB-4113 : Add DE and NL translations in page/procedure categories taxonomies
+      [laulaz]
+
 - imio.smartweb.common 1.2.17
 
     - WEB-4113 : Add `TranslatedAjaxSelectFieldWidget` to fix translations of initial
