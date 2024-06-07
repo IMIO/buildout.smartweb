@@ -1,6 +1,11 @@
 1.2.17 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.2.55
+
+    - Fix React placeholder color
+      [thomlamb]
+
 - imio.smartweb.core 1.2.54
 
     - WEB-4113 : Add DE and NL translations in page/procedure categories taxonomies
