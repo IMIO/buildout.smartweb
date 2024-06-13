@@ -1,7 +1,11 @@
 1.2.18 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.policy 1.2.6
+
+    - WEB-3763 : Fix Anysurfer controlpanel permission for fresh Smartweb installs
+      See upgrade step 1029_to_1030
+      [laulaz]
 
 
 1.2.17 (2024-06-10)
