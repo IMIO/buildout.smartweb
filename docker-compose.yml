@@ -75,7 +75,7 @@ services:
       - "-m"
       - "1024"
   solr:
-    image: solr:8.10.0-slim
+    image: solr:9.6.1-slim
     ports:
       - "8983:8983"
     volumes:
