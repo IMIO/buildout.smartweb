@@ -1,8 +1,8 @@
 1.2.19 (unreleased)
 -------------------
 
-- Nothing changed yet.
-
+- Upgrade docker image to Ubuntu 22.04
+  [remdub]
 
 1.2.18 (2024-06-13)
 -------------------
@@ -996,7 +996,7 @@
 
     - Delete useless css for edition
       [thomlamb]
-  
+
 - imio.smartweb.core 1.1.21
 
     - Add smartweb content types icons
