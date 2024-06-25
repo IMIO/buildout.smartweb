@@ -1,7 +1,14 @@
 1.2.19 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.2.56
+
+    - WEB-4121 : Fix ERROR : imio.events.core.contents.event.serializer, line 28, in get_container_uid
+      and fix WARNING : No such index: 'include_items'
+      [boulch]
+
+    - GHA tests on Python 3.8 3.9 and 3.10
+      [remdub]
 
 
 1.2.18 (2024-06-13)
