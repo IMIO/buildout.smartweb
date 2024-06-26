@@ -1,6 +1,11 @@
 1.2.19 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.2.57
+
+    - WEB-4121 : Correct bad format
+      [boulch]
+
 - imio.smartweb.core 1.2.56
 
     - WEB-4121 : Fix ERROR : imio.events.core.contents.event.serializer, line 28, in get_container_uid
