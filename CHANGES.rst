@@ -1,6 +1,11 @@
 1.2.19 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.2.58
+
+    - WEB-4116 : Fix error 500 when forward request from e-guichet (got an unexpected keyword argument 'include_items')
+      [boulch]
+
 - imio.smartweb.core 1.2.57
 
     - WEB-4121 : Correct bad format
