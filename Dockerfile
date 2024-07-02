@@ -1,11 +1,12 @@
-FROM imiobe/base:py3-ubuntu-20.04 as builder
+FROM harbor.imio.be/common/plone-base:6.0.9-ubuntu as builder
+
 LABEL maintainer="Benoît Suttor <benoit.suttor@imio.be>"
-ENV PIP=23.0.1 \
+ENV PIP=23.3.1 \
   ZC_BUILDOUT=3.0.1 \
-  SETUPTOOLS=67.6.1 \
-  WHEEL=0.40.0 \
+  SETUPTOOLS=69.0.2 \
+  WHEEL=0.42.0 \
   PLONE_MAJOR=6.0 \
-  PLONE_VERSION=6.0.4
+  PLONE_VERSION=6.0.9
 
 # hadolint ignore=DL3008
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -31,7 +32,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   && pip3 install --no-cache-dir pip==$PIP setuptools==$SETUPTOOLS zc.buildout==$ZC_BUILDOUT py-spy
 
 WORKDIR /plone
-RUN chown imio:imio -R /plone && mkdir /data && chown imio:imio -R /data
 
 # COPY --chown=imio eggs /plone/eggs/
 # COPY --chown=imio --from=docker-staging.imio.be/smartweb/mutual:latest /plone/eggs/ /plone/eggs/
@@ -43,19 +43,18 @@ RUN su -c "buildout -c prod.cfg -t 30 -N" -s /bin/sh imio
 # clean up old eggs
 # RUN for egg in `ls /plone/eggs/ | cut -d '-' -f 1 | uniq`; do rm -rfv `ls -td /plone/eggs/$egg-* | awk 'NR>1'`; done
 
-FROM imiobe/base:py3-ubuntu-20.04
-ENV PIP=23.0.1 \
+FROM harbor.imio.be/common/plone-base:6.0.9-ubuntu
+ENV PIP=23.3.1 \
   ZC_BUILDOUT=3.0.1 \
-  SETUPTOOLS=67.6.1 \
-  WHEEL=0.40.0 \
+  SETUPTOOLS=69.0.2 \
+  WHEEL=0.42.0 \
   PLONE_MAJOR=6.0 \
-  PLONE_VERSION=6.0.4 \
+  PLONE_VERSION=6.0.9 \
   HOSTNAME_HOST=local \
   PROJECT_ID=smartweb \
   PLONE_EXTENSION_IDS=plone.app.caching:default,plonetheme.barceloneta:default,imio.smartweb.policy:default \
   DEFAULT_LANGUAGE=fr
 
-RUN mkdir -p /data/blobstorage && chown imio:imio -R /data && mkdir /plone && chown imio:imio -R /plone
 VOLUME /data/blobstorage
 WORKDIR /plone
 
@@ -80,7 +79,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN curl -L https://github.com/Yelp/dumb-init/releases/download/v1.2.5/dumb-init_1.2.5_amd64.deb > /tmp/dumb-init.deb && dpkg -i /tmp/dumb-init.deb && rm /tmp/dumb-init.deb
 COPY --from=builder /usr/local/bin/py-spy /usr/local/bin/py-spy
 COPY --chown=imio --from=builder /plone .
-COPY --from=builder /usr/local/lib/python3.8/dist-packages /usr/local/lib/python3.8/dist-packages
+COPY --from=builder /usr/local/lib/python3.10/dist-packages /usr/local/lib/python3.10/dist-packages
 COPY --chown=imio docker-initialize.py docker-entrypoint.sh /
 
 USER imio
