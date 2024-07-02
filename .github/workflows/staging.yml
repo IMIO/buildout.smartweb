@@ -1,0 +1,17 @@
+name: Publish staging image to Harbor
+on: [workflow_dispatch]
+
+jobs:
+  base-staging:
+    runs-on:
+      group: self-hosted
+    steps:
+      - name: Build push and notify
+        uses: IMIO/gha/build-push-notify@main
+        with:
+          IMAGE_NAME: 'web/smartweb/mutual'
+          IMAGE_TAG: 'staging'
+          REGISTRY_URL: ${{ secrets.HARBOR_URL }}
+          REGISTRY_USERNAME: ${{ secrets.SMARTWEB_HARBOR_USERNAME }}
+          REGISTRY_PASSWORD: ${{ secrets.SMARTWEB_HARBOR_PASSWORD }}
+          MATTERMOST_WEBHOOK_URL: ${{ secrets.SMARTWEB_MATTERMOST_WEBHOOK_URL }}
