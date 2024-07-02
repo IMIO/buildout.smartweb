@@ -2,7 +2,7 @@ name: Publish staging image to Harbor
 on: [workflow_dispatch]
 
 jobs:
-  base-staging:
+  build-push:
     runs-on:
       group: self-hosted
     steps:
@@ -14,4 +14,16 @@ jobs:
           REGISTRY_URL: ${{ secrets.HARBOR_URL }}
           REGISTRY_USERNAME: ${{ secrets.SMARTWEB_HARBOR_USERNAME }}
           REGISTRY_PASSWORD: ${{ secrets.SMARTWEB_HARBOR_PASSWORD }}
+          MATTERMOST_WEBHOOK_URL: ${{ secrets.SMARTWEB_MATTERMOST_WEBHOOK_URL }}
+  deploy:
+    runs-on:
+      group: self-hosted
+    needs: build-push
+    steps:
+      - name: Deploy to staging and notify
+        uses: IMIO/gha/rundeck-notify@main
+        with:
+          RUNDECK_URL: ${{ secrets.RUNDECK_URL }}
+          RUNDECK_TOKEN: ${{ secrets.SMARTWEB_RUNDECK_TOKEN }}
+          RUNDECK_JOB_ID: ${{ secrets.RUNDECK_DEPLOY_STAGING_JOB_ID }}
           MATTERMOST_WEBHOOK_URL: ${{ secrets.SMARTWEB_MATTERMOST_WEBHOOK_URL }}
