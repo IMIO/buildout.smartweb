@@ -1,0 +1,18 @@
+name: Deploy staging image to prod
+on: [workflow_dispatch]
+
+jobs:
+  prod:
+    runs-on:
+      group: self-hosted
+    steps:
+      - name: Tag and notify
+        uses: IMIO/gha/tag-notify@main
+        with:
+          IMAGE_NAME: 'web/smartweb/mutual'
+          IMAGE_TAG: 'staging'
+          NEW_IMAGE_TAG: 'latest'
+          REGISTRY_URL: ${{ secrets.HARBOR_URL }}
+          REGISTRY_USERNAME: ${{ secrets.SMARTWEB_HARBOR_USERNAME }}
+          REGISTRY_PASSWORD: ${{ secrets.SMARTWEB_HARBOR_PASSWORD }}
+          MATTERMOST_WEBHOOK_URL: ${{ secrets.SMARTWEB_MATTERMOST_WEBHOOK_URL }}
