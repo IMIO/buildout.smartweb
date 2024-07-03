@@ -1,4 +1,4 @@
-name: Publish staging image to Harbor
+name: Publish and deploy staging image
 on: [workflow_dispatch]
 
 jobs:
@@ -26,4 +26,5 @@ jobs:
           RUNDECK_URL: ${{ secrets.RUNDECK_URL }}
           RUNDECK_TOKEN: ${{ secrets.SMARTWEB_RUNDECK_TOKEN }}
           RUNDECK_JOB_ID: ${{ secrets.RUNDECK_DEPLOY_STAGING_JOB_ID }}
+          RUNDECK_PARAMETERS: '-X POST'
           MATTERMOST_WEBHOOK_URL: ${{ secrets.SMARTWEB_MATTERMOST_WEBHOOK_URL }}
