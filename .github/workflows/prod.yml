@@ -1,5 +1,9 @@
 name: Promote staging to production
-on: [workflow_dispatch]
+on:
+  push:
+    tags:
+      - '**'
+  workflow_dispatch:
 
 jobs:
   tag:
