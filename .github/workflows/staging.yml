@@ -24,7 +24,7 @@ jobs:
             echo EOF
           } >> $GITHUB_ENV
       - name: Build push and notify
-        uses: IMIO/gha/build-push-notify@main
+        uses: IMIO/gha/build-push-notify@v2.0
         with:
           IMAGE_NAME: ${{ env.IMAGE_NAME }}
           IMAGE_TAGS: ${{ env.IMAGE_TAGS }}
