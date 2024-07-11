@@ -5,18 +5,30 @@ on:
       - main
     tags:
       - '!**'
+env:
+  IMAGE_NAME: 'web/smartweb/mutual'
+  REGISTRY_URL: ${{ secrets.HARBOR_URL }}
+
 jobs:
   build-push:
     runs-on:
       group: self-hosted
     if: contains(github.event.head_commit.message, 'Back to development:') == false && contains(github.event.head_commit.message, 'Preparing release') == false
     steps:
+      - name: Build tags
+        run: |
+          {
+            echo 'IMAGE_TAGS<<EOF'
+            echo '${{ env.REGISTRY_URL }}/${{ env.IMAGE_NAME }}:staging'
+            echo '${{ env.REGISTRY_URL }}/${{ env.IMAGE_NAME }}:staging-${{ github.run_number }}'
+            echo EOF
+          } >> $GITHUB_ENV
       - name: Build push and notify
-        uses: IMIO/gha/build-push-notify@v1.0
+        uses: IMIO/gha/build-push-notify@main
         with:
-          IMAGE_NAME: 'web/smartweb/mutual'
-          IMAGE_TAG: 'staging'
-          REGISTRY_URL: ${{ secrets.HARBOR_URL }}
+          IMAGE_NAME: ${{ env.IMAGE_NAME }}
+          IMAGE_TAGS: ${{ env.IMAGE_TAGS }}
+          REGISTRY_URL: ${{ env.REGISTRY_URL}}
           REGISTRY_USERNAME: ${{ secrets.SMARTWEB_HARBOR_USERNAME }}
           REGISTRY_PASSWORD: ${{ secrets.SMARTWEB_HARBOR_PASSWORD }}
           MATTERMOST_WEBHOOK_URL: ${{ secrets.SMARTWEB_MATTERMOST_WEBHOOK_URL }}
@@ -26,7 +38,7 @@ jobs:
     needs: build-push
     steps:
       - name: Deploy to staging and notify
-        uses: IMIO/gha/rundeck-notify@v1.0
+        uses: IMIO/gha/rundeck-notify@v1.0.1
         with:
           RUNDECK_URL: ${{ secrets.RUNDECK_URL }}
           RUNDECK_TOKEN: ${{ secrets.SMARTWEB_RUNDECK_TOKEN }}
