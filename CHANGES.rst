@@ -1,6 +1,11 @@
 1.3.1 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.2.60
+
+    - WEB-4125 : Take scale on context leadimage to populate og:image:* tags
+      [boulch]
+
 - imio.smartweb.core 1.2.59
 
     - SUP-36854 : Fix ajax select2 widget when apply a word filtering and populating specific news and specific events
