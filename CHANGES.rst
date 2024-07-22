@@ -1,6 +1,15 @@
 1.3.1 (unreleased)
 ------------------
 
+- imio.smartweb.locales 1.1.20
+    - Add missing fr/de translations for imio.smartweb.core
+      [thomlamb]
+
+- imio.smartweb.core 1.2.62
+
+    - SUP-36628 : Fix new svg icon name for tradcution
+      [thomlamb]
+
 - imio.smartweb.core 1.2.61
 
     - SUP-36628 : Add scroll context to keep the scroll position when we change the page
