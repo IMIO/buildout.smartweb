@@ -1,6 +1,14 @@
 1.3.1 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.2.61
+
+    - SUP-36628 : Add scroll context to keep the scroll position when we change the page
+      [thomlamb]
+
+    - SUP-37746 : Add new svg icon
+      [thomlamb]
+
 - imio.smartweb.core 1.2.60
 
     - WEB-4125 : Take scale on context leadimage to populate og:image:* tags
