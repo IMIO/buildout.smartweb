@@ -1,4 +1,4 @@
-1.3.1 (unreleased)
+1.3.1 (2024-07-30)
 ------------------
 
 - imio.smartweb.locales 1.1.20
