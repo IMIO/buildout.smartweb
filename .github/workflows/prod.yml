@@ -16,7 +16,7 @@ jobs:
           IMAGE_NAME: 'web/smartweb/mutual'
           IMAGE_TAG: 'staging'
           NEW_IMAGE_TAGS: |
-            'latest'
+            latest
           REGISTRY_URL: ${{ secrets.HARBOR_URL }}
           REGISTRY_USERNAME: ${{ secrets.SMARTWEB_HARBOR_USERNAME }}
           REGISTRY_PASSWORD: ${{ secrets.SMARTWEB_HARBOR_PASSWORD }}
