@@ -1,6 +1,12 @@
 1.3.2 (unreleased)
 ------------------
 
+- WEB-3995 : Bump RelStorage to 4.0.0
+  [remdub]
+
+- WEB-3995 : Bump psycopg2 to 2.9.9
+  [remdub]
+
 - Upgrade to Zope 5.9
   [remdub]
 
