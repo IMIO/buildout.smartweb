@@ -1,6 +1,11 @@
 1.3.2 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.2.63
+
+    - SUP-38386 : Update "elloha" plugin in external content section. Agent can set url field to visitwallonia.elloha.com
+      [boulch]
+
 - WEB-3995 : Bump RelStorage to 4.0.0
   [remdub]
 
