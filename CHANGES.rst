@@ -1,7 +1,8 @@
 1.3.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- WEB-3995 : Bump gunicorn to 22.0.0
+  [remdub]
 
 
 1.3.2 (2024-07-31)
