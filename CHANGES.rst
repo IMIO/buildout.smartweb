@@ -1,7 +1,10 @@
 1.3.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.2.64
+
+  - SUP-38386 : Fix style for elloha to avoid absolute position
+    [boulch]
 
 
 1.3.2 (2024-07-31)
