@@ -1,6 +1,9 @@
 1.3.3 (unreleased)
 ------------------
 
+- Sync gunicorn version with Plone 6.0.9
+  [remdub]
+
 - imio.smartweb.core 1.2.64
 
   - SUP-38386 : Fix style for elloha to avoid absolute position
