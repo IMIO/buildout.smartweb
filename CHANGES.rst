@@ -1,13 +1,24 @@
 1.3.3 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.2.65
+
+    - WEB-4136 : Authorize 70 sections/page instead of 40
+      [boulch]
+
+    - Fix: keep scroll on load more in React view
+      [thomlamb]
+
+    - WEB-4132 : In anonymous mode, use remoteUrl instead of internal link url in links sections
+      [boulch]
+
 - Sync gunicorn version with Plone 6.0.9
   [remdub]
 
 - imio.smartweb.core 1.2.64
 
-  - SUP-38386 : Fix style for elloha to avoid absolute position
-    [boulch]
+    - SUP-38386 : Fix style for elloha to avoid absolute position
+      [boulch]
 
 
 1.3.2 (2024-07-31)
