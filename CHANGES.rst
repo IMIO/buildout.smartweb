@@ -7,6 +7,17 @@
 1.3.3 (2024-08-13)
 ------------------
 
+- imio.smartweb.core 1.2.66
+
+    - Fix: Transform all folder view template to list elements
+      [thomlamb]
+
+    - Fix: delete ratio class to external content section
+      [thomlamb]
+
+    - WEB-4138 :  Adding link on React elements to edit them
+      [thomlamb]
+
 - imio.smartweb.core 1.2.65
 
     - WEB-4136 : Authorize 70 sections/page instead of 40
