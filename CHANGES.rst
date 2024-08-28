@@ -1,12 +1,6 @@
 1.3.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
-
-1.3.3 (2024-08-13)
-------------------
-
 - imio.smartweb.core 1.2.66
 
     - Fix: Transform all folder view template to list elements
@@ -17,6 +11,10 @@
 
     - WEB-4138 :  Adding link on React elements to edit them
       [thomlamb]
+
+
+1.3.3 (2024-08-13)
+------------------
 
 - imio.smartweb.core 1.2.65
 
