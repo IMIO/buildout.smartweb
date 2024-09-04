@@ -1,7 +1,16 @@
 1.3.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.2.67
+
+    - WEB-4134 : Timestamping : code refactoring, fix view , improve some tests
+      [boulch]
+
+    - Fix: Replace i tag with svg icon in React view
+      [thomlamb]
+
+    - WEB-4134 : Manage timestamping in coordination with ia.deliberations' rest api
+      [boulch]
 
 
 1.3.4 (2024-08-28)
