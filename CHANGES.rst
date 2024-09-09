@@ -1,6 +1,19 @@
 1.3.5 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.2.68
+
+    - WEB-3995 : Don't reindex section when we receive no JSON (ex: timeout)
+      This will reduce ZODB transactions numbers.
+      [bsuttor, laulaz, remdub]
+
+    - CITI-4 : Add conditional log to debug WCA token errors
+      [laulaz]
+
+    - WEB-4134 : Restrict Publication content type to Manager for now.
+      This is to avoid putting the content type to production sites without notice.
+      [laulaz, remdub]
+
 - imio.smartweb.core 1.2.67
 
     - WEB-4134 : Timestamping : code refactoring, fix view , improve some tests
