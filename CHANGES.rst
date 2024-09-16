@@ -1,7 +1,13 @@
 1.3.7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.2.70
+
+    - WEB-4143 : Fix a CSRF bug in section files
+      [boulch]
+
+    - WEB-4144 : Set requests timeout to 12 when we populate RemoteContacts vocabulary
+      [remdub]
 
 
 1.3.6-quick (2024-09-10)
