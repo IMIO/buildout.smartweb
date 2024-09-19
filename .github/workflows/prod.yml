@@ -7,8 +7,7 @@ on:
 
 jobs:
   tag:
-    runs-on:
-      group: self-hosted
+    runs-on: gha-runners-smartweb
     steps:
       - name: Tag and notify
         uses: IMIO/gha/tag-notify@v3.7.2

@@ -11,8 +11,7 @@ env:
 
 jobs:
   build-push:
-    runs-on:
-      group: self-hosted
+    runs-on: gha-runners-smartweb
     if: contains(github.event.head_commit.message, 'Back to development:') == false && contains(github.event.head_commit.message, 'Preparing release') == false
     steps:
       - name: Build tags
