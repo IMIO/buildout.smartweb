@@ -23,7 +23,7 @@ jobs:
             echo EOF
           } >> $GITHUB_ENV
       - name: Build push and notify
-        uses: IMIO/gha/build-push-notify@v3.7.2
+        uses: IMIO/gha/build-push-notify@v3.9.3
         with:
           IMAGE_NAME: ${{ env.IMAGE_NAME }}
           IMAGE_TAGS: ${{ env.IMAGE_TAGS }}
@@ -32,12 +32,11 @@ jobs:
           REGISTRY_PASSWORD: ${{ secrets.SMARTWEB_HARBOR_PASSWORD }}
           MATTERMOST_WEBHOOK_URL: ${{ secrets.SMARTWEB_MATTERMOST_WEBHOOK_URL }}
   deploy:
-    runs-on:
-      group: self-hosted
+    runs-on: gha-runners-smartweb
     needs: build-push
     steps:
       - name: Deploy to staging and notify
-        uses: IMIO/gha/rundeck-notify@v3.7.2
+        uses: IMIO/gha/rundeck-notify@v3.9.3
         with:
           RUNDECK_URL: ${{ secrets.RUNDECK_URL }}
           RUNDECK_TOKEN: ${{ secrets.SMARTWEB_RUNDECK_TOKEN }}
