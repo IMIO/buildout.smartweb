@@ -1,7 +1,19 @@
 1.3.8 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.2.71
+
+    - Fix : Increase b_size value to get all institutions from ia.deliberations
+      [boulch]
+
+    - WEB-4024 : Add React event files size
+      [thomlamb]
+
+    - WEB-4027 : Add linkedin icon and change Twitter icon to X icon
+      [thomlamb]
+
+    - WEB-4146 : Replace created by effective date in news cards
+      [thomlamb]
 
 
 1.3.7 (2024-09-18)
