@@ -1,7 +1,13 @@
 1.3.9 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.2.72
+
+    - WEB-4152 : Add some logs to debug forwarding requests
+      [boulch]
+
+    - WEB-4134 : Add default values to some smartweb settings fields
+      [boulch]
 
 
 1.3.8 (2024-10-01)
