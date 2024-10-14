@@ -1,7 +1,10 @@
 1.3.10 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.2.73
+
+    - WEB-4156 : Allow to specifiy if a wca token is needed when forwarding requests
+      [remdub]
 
 
 1.3.9 (2024-10-02)
