@@ -16,7 +16,8 @@ bin/instance: bin/buildout
 	bin/buildout
 
 bin/pip:
-	python3 -m venv .
+	python3.10 -m venv .
+	bin/pip install setuptools==69.0.2
 
 run: bin/instance
 	bin/instance fg
