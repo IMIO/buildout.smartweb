@@ -1,7 +1,10 @@
 1.3.11 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.locales 1.1.21
+
+    - SUP-37238 : Corrected DE translation. Use Öffnungszeiten instead of Zeitplan
+      [boulch]
 
 
 1.3.10 (2024-10-14)
