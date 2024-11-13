@@ -1,6 +1,11 @@
 1.3.11 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.2.74
+
+    - Avoid request for images when gallery block is not visible in Section Contact
+      [laulaz]
+
 - imio.smartweb.locales 1.1.21
 
     - SUP-37238 : Corrected DE translation. Use Öffnungszeiten instead of Zeitplan
