@@ -1,7 +1,10 @@
 1.3.12 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.gdpr 1.2.3
+
+    - Add support of German language for legal gdpr text and cookies policy
+      [boulch]
 
 
 1.3.11 (2024-11-13)
