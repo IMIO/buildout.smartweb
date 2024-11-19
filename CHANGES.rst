@@ -1,6 +1,10 @@
 1.3.12 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.2.75
+
+    - Reduce queries to directory [boulch, laulaz]
+
 - imio.gdpr 1.2.3
 
     - Add support of German language for legal gdpr text and cookies policy
