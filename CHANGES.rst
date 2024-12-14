@@ -1,6 +1,9 @@
 1.3.12 (unreleased)
 -------------------
 
+- Migrate to Python 3.12, Plone 6.0.13
+  [remdub]
+
 - imio.smartweb.core 1.2.75
 
     - Reduce queries to directory [boulch, laulaz]
