@@ -1,7 +1,16 @@
 1.3.13 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.2.76
+  
+    - WEB-4199 : Fix missing contacts when there are more contacts than default Plone batching
+      [boulch]
+
+    - Replace url by social icon in contact section
+      [thomlamb]
+
+    - Add iframe youtube or vimeo in React news view
+      [thomlamb]
 
 
 1.3.12 (2025-01-06)
