@@ -1,7 +1,11 @@
 1.3.14 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.2.77
+
+    - WEB-4158 : ods_widget (css and js) are not loaded anymore on all pages
+      They are only loaded on pages that contains an external content section
+      [boulch]
 
 
 1.3.13 (2025-01-06)
