@@ -1,6 +1,11 @@
 1.3.14 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.2.78
+
+    - WEB-4158 : Missing file in previous release!
+      [boulch]
+
 - imio.smartweb.core 1.2.77
 
     - WEB-4158 : ods_widget (css and js) are not loaded anymore on all pages
