@@ -1,7 +1,10 @@
 1.3.15 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.2.79
+
+    - Fix missing jquery for edit section  after ods_widget fix
+      [thomlamb]
 
 
 1.3.14 (2025-01-06)
