@@ -1,6 +1,11 @@
 1.3.15 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.2.80
+
+    - Fix: svg icon refactor
+      [thomlamb]
+
 - imio.smartweb.core 1.2.79
 
     - Fix missing jquery for edit section  after ods_widget fix
