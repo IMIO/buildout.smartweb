@@ -1,6 +1,11 @@
 1.3.15 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.2.81
+
+    - SUP-41924 : Fix a bug when there is some "void" urls getting in section Contact (and display "contact_informations")
+      [boulch]
+
 - imio.smartweb.core 1.2.80
 
     - Fix: svg icon refactor
