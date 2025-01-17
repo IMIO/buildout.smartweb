@@ -53,8 +53,8 @@ docker-test-image:
 .PHONY: solr
 solr:
 	sudo chmod -R 777 solr
-	docker compose up solr
+	docker compose up solr -d
 
 .PHONY: solr-cluster
 solr-cluster:
-	docker compose -f docker-compose-solr-cluster.yml up
+	docker compose -f docker-compose-solr-cluster.yml up -d
