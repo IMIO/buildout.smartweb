@@ -1,7 +1,10 @@
 1.3.16 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- z3c.jbot 2.1
+
+    - Fix error when Plone site is not yet set as in first index_html call on Zope
+      [bsuttor]
 
 
 1.3.15 (2025-01-20)
