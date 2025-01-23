@@ -1,6 +1,11 @@
 1.3.16 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.2.82
+
+    - WEB-4153 : Add language cookie to python requests to avoid cache problems
+      [remdub]
+
 - z3c.jbot 2.1
 
     - Fix error when Plone site is not yet set as in first index_html call on Zope
