@@ -1,12 +1,12 @@
-FROM harbor.imio.be/common/plone-base:6.0.9-ubuntu as builder
+FROM harbor.imio.be/common/plone-base:6.0.14-ubuntu as builder
 
 LABEL maintainer="Benoît Suttor <benoit.suttor@imio.be>"
-ENV PIP=23.3.1 \
-  ZC_BUILDOUT=3.0.1 \
-  SETUPTOOLS=69.0.2 \
-  WHEEL=0.42.0 \
+ENV PIP=24.3.1 \
+  ZC_BUILDOUT=3.3 \
+  SETUPTOOLS=75.6.0 \
+  WHEEL=0.45.1 \
   PLONE_MAJOR=6.0 \
-  PLONE_VERSION=6.0.9
+  PLONE_VERSION=6.0.14
 
 # hadolint ignore=DL3008
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -43,13 +43,13 @@ RUN su -c "buildout -c prod.cfg -t 30 -N" -s /bin/sh imio
 # clean up old eggs
 # RUN for egg in `ls /plone/eggs/ | cut -d '-' -f 1 | uniq`; do rm -rfv `ls -td /plone/eggs/$egg-* | awk 'NR>1'`; done
 
-FROM harbor.imio.be/common/plone-base:6.0.9-ubuntu
-ENV PIP=23.3.1 \
-  ZC_BUILDOUT=3.0.1 \
-  SETUPTOOLS=69.0.2 \
-  WHEEL=0.42.0 \
+FROM harbor.imio.be/common/plone-base:6.0.14-ubuntu
+ENV PIP=24.3.1 \
+  ZC_BUILDOUT=3.3 \
+  SETUPTOOLS=75.6.0 \
+  WHEEL=0.45.1 \
   PLONE_MAJOR=6.0 \
-  PLONE_VERSION=6.0.9 \
+  PLONE_VERSION=6.0.14 \
   HOSTNAME_HOST=local \
   PROJECT_ID=smartweb \
   PLONE_EXTENSION_IDS=plone.app.caching:default,plonetheme.barceloneta:default,imio.smartweb.policy:default \
@@ -79,7 +79,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN curl -L https://github.com/Yelp/dumb-init/releases/download/v1.2.5/dumb-init_1.2.5_amd64.deb > /tmp/dumb-init.deb && dpkg -i /tmp/dumb-init.deb && rm /tmp/dumb-init.deb
 COPY --from=builder /usr/local/bin/py-spy /usr/local/bin/py-spy
 COPY --chown=imio --from=builder /plone .
-COPY --from=builder /usr/local/lib/python3.10/dist-packages /usr/local/lib/python3.10/dist-packages
+COPY --from=builder /usr/local/lib/python3.12/dist-packages /usr/local/lib/python3.12/dist-packages
 COPY --chown=imio docker-initialize.py docker-entrypoint.sh /
 
 USER imio

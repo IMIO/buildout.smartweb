@@ -1,6 +1,9 @@
 1.3.16 (unreleased)
 -------------------
 
+- Migrate to Python 3.12, Plone 6.0.14
+  [remdub]
+
 - imio.smartweb.core 1.2.82
 
     - WEB-4153 : Add language cookie to python requests to avoid cache problems
@@ -50,7 +53,7 @@
 -------------------
 
 - imio.smartweb.core 1.2.76
-  
+
     - WEB-4199 : Fix missing contacts when there are more contacts than default Plone batching
       [boulch]
 
