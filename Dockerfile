@@ -1,12 +1,12 @@
 FROM harbor.imio.be/common/plone-base:6.0.9-ubuntu as builder
 
 LABEL maintainer="Benoît Suttor <benoit.suttor@imio.be>"
-ENV PIP=23.3.1 \
-  ZC_BUILDOUT=3.0.1 \
-  SETUPTOOLS=69.0.2 \
-  WHEEL=0.42.0 \
+ENV PIP=24.3.1 \
+  ZC_BUILDOUT=3.3 \
+  SETUPTOOLS=75.6.0 \
+  WHEEL=0.45.1 \
   PLONE_MAJOR=6.0 \
-  PLONE_VERSION=6.0.9
+  PLONE_VERSION=6.0.14
 
 # hadolint ignore=DL3008
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -44,12 +44,12 @@ RUN su -c "buildout -c prod.cfg -t 30 -N" -s /bin/sh imio
 # RUN for egg in `ls /plone/eggs/ | cut -d '-' -f 1 | uniq`; do rm -rfv `ls -td /plone/eggs/$egg-* | awk 'NR>1'`; done
 
 FROM harbor.imio.be/common/plone-base:6.0.9-ubuntu
-ENV PIP=23.3.1 \
-  ZC_BUILDOUT=3.0.1 \
-  SETUPTOOLS=69.0.2 \
-  WHEEL=0.42.0 \
+ENV PIP=24.3.1 \
+  ZC_BUILDOUT=3.3 \
+  SETUPTOOLS=75.6.0 \
+  WHEEL=0.45.1 \
   PLONE_MAJOR=6.0 \
-  PLONE_VERSION=6.0.9 \
+  PLONE_VERSION=6.0.14 \
   HOSTNAME_HOST=local \
   PROJECT_ID=smartweb \
   PLONE_EXTENSION_IDS=plone.app.caching:default,plonetheme.barceloneta:default,imio.smartweb.policy:default \
