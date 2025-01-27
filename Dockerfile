@@ -43,6 +43,7 @@ RUN su -c "buildout -c prod.cfg -t 30 -N" -s /bin/sh imio
 # clean up old eggs
 # RUN for egg in `ls /plone/eggs/ | cut -d '-' -f 1 | uniq`; do rm -rfv `ls -td /plone/eggs/$egg-* | awk 'NR>1'`; done
 
+
 FROM harbor.imio.be/common/plone-base:6.0.14-ubuntu
 ENV PIP=24.3.1 \
   ZC_BUILDOUT=3.3 \

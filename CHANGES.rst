@@ -1,8 +1,9 @@
 1.3.16 (unreleased)
 -------------------
 
+
 - Migrate to Python 3.12, Plone 6.0.14
-  [remdub]
+  [boulch, remdub]
 
 - imio.smartweb.core 1.2.82
 
