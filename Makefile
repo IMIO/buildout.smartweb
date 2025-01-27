@@ -8,7 +8,7 @@ buildout.cfg:
 	ln -fs dev.cfg buildout.cfg
 
 bin/buildout: bin/pip buildout.cfg
-	bin/pip install -I -r requirements.txt
+	bin/uv pip install -r requirements.txt
 
 buildout: bin/instance
 
@@ -16,8 +16,8 @@ bin/instance: bin/buildout
 	bin/buildout
 
 bin/pip:
-	python3.10 -m venv .
-	bin/pip install setuptools==69.0.2
+	python3.12 -m venv .
+	bin/pip install uv
 
 run: bin/instance
 	bin/instance fg
@@ -42,7 +42,7 @@ test-image: bin/pip
 	#make local-test-image
 
 local-test-image:
-	python3 -m venv .
+	python3.12 -m venv .
 	./bin/pip install -r tests/requirements.txt
 	./bin/pytest -s tests
 
