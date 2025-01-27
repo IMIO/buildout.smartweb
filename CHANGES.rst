@@ -1,6 +1,9 @@
 1.3.16 (unreleased)
 -------------------
 
+- Migrate to Plone 6.0.14
+  [boulch]
+
 - imio.smartweb.core 1.2.82
 
     - WEB-4153 : Add language cookie to python requests to avoid cache problems
