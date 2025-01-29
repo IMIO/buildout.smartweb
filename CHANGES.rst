@@ -2,6 +2,14 @@
 -------------------
 
 
+- imio.smartweb.core 1.2.83
+
+    - Migrate to Plone 6.0.14
+      [boulch]
+
+    - WEB-4206 : Remove wcatoken from query parameters when forwarding requests
+      [remdub]
+
 - Migrate to Python 3.12, Plone 6.0.14
   [boulch, remdub]
 
