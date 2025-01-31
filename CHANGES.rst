@@ -1,6 +1,11 @@
 1.3.17 (unreleased)
 -------------------
 
+- imio.smartweb.common 1.2.21
+
+    - Fix: Updated to align scale behavior with the fix in plone.scale ([commit a352815](https://github.com/plone/plone.scale/commit/a352815#diff-24f46fc714c6d36041bcea7e64a7d5aeceacd929eb802655276a1d8f4b4576f4R209))
+      [boulch]
+
 - Set event log level to error in production configuration and debug in dev configuration?
   [bsuttor]
 
