@@ -1,8 +1,8 @@
 1.3.17 (unreleased)
 -------------------
 
-- Nothing changed yet.
-
+- Set event log level to error in production configuration and debug in dev configuration?
+  [bsuttor]
 
 1.3.16 (2025-01-29)
 -------------------
