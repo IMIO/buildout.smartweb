@@ -1,7 +1,15 @@
 1.3.18 (unreleased)
 -------------------
 
-- imio.smarteb.core 1.2.85
+- imio.smartweb.core 1.2.86
+
+    - WEB-4153 : Add a refresh_modification_date view to refresh the modification date of SectionEvents and SectionNews
+      [remdub]
+
+    - WEB-4153 : Add a cache key on SectionEvents and SectionNews requests to refresh the cache when the section is modified
+      [remdub]
+
+- imio.smartweb.core 1.2.85
 
     - WEB-3538 : Accessibility : Add video source information in title attribute of the iframe
       [boulch]
