@@ -1,7 +1,19 @@
 1.3.18 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smarteb.core 1.2.85
+
+    - WEB-3538 : Accessibility : Add video source information in title attribute of the iframe
+      [boulch]
+
+    - WEB-4217 : Accessibility : Warn the user that the link will open in a new tab (title attribute)
+      [boulch]
+
+    - WEB-3872 : Accessibility : Files in "files section" are automaticaly open in a new (target blank) tab
+      [boulch]
+
+    - WEB-4211 : Accessibility : Improve behavior of the "alt" attribute for images in a gallery section
+      [boulch]
 
 
 1.3.17 (2025-02-02)
