@@ -1,6 +1,14 @@
 1.3.18 (unreleased)
 -------------------
 
+- imio.smartweb.locales 1.1.23
+
+    - Add some fr/de/nl translations for imio.smartweb.core
+      [boulch]
+
+    - Update translations
+      [boulch]
+
 - imio.smartweb.core 1.2.86
 
     - WEB-4153 : Add a refresh_modification_date view to refresh the modification date of SectionEvents and SectionNews
