@@ -1,6 +1,11 @@
 1.3.18 (unreleased)
 -------------------
 
+- imio.smartweb.locales 1.1.24
+
+    - Add some fr/de/nl translations for imio.smartweb.core
+      [remdub]
+
 - imio.smartweb.locales 1.1.23
 
     - Add some fr/de/nl translations for imio.smartweb.core
