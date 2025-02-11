@@ -1,8 +1,8 @@
 #!/usr/bin/make
+
 all: buildout
 
 BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
-#BRANCH := $(shell git for-each-ref --format='%(objectname) %(refname:short)' refs/heads | awk "/^$$(git rev-parse HEAD)/ {print \$$2}")
 
 buildout.cfg:
 	ln -fs dev.cfg buildout.cfg
@@ -22,12 +22,23 @@ bin/pip:
 run: bin/instance
 	bin/instance fg
 
+.PHONY: help				# List parts phony targets
+help:
+	@cat "Makefile" | grep '^.PHONY:' | sed -e "s/^.PHONY:/- make/"
+
+.PHONY: start				# Start the instance
+start: solr-background
+	bin/instance fg
+
+.PHONY: cleanall				# Clean development environment
 cleanall:
 	rm -fr develop-eggs downloads eggs parts .installed.cfg lib lib64 include bin .mr.developer.cfg local/
 
+.PHONY: upgrade-steps			# Run upgrade steps
 upgrade-steps:
 	bin/instance -O Plone run scripts/run_portal_upgrades.py
 
+.PHONY: docker-image			# Build docker image
 docker-image:
 	docker build --pull --no-cache -t smartweb/mutual:$(BRANCH)  .
 
@@ -50,11 +61,16 @@ docker-test-image:
 	docker build -f Dockerfile.test -t smartweb-test:latest .
 	docker run  -v /var/run/docker.sock:/var/run/docker.sock smartweb-test
 
-.PHONY: solr
+.PHONY: solr 				# Start solr container (foreground)
 solr:
 	sudo chmod -R 777 solr
 	docker compose up solr
 
-.PHONY: solr-cluster
+.PHONY: solr-background			# Start solr container (background)
+solr-background:
+	sudo chmod -R 777 solr
+	docker compose up solr -d
+
+.PHONY: solr-cluster			# Start solr cluster
 solr-cluster:
 	docker compose -f docker-compose-solr-cluster.yml up
