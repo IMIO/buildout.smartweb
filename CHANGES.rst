@@ -1,6 +1,11 @@
 1.3.18 (unreleased)
 -------------------
 
+- imio.smartweb.common 1.2.22
+
+    - WEB-4153 : Ruleset plone.stableResource for image scales
+      [remdub]
+
 - imio.smartweb.core 1.2.87
 
     - WEB-4153 : Move and rename the refresh_modification_date action
