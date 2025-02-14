@@ -1,6 +1,19 @@
 1.3.18 (unreleased)
 -------------------
 
+- imio.smartweb.locales 1.1.26
+
+    - Add some fr/de/nl translations for timestamped publications in imio.smartweb.core
+      [boulch]
+
+    - Update translations
+      [boulch]
+
+- imio.smartweb.core 1.2.88
+
+    - WEB-4134 : Refactor : "Timestamped publications" is a section now (not anymore a content type to store in a section)
+      [boulch]
+
 - imio.smartweb.common 1.2.22
 
     - WEB-4153 : Ruleset plone.stableResource for image scales
