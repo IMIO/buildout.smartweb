@@ -1,6 +1,14 @@
 1.3.18 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.2.89
+
+  - WEB-4225 : Added classes to contact sections to differentiate the type of contact (multiple or single)
+    [thomlamb]
+
+  - Fix issue : We don't need carousel view in timestamped publications
+    [boulch]
+
 - imio.smartweb.locales 1.1.26
 
     - Add some fr/de/nl translations for timestamped publications in imio.smartweb.core
