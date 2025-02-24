@@ -1,6 +1,11 @@
 1.3.18 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.2.90
+
+  - WEB-4217 : Refactor / Improved target blank links (files, links and so on)
+    [boulch]
+
 - imio.smartweb.core 1.2.89
 
   - WEB-4225 : Added classes to contact sections to differentiate the type of contact (multiple or single)
