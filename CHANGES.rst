@@ -1,18 +1,34 @@
 1.3.18 (unreleased)
 -------------------
 
+- imio.smartweb.locales 1.1.27
+
+    - Accessibility Add some fr/de/nl aria-labels translations
+      [boulch]
+
+    - Update translations
+      [boulch]
+
+    - Correction of a wording mistake
+      [boulch]
+
+- imio.smartweb.common 1.2.23
+
+    - WEB-3718 : Accessibility : Add aria-label for consent buttons
+      [boulch]
+
 - imio.smartweb.core 1.2.90
 
-  - WEB-4217 : Refactor / Improved target blank links (files, links and so on)
-    [boulch]
+    - WEB-4217 : Refactor / Improved target blank links (files, links and so on)
+      [boulch]
 
 - imio.smartweb.core 1.2.89
 
-  - WEB-4225 : Added classes to contact sections to differentiate the type of contact (multiple or single)
-    [thomlamb]
+    - WEB-4225 : Added classes to contact sections to differentiate the type of contact (multiple or single)
+      [thomlamb]
 
-  - Fix issue : We don't need carousel view in timestamped publications
-    [boulch]
+    - Fix issue : We don't need carousel view in timestamped publications
+      [boulch]
 
 - imio.smartweb.locales 1.1.26
 
