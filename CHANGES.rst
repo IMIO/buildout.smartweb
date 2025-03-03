@@ -1,7 +1,13 @@
 1.3.19 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.2.91
+
+    - Accessibility : Added aria-label to subsite-logo link
+      [thomlamb]
+
+    - Accessibility : Add title / target attributes to "my account" action link
+      [boulch]
 
 
 1.3.18 (2025-02-24)
