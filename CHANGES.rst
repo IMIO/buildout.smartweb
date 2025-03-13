@@ -1,6 +1,25 @@
 1.3.19 (unreleased)
 -------------------
 
+imio.smartweb.core 1.3.1
+
+    - WEB-4165: Refactoring the generation of sitemap.xml.gz for search engines and modifying the site map for user display
+      [boulch]
+
+    - WEB-4165 : Fixed sitemap.xml.gz generation with auth sources entries
+      [boulch]
+
+    - Display error message in Search results if the default view has been deleted
+      [thomlamb]
+
+    - WEB-4231 : Prevent issues in research when default (agenda, news, directory) views objects were removed
+      [boulch]
+
+- imio.samrtweb.core 1.3
+
+    - TELE-1975 : IDEABOX. Add specific profile, add campaign view content type
+      [boulch, thomlamb]
+
 - imio.smartweb.core 1.2.91
 
     - Accessibility : Added aria-label to subsite-logo link
