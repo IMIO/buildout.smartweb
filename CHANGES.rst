@@ -1,4 +1,4 @@
-1.3.19 (unreleased)
+1.3.19 (2025-03-19)
 -------------------
 
 - WEB-4226 : Use waitress instead of gunicorn
