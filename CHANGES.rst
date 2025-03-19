@@ -1,6 +1,11 @@
 1.3.19 (unreleased)
 -------------------
 
+- WEB-4226 : Use waitress instead of gunicorn
+  The issue leading to a high load with waitress has been fixed in waitress 3.0.1
+  See https://github.com/Pylons/waitress/pull/435
+  [remdub]
+
 - imio.smartweb.core 1.3.2
 
     - WEB-4134: Set default_view as table_view for section "Timestamped publications"
@@ -23,7 +28,7 @@
     - WEB-4231 : Prevent issues in research when default (agenda, news, directory) views objects were removed
       [boulch]
 
-- imio.samrtweb.core 1.3
+- imio.smartweb.core 1.3
 
     - TELE-1975 : IDEABOX. Add specific profile, add campaign view content type
       [boulch, thomlamb]
