@@ -1,6 +1,14 @@
 1.3.19 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.3.2
+
+    - WEB-4134: Set default_view as table_view for section "Timestamped publications"
+      [boulch]
+
+    - WEB-4165: Refactor some code for sitemap (Title, normalized_portal_type, ...)
+      [boulch]
+
 - imio.smartweb.core 1.3.1
 
     - WEB-4165: Refactoring the generation of sitemap.xml.gz for search engines and modifying the site map for user display
