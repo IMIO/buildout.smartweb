@@ -1,7 +1,8 @@
 1.3.20 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Push imio.smartweb.core to staging (React loader and ideabox)
+  [thomlamb]
 
 
 1.3.19 (2025-03-19)
