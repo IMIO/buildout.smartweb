@@ -1,6 +1,21 @@
 1.3.20 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.3.3
+
+    - WEB-4236 : Ensure that, in the control panel, the already filled passwords are better "informed"
+      [boulch]
+
+    - Ideabox : Use the correct workflow statuses to display projects
+      [boulch]
+
+    - Prevent unauthorized access: return 403 if request does not originate from the current context
+      Prevent some basic stupid and wicked attack
+      [boulch]
+
+    - Ideabox : Add status for vote 
+      [thomlamb]
+
 - Push imio.smartweb.core to staging (React loader and ideabox)
   [thomlamb]
 
