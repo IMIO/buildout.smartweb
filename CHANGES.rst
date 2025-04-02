@@ -7,6 +7,14 @@
 1.3.20 (2025-03-31)
 -------------------
 
+- imio.smartweb.core 1.3.4
+
+    - Ideabox : Add search filter in campaign view
+      [thomlamb]
+
+    - Ideabox : Add comment in campaign view
+      [thomlamb]
+
 - imio.smartweb.core 1.3.3
 
     - WEB-4236 : Ensure that, in the control panel, the already filled passwords are better "informed"
