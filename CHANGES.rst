@@ -1,12 +1,6 @@
 1.3.21 (unreleased)
 -------------------
 
-- Nothing changed yet.
-
-
-1.3.20 (2025-03-31)
--------------------
-
 - imio.smartweb.core 1.3.5
 
     - Fix : Add are_views_available to @@/search view
@@ -20,6 +14,10 @@
     - Ideabox : Add comment in campaign view
       [thomlamb]
 
+
+1.3.20 (2025-03-31)
+-------------------
+
 - imio.smartweb.core 1.3.3
 
     - WEB-4236 : Ensure that, in the control panel, the already filled passwords are better "informed"
@@ -32,7 +30,7 @@
       Prevent some basic stupid and wicked attack
       [boulch]
 
-    - Ideabox : Add status for vote 
+    - Ideabox : Add status for vote
       [thomlamb]
 
 - Push imio.smartweb.core to staging (React loader and ideabox)
