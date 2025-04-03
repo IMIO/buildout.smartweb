@@ -7,6 +7,11 @@
 1.3.20 (2025-03-31)
 -------------------
 
+- imio.smartweb.core 1.3.5
+
+    - Fix : Add are_views_available to @@/search view
+      [thomlamb]
+
 - imio.smartweb.core 1.3.4
 
     - Ideabox : Add search filter in campaign view
