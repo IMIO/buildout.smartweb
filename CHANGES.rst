@@ -7,6 +7,17 @@
 1.3.21 (2025-04-03)
 -------------------
 
+- imio.smartweb.core 1.3.6
+
+    - Fix contact template to improve multi-contact display
+      [thomlamb]
+
+    - Ideabox : Add red thumbs display choice in campaign view
+      [thomlamb]
+
+    - WEB-4237 : Hide unnecessary toolbar entries when rendering a React view
+      [boulch]
+
 - imio.smartweb.core 1.3.5
 
     - Fix : Add are_views_available to @@/search view
