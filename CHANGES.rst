@@ -1,7 +1,10 @@
 1.3.22 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.3.7
+    
+    - Fix base endpoint for imio app (like TS)
+      [boulch]
 
 
 1.3.21 (2025-04-03)
