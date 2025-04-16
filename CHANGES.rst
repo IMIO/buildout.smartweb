@@ -7,6 +7,17 @@
 1.3.22-quick (2025-04-15)
 -------------------------
 
+- imio.smartweb.core 1.3.8
+
+    - Fix queries to get zones / topics from e-guichet
+      [boulch]
+
+    - Fix json pop to prevent errors when change comme from backoffice
+      [thomlamb]
+
+    - Campaign view : Change add comment btn to be visible when there is no comment
+      [thomlamb]
+
 - imio.smartweb.core 1.3.7
     
     - Fix base endpoint for imio app (like TS)
