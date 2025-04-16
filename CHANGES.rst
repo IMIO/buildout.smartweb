@@ -1,12 +1,6 @@
 1.3.23 (unreleased)
 -------------------
 
-- Nothing changed yet.
-
-
-1.3.22-quick (2025-04-15)
--------------------------
-
 - imio.smartweb.core 1.3.8
 
     - Fix queries to get zones / topics from e-guichet
@@ -17,6 +11,10 @@
 
     - Campaign view : Change add comment btn to be visible when there is no comment
       [thomlamb]
+
+
+1.3.22-quick (2025-04-15)
+-------------------------
 
 - imio.smartweb.core 1.3.7
     
