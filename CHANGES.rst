@@ -7,6 +7,20 @@
 1.3.23 (2025-04-16)
 -------------------
 
+- imio.smartweb.locales 1.1.28
+
+    - Add some translations for campagin view
+      [thomlamb]
+
+    - Add some translations for skip to content viewlet
+      [thomlamb]
+
+    - Add some fr translations for ideabox / ia.deliberations features
+      [boulch]
+
+    - Update translations
+      [boulch]
+      
 - imio.smartweb.core 1.3.8
 
     - Fix queries to get zones / topics from e-guichet
