@@ -1,5 +1,7 @@
 #!/usr/bin/make
 
+VENV_FOLDER=.venv
+
 all: buildout
 
 BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
@@ -7,17 +9,17 @@ BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
 buildout.cfg:
 	ln -fs dev.cfg buildout.cfg
 
-bin/buildout: bin/pip buildout.cfg
-	bin/uv pip install -r requirements.txt
+$(VENV_FOLDER)/bin/buildout: $(VENV_FOLDER)/bin/pip buildout.cfg
+	$(VENV_FOLDER)/bin/uv pip install -r requirements.txt
 
 buildout: bin/instance
 
-bin/instance: bin/buildout
-	bin/buildout
+bin/instance: $(VENV_FOLDER)/bin/buildout
+	$(VENV_FOLDER)/bin/buildout
 
-bin/pip:
-	python3.12 -m venv .
-	bin/pip install uv
+$(VENV_FOLDER)/bin/pip:
+	uv venv --seed -p python3.12
+	$(VENV_FOLDER)/bin/pip3.12 install uv
 
 run: bin/instance
 	bin/instance fg
