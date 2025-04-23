@@ -7,6 +7,27 @@
 1.3.23 (2025-04-16)
 -------------------
 
+- imio.smartweb.common 1.1.27
+
+    - WEB-4122 : Create adapter/validator to filter valid image mimetype in our solutions
+      [boulch]
+
+- imio.smartweb.common 1.1.26
+
+    - WEB-4212: Fixe i18n:domain for skip to content
+      [thomlamb]
+
+- imio.smartweb.common 1.1.25
+
+    - WEB-4232 : Fix JQuery.
+      Version 1.2.24 contained issues affecting the smooth running of the preventing deletion of a taxonomy term
+      [boulch]
+
+- imio.smartweb.common 1.1.24
+
+    - WEB-4232 : Refactoring of the code that prevents the deletion of a taxonomy term if it is used in at least one object
+      [boulch]
+
 - imio.smartweb.locales 1.1.28
 
     - Add some translations for campagin view
@@ -20,7 +41,12 @@
 
     - Update translations
       [boulch]
-      
+
+- imio.smartweb.core 1.3.9
+
+    - Ideabox : Add suggestion button text in campaign view
+      [thomlamb]
+
 - imio.smartweb.core 1.3.8
 
     - Fix queries to get zones / topics from e-guichet
