@@ -14,9 +14,10 @@
     - Improve uninstall product
       [boulch, gbastien]
 
+- imio.smartweb.core 1.3.9
 
-1.3.23 (2025-04-16)
--------------------
+    - Ideabox : Add suggestion button text in campaign view
+      [thomlamb]
 
 - imio.smartweb.common 1.1.27
 
@@ -53,10 +54,9 @@
     - Update translations
       [boulch]
 
-- imio.smartweb.core 1.3.9
 
-    - Ideabox : Add suggestion button text in campaign view
-      [thomlamb]
+1.3.23 (2025-04-16)
+-------------------
 
 - imio.smartweb.core 1.3.8
 
@@ -74,7 +74,7 @@
 -------------------------
 
 - imio.smartweb.core 1.3.7
-    
+
     - Fix base endpoint for imio app (like TS)
       [boulch]
 
