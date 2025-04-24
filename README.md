@@ -16,6 +16,14 @@ This `buildout.smartweb` project includes everything required to install, config
 
 ### 1. Setup development environment
 
+#### Prerequisites
+
+[uv](https://docs.astral.sh/uv/) 
+
+See [installation guide](https://docs.astral.sh/uv/getting-started/installation/) )
+
+#### Install dependencies and setup environment
+
 ```bash
 make
 ```
