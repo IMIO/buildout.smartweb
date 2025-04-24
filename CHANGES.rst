@@ -1,4 +1,4 @@
-1.3.24 (unreleased)
+1.3.24 (2025-04-24)
 -------------------
 
 - collective.messagesviewlet 1.0b4
