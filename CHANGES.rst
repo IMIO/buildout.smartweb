@@ -1,7 +1,18 @@
 1.3.24 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- collective.messagesviewlet 1.0b4
+
+    - Add Plone 6.1 compatibility by replacing pkg_resources with importlib
+      [remdub]
+
+- collective.messagesviewlet 1.0b3
+
+    - Add upgrade step : Remove deprecated control panel action
+      [boulch]
+
+    - Improve uninstall product
+      [boulch, gbastien]
 
 
 1.3.23 (2025-04-16)
