@@ -3,85 +3,85 @@
 
 - imio.smartweb.common 1.2.28
 
-  - Upgrade dev environment to Plone 6.1-latest
-    [remdub]
+    - Upgrade dev environment to Plone 6.1-latest
+      [remdub]
 
-  - Add tests for Plone 6.1-latest and add Python 3.13
-    [remdub]
+    - Add tests for Plone 6.1-latest and add Python 3.13
+      [remdub]
 
 - imio.smartweb.policy 1.2.8
 
-  - Add plone.app.discussion as a dependency
-    It is not installed by default since Plone 6.1
-    [remdub]
+    - Add plone.app.discussion as a dependency
+      It is not installed by default since Plone 6.1
+      [remdub]
 
 - pas.plugins.imio 2.1
 
-  - Plone 6.1 compatibility.
-    [remdub]
+    - Plone 6.1 compatibility.
+      [remdub]
 
 - pas.plugins.authomatic 2.0.0rc3
 
-  - Fix walrus operator usage to correctly assign authomatic_cfg() result [#100](https://github.com/collective/pas.plugins.authomatic/issues/100)
-    [avoinea]
+    - Fix walrus operator usage to correctly assign authomatic_cfg() result [#100](https://github.com/collective/pas.plugins.authomatic/issues/100)
+      [avoinea]
 
 - pas.plugins.authomatic 2.0.0rc2
 
-  - Add missing `plone.api` dependency. [#95](https://github.com/collective/pas.plugins.authomatic/issues/95)
-    [mauritsvanrees]
+    - Add missing `plone.api` dependency. [#95](https://github.com/collective/pas.plugins.authomatic/issues/95)
+      [mauritsvanrees]
 
 - pas.plugins.authomatic 2.0.0rc1
 
-  - Documented integration with Microsoft Entra ID [#87](https://github.com/collective/pas.plugins.authomatic/issues/87)
-    [alecghica]
+    - Documented integration with Microsoft Entra ID [#87](https://github.com/collective/pas.plugins.authomatic/issues/87)
+      [alecghica]
 
-  - Add support to Python 3.13 [#89](https://github.com/collective/pas.plugins.authomatic/issues/89)
-    [ericof]
+    - Add support to Python 3.13 [#89](https://github.com/collective/pas.plugins.authomatic/issues/89)
+      [ericof]
 
-  - Use UV to manage the environment [#90](https://github.com/collective/pas.plugins.authomatic/issues/90)
-    [ericof]
+    - Use UV to manage the environment [#90](https://github.com/collective/pas.plugins.authomatic/issues/90)
+      [ericof]
 
-  - Update .vscode configuration [#91](https://github.com/collective/pas.plugins.authomatic/issues/91)
-    [ericof]
+    - Update .vscode configuration [#91](https://github.com/collective/pas.plugins.authomatic/issues/91)
+      [ericof]
 
-  - GHA: Update workflows. [#92](https://github.com/collective/pas.plugins.authomatic/issues/92)
-    [ericof]
+    - GHA: Update workflows. [#92](https://github.com/collective/pas.plugins.authomatic/issues/92)
+      [ericof]
 
-  - Use pytest-plone 1.0.0a1 [#93](https://github.com/collective/pas.plugins.authomatic/issues/93)
-    [ericof]
+    - Use pytest-plone 1.0.0a1 [#93](https://github.com/collective/pas.plugins.authomatic/issues/93)
+      [ericof]
 
 - pas.plugins.authomatic 2.0.0b3
 
-  - Register the adapter as needed by the @login endpoint present in plone.restapi [#73](https://github.com/collective/pas.plugins.authomatic/issues/73)
-    [erral]
+    - Register the adapter as needed by the @login endpoint present in plone.restapi [#73](https://github.com/collective/pas.plugins.authomatic/issues/73)
+      [erral]
 
-  - Require plone.restapi higher than 9.10.0
-    [ericof]
+    - Require plone.restapi higher than 9.10.0
+      [ericof]
 
 - pas.plugins.authomatic 2.0.0b2
 
-  - Move CHANGELOG.md entries to CHANGES.md [#84](https://github.com/collective/pas.plugins.authomatic/issues/84)
-    [ericof]
+    - Move CHANGELOG.md entries to CHANGES.md [#84](https://github.com/collective/pas.plugins.authomatic/issues/84)
+      [ericof]
 
-  - Document release process [#85](https://github.com/collective/pas.plugins.authomatic/issues/85)
-    [ericof]
+    - Document release process [#85](https://github.com/collective/pas.plugins.authomatic/issues/85)
+      [ericof]
 
-  - Rename logging.py to log.py [#86](https://github.com/collective/pas.plugins.authomatic/issues/86)
-    [ericof]
+    - Rename logging.py to log.py [#86](https://github.com/collective/pas.plugins.authomatic/issues/86)
+      [ericof]
 
 - pas.plugins.authomatic 2.0.0b1
 
-  - Modernize package repository [#71](https://github.com/collective/pas.plugins.authomatic/issues/71)
-    [ericof]
+    - Modernize package repository [#71](https://github.com/collective/pas.plugins.authomatic/issues/71)
+      [ericof]
 
-  - Move tests to pytest [#72](https://github.com/collective/pas.plugins.authomatic/issues/72)
-    [ericof]
+    - Move tests to pytest [#72](https://github.com/collective/pas.plugins.authomatic/issues/72)
+      [ericof]
 
-  - Drop Plone 5.2 support [#80](https://github.com/collective/pas.plugins.authomatic/issues/80)
-    [ericof]
+    - Drop Plone 5.2 support [#80](https://github.com/collective/pas.plugins.authomatic/issues/80)
+      [ericof]
 
-  - Update i18n mechanism, update Brazilian Portuguese translation [#82](https://github.com/collective/pas.plugins.authomatic/issues/82)
-    [ericof]
+    - Update i18n mechanism, update Brazilian Portuguese translation [#82](https://github.com/collective/pas.plugins.authomatic/issues/82)
+      [ericof]
 
 
 1.3.24 (2025-04-24)
