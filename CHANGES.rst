@@ -1,6 +1,14 @@
 1.3.25 (unreleased)
 -------------------
 
+- imio.smartweb.common 1.2.28
+
+  - Upgrade dev environment to Plone 6.1-latest
+    [remdub]
+
+  - Add tests for Plone 6.1-latest and add Python 3.13
+    [remdub]
+
 - imio.smartweb.policy 1.2.8
 
   - Add plone.app.discussion as a dependency
