@@ -15,11 +15,6 @@
       It is not installed by default since Plone 6.1
       [remdub]
 
-- pas.plugins.imio 2.1
-
-    - Plone 6.1 compatibility.
-      [remdub]
-
 
 1.3.24 (2025-04-24)
 -------------------
