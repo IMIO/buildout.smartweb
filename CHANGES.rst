@@ -1,6 +1,22 @@
 1.3.25 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.4
+
+    - Override singlecheckboxtool_hidden.pt to restore the "hidden" type to the hidden checkboxes
+      This is a temporary fix, we will issue a PR to fix this en plone.app.z3cform
+      See https://github.com/plone/plone.app.z3cform/commit/6351cf60d408d4a76743741db45093c8e5a1c4de
+      [remdub]
+
+    - GHA tests on Python 3.10 3.11, 3.12 and 3.13
+      [remdub]
+
+    - Update Python classifiers to be compatible with Plone 6.1 and Python 3.13
+      [remdub]
+
+    - Remove obsolete and unused portal_properties in view_section template PropertiesTool is removed in Plone 6.1
+      [bsuttor, remdub]
+
 - imio.smartweb.common 1.2.28
 
     - Upgrade dev environment to Plone 6.1-latest
