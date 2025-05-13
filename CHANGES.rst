@@ -1,6 +1,11 @@
 1.3.25 (unreleased)
 -------------------
 
+- imio.smartweb.common 1.2.29
+
+    - Upgrade TinyMCE settings to version 7
+      [remdub]
+
 - imio.smartweb.core 1.4
 
     - Override singlecheckboxtool_hidden.pt to restore the "hidden" type to the hidden checkboxes
