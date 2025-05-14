@@ -1,6 +1,75 @@
 1.3.25 (unreleased)
 -------------------
 
+- collective.upgrade (plone61 branch)
+
+  - Portal_properties is no longer a persistent tool (Plone 6.1 compatibility)
+    [bsuttor]
+
+- zope.session 5.1
+
+  - Python 3.10, 3.11 compatibility
+    For more details, see : https://raw.githubusercontent.com/zopefoundation/zope.session/refs/heads/master/CHANGES.rst
+
+- z3c.unconfigure 2.1
+
+  - Python 3.12, 3.13 compatibility
+    For more details, see : https://raw.githubusercontent.com/zopefoundation/z3c.unconfigure/refs/heads/master/CHANGES.rst
+
+- z3c.jbot 2.2
+
+  - Drop support for Python 3.8
+    For more details, see : https://raw.githubusercontent.com/zopefoundation/z3c.jbot/refs/heads/master/CHANGES.rst
+
+- RelStorage 4.1.1
+
+  - Python 3.13 compatibility
+    For more details, see : https://raw.githubusercontent.com/zodb/relstorage/refs/heads/master/CHANGES.rst
+
+- psycopg2 2.9.10
+
+  - Python 3.13 compatibility
+    For more details, see : https://raw.githubusercontent.com/psycopg/psycopg2/refs/heads/master/NEWS
+
+- plone.gallery 1.1.6
+
+  - For more details, see : https://raw.githubusercontent.com/plone/plone.gallery/refs/heads/master/CHANGES.rst
+
+- pas.plugins.authomatic 2.0.0rc3
+
+  - Pinned new version for Plone 6.1 compatibility
+    For more details, see : https://raw.githubusercontent.com/collective/pas.plugins.authomatic/refs/heads/main/CHANGELOG.md
+
+- pas.plugins.imio 2.1
+
+  - Plone 6.1 compatibility.
+    [remdub]
+
+- imio.smartweb.locales 1.1.29
+
+  - Update dev environment to Plone 6.1-latest
+    [remdub]
+
+  - Add Python 3.13
+    [remdub]
+
+- imio.smartweb.policy 1.2.9
+
+    - WEB-4240 : Fix 'I am' links when creating instances
+      [boulch]
+
+- imio.smartweb.core 1.4.1
+
+    - WEB-4165 : Add the React script to manage og tags in other views (Agenda / News)
+      [boulch]
+
+    - WEB-4165 : Refactoring : Don't use react-helmet/react-helmet-async anymore to manage og tags in directory view
+      because of duplicated og:tags. Favor for creating og:tags in header viewlet (SSR) and update it thanks to REACT script  
+      [boulch]
+
+    - WEB-4165 : Add react-helmet package (6.1.0) to manage og tags in directory view
+      [boulch]
+
 - imio.smartweb.common 1.2.29
 
     - Upgrade TinyMCE settings to version 7
