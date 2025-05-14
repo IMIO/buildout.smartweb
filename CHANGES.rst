@@ -1,6 +1,11 @@
 1.3.25 (unreleased)
 -------------------
 
+- imio.smartweb.common 1.2.30
+
+  - Upgrade missing TinyMCE settings to version 7
+    [remdub]
+
 - collective.upgrade (plone61 branch)
 
   - Portal_properties is no longer a persistent tool (Plone 6.1 compatibility)
