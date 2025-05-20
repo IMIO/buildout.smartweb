@@ -1,6 +1,18 @@
 1.3.25 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.4.2
+
+    - WEB-4242 : Clear scales annotations when we remove lead image from an object
+      Avoid scale is still accessible with direct link
+      [boulch]
+
+    - WEB-4218 : Fix cookie modal tab index and improve ux
+      [thomlamb]
+
+    - WEB-4234 : Avoid using fullobjects when we get events from Agenda authentic sources
+      [boulch]
+
 - imio.smartweb.common 1.2.31
 
     - Dirty css fix to hide the "Upload" button in the new pat-contentbrowser
