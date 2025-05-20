@@ -1,6 +1,11 @@
 1.3.25 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.4.3
+
+    - WEB-4218 : move (Fix cookie modal tab index and improve ux) into view.less
+      [thomlamb]
+
 - imio.smartweb.core 1.4.2
 
     - WEB-4242 : Clear scales annotations when we remove lead image from an object
