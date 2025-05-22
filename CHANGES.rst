@@ -1,7 +1,16 @@
 1.4.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- imio.smartweb.common 1.2.33
+
+    - WEB-4259 : Override plone.volto summary_serializer_metadata to solve a problem with new
+      metadata fields being added to the summary serializer and breaking our search endpoints
+      [bsuttor, remdub]
+
+- imio.smartweb.common 1.2.32
+
+    - WEB-4250 : Quick fix : Since Plone 6.1, AjaxSelectWidget is displaying in edit mode even if mode is "display"
+      [boulch]
 
 
 1.4 (2025-05-20)
