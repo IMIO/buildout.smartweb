@@ -1,7 +1,11 @@
 1.4.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- imio.smartweb.locales 1.1.30
+
+    - WEB-4260 : Override default Plone translation for TinyMCE "Insert link"
+      We don't allow to upload files through the TinyMCE editor, so we don't need this
+      [remdub]
 
 
 1.4.1 (2025-05-22)
