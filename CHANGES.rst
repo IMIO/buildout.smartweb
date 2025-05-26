@@ -1,6 +1,14 @@
 1.4.2 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.4.4
+
+    - Fix bad catalog query when we get contacts from directory
+      [boulch]
+
+    - WEB-4252 : Increase timeout for section events
+      [boulch]
+
 - imio.smartweb.locales 1.1.30
 
     - WEB-4260 : Override default Plone translation for TinyMCE "Insert link"
