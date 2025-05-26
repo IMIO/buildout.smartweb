@@ -1,6 +1,11 @@
 1.4.2 (unreleased)
 ------------------
 
+- imio.smartweb.common 1.2.35
+
+    - CITI-7 : Fix retrieving mimeType for some picture files
+      [boulch]
+
 - imio.smartweb.common 1.2.34
 
     - WEB-4258 : Temporary CSS fix to unhide the "External link" tab when adding a new link.
