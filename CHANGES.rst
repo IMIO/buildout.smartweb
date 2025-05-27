@@ -1,7 +1,8 @@
 1.4.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Refactor Makefile to speed up development environment bootstrapping
+  [remdub]
 
 
 1.4.2 (2025-05-26)
@@ -141,7 +142,7 @@
       [boulch]
 
     - WEB-4165 : Refactoring : Don't use react-helmet/react-helmet-async anymore to manage og tags in directory view
-      because of duplicated og:tags. Favor for creating og:tags in header viewlet (SSR) and update it thanks to REACT script  
+      because of duplicated og:tags. Favor for creating og:tags in header viewlet (SSR) and update it thanks to REACT script
       [boulch]
 
     - WEB-4165 : Add react-helmet package (6.1.0) to manage og tags in directory view
@@ -1300,7 +1301,7 @@
 
 - imio.smartweb.common 1.2.5
 
-    - WEB-4007 : Get ContactProperties out of imio.smartweb.core to also use it in imio.directory.core and 
+    - WEB-4007 : Get ContactProperties out of imio.smartweb.core to also use it in imio.directory.core and
       simplifying formated schedule displaying in REACT directory view
       [boulch]
 
@@ -1662,7 +1663,7 @@
 
     - Fix translation function
       [boulch]
-    
+
     - Fix post_install when the targeted site not allow default Folder on plonesite root
       [boulch]
 
@@ -2046,7 +2047,7 @@
 
 - imio.smartweb.common 1.1.5
 
-    - WEB-3862 : Patch (Remove select2) eea.facetednavigation jquery 
+    - WEB-3862 : Patch (Remove select2) eea.facetednavigation jquery
       [laulaz, boulch]
 
 - imio.smartweb.common 1.1.4
@@ -2056,7 +2057,7 @@
 
     - Migrate to Plone 6.0.2
       [boulch]
-    
+
 - Upgrade collective.solr to `9.1.1` to include the latest fix for image_scales metadata
   [mpeeters]
 
@@ -2112,7 +2113,7 @@
       [boulch]
 
 - imio.smartweb.common 1.1.3
-  
+
     - WEB-3852 : Fix atom/syndication registry keys
       [boulch]
 
@@ -2146,7 +2147,7 @@
       [thomlamb]
 
     - Fix traduction ID for React
-      [thomlamb]  
+      [thomlamb]
 
 - imio.smartweb.policy 1.1.3
 
@@ -2165,7 +2166,7 @@
       [mpeeters]
 
 - collective.faceted.map 1.0.0
-    
+
     - Improve code to avoid to many refresh of the map
       [mpeeters]
 
