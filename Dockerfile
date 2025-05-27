@@ -6,7 +6,8 @@ ENV PIP=25.0.1 \
   SETUPTOOLS=75.8.2 \
   WHEEL=0.45.1 \
   PLONE_MAJOR=6.1 \
-  PLONE_VERSION=6.1.1
+  PLONE_VERSION=6.1.1 \
+  PY_SPY=0.4.0
 
 # hadolint ignore=DL3008
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -29,7 +30,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   python3-pip \
   wget \
   zlib1g-dev \
-  && pip3 install --no-cache-dir pip==$PIP setuptools==$SETUPTOOLS zc.buildout==$ZC_BUILDOUT py-spy --break-system-packages
+  && pip3 install --no-cache-dir pip==$PIP setuptools==$SETUPTOOLS zc.buildout==$ZC_BUILDOUT py-spy==$PY_SPY --break-system-packages
 
 WORKDIR /plone
 
