@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 You can start this script with a "instance run" like :
-    bin/instance -O Plone run scripts/autopublish.py
+    bin/instance -O Plone run scripts/migrate_to_keycloak.py
 
 """
 from plone import api
@@ -14,7 +14,7 @@ import sys
 import transaction
 
 
-logger = logging.getLogger("autopublish.py")
+logger = logging.getLogger("migrate_to_keycloak.py")
 logger.setLevel(logging.INFO)
 ch = logging.StreamHandler(sys.stdout)
 ch.setLevel(logging.INFO)
