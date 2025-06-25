@@ -1,6 +1,36 @@
 1.4.3 (unreleased)
 ------------------
 
+- imio.smartweb.locales 1.1.31
+
+    - Add some translations for new smartweb site admin control panel
+      [boulch]
+
+- imio.smartweb.common 1.2.36
+
+    - WEB-4278 : Create translated (de) iam vocabulary for e-guichet (citizen project)
+      [boulch]
+
+    - WEB-4278 : Create translated (de) topics vocabulary for e-guichet (citizen project)
+      [boulch]
+
+    - WEB-4269 : Add Horizontal Rule option to the insert menu in TinyMCE
+      [remdub]
+
+- imio.smartweb.core 1.4.5
+
+    - WEB-4276: Fix missing or bad e-guichet api url in smartweb control panel settings
+      [boulch]
+
+    - WEB-4271: Refactor procedure button to add specific label to manage job offer or other use-case
+      [boulch]
+
+    - SUP-44089 : Fix sitemap. old id was used for some "copied/pasted contacts". Now we are using "real/updated" uid
+      [boulch]
+
+    - WEB-4268 : Added imio.smartweb.SectionTimeStampedPublicatons to Page and PortalPage
+      [boulch]
+
 - Refactor Makefile to speed up development environment bootstrapping
   [remdub]
 
