@@ -1,7 +1,10 @@
 1.4.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.4.6
+    
+    - Change permission to access to site admin control panel
+      [boulch]
 
 
 1.4.3 (2025-06-25)
