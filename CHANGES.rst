@@ -1,7 +1,35 @@
-1.4.5 (unreleased)
+1.4.6 (unreleased)
 ------------------
 
 - Nothing changed yet.
+
+
+1.4.5 (2025-07-22)
+------------------
+
+- imio.smartweb.core 1.4.7
+    
+    - WEB-4218 improve cookier banner style. import view.less delete previous commit
+      [thomlamb]
+
+    - WEB-4284: Enable section size button by adding htmx_js_header.pt to procedure view
+      [thomlamb]
+
+    - Add new endpoint to find content in instance
+      [boulch]
+
+    - Fix effective news date
+      [thomlamb]
+
+    - SUP-45270 : Fix open_end date display
+      [thomlamb]
+
+    - Fix campaign comment url tagert
+      [thomlamb]
+
+    - WEB-4256 : Use pat-contentbrowser instead of pat-relateditems for
+      Link, QuickAccess, SectionCollection, SectionEvents and SectionNews
+      [remdub]
 
 
 1.4.4 (2025-06-26)
