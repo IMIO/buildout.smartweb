@@ -39,3 +39,5 @@ pip-selfcheck.json
 pyvenv.cfg
 report.html
 .envrc
+.Ds_Store
+resources/
