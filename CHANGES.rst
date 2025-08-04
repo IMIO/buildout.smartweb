@@ -1,7 +1,15 @@
 1.4.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.4.8
+
+    - WEB-4165 : SEO : Add new "hidden" view to authentic sources contents which generate href links to the "cards"
+      [boulch]
+
+- collective.sendinblue 2.0.4
+
+    - Add uninstall profile (Plone6)
+      [boulch]
 
 
 1.4.5 (2025-07-22)
