@@ -1,6 +1,14 @@
 1.4.7 (unreleased)
 ------------------
 
+- imio.smartweb.locales 1.1.33
+
+    - Add some new translations (seo pages)
+      [boulch]
+
+    - Update translations
+      [boulch]
+
 - imio.smartweb.core 1.4.9
 
     - WEB-4165 : SEO : Override the canonical URL in the HTML header for the REST view,
