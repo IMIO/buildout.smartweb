@@ -1,7 +1,11 @@
 1.4.7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.4.9
+
+    - WEB-4165 : SEO : Override the canonical URL in the HTML header for the REST view,
+      so that each card (name?u=<uuid>) is considered canonical instead of the default container.
+      [boulch]
 
 
 1.4.6 (2025-08-04)
