@@ -1,7 +1,10 @@
 1.4.8 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.4.10
+
+    - WEB-4165 : SEO : Build noscript fallback for React views (Agenda / Directory / News) to improve SEO
+      [boulch]
 
 
 1.4.7 (2025-08-05)
