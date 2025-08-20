@@ -1,7 +1,16 @@
 1.4.9 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.4.11
+
+    - Changer Itinerary link to plain text in React view
+      [thomlamb]
+
+    - Fix whole day date for recurrence event
+      [thomlamb]
+
+    - WEB-4165 : SEO : Improve sitemap.xml.gz generation to include new seo_html views and some other seo improvements
+      [boulch]
 
 
 1.4.8 (2025-08-07)
