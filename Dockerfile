@@ -1,5 +1,4 @@
 FROM harbor.imio.be/common/plone-base:6.1.1 AS builder
-
 LABEL maintainer="Benoît Suttor <benoit.suttor@imio.be>"
 ENV PIP=25.0.1 \
   ZC_BUILDOUT=4.1.4 \
