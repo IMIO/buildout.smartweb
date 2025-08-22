@@ -1,7 +1,63 @@
-1.4.6 (unreleased)
-------------------
+1.4.10 (unreleased)
+-------------------
 
 - Nothing changed yet.
+
+
+1.4.9 (2025-08-20)
+------------------
+
+- imio.smartweb.core 1.4.11
+
+    - Changer Itinerary link to plain text in React view
+      [thomlamb]
+
+    - Fix whole day date for recurrence event
+      [thomlamb]
+
+    - WEB-4165 : SEO : Improve sitemap.xml.gz generation to include new seo_html views and some other seo improvements
+      [boulch]
+
+
+1.4.8 (2025-08-07)
+------------------
+
+- imio.smartweb.core 1.4.10
+
+    - WEB-4165 : SEO : Build noscript fallback for React views (Agenda / Directory / News) to improve SEO
+      [boulch]
+
+
+1.4.7 (2025-08-05)
+------------------
+
+- imio.smartweb.locales 1.1.33
+
+    - Add some new translations (seo pages)
+      [boulch]
+
+    - Update translations
+      [boulch]
+
+- imio.smartweb.core 1.4.9
+
+    - WEB-4165 : SEO : Override the canonical URL in the HTML header for the REST view,
+      so that each card (name?u=<uuid>) is considered canonical instead of the default container.
+      [boulch]
+
+
+1.4.6 (2025-08-04)
+------------------
+
+- imio.smartweb.core 1.4.8
+
+    - WEB-4165 : SEO : Add new "hidden" view to authentic sources contents which generate href links to the "cards"
+      [boulch]
+
+- collective.sendinblue 2.0.4
+
+    - Add uninstall profile (Plone6)
+      [boulch]
 
 
 1.4.5 (2025-07-22)
