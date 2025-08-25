@@ -1,7 +1,10 @@
 1.4.10 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.4.12
+
+    - WEB-4291 : Improve directory Categories: If only one category, no need to display the first one
+      [thomlamb]
 
 
 1.4.9 (2025-08-20)
