@@ -1,7 +1,14 @@
 1.4.11 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.policy 1.2.10
+
+    - Add upgrade step to install Kimug and migrate user to Keycloak.
+      [bsuttor]
+    
+    - WEB-4233 : Update GDPR text for new instances only
+      [boulch]
+
 
 
 1.4.10 (2025-08-25)
