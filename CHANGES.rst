@@ -1,7 +1,14 @@
 1.5.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- pas.plugins.imio 3.0.0
+    
+    - Rename views to legacy
+      So we avoid calling them by mistake.
+      [remdub]
+
+    - Remove usergroups_useroverview override
+      [remdub]    
 
 
 1.5.0 (2025-08-29)
