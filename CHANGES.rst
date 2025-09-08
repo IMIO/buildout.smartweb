@@ -1,6 +1,37 @@
 1.5.1 (unreleased)
 ------------------
 
+- imio.smartweb.common 1.2.37
+
+    - Add new @find endpoint to find content in instance
+      [boulch]
+
+- imio.smartweb.core 1.4.13
+
+    - WEB-4249 : Remove sendinblue
+      [boulch]
+
+    - WEB-4213 : Translate Swiper aria-label
+      [thomlamb]
+
+    - Refactor "find" endpoint (1.4.7) : Move it into imio.smartweb.common
+      [boulch]
+
+    - Add title and description for React gallery
+      [thomlamb]
+
+    - WEB-4297 : Accessibility : Fix keyboard navigation for taxonomy filter
+      [thomlamb]
+
+    - WEB-3835 : Accessibility : replace link with button for better keyboard navigation and adjust js for tabulation close menu
+      [thomlamb]
+
+    - WEB-3718 : add h1 in portal page
+      [thomlamb]
+
+    - SUP-46144 : Improve contact country translation
+      [thomlamb]
+
 - pas.plugins.imio 3.0.0
     
     - Rename views to legacy
