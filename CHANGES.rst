@@ -1,7 +1,10 @@
 1.5.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- pas.plugins.kimug 1.1.5
+
+    - Upgrade-step to clean authentic users
+      [remdub]
 
 
 1.5.1 (2025-09-08)
@@ -39,13 +42,13 @@
       [thomlamb]
 
 - pas.plugins.imio 3.0.0
-    
+
     - Rename views to legacy
       So we avoid calling them by mistake.
       [remdub]
 
     - Remove usergroups_useroverview override
-      [remdub]    
+      [remdub]
 
 
 1.5.0 (2025-08-29)
@@ -55,7 +58,7 @@
 
     - Add upgrade step to install Kimug and migrate user to Keycloak.
       [bsuttor]
-    
+
     - WEB-4233 : Update GDPR text for new instances only
       [boulch]
 
