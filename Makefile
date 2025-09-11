@@ -30,12 +30,16 @@ lint: ## Run pre-commit hooks
 
 .PHONY: solr
 solr: ## Start solr container (foreground)
-	sudo chmod -R 777 solr
+	@if [ -d solr ] && [ "$$(stat -c %a solr)" != "777" ]; then \
+		sudo chmod -R 777 solr; \
+	fi
 	docker compose up solr
 
 .PHONY: solr-background
 solr-background: ## Start solr container (background)
-	sudo chmod -R 777 solr
+	@if [ -d solr ] && [ "$$(stat -c %a solr)" != "777" ]; then \
+		sudo chmod -R 777 solr; \
+	fi
 	docker compose up solr -d
 
 .PHONY: solr-cluster
