@@ -1,6 +1,11 @@
 1.5.3 (unreleased)
 ------------------
 
+- imio.smartweb.policy 1.2.11
+
+    - Add upgrade step to set allowed_groups to login to Plone from Keycloak groups.
+      [bsuttor]
+
 - pas.plugins.kimug 1.3.0
 
     - Skip OIDC settings configuration when Plone site or OIDC plugin is unavailable
