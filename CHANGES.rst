@@ -1,4 +1,4 @@
-1.5.4 (unreleased)
+1.5.4 (2025-09-30)
 ------------------
 
 - Do not get imio.smartweb.core from sources
