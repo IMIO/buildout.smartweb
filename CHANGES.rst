@@ -1,7 +1,8 @@
 1.5.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Do not get imio.smartweb.core from sources
+  [remdub]
 
 
 1.5.3 (2025-09-30)
