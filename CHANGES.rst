@@ -1,6 +1,11 @@
 1.5.3 (unreleased)
 ------------------
 
+- pas.plugins.kimug 1.3.1
+
+    - Do not gave administrator role for users in group iA.Smartweb.
+      [bsuttor]
+
 - imio.smartweb.policy 1.2.11
 
     - Add upgrade step to set allowed_groups to login to Plone from Keycloak groups.
