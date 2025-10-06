@@ -1,7 +1,30 @@
 1.5.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.4.14
+
+    - SUP-47150 : Fix a bug in event section when a specific category is set
+      [boulch]
+
+    - SUP-46788: Update React query to fetch up to 50 images for a single news item
+      [boulch]
+
+    - WEB-3838: Move header actions to burger menu under 991px width
+      [thomlamb]
+
+    - WEB-4306: Improve Select2: display initial items without requiring user input
+      [boulch]
+
+    - WEB-4306: Timestamped publications section : added live filtering of terms
+      [boulch]
+
+- imio.smartweb.common 1.2.38
+
+    - @find : Process None value in a field or ["None", "other value"] for agatha stats
+      [boulch]
+
+    - Add plone.app.caching include for futur proofing override
+      [jchandelle]
 
 
 1.5.4 (2025-09-30)
