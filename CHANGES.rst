@@ -1,7 +1,10 @@
 1.5.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.4.15
+
+    - Fix a bug in event section when a specific category is set (again)
+      [boulch]
 
 
 1.5.5 (2025-10-06)
