@@ -1,7 +1,10 @@
 1.5.7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.4.16
+
+    - SUP-47150 : local_category are often in str but previously (04f9a0a) we met a dict : we'll have to dig !
+      [boulch]
 
 
 1.5.6-quick (2025-10-07)
