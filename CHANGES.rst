@@ -1,7 +1,8 @@
 1.5.8 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Migrate to plone 6.1.3
+  [boulch]
 
 
 1.5.7 (2025-10-20)
