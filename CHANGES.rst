@@ -1,6 +1,17 @@
 1.5.8 (unreleased)
 ------------------
 
+- imio.smartweb.core 1.4.17
+
+    - WEB-4216 : Hide herobanner on accessibility and gdpr "page"
+      [boulch]
+
+    - Migrate to Plone 6.1.3
+      [boulch]
+
+    - WEB-4302 : Add square scale for lead image in section contact
+      [thomlamb]
+
 - imio.smartweb.common 1.2.39
 
     - Migration to Plone 6.1.3
