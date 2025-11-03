@@ -1,6 +1,11 @@
 1.5.8 (unreleased)
 ------------------
 
+- imio.smartweb.common 1.2.39
+
+    - Migration to Plone 6.1.3
+      [boulch]
+
 - Migrate to plone 6.1.3
   [boulch]
 
