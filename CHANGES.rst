@@ -1,7 +1,19 @@
 1.5.9 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- pas.plugins.kimug 1.4.0
+
+    - Upgrade dev environment to Plone 6.1.3
+      [remdub]
+
+    - WEB-4322 : Override views related to user management
+      We no longer create or modify users in Plone
+      This is now handled by Keycloak
+      [remdub]
+
+    - Remove deprecated methods related to redirect uris
+      We are not using those methods anymore since 1.3.0
+      [remdub]
 
 
 1.5.8 (2025-11-03)
