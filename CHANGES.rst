@@ -1,6 +1,12 @@
 1.5.9 (unreleased)
 ------------------
 
+- imio.smartweb.common 1.2.40
+
+    - Catch Exception on geocoding to avoid blocking content creation
+      if geopy service is down
+      [remdub]
+
 - pas.plugins.kimug 1.4.0
 
     - Upgrade dev environment to Plone 6.1.3
