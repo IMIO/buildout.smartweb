@@ -1,6 +1,11 @@
 1.5.10 (unreleased)
 -------------------
 
+- imio.smartweb.policy 1.2.13
+
+    - WEB-4325 : Uninstall unused / problematic plone.patternslib
+      [boulch]
+
 - imio.smartweb.policy 1.2.12
 
     - WEB-4325 : Return to a previous version of plone.patternslib (9.9.16). (Avoid an issue with plone.patternslib 9.10.3.1
