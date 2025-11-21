@@ -1,7 +1,22 @@
 1.5.11 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.locales 1.1.34
+
+    - Add some new (fr, de, nl) translations (i.a.)
+      [boulch]
+
+    - Update translations
+      [boulch]
+
+    - WEB-4323: Add translations for warning message when a content could not be geocoded
+      [remdub]
+
+    - Add some new translations (seo pages)
+      [boulch]
+
+    - Update translations
+      [boulch]
 
 
 1.5.10 (2025-11-13)
