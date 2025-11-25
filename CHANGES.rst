@@ -1,6 +1,11 @@
 1.5.11 (unreleased)
 -------------------
 
+- pas.plugins.kimug 1.4.1
+
+    - WEB-4331 : Set Allowed Groups with environment variable
+      [remdub]
+
 - imio.smartweb.locales 1.1.34
 
     - Add some new (fr, de, nl) translations (i.a.)
