@@ -1,6 +1,39 @@
 1.5.11 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.4.19
+
+    - IAK-77 : IPA : Fix ia categorize if section text is empty
+      [thomlamb]
+
+    - IAK-77 : IPA : Add ia omnia icon and styles
+      [thomlamb]
+
+    - IAK-77 : IPA : Add new header to js queries (html_snippet_widget.pt)
+      [boulch]
+
+    - IAK-77 : IPA : Add new header to queries + some Refactoring
+      [boulch]
+
+- imio.smartweb.core 1.4.18
+
+    - IPA : endpoints, categorization helping, titles proposal generation
+      [boulch]
+
+    - IPA : Add new bundle to manage I.A. js
+      [boulch]
+
+- imio.smartweb.common 1.2.41
+
+    - IAK-77 : IPA : Change icon with omnia set
+      [thomlamb]
+
+    - IAK-77 : IPA : Add new header to queries + some Refactoring
+      [boulch]
+
+    - IAK-77 : IPA : Add IA buttons to TinyMCE + fix payload
+      [boulch]
+
 - pas.plugins.kimug 1.4.1
 
     - WEB-4331 : Set Allowed Groups with environment variable
