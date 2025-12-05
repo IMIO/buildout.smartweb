@@ -1,7 +1,15 @@
 1.5.12 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.4.20
+
+    - WEB-4334 : IPA : Disable IA categorization button if section text is empty or missing to prevent errors
+      [thomlamb]
+
+- imio.smartweb.locales 1.1.35
+
+    - Add some new (fr, de, nl) translations (i.a.)
+      [thomlamb]
 
 
 1.5.11 (2025-11-30)
