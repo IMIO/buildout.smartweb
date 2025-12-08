@@ -1,7 +1,7 @@
 1.5.13 (unreleased)
 -------------------
 
-- imio.smartweb.core (unreleased)
+- imio.smartweb.core 1.4.21
 
     - WEB-4336 : Remove hop-by-hop headers and content-encoding when forwarding requests to authentic sources 
       [remdub]
