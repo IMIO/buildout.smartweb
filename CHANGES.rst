@@ -1,7 +1,10 @@
 1.5.14 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.4.22
+
+    - WEB-4334 : IPA : Fix error when new page is created.
+      [thomlamb]
 
 
 1.5.13 (2025-12-08)
