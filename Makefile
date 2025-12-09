@@ -28,6 +28,10 @@ upgrade-steps: ## Run upgrade steps
 lint: ## Run pre-commit hooks
 	uvx pre-commit run --all
 
+.PHONY: release
+release: ## Run full release with uvx zest.releaser
+	uvx --from zest.releaser fullrelease
+
 .PHONY: solr
 solr: ## Start solr container (foreground)
 	@if [ -d solr ] && [ "$$(stat -c %a solr)" != "777" ]; then \
