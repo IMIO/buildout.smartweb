@@ -1,7 +1,10 @@
 1.5.15 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- pas.plugins.kimug 1.4.2
+
+  - Set administrator role for users in group iA.Smartweb-admin with an imio address.
+    [bsuttor]
 
 
 1.5.14-quick (2025-12-09)
