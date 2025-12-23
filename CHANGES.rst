@@ -1,7 +1,10 @@
 1.5.16 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.4.23
+    
+    - Improve migration from cpskin.core (Plone4) to smartweb (Plone6)
+      [boulch]
 
 
 1.5.15 (2025-12-10)
