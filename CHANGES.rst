@@ -1,7 +1,15 @@
 1.5.17 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.policy 1.2.14
+
+    - WEB-4332 : Update i-am folder links on startup when the environment variable HOSTNAME_HOST changes
+      [remdub]
+
+- imio.smartweb.locales 1.1.36
+
+    - SUP-49098 : correct spelling "de" translation
+      [boulch]
 
 
 1.5.16 (2025-12-23)
