@@ -1,6 +1,28 @@
 1.5.18 (unreleased)
 -------------------
 
+- imio.smartweb.common 1.2.43
+
+    - OIA-109 : Refactor "CategorizeContent" feature from imio.smartweb.core to imio.smartweb.common
+      [boulch]
+
+    - OIA-109 : Refactor "suggested titles" feature from imio.smartweb.core to imio.smartweb.common
+      Use it as a behavior <element value="imio.smartweb.ia.titles"/> (instead of plone.basic)
+      [boulch]
+
+- imio.smartweb.common 1.2.42
+
+    - Add a new type of request in @find endpoint
+      [boulch]
+
+- imio.smartweb.core 1.4.24
+
+    - OIA-109 : Refactor "CategorizeContent" feature from imio.smartweb.core to imio.smartweb.common
+      [boulch]
+
+    - WEB-4338 : 1. Fix specfic events/news/publications staying in choice field in edit mode
+      [boulch]
+
 - imio.smartweb.policy 1.2.15
 
   - WEB-4332 (fix) : Use WEBSITE_HOSTNAME instead of HOSTNAME_HOST to update i-am folder links on startup
