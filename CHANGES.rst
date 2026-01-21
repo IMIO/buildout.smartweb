@@ -1,7 +1,10 @@
 1.5.18 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.policy 1.2.15
+
+  - WEB-4332 (fix) : Use WEBSITE_HOSTNAME instead of HOSTNAME_HOST to update i-am folder links on startup
+    [remdub]
 
 
 1.5.17 (2026-01-13)
@@ -22,7 +25,7 @@
 -------------------
 
 - imio.smartweb.core 1.4.23
-    
+
     - Improve migration from cpskin.core (Plone4) to smartweb (Plone6)
       [boulch]
 
