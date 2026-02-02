@@ -1,7 +1,23 @@
 1.5.19 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.locales 1.1.37
+
+    - Add/update some translations for sticky menu choice and ia categorization
+      [boulch]
+
+    - Update translations
+      [boulch]
+
+- imio.smartweb.common 1.2.44
+
+    - Change french text to (default) english
+      [boulch]
+
+- imio.smartweb.core 1.4.25
+
+    - Add sticky menu option to control panel and js/css
+      [thomlamb]
 
 
 1.5.18 (2026-01-21)
