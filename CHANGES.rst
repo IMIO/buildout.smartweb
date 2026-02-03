@@ -1,6 +1,11 @@
 1.5.19 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.4.26
+
+    - Fix sticky menu transition issue
+      [thomlamb]
+
 - imio.smartweb.locales 1.1.37
 
     - Add/update some translations for sticky menu choice and ia categorization
