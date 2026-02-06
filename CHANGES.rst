@@ -1,7 +1,10 @@
 1.5.20 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.4.27
+
+    - CITIBDC-510 : Better collection portal_types attributes Filtrering + update cateogies labels (naming clearer)
+      [boulch]
 
 
 1.5.19 (2026-02-03)
