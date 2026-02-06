@@ -1,6 +1,11 @@
 1.5.20 (unreleased)
 -------------------
 
+- imio.smartweb.policy 1.2.16
+
+    - WEB-4308 : Update (default) accessibilty text
+      [boulch]
+
 - imio.smartweb.core 1.4.27
 
     - CITIBDC-510 : Better collection portal_types attributes Filtrering + update cateogies labels (naming clearer)
