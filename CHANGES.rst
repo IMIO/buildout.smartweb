@@ -7,6 +7,19 @@
 1.5.20 (2026-02-08)
 -------------------
 
+- imio.smartweb.core 1.4.28
+
+    - Add icon to section edit bar and improve section edit style
+      [thomlamb]
+
+- imio.smartweb.locales 1.1.38
+
+    - Add/update some translations for edit menu
+      [thomlamb]
+
+    - Update translations
+      [thomlamb]
+
 - imio.smartweb.policy 1.2.16
 
     - WEB-4308 : Update (default) accessibilty text
