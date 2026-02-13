@@ -7,6 +7,9 @@
 1.5.20 (2026-02-08)
 -------------------
 
+- Add CLAUDE.md
+  [thomlamb]
+
 - imio.smartweb.core 1.4.29
 
     - Fix edit menu style and name
