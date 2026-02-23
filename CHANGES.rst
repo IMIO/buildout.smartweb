@@ -7,6 +7,19 @@
 1.5.20 (2026-02-08)
 -------------------
 
+- imio.smartweb.core 1.4.30
+
+    - Fix i18n for back to main site link in minisite header
+      [thomlamb]
+
+    - WEB-4366 : Fix incorrect/random? entity retrieval from cache and add warning message
+      [boulch]
+
+- imio.smartweb.locales 1.1.40
+
+    - Add/update some translations for minisite link
+      [thomlamb]
+
 - Add CLAUDE.md
   [thomlamb]
 
