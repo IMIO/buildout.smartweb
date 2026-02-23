@@ -1,12 +1,6 @@
 1.5.21 (unreleased)
 -------------------
 
-- Nothing changed yet.
-
-
-1.5.20 (2026-02-08)
--------------------
-
 - imio.smartweb.core 1.4.30
 
     - Fix i18n for back to main site link in minisite header
@@ -45,6 +39,10 @@
 
     - Update translations
       [thomlamb]
+
+
+1.5.20 (2026-02-08)
+-------------------
 
 - imio.smartweb.policy 1.2.16
 
