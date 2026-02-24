@@ -1,7 +1,10 @@
 1.5.22 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.coàre 1.4.31
+
+    - UNDO RAM caching to @search endpoint - too many side effects
+      [boulch]
 
 
 1.5.21 (2026-02-23)
