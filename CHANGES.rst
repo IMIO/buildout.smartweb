@@ -1,7 +1,16 @@
 1.5.23 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.4.32
+
+    - CITIBDC-461 : Flatten folders containing a single page when it is set as the default view
+      [boulch]
+
+    - Adding an interface to indicate that we are in a migration context
+      [boulch]
+
+    - WEB-3495 : Improve minisite logo accessibility label
+      [thomlamb]
 
 
 1.5.22-quick (2026-02-24)
