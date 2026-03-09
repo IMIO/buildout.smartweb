@@ -5,205 +5,95 @@ disable-model-invocation: true
 argument-hint: [plone-version]
 ---
 
+# Purpose
+
+You are a specialist in Python, Plone, and buildout-based deployments.
+
+Your goal is to safely update this repository to the requested Plone version.
+
 # Target version
 
-The requested Plone version is: `$ARGUMENTS`.
+Use `$ARGUMENTS` as the target Plone version when provided.
 
-If `$ARGUMENTS` contains a semantic version such as `6.1.4`,
-use it as the target Plone version.
-
-If `$ARGUMENTS` contains `latest` or `<major>-latest`,
-determine the most recent stable Plone release available at:
+If `$ARGUMENTS` is `latest` or `<major>-latest`, resolve it from:
 
 https://dist.plone.org/release/
 
-If `$ARGUMENTS` is empty, extract the version from the user request.
-
-If no version can be determined, ask the user to specify one.
-
----
-
-# Purpose
-
-You are a specialist in Python, Plone, and deployment using buildout.
-
-Your goal is to safely update a buildout-based Plone project to a target
-Plone version using the official Plone release artifacts.
-
----
-
-# When to use
-
-Use this skill when:
-
-- the user wants to update a buildout-based project to a newer Plone version
-- the user wants to verify whether a Plone version exists
-- the user wants to align project dependencies with the official requirements of a Plone release
-
----
-
-# Input recognition
-
-Recognize Plone version numbers in semantic version format, including:
-
-- stable releases: `6.0`, `6.1.4`
-- pre-releases: `6.2.0a1`
-- special requests: `latest`, `6.2-latest`
-
-If the command contains a version number such as `/plone-update 6.1.4`,
-treat that value as the target Plone version.
-
----
+If no target version can be determined, ask the user to specify one.
 
 # Instructions
 
-## 1. Determine the target version
+1. Determine the target Plone version.
+   Priority:
+   - `$ARGUMENTS`
+   - version mentioned in the user request
 
-Determine the target Plone version using the following priority:
+2. Verify that the target version exists at:
+   - `https://dist.plone.org/release/<VERSION>/`
+   If it does not exist, stop and explain.
 
-1. `$ARGUMENTS`
-2. version mentioned in the user request
-3. ask the user if no version can be determined
+3. Use official Plone release artifacts as the source of truth.
+   Prefer:
+   - `https://dist.plone.org/release/<VERSION>/requirements.txt`
+   - `https://dist.plone.org/release/<VERSION>/versions.cfg`
 
----
+4. Update root dependency files in the repository root:
+   - `requirements.txt`
+   - `constraints.txt`
 
-## 2. Verify the release exists
+   In `requirements.txt`, if a line matches:
+   - `-r https://dist.plone.org/release/<OLD_VERSION>/requirements.txt`
 
-Use the official Plone release source:
-
-https://dist.plone.org/release/
-
-Check whether the requested version exists.
-
-If it does not exist:
-- inform the user
-- stop the process
-
-Never invent or guess a version.
-
----
-
-## 3. Inspect official release artifacts
-
-If the version exists:
-
-Inspect the files available in the release directory and only rely on
-artifacts that actually exist.
-
-Preferred dependency sources:
-
-1. `requirements.txt`
-2. `versions.cfg`
-
-Extract package names and pinned versions from these files.
-
----
-
-## 4. Compare with project dependencies
-
-Compare the official dependencies with the project's current dependencies.
-
-Identify:
-
-- packages to add
-- packages to update
-- packages already aligned
-
-Do not remove project-specific dependencies unless explicitly requested.
-
----
-
-## 5. Validate before applying changes
-
-Before modifying files, confirm:
-
-- the detected current Plone version
-- the target Plone version
-- the files that will be modified
-
-Proceed only if the update is safe.
-
----
-
-## 6. Update buildout configuration
-
-Update buildout configuration files such as:
-
-- `base.cfg`
-- `buildout.cfg`
-- `PloneX.X.cfg`
-
-Update references to the Plone release URLs:
-
-- `https://dist.plone.org/release/<VERSION>/versions.cfg`
-- `https://dist.plone.org/release/<VERSION>/`
-
-Replace the existing version with the target Plone version.
-
-Preserve all unrelated configuration values.
-
----
-
-## 7. Update local packages
-
-In the `src/` directory, inspect packages whose name starts with:
-
-- `imio.smartweb`
-- `imio.directory`
-- `imio.news`
-- `imio.event`
-
-For each matching package:
-
-1. If it contains configuration files referencing Plone release URLs,
-   update those references using the same target Plone version.
-
-2. If it contains a `requirements.txt` file:
-
-   a. Update Plone release includes.
-
-   Detect lines matching:
-
-   -r https://dist.plone.org/release/<VERSION>/requirements.txt
-
-   Replace the version with the target Plone version.
+   replace only `<OLD_VERSION>` with the target version.
 
    Example:
-
-   -r https://dist.plone.org/release/6.1.3/requirements.txt
+   - `-r https://dist.plone.org/release/6.1.3/requirements.txt`
    becomes
-   -r https://dist.plone.org/release/6.1.4/requirements.txt
+   - `-r https://dist.plone.org/release/6.1.4/requirements.txt`
 
-   Only replace the version segment and preserve the rest of the line.
+5. Update buildout configuration files such as:
+   - `buildout.cfg`
+   - `base.cfg`
+   - `Plone*.cfg`
 
-   b. Compare package pins with the official dependency versions from the
-   target Plone release and update matching dependencies.
+   Update Plone release URLs such as:
+   - `https://dist.plone.org/release/<VERSION>/versions.cfg`
+   - `https://dist.plone.org/release/<VERSION>/`
 
-   c. Preserve project-specific dependencies unless explicitly asked to remove them.
+   Replace only the version part and preserve unrelated configuration.
 
-3. If it contains other dependency files that clearly pin Plone-related packages,
-   update those pins only when they correspond to official release dependencies.
+6. Inspect packages under `src/` whose name starts with:
+   - `imio.smartweb`
+   - `imio.directory`
+   - `imio.news`
+   - `imio.event`
 
----
+   For each matching package:
 
-## 8. Produce the final report
+   - update any `.cfg` file referencing a Plone release URL
+   - if a `requirements.txt` file exists and contains:
+     - `-r https://dist.plone.org/release/<OLD_VERSION>/requirements.txt`
+     replace only `<OLD_VERSION>` with the target version
+   - if explicit dependency pins clearly match official Plone release dependencies, update those pins too
+   - preserve package-specific extra dependencies unless explicitly asked to remove them
 
-Provide a clear result including:
+7. Before applying changes, confirm:
+   - detected current Plone version
+   - target Plone version
+   - files to be modified
 
-- the requested Plone version
-- confirmation that the version exists
-- the official source used
-- the list of dependency changes
-- files modified
-- any ambiguity or missing data preventing a safe update
-
----
+8. Produce a final report including:
+   - current version
+   - target version
+   - whether the target exists
+   - files modified
+   - dependency changes
+   - anything ambiguous or skipped
 
 # Rules
 
-- Use official Plone release artifacts as the single source of truth.
-- Never invent dependency versions.
-- Prefer exact pinned versions from official release files.
+- Use only official Plone release artifacts as the source of truth.
+- Never invent versions or dependency pins.
+- Only replace the version segment in Plone release URLs.
 - Do not modify unrelated configuration values.
-- Do not remove package-specific dependencies unless explicitly requested.
-- If official release data is incomplete, clearly explain the limitation.
+- Do not remove project-specific dependencies unless explicitly requested.
