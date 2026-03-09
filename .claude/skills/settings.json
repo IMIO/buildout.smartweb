@@ -1,0 +1,8 @@
+{
+  "_comment": "Allow Plone release metadata fetch for plone-update skill",
+  "permissions": {
+    "network": {
+      "allow": ["dist.plone.org"]
+    }
+  }
+}
