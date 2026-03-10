@@ -1,6 +1,14 @@
 1.5.23 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.4.33
+
+    - Improve search modale for mobile
+      [thomlamb]
+
+    - CITIBDC-461 : Creating a template to have better view on the move_single_page view
+      [boulch]
+
 - imio.smartweb.core 1.4.32
 
     - CITIBDC-461 : Flatten folders containing a single page when it is set as the default view
@@ -16,7 +24,7 @@
 1.5.22-quick (2026-02-24)
 -------------------------
 
-- imio.smartweb.coàre 1.4.31
+- imio.smartweb.core 1.4.31
 
     - UNDO RAM caching to @search endpoint - too many side effects
       [boulch]
