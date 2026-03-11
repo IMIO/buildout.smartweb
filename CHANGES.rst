@@ -1,7 +1,8 @@
 1.5.24 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Upgrade buildout to Plone 6.1.4
+  [boulch]
 
 
 1.5.23 (2026-03-10)
