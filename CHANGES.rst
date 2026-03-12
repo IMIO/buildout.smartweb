@@ -1,6 +1,20 @@
 1.5.24 (unreleased)
 -------------------
 
+- imio.smartweb.common 1.2.46
+
+    - WEB-4373 : Send JWT Bearer token in all Omnia/IPA API requests
+      [remdub]
+
+    - OIA-118 : Consuming the make_accessible endpoint in TinyMCE
+      [boulch]
+
+    - WEB-4366 : Add entity_uid to ignored params for search-filters endpoint to avoid catalog warning
+      [boulch]
+
+    - CITIBDC-507 : Don't send data to ODWB when in preprod environment
+      [remdub]
+
 - Upgrade buildout to Plone 6.1.4
   [boulch]
 
