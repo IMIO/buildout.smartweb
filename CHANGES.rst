@@ -1,6 +1,20 @@
 1.5.24 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.4.34
+
+    - WEB-4366 : Refactor caching with more specialized endpoints to avoid incorrect/random? entity/newsfolders retrieval from cache
+      [boulch]
+
+    - Fix React add button position and style
+      [thomlamb]
+
+    - WEB-4371 : Fix issue with ogptags viewlet
+      [boulch]
+
+    - Migrate to Plone 6.1.4
+      [boulch]
+
 - imio.smartweb.common 1.2.46
 
     - WEB-4373 : Send JWT Bearer token in all Omnia/IPA API requests
