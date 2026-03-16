@@ -32,6 +32,11 @@
 - Upgrade buildout to Plone 6.1.4
   [boulch]
 
+- imio.smartweb.locales 1.1.41
+
+    - Add/update some translations for section warning
+      [thomlamb]
+
 
 1.5.23 (2026-03-10)
 -------------------
