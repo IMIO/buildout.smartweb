@@ -1,7 +1,10 @@
 1.5.25 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.4.35
+
+    - GISR-19 : Remove wca_token from query parameters when forwarding requests to authentic sources
+      [remdub]
 
 
 1.5.24 (2026-03-16)
