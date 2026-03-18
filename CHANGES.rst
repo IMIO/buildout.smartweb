@@ -1,7 +1,10 @@
 1.5.26 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.4.36
+
+    - GISR-19 : Forward Authorization header from original request when forwarding requests to authentic sources
+      [remdub]
 
 
 1.5.25-quick (2026-03-17)
