@@ -1,6 +1,11 @@
 1.5.26 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.4.37
+
+    - GISR-19 : Forward Authorization header from original request when forwarding requests to authentic sources - again
+      [remdub]
+
 - imio.smartweb.core 1.4.36
 
     - GISR-19 : Forward Authorization header from original request when forwarding requests to authentic sources
