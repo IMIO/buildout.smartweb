@@ -1,7 +1,10 @@
 1.5.27 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.4.38
+
+    - Add custom scale for section text
+      [thomlamb]
 
 
 1.5.26 (2026-03-18)
