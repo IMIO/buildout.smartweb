@@ -52,7 +52,7 @@ In `/srv/instances/buildout.smartweb/CHANGES.rst`, insert a new block under the 
 
 ```
 
-If there is already a `- {package_name}` block in the unreleased section, replace it entirely.
+If there is already a `- {package_name}` block in the unreleased section, add the new block as a new entry above that package, ensuring proper indentation.
 
 ### 6. Commit
 ```bash
