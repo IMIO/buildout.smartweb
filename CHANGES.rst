@@ -1,6 +1,11 @@
 1.5.27 (unreleased)
 -------------------
 
+- pas.plugins.kimug 1.4.3
+
+    - DEVOPS-339 : Fix ConflictError when multiple Zope instances start simultaneously and commit OIDC settings
+      [remdub]
+
 - imio.smartweb.core 1.4.38
 
     - Add custom scale for section text
