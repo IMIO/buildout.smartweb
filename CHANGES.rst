@@ -6,6 +6,27 @@
     - DEVOPS-339 : Fix ConflictError when multiple Zope instances start simultaneously and commit OIDC settings
       [remdub]
 
+- imio.smartweb.common 1.2.49
+
+    - OIA-109 : OMNIA : Add custom logo for TinyMCE IA Accessible button
+      [thomlamb]
+
+- imio.smartweb.common 1.2.48
+
+    - WEB-3859 :  "Instance-level cached" statics vocabularies
+      [boulch]
+
+    - Migrate to Plone 6.1.4
+      [boulch]
+
+    - OIA-109 : OMNIA : Improve handling of "Not enough content to categorize" message for imio.directory.Contact
+      [boulch]
+
+- imio.smartweb.common 1.2.47
+
+    - OIA-109 : OMNIA : Add some fields to check to be able to "CategorizeContent" with imio.directory.Contact
+      [boulch]
+
 - imio.smartweb.core 1.4.38
 
     - Add custom scale for section text
