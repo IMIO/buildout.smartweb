@@ -1,6 +1,11 @@
 1.5.27 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.4.39
+
+    - SUP-52025 : Ensure we retrieve all imio.news.NewsFolder from entity
+      [boulch]
+
 - pas.plugins.kimug 1.4.3
 
     - DEVOPS-339 : Fix ConflictError when multiple Zope instances start simultaneously and commit OIDC settings
