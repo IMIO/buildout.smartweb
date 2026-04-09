@@ -1,7 +1,10 @@
 1.5.28 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.locales 1.1.42
+
+    - Update translation for sections text scale
+      [thomlamb]
 
 
 1.5.27 (2026-04-07)
