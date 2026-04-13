@@ -1,6 +1,11 @@
 1.5.28 (unreleased)
 -------------------
 
+- imio.smartweb.common 1.2.50
+
+    - WEB-4367 : Add avif to allowed image types
+      [thomlamb]
+
 - imio.smartweb.locales 1.1.42
 
     - Update translation for sections text scale
