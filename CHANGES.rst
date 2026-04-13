@@ -1,6 +1,25 @@
 1.5.28 (unreleased)
 -------------------
 
+- imio.smartweb.policy 1.2.17
+
+    - WEB-4352 : Switch portal timezone from UTC to Europe/Brussels, available timezones to Europe/Brussels and first weekday to monday
+      [boulch]
+
+    - Migrate to Plone 6.1.4
+      [boulch]
+
+- imio.smartweb.core 1.4.40
+
+    - Add possibility to set a custom scale for section text lead image
+      [thomlamb]
+
+    - Add possibility to set center title in page
+      [thomlamb]
+
+    - WEB-4353 : Align React view with Europe/Brussels timezone for agenda
+      [boulch]
+
 - imio.smartweb.common 1.2.50
 
     - WEB-4367 : Add avif to allowed image types
