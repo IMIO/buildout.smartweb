@@ -1,7 +1,10 @@
 1.5.29 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.4.41
+
+    - Fixed a bug where section text lead image in SVG format failed to display. The issue occurred because the system searched for a specific image scale that is not generated for SVG files.
+      [thomlamb]
 
 
 1.5.28 (2026-04-13)
