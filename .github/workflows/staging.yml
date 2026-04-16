@@ -5,6 +5,7 @@ on:
       - main
     tags:
       - '!**'
+  workflow_dispatch:
 env:
   IMAGE_NAME: 'web/smartweb/mutual'
   REGISTRY_URL: ${{ secrets.HARBOR_URL }}
