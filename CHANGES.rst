@@ -1,7 +1,11 @@
 1.5.30 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.common 1.2.51
+
+    - WEB-4404 : Fix ``ban_physicalpath``: fall back to ``HTTP_HOST`` when ``X-Forwarded-Host``
+      is absent (direct Varnish → Plone topology). Add tests for ``caching.py``.
+      [rdubois]
 
 
 1.5.29-quick (2026-04-15)
