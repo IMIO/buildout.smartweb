@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - dev
+      - feat/add-ci-trivy
   pull_request:
   schedule:
     - cron: '0 4 * * 1'  # Every Monday at 04:00 UTC
