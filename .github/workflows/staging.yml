@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - feat/add-ci-trivy
     tags:
       - '!**'
   workflow_dispatch:
