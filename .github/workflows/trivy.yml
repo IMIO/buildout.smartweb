@@ -1,0 +1,41 @@
+name: Trivy security scan
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+  pull_request:
+  schedule:
+    - cron: '0 4 * * 1'  # Every Monday at 04:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  trivy-fs:
+    name: Filesystem scan
+    runs-on: gha-runners-smartweb
+    steps:
+      - uses: IMIO/gha/trivy-scan-notify@feat/trivy
+        with:
+          SCAN_TYPE: fs
+          SCAN_REF: .
+          EXIT_CODE: '0'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MATTERMOST_WEBHOOK_URL: ${{ secrets.SMARTWEB_MATTERMOST_WEBHOOK_URL }}
+          UPLOAD_SARIF: 'false'
+
+  trivy-iac:
+    name: IaC / config scan
+    runs-on: gha-runners-smartweb
+    steps:
+      - uses: IMIO/gha/trivy-scan-notify@feat/trivy
+        with:
+          SCAN_TYPE: config
+          SCAN_REF: .
+          EXIT_CODE: '0'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MATTERMOST_WEBHOOK_URL: ${{ secrets.SMARTWEB_MATTERMOST_WEBHOOK_URL }}
+          UPLOAD_SARIF: 'false'
