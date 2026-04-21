@@ -24,6 +24,7 @@ jobs:
           SCAN_TYPE: fs
           SCAN_REF: .
           EXIT_CODE: '0'
+          TRIVYIGNORES: ''
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           MATTERMOST_WEBHOOK_URL: ${{ secrets.SMARTWEB_MATTERMOST_WEBHOOK_URL }}
           UPLOAD_SARIF: 'false'
@@ -37,6 +38,7 @@ jobs:
           SCAN_TYPE: config
           SCAN_REF: .
           EXIT_CODE: '0'
+          TRIVYIGNORES: ''
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           MATTERMOST_WEBHOOK_URL: ${{ secrets.SMARTWEB_MATTERMOST_WEBHOOK_URL }}
           UPLOAD_SARIF: 'false'
