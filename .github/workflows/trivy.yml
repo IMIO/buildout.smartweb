@@ -31,8 +31,8 @@ jobs:
         run: |
           {
             echo 'IMAGE_TAGS<<EOF'
-            echo '${{ env.REGISTRY_URL }}/${{ env.IMAGE_NAME }}:trivy-cron-'
-            echo '${{ env.REGISTRY_URL }}/${{ env.IMAGE_NAME }}:trivy-cron-${{ github.run_number }}'
+            echo '${{ env.REGISTRY_URL }}/${{ env.IMAGE_NAME }}:trivy'
+            echo '${{ env.REGISTRY_URL }}/${{ env.IMAGE_NAME }}:trivy-${{ github.run_number }}'
             echo EOF
           } >> $GITHUB_ENV
       - name: Build push and notify
@@ -52,7 +52,7 @@ jobs:
       - uses: IMIO/gha/trivy-scan-notify@v7
         with:
           SCAN_TYPE: image
-          IMAGE_REF: ${{ secrets.HARBOR_URL }}/web/smartweb/mutual:trivy-cron
+          IMAGE_REF: ${{ secrets.HARBOR_URL }}/web/smartweb/mutual:trivy
           EXIT_CODE: '0'
           TRIVYIGNORES: ''
           TRIVY_USERNAME: ${{ secrets.SMARTWEB_HARBOR_USERNAME }}
