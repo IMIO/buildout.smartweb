@@ -1,6 +1,23 @@
 1.5.30 (unreleased)
 -------------------
 
+- imio.smartweb.common 1.2.52
+
+    - Add timeouts for requests
+      [boulch]
+
+    - Add _has_children_of_type filter to search_from_json
+      [boulch]
+
+    - Use WEBSITE_HOSTNAME env var as Host header for BAN requests, falling back to portal.absolute_url() netloc.
+      Adapt tests accordingly.
+      [remdub]
+
+- imio.smartweb.core 1.4.42
+
+    - SUP-52025 : Ensure we retrieve all imio.news.NewsFolder from entity
+      [boulch]
+
 - imio.smartweb.common 1.2.51
 
     - WEB-4404 : Fix ``ban_physicalpath``: fall back to ``HTTP_HOST`` when ``X-Forwarded-Host``
