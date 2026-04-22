@@ -13,6 +13,7 @@ on:
 
 permissions:
   contents: read
+  security-events: write
 
 jobs:
   trivy-fs:
@@ -27,7 +28,7 @@ jobs:
           TRIVYIGNORES: ''
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           MATTERMOST_WEBHOOK_URL: ${{ secrets.SMARTWEB_MATTERMOST_WEBHOOK_URL }}
-          UPLOAD_SARIF: 'false'
+          UPLOAD_SARIF: 'true'
 
   trivy-iac:
     name: IaC / config scan
@@ -41,4 +42,4 @@ jobs:
           TRIVYIGNORES: ''
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           MATTERMOST_WEBHOOK_URL: ${{ secrets.SMARTWEB_MATTERMOST_WEBHOOK_URL }}
-          UPLOAD_SARIF: 'false'
+          UPLOAD_SARIF: 'true'

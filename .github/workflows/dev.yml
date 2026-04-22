@@ -12,6 +12,7 @@ env:
 
 permissions:
   contents: read
+  security-events: write
 
 jobs:
   build-push:
@@ -35,9 +36,25 @@ jobs:
           REGISTRY_USERNAME: ${{ secrets.SMARTWEB_HARBOR_USERNAME }}
           REGISTRY_PASSWORD: ${{ secrets.SMARTWEB_HARBOR_PASSWORD }}
           MATTERMOST_WEBHOOK_URL: ${{ secrets.SMARTWEB_MATTERMOST_WEBHOOK_URL }}
-  deploy:
+  trivy-image:
+    name: Image scan
     runs-on: gha-runners-smartweb
     needs: build-push
+    steps:
+      - uses: IMIO/gha/trivy-scan-notify@feat/trivy
+        with:
+          SCAN_TYPE: image
+          IMAGE_REF: ${{ secrets.HARBOR_URL }}/web/smartweb/mutual:staging
+          EXIT_CODE: '0'
+          TRIVYIGNORES: ''
+          TRIVY_USERNAME: ${{ secrets.SMARTWEB_HARBOR_USERNAME }}
+          TRIVY_PASSWORD: ${{ secrets.SMARTWEB_HARBOR_PASSWORD }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MATTERMOST_WEBHOOK_URL: ${{ secrets.SMARTWEB_MATTERMOST_WEBHOOK_URL }}
+          UPLOAD_SARIF: 'true'
+  deploy:
+    runs-on: gha-runners-smartweb
+    needs: trivy-image
     steps:
       - name: Deploy to dev and notify
         uses: IMIO/gha/rundeck-notify@v6
