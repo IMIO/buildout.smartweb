@@ -5,6 +5,9 @@ on:
   schedule:
     - cron: '0 4 * * 1'  # Every Monday at 04:00 UTC
   workflow_dispatch:
+env:
+  IMAGE_NAME: 'web/smartweb/mutual'
+  REGISTRY_URL: ${{ secrets.HARBOR_URL }}
 
 permissions:
   contents: read
