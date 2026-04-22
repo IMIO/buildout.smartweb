@@ -1,12 +1,9 @@
 ---
-version: "2.4"
 volumes:
   smartweb-postgres:
 services:
   instance:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: harbor.imio.be/web/smartweb/mutual:latest
     ports:
       - "8080:8080"
     links:
@@ -15,24 +12,29 @@ services:
       - postgres
       - solr
     volumes:
-      - ./zodbconvert.cfg:/plone/zodbconvert.cfg
+      - ./var/blobstorage:/data/blobstorage
     environment:
       - MEMCACHE_SERVER=172.17.0.1
       - MEMCACHE_DEFAULT_AGE=10800
       - ENV=dev
       - CACHING_SERVERS=varnish.staging.imio.be:5000
       - DOMAINS=localhost
-      - RELSTORAGE_DB=zope
-      - RELSTORAGE_USER=zope
-      - RELSTORAGE_PASSWORD=zope
+      # - RELSTORAGE_DB=zope
+      # - RELSTORAGE_USER=zope
+      # - RELSTORAGE_PASSWORD=zope
       - RELSTORAGE_HOSTNAME=db
       - RELSTORAGE_PORT=5432
       - ZODB_CACHE_SIZE=30000
+      # - PROJECT_ID=demo_smartweb
+      - RELSTORAGE_DB=smartweb_demo
+      - RELSTORAGE_PASSWORD=b2V5btpdKtMbEFlm
+      - RELSTORAGE_USER=smartweb_demo
       - ZEO_CLIENT_CACHE_SIZE=256MB
-      - PROJECT_ID=test
+      - PROJECT_ID=belleville-ac
       - PLONE_EXTENSION_IDS=plone.app.caching:default,plonetheme.barceloneta:default,imio.smartweb.policy:default
       - DEFAULT_LANGUAGE=fr
       - ACTIVE_BIGBANG=True
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
       - COLLECTIVE_SOLR_HOST=solr
       - COLLECTIVE_SOLR_PORT=8983
       - COLLECTIVE_SOLR_BASE=/solr/web
@@ -44,17 +46,24 @@ services:
       - consumer_secret_agents=bfb6e1e6-a6e1-48fe-a44c-9cab652bb0db
       - authentic_usagers_hostname=usagers.staging.imio.be
       - authentic_agents_hostname=agents.staging.imio.be
+      - application_id=${application_id:-}
+      - keycloak_url=${keycloak_url:-}
+      - keycloak_realm=${keycloak_realm:-}
+      - keycloak_client_id=${keycloak_client_id:-}
+      - keycloak_client_secret=${keycloak_client_secret:-}
+      - keycloak_issuer=${keycloak_issuer:-}
+      - WEBSITE_HOSTNAME=${WEBSITE_HOSTNAME:-portal.localhost}
 
     healthcheck:
       test: ["CMD", "nc", "-z", "-w5", "127.0.0.1", "8080"]
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.instance.rule=Host(`portal.localhost`)"
-      - "traefik.http.services.instance.loadbalancer.server.port=8080"
-      - "traefik.http.routers.instance.middlewares=add-plone"
-      - "traefik.http.middlewares.add-plone.addprefix.prefix=/VirtualHostBase/http/portal.localhost:8080/Plone/VirtualHostRoot"
+      - traefik.enable=true
+      - traefik.http.routers.instance.rule=Host(`portal.localhost`)
+      - traefik.http.services.instance.loadbalancer.server.port=8080
+      - traefik.http.routers.instance.middlewares=add-plone
+      - traefik.http.middlewares.add-plone.addprefix.prefix=/VirtualHostBase/http/portal.localhost/Plone/VirtualHostRoot
   reverse-proxy:
-    image: traefik:v2.4
+    image: traefik:v3.6
     command: --api.insecure=true --providers.docker
     ports:
       - "80:80" # The HTTP port
@@ -62,13 +71,14 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can listen to the Docker events
   postgres:
-    image: postgres:14.2
+    image: postgres:17.6
     environment:
-      - POSTGRES_DB=zope
-      - POSTGRES_USER=zope
-      - POSTGRES_PASSWORD=zope
+      - POSTGRES_DB=smartweb_demo
+      - POSTGRES_USER=smartweb_demo
+      - POSTGRES_PASSWORD=b2V5btpdKtMbEFlm
     volumes:
       - smartweb-postgres:/var/lib/postgresql/data
+      - ./var/postgres-initdb:/docker-entrypoint-initdb.d:ro
   memcached:
     image: memcached:1.5.20
     command:
