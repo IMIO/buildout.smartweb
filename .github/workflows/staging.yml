@@ -69,7 +69,7 @@ jobs:
           IGNORE_UNFIXED: 'false'
   deploy:
     runs-on: gha-runners-smartweb
-    needs: trivy-image
+    needs: [trivy-image, trivy-fs]
     steps:
       - name: Deploy to staging and notify
         uses: IMIO/gha/rundeck-notify@v7

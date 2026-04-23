@@ -55,7 +55,7 @@ jobs:
       - uses: IMIO/gha/trivy-scan-notify@v7
         with:
           SCAN_TYPE: image
-          IMAGE_REF: ${{ secrets.HARBOR_URL }}/web/smartweb/mutual:trivy
+          IMAGE_REF: ${{ secrets.HARBOR_URL }}/web/smartweb/mutual:trivy-${{ github.run_number }}
           EXIT_CODE: '0'
           TRIVYIGNORES: ''
           TRIVY_USERNAME: ${{ secrets.SMARTWEB_HARBOR_USERNAME }}
