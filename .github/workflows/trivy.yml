@@ -16,8 +16,14 @@ jobs:
   trivy-fs:
     name: Filesystem scan
     runs-on: gha-runners-smartweb
+    outputs:
+      critical: ${{ steps.trivy.outputs.critical }}
+      high: ${{ steps.trivy.outputs.high }}
+      json_file: ${{ steps.trivy.outputs.json_file }}
+      artifact_name: ${{ steps.trivy.outputs.artifact_name }}
     steps:
-      - uses: IMIO/gha/trivy-scan-notify@v7
+      - id: trivy
+        uses: IMIO/gha/trivy-scan-notify@v7
         with:
           SCAN_TYPE: fs
           SCAN_REF: .
@@ -51,8 +57,14 @@ jobs:
     name: Image scan
     runs-on: gha-runners-smartweb
     needs: build-push
+    outputs:
+      critical: ${{ steps.trivy.outputs.critical }}
+      high: ${{ steps.trivy.outputs.high }}
+      json_file: ${{ steps.trivy.outputs.json_file }}
+      artifact_name: ${{ steps.trivy.outputs.artifact_name }}
     steps:
-      - uses: IMIO/gha/trivy-scan-notify@v7
+      - id: trivy
+        uses: IMIO/gha/trivy-scan-notify@v7
         with:
           SCAN_TYPE: image
           IMAGE_REF: ${{ secrets.HARBOR_URL }}/web/smartweb/mutual:trivy-${{ github.run_number }}
@@ -64,3 +76,53 @@ jobs:
           MATTERMOST_WEBHOOK_URL: ${{ secrets.SMARTWEB_MATTERMOST_WEBHOOK_URL }}
           UPLOAD_SARIF: 'true'
           IGNORE_UNFIXED: 'false'
+
+  trivy-claude-fs:
+    name: Claude advisory analysis (fs)
+    needs: trivy-fs
+    if: needs.trivy-fs.outputs.critical > 0 || needs.trivy-fs.outputs.high > 0
+    environment: security-review
+    runs-on: gha-runners-smartweb
+    permissions:
+      contents: read
+    steps:
+      - id: app-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ secrets.ADVISORY_APP_ID }}
+          private-key: ${{ secrets.ADVISORY_APP_SECRET }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: ${{ needs.trivy-fs.outputs.artifact_name }}
+      - uses: IMIO/gha/trivy-claude-analysis@v7
+        with:
+          JSON_FILE: ${{ needs.trivy-fs.outputs.json_file }}
+          SCAN_TYPE: fs
+          TARGET: .
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+
+  trivy-claude-image:
+    name: Claude advisory analysis (image)
+    needs: trivy-image
+    if: needs.trivy-image.outputs.critical > 0 || needs.trivy-image.outputs.high > 0
+    environment: security-review
+    runs-on: gha-runners-smartweb
+    permissions:
+      contents: read
+    steps:
+      - id: app-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ secrets.ADVISORY_APP_ID }}
+          private-key: ${{ secrets.ADVISORY_APP_SECRET }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: ${{ needs.trivy-image.outputs.artifact_name }}
+      - uses: IMIO/gha/trivy-claude-analysis@v7
+        with:
+          JSON_FILE: ${{ needs.trivy-image.outputs.json_file }}
+          SCAN_TYPE: image
+          TARGET: ${{ secrets.HARBOR_URL }}/web/smartweb/mutual:trivy-${{ github.run_number }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
