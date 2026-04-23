@@ -26,6 +26,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           MATTERMOST_WEBHOOK_URL: ${{ secrets.SMARTWEB_MATTERMOST_WEBHOOK_URL }}
           UPLOAD_SARIF: 'true'
+          IGNORE_UNFIXED: 'false'
   build-push:
     runs-on: gha-runners-smartweb
     steps:
@@ -62,3 +63,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           MATTERMOST_WEBHOOK_URL: ${{ secrets.SMARTWEB_MATTERMOST_WEBHOOK_URL }}
           UPLOAD_SARIF: 'true'
+          IGNORE_UNFIXED: 'false'
