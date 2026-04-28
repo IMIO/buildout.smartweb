@@ -1,7 +1,13 @@
 1.5.32 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.4.44
+
+    - SUP-52828 : Normalize naive start/end dates to Europe/Brussels timezone for event creation
+      [boulch]
+
+    - WEB-4422: Refactoring, remove some useless method, adapt tests
+      [boulch]
 
 
 1.5.31 (2026-04-27)
