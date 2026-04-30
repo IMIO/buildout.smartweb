@@ -17,6 +17,8 @@ SECTION_TYPES = [
     "imio.smartweb.SectionTimestampedPublications",
 ]
 
+BATCH_SIZE = 100
+
 brains = app.Plone.portal_catalog(portal_type=SECTION_TYPES)
 total_brains = len(brains)
 cleaned = []
@@ -32,6 +34,9 @@ for i, brain in enumerate(brains, 1):
         logger.info(f"[{i}/{total_brains}] REMOVED   {brain.getPath()} — {entries} entries, ~{size_kb} KB")
     else:
         logger.info(f"[{i}/{total_brains}] ok        {brain.getPath()}")
+    if i % BATCH_SIZE == 0:
+        transaction.commit()
+        logger.info(f"Intermediate commit after {i} sections")
 
 transaction.commit()
 
