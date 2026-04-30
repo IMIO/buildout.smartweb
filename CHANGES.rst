@@ -1,7 +1,8 @@
 1.5.33 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- WEB-4414 : Add ``scripts/clean_jsons_annotations.py`` to remove accumulated debug JSONS annotations from contact/events/news/publications sections.
+  [remdub]
 
 
 1.5.32 (2026-04-28)
