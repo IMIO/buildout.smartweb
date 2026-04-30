@@ -1,5 +1,14 @@
-from zope.annotation.interfaces import IAnnotations
+import logging
+import sys
 import transaction
+from zope.annotation.interfaces import IAnnotations
+
+logger = logging.getLogger("clean_jsons_annotations")
+logger.setLevel(logging.INFO)
+logger.propagate = False
+handler = logging.StreamHandler(sys.stdout)
+handler.setFormatter(logging.Formatter("%(asctime)s %(levelname)s %(name)s %(message)s"))
+logger.addHandler(handler)
 
 SECTION_TYPES = [
     "imio.smartweb.SectionContact",
@@ -20,17 +29,15 @@ for i, brain in enumerate(brains, 1):
         size_kb = sum(len(str(item)) for item in ann["JSONS"]) // 1024
         del ann["JSONS"]
         cleaned.append((brain.getPath(), entries, size_kb))
-        print(f"[{i}/{total_brains}] REMOVED   {brain.getPath()} — {entries} entries, ~{size_kb} KB")
+        logger.info(f"[{i}/{total_brains}] REMOVED   {brain.getPath()} — {entries} entries, ~{size_kb} KB")
     else:
-        print(f"[{i}/{total_brains}] ok        {brain.getPath()}")
+        logger.info(f"[{i}/{total_brains}] ok        {brain.getPath()}")
 
 transaction.commit()
 
-print("\n=== Summary ===")
-print(f"Sections scanned       : {total_brains}")
-print(f"Annotations removed    : {len(cleaned)}")
-print(f"Total space freed      : ~{sum(s for _, _, s in cleaned)} KB")
-if cleaned:
-    print("\nDetails:")
-    for path, entries, size_kb in cleaned:
-        print(f"  {path} ({entries} entries, ~{size_kb} KB)")
+logger.info("=== Summary ===")
+logger.info(f"Sections scanned       : {total_brains}")
+logger.info(f"Annotations removed    : {len(cleaned)}")
+logger.info(f"Total space freed      : ~{sum(s for _, _, s in cleaned)} KB")
+for path, entries, size_kb in cleaned:
+    logger.info(f"  {path} ({entries} entries, ~{size_kb} KB)")
