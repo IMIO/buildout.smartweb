@@ -1,6 +1,11 @@
 1.5.34 (unreleased)
 -------------------
 
+- pas.plugins.oidc 2.0.0+imio2
+
+    - WEB-4365: Add french translation
+      [remdub]
+
 - imio.smartweb.policy 1.2.18
 
     - CITI-15 : Add upgrade step to clean TS api URL in registry to keep only base URL.
