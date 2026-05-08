@@ -1,6 +1,11 @@
 1.5.34 (unreleased)
 -------------------
 
+- imio.smartweb.policy 1.2.18
+
+    - CITI-15 : Add upgrade step to clean TS api URL in registry to keep only base URL.
+      [remdub]
+
 - imio.smartweb.core 1.4.45
 
     - WEB-4418: Filter search results by published state for contacts, events and news in smartweb-search webcomponent
