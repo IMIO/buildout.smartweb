@@ -19,16 +19,12 @@ services:
       - ENV=dev
       - CACHING_SERVERS=varnish.staging.imio.be:5000
       - DOMAINS=localhost
-      # - RELSTORAGE_DB=zope
-      # - RELSTORAGE_USER=zope
-      # - RELSTORAGE_PASSWORD=zope
       - RELSTORAGE_HOSTNAME=db
       - RELSTORAGE_PORT=5432
       - ZODB_CACHE_SIZE=30000
-      # - PROJECT_ID=demo_smartweb
-      - RELSTORAGE_DB=smartweb_demo
-      - RELSTORAGE_PASSWORD=[REDACTED]
-      - RELSTORAGE_USER=smartweb_demo
+      - RELSTORAGE_DB=${RELSTORAGE_DB:-smartweb_demo}
+      - RELSTORAGE_PASSWORD=${RELSTORAGE_PASSWORD}
+      - RELSTORAGE_USER=${RELSTORAGE_USER:-smartweb_demo}
       - ZEO_CLIENT_CACHE_SIZE=256MB
       - PROJECT_ID=belleville-ac
       - PLONE_EXTENSION_IDS=plone.app.caching:default,plonetheme.barceloneta:default,imio.smartweb.policy:default
@@ -42,8 +38,8 @@ services:
       - COLLECTIVE_SOLR_PASSWORD=SolrRocks
       - service_ou=0841470248
       - service_slug=local-iasmartweb
-      - consumer_key_agents=[REDACTED]
-      - consumer_secret_agents=[REDACTED]
+      - consumer_key_agents=${consumer_key_agents}
+      - consumer_secret_agents=${consumer_secret_agents}
       - authentic_usagers_hostname=usagers.staging.imio.be
       - authentic_agents_hostname=agents.staging.imio.be
       - application_id=${application_id:-}
@@ -73,9 +69,9 @@ services:
   postgres:
     image: postgres:17.6
     environment:
-      - POSTGRES_DB=smartweb_demo
-      - POSTGRES_USER=smartweb_demo
-      - POSTGRES_PASSWORD=[REDACTED]
+      - POSTGRES_DB=${RELSTORAGE_DB:-smartweb_demo}
+      - POSTGRES_USER=${RELSTORAGE_USER:-smartweb_demo}
+      - POSTGRES_PASSWORD=${RELSTORAGE_PASSWORD}
     volumes:
       - smartweb-postgres:/var/lib/postgresql/data
       - ./var/postgres-initdb:/docker-entrypoint-initdb.d:ro
