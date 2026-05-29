@@ -1,6 +1,23 @@
 1.5.34 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.4.46
+
+    - Fix : Preserve folder image when moving single page out of folder
+      [boulch]
+
+    - Add view to report complete/incomplete SectionSelections after migration
+      [boulch]
+
+    - Add dump_site_catalog view to export the site tree as streaming JSON
+      [boulch]
+
+    - Add post-migration view to reindex related_quickaccess
+      [boulch]
+
+    - Fix image blob cloning in migration import
+      [boulch]
+
 - pas.plugins.oidc 2.0.0+imio2
 
     - WEB-4365: Add french translation
