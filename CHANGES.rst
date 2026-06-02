@@ -1,6 +1,13 @@
 1.5.35 (unreleased)
 -------------------
 
+- pas.plugins.kimug 1.5.2
+
+    - ``get_keycloak_users_from_oidc_sso_apps`` now includes SSO apps users that are
+      missing optional fields: missing email is filled as ``{username}@kimug.be``;
+      missing first and last name are filled as the username and ``sso-apps`` respectively.
+      [remdub]
+
 - pas.plugins.kimug 1.5.1
 
     - Add upgrade step (1002→1003) that registers the `oidc_sso_apps` plugin, applies OIDC settings, and syncs SSO Apps users from Keycloak into Plone on existing instances.
