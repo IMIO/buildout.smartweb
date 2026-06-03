@@ -1,7 +1,10 @@
 1.5.36 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- pas.plugins.kimug 1.5.3
+
+  - Add ``is_log_active`` utility function to check if plugin logging is enabled via the registry.
+    [remdub]
 
 
 1.5.35 (2026-06-03)
