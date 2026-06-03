@@ -1,6 +1,16 @@
 1.5.35 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.2.54
+
+    - CITIBDC-585: Register topics as a Collection criterion
+      [boulch]
+
+- imio.smartweb.core 1.2.53
+
+    - WEB-4423 : Use RateLimiter in geocode_object to respect Nominatim's 1 req/s policy and catch GeocoderRateLimited so bulk imports are not aborted on 429.
+      [remdub]
+
 - pas.plugins.kimug 1.5.2
 
     - ``get_keycloak_users_from_oidc_sso_apps`` now includes SSO apps users that are
