@@ -1,6 +1,11 @@
 1.5.36 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.4.47
+
+  - Add view to fix some (fr) urls after migration
+    [boulch]
+
 - pas.plugins.kimug 1.5.4
 
   - Set log level to info for pas.plugins.kimug logger
@@ -15,12 +20,12 @@
 1.5.35 (2026-06-03)
 -------------------
 
-- imio.smartweb.core 1.2.54
+- imio.smartweb.common 1.2.54
 
     - CITIBDC-585: Register topics as a Collection criterion
       [boulch]
 
-- imio.smartweb.core 1.2.53
+- imio.smartweb.common 1.2.53
 
     - WEB-4423 : Use RateLimiter in geocode_object to respect Nominatim's 1 req/s policy and catch GeocoderRateLimited so bulk imports are not aborted on 429.
       [remdub]
