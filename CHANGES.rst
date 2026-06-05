@@ -1,6 +1,14 @@
 1.5.37 (unreleased)
 -------------------
 
+- pas.plugins.kimug 1.6.0
+
+  - Refactor the control panel so SSO applications (apps) settings can be configured easily.
+    [remdub]
+
+  - Fix control panel action buttons (update OIDC settings, sync Keycloak users) being blocked by plone.protect CSRF protection, which aborted the transaction and redirected to the "Confirming User Action" page. The buttons now include a valid `_authenticator` token.
+    [remdub]
+
 - pas.plugins.kimug 1.5.5
 
   - When creating a new user from an `oidc_sso_apps` token, missing `email` is defaulted to `{username}@kimug.be` and missing `firstName`/`lastName` are defaulted to `{username}` / `"sso-apps"`.
