@@ -1,6 +1,17 @@
 1.5.37 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.4.48
+
+    - WEB-4437 : Make faceted collections batch size respect collection's item_count field
+      [boulch]
+
+    - Remove fixing image dimensions detection (width/height=-1) during (LIEGE) migration imports To be reimplemented for future migrations
+      [boulch]
+
+    - WEB-4427 : Fix a bug when whole_day for only 1 day
+      [boulch]
+
 - pas.plugins.kimug 1.6.0
 
   - Refactor the control panel so SSO applications (apps) settings can be configured easily.
