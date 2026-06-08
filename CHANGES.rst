@@ -17,6 +17,11 @@
     - WEB-4427 : Fix a bug when whole_day for only 1 day
       [boulch]
 
+- pas.plugins.kimug 1.6.1
+
+  - Make the `oidc` plugin handle the interactive login challenge instead of `oidc_sso_apps`. The `oidc_sso_apps` plugin is now removed from `IChallengePlugin` (it only validates Bearer tokens), and upgrade step 1004→1005 fixes already-installed sites.
+    [remdub]
+
 - pas.plugins.kimug 1.6.0
 
   - Refactor the control panel so SSO applications (apps) settings can be configured easily.
