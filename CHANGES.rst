@@ -1,6 +1,11 @@
 1.5.37 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.4.49
+
+    - feat(rest): add /ok health-check shortcut on @directory/events/news_request_forwarder endpoints (returns local {"status": "ok"} without forwarding to authentic source)
+      [bsuttor]
+
 - imio.smartweb.core 1.4.48
 
     - WEB-4437 : Make faceted collections batch size respect collection's item_count field
