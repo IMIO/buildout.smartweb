@@ -1,6 +1,11 @@
 1.5.38 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.4.50
+
+    - WEB-4442 : imio.smartweb.SectionCollection : Increase maximum number of batches to display to 20
+      [boulch]
+
 - pas.plugins.kimug 1.6.3
 
     - Fix auto-created SSO users having no email or name: `_ensure_user_exists` was reading Keycloak Admin-API field names (`username`, `firstName`, `lastName`, `id`) from the JWT, but tokens carry OIDC claim names (`preferred_username`, `given_name`, `family_name`, `sub`). User properties are now populated from the correct claims, and the `{username}@kimug.be` fallback works again.
