@@ -1,6 +1,17 @@
 1.5.38 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.4.51
+
+    - Add post-migration view to move inline images out of SectionText rich text into a SectionGallery
+      [boulch]
+
+    - WEB-4434 : Add more class for improved sub-menu et move arian menu position
+      [thomlamb]
+
+    - fix(rest): avoid HTTP 500 on directory contact "view" pages when the remote @search by UID returns no items (stale/deleted contact UID hit directly by a crawler or shared link). DirectoryViewView.contact now returns None instead of raising AttributeError (masked as LocationError), and the SEO fallback block is only rendered when a contact is present.
+      [boulch]
+
 - imio.smartweb.core 1.4.50
 
     - WEB-4442 : imio.smartweb.SectionCollection : Increase maximum number of batches to display to 20
