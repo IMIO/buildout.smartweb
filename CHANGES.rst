@@ -6,6 +6,23 @@
     - WEB-4442 : imio.smartweb.SectionCollection : Increase maximum number of batches to display to 20
       [boulch]
 
+- pas.plugins.kimug 1.7.0
+
+    - Remove pas.plugins.imio and authentic plugin
+      [remdub]
+
+    - Restrict the SSO-apps user sync to members of an organisation-specific municipality group: `get_keycloak_users_from_oidc_sso_apps` now only imports access-group members that also belong to one of the groups listed in the `SSO_APPS_MUNICIPALITY_GROUPS` environment variable (e.g. `[pl_belleville_ac]`). When the variable is unset, all access-group members are imported as before. 
+      [remdub]
+
+    - Browser view (with run and dry-run buttons in the control panel) and thin `scripts/set_sso_apps_permissions.py` runscript to set roles on authentic sources from sso apps. 
+      [remdub]
+
+    - Fix sticky `403 Forbidden` on token authentication: the JWKS signing-key client was a single class-level cache shared by both the `oidc` and `sso-apps` realms. A request would receive a client built for the other realm, whose `kid` is never in the cached keyset, forcing a live JWKS refetch on essentially every request. That fetch storm could trip the Keycloak proxy's rate-limiter into returning 403, and PyJWT clearing its keyset cache on each failed fetch kept it failing until a restart. JWKS clients are now cached per realm. 
+      [remdub]
+
+    - Add a per-realm JWKS failure backoff: after a failed signing-key fetch, further fetches for that realm are skipped for a short cooldown, so a transient 403 from the Keycloak proxy can no longer become a self-sustaining retry storm. Authentication for the realm recovers automatically once the endpoint is healthy again, without a restart.
+      [remdub]
+
 - pas.plugins.kimug 1.6.3
 
     - Fix auto-created SSO users having no email or name: `_ensure_user_exists` was reading Keycloak Admin-API field names (`username`, `firstName`, `lastName`, `id`) from the JWT, but tokens carry OIDC claim names (`preferred_username`, `given_name`, `family_name`, `sub`). User properties are now populated from the correct claims, and the `{username}@kimug.be` fallback works again.
