@@ -1,6 +1,11 @@
 1.5.39 (unreleased)
 -------------------
 
+- pas.plugins.kimug 1.7.2
+
+    - Add reviewer roles to sso-apps users
+      [remdub]
+
 - pas.plugins.kimug 1.7.1
 
     - Send an explicit `User-Agent` header when fetching Keycloak's JWKS: PyJWT's
