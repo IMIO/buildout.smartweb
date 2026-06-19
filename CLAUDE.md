@@ -32,7 +32,7 @@ Checked out via mr.developer. The core SmartWeb packages:
 - **imio.smartweb.policy** — Site policy (GenericSetup profiles, dependencies)
 - **imio.smartweb.locales** — i18n translations
 
-Supporting packages: `collective.pivot`, `collective.preventactions`, `collective.upgrade`, `pas.plugins.imio`, `pas.plugins.kimug`, `plone.formwidget.geolocation`
+Supporting packages: `collective.pivot`, `collective.preventactions`, `collective.upgrade`, `pas.plugins.kimug`, `plone.formwidget.geolocation`
 
 ## Testing
 

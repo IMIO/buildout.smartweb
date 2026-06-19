@@ -1,6 +1,9 @@
 1.5.39 (unreleased)
 -------------------
 
+- KEYC-77: Remove pas.plugins.imio from dependencies
+  [remdub]
+
 - pas.plugins.kimug 1.7.2
 
     - Add reviewer roles to sso-apps users
