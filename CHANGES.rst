@@ -1,7 +1,9 @@
 1.5.40 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Security fixes in plone.app.contenttypes, plone.app.dexterity, plone.app.event,
+  plone.app.portlets, RestrictedPython, plone.app.textfield, plone.restapi
+  [remdub]
 
 
 1.5.39 (2026-06-23)
