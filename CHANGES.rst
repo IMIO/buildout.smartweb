@@ -1,5 +1,5 @@
-1.5.40 (unreleased)
--------------------
+1.5.40-quick (2026-06-23)
+-------------------------
 
 - Security fixes in plone.app.contenttypes, plone.app.dexterity, plone.app.event,
   plone.app.portlets, RestrictedPython, plone.app.textfield, plone.restapi
