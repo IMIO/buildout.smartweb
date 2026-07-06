@@ -1,12 +1,12 @@
-FROM harbor.imio.be/common/plone-base:6.1.4 AS builder
+FROM harbor.imio.be/common/plone-base:6.1.5-buildout5 AS builder
 
 LABEL maintainer="Benoît Suttor <benoit.suttor@imio.be>"
-ENV PIP=25.3 \
-  ZC_BUILDOUT=4.1.12 \
-  SETUPTOOLS=80.9.0 \
-  WHEEL=0.45.1 \
+ENV PIP=26.1.2 \
+  ZC_BUILDOUT=5.2.0 \
+  SETUPTOOLS=81.0.0 \
+  WHEEL=0.47.0 \
   PLONE_MAJOR=6.1 \
-  PLONE_VERSION=6.1.4 \
+  PLONE_VERSION=6.1.5 \
   PY_SPY=0.4.0
 
 # hadolint ignore=DL3008
@@ -40,13 +40,13 @@ COPY --chown=imio scripts /plone/scripts
 RUN su -c "buildout -c prod.cfg -t 30 -N" -s /bin/sh imio
 
 
-FROM harbor.imio.be/common/plone-base:6.1.4
-ENV PIP=25.3 \
-  ZC_BUILDOUT=4.1.12 \
-  SETUPTOOLS=80.9.0 \
-  WHEEL=0.45.1 \
+FROM harbor.imio.be/common/plone-base:6.1.5-buildout5
+ENV PIP=26.1.2 \
+  ZC_BUILDOUT=5.2.0 \
+  SETUPTOOLS=81.0.0 \
+  WHEEL=0.47.0 \
   PLONE_MAJOR=6.1 \
-  PLONE_VERSION=6.1.4 \
+  PLONE_VERSION=6.1.5 \
   HOSTNAME_HOST=local \
   PROJECT_ID=smartweb \
   PLONE_EXTENSION_IDS=plone.app.caching:default,plonetheme.barceloneta:default,imio.smartweb.policy:default \

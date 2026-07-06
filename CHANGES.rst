@@ -1,7 +1,8 @@
 1.5.41 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Update to Plone 6.1.5 and buidlout 5-x versions.
+  [bsuttor]
 
 
 1.5.40-quick (2026-06-23)
