@@ -79,3 +79,19 @@ jobs:
           RUNDECK_JOB_ID: ${{ secrets.RUNDECK_DEPLOY_STAGING_JOB_ID }}
           RUNDECK_PARAMETERS: '-X POST'
           MATTERMOST_WEBHOOK_URL: ${{ secrets.SMARTWEB_MATTERMOST_WEBHOOK_URL }}
+  deploy-on-k8s:
+    needs: build-push
+    environment: staging
+    runs-on: gha-runners-smartweb
+    steps:
+      - name: Build short SHA
+        run: echo "SHORT_SHA=$(echo ${{ github.sha }} | cut -c1-7)" >> $GITHUB_ENV
+      - name: Update Kubernetes tag
+        uses: IMIO/gha/k8s-update-tag@v5
+        with:
+          TAG: ${{ env.SHORT_SHA }}
+          REPO_TOKEN_NAME: ${{ secrets.SMARTWEB_ARGOCD_TOKEN_NAME }}
+          REPO_ACCESS_TOKEN: ${{ secrets.SMARTWEB_ARGOCD_ACCESS_TOKEN }}
+          REPO_URL: ${{ secrets.SMARTWEB_ARGOCD_REPO_URL }}
+          TARGET_BRANCH: main
+          VALUES_FILE_PATH: staging/common/values.yaml
