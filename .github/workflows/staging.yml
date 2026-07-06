@@ -21,10 +21,12 @@ jobs:
     steps:
       - name: Build tags
         run: |
+          SHORT_SHA=$(echo ${{ github.sha }} | cut -c1-7)
           {
             echo 'IMAGE_TAGS<<EOF'
             echo '${{ env.REGISTRY_URL }}/${{ env.IMAGE_NAME }}:staging'
             echo '${{ env.REGISTRY_URL }}/${{ env.IMAGE_NAME }}:staging-${{ github.run_number }}'
+            echo '${{ env.REGISTRY_URL }}/${{ env.IMAGE_NAME }}:'$SHORT_SHA
             echo EOF
           } >> $GITHUB_ENV
       - name: Build push and notify
