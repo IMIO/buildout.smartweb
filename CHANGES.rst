@@ -1,6 +1,60 @@
 1.5.41 (unreleased)
 -------------------
 
+- imio.smartweb.policy 1.2.19
+
+    - update to Plone 6.1.5 and buidlout 5-x versions
+      [bouch]
+
+    - OIA-106 : Install and use imio.omnia.tinymce
+      [boulch]
+
+- imio.smartweb.core 1.4.53
+
+    - update to Plone 6.1.5 and buidlout 5-x versions
+      [bouch]
+
+    - OIA-106 : Reuse IA categorization views/forms from imio.smartweb.common and
+      remove redundant code in ``browser/ia``.
+      [boulch]
+
+    - Changer Event content title  for sponsors and partners
+      [thomlamb]
+
+- imio.smartweb.common 1.2.56
+
+    - update to Plone 6.1.5 and buidlout 5-x versions
+      [bouch]
+
+    - OIA-106: Remove the legacy IA TinyMCE plugins SELECTIVELY in the 1039->1040
+      upgrade (Python handler) instead of purging the whole ``plone.custom_plugins``
+      list, so plugins appended by other add-ons (e.g. ``omnia`` from
+      imio.omnia.tinymce) are preserved regardless of upgrade ordering.
+      [boulch]
+
+    - OIA-106 : Remove the IA tools from TinyMCE (custom plugins, IA menu and toolbar button),
+      unregister the ``tinymce.js`` resource and drop the now-unused JS files.
+      Upgrade step 1039 -> 1040.
+      [boulch]
+
+    - OIA-106 : Get the IA service URL and authentication from ``imio.omnia.core``
+      (``IOmniaCoreAPIService`` adapter) instead of the local ``IPA_URL`` /
+      ``APPLICATION_ID`` / ``PROJECT_ID`` constants, which are removed from
+      ``config.py``. Impacts the suggested titles / categorization views and the
+      categorization widget.
+      [boulch]
+
+    - OIA-106 : Pre-fill the ``imio.omnia.core`` control panel fields
+      ``application_id`` and ``organization_id`` from the legacy ``application_id``
+      and ``PROJECT_ID`` env vars (on install and via upgrade step 1040 -> 1041),
+      unless already set.
+      [boulch]
+
+    - OIA-106 : Set the ``imio.omnia.core`` control panel default settings
+      (``core_api_url`` and ``enable_proxy``) on install and via upgrade step
+      1041 -> 1042. Configuration moved from ``imio.smartweb.policy``.
+      [boulch]
+
 - Update to Plone 6.1.5 and buidlout 5-x versions.
   [bsuttor]
 
