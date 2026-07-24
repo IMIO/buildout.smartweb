@@ -1,7 +1,13 @@
 1.5.42 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.common 1.2.57
+
+    - Refactor : Move imio.smartweb.vocabulary.ContactBlocks from imio.smartweb.core to imio.smartweb.common (usefull for linked contact in auth sources)
+      [boulch]
+
+    - SUP-53555 : Use schema.TextLine (with validator) instead of schema.Int for zipcode field to avoid an awkward space (ex : 5 300 when editing the field) + upgrade steps
+      [boulch]
 
 
 1.5.41 (2026-07-07)
