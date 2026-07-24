@@ -1,6 +1,34 @@
 1.5.42 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.4.54
+
+    - Add missing translations for React view
+      [thomlamb]
+
+    - Fix "AttributeError" when embedding a removed/unavailable video: guard
+      against "None" oembed responses in the YouTube/Vimeo accessibility overrides
+      so the video section degrades gracefully instead of crashing.
+      [boulch]
+
+    - WEB-4422: Make the events request-forwarder return the same listing as the
+      site: for events listings it delegates to the default events view
+      (``smartweb.default_events_view``), reusing its query (agenda cascade, event
+      types, metadata fields) and response processing, defaults to upcoming events,
+      and forwards the caller's Bearer token to the authentic source.
+      [boulch]
+
+    - SUP-53979: Fix contact map showing all markers on the contact detail view
+      [thomlamb]
+
+    - Refactor : Move imio.smartweb.vocabulary.ContactBlocks from imio.smartweb.core to imio.smartweb.common 
+      (usefull for linked contact in auth sources)
+      [boulch]
+
+    - WEB-4422: Restore ``smartweb_url`` on each item of forwarded listing/search
+      responses (regression since the request-forwarder refactoring).
+      [boulch]
+
 - imio.smartweb.common 1.2.57
 
     - Refactor : Move imio.smartweb.vocabulary.ContactBlocks from imio.smartweb.core to imio.smartweb.common (usefull for linked contact in auth sources)
