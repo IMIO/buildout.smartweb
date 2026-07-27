@@ -1,7 +1,8 @@
 1.5.43 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add make dev and make build in Makefile to launch dev vite server and build react
+  [thomlamb]
 
 
 1.5.42 (2026-07-26)

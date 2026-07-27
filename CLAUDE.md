@@ -6,7 +6,9 @@ Plone 6.1.3 buildout for iMio SmartWeb — a CMS platform for Belgian local auth
 
 ```
 make install          # Create venv, install deps via uv, run buildout
-make start            # Start Zope instance in foreground (also starts Solr)
+make start            # Start Zope instance in foreground (also starts Solr) — serves the built prod React bundle, no VITE_DEV_URL needed
+make dev              # Same as make start, plus a Vite dev server (webcomponents/) for React HMR
+make build            # Build the webcomponents production bundle (npm run build)
 make lint             # Run pre-commit hooks on all files (uvx pre-commit run --all)
 make cleanall         # Remove venv, eggs, bin, parts — full clean rebuild
 make upgrade-steps    # Run pending Plone portal upgrade steps
@@ -14,6 +16,10 @@ make release          # Full release via zest.releaser
 make solr             # Start Solr container (foreground)
 make solr-background  # Start Solr container (background)
 ```
+
+`make dev` sets `VITE_DEV_URL` only for that process, launching `bin/instance fg` and `npm run watch`
+(in `src/imio.smartweb.core/src/imio/smartweb/core/webcomponents`) together so both stop on Ctrl-C. Use it
+when iterating on the React webcomponents; use plain `make start` otherwise.
 
 ## Buildout config layering
 
