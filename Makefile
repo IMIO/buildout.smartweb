@@ -1,4 +1,5 @@
 VENV_FOLDER=.venv
+WEBCOMPONENTS_DIR=src/imio.smartweb.core/src/imio/smartweb/core/webcomponents
 
 ifeq (, $(shell which uv ))
   $(error "[ERROR] The 'uv' command is missing from your PATH. Install it from: https://docs.astral.sh/uv/getting-started/installation/")
@@ -11,10 +12,22 @@ help: ## Display this help message
 .PHONY: install
 install: $(VENV_FOLDER)/bin/buildout .git/hooks/pre-commit ## Install development environment
 	$(VENV_FOLDER)/bin/buildout
+	cd $(WEBCOMPONENTS_DIR) && npm install
 
 .PHONY: start
 start: bin/instance .git/hooks/pre-commit solr-background ## Start the instance
 	bin/instance fg
+
+.PHONY: dev
+dev: bin/instance .git/hooks/pre-commit solr-background $(WEBCOMPONENTS_DIR)/node_modules ## Start the instance + Vite dev server (webcomponents HMR)
+	@trap 'kill 0' EXIT INT TERM; \
+	VITE_DEV_URL=http://localhost:2000 bin/instance fg & \
+	(cd $(WEBCOMPONENTS_DIR) && npm run watch) & \
+	wait
+
+.PHONY: build
+build: $(WEBCOMPONENTS_DIR)/node_modules ## Build the webcomponents production bundle (Vite)
+	cd $(WEBCOMPONENTS_DIR) && npm run build
 
 .PHONY: cleanall
 cleanall: ## Clean development environment
@@ -64,6 +77,9 @@ $(VENV_FOLDER)/bin/buildout: .venv buildout.cfg
 bin/instance: $(VENV_FOLDER)/bin/buildout
 	@echo "Bootstrapping environment with buildout"
 	$(VENV_FOLDER)/bin/buildout
+
+$(WEBCOMPONENTS_DIR)/node_modules:
+	cd $(WEBCOMPONENTS_DIR) && npm install
 
 .git/hooks/pre-commit: .venv
 	@echo "Installing pre-commit hooks"
