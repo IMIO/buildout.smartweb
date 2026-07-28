@@ -1,6 +1,14 @@
 1.5.43 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.4.55
+
+    - Migration : replace webpack by vite for React view
+      [thomlamb]
+
+    - Refactore React class
+      [thomlamb]
+
 - Add make dev and make build in Makefile to launch dev vite server and build react
   [thomlamb]
 
