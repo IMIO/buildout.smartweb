@@ -1,6 +1,20 @@
 1.5.43 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.4.56
+
+    - Fix test isolation for RemoteDirectoryEntities vocabulary
+      [thomlamb]
+
+    - WEB-4345: move message viewlet under main nav and improve style
+      [thomlamb]
+
+    - WEB-4445: move focus to search field in search modale
+      [thomlamb]
+
+    - SUP-52910 Update react translation
+      [thomlamb]
+
 - imio.omnia.core 1.1
 
     - Fix an instance startup crash loop: when every mapped environment variable already matched the registry, 
@@ -23,6 +37,7 @@
     
     - Removed the unused Vite/React scaffold from browser/resources.
       [duchenean]
+
 
 - imio.smartweb.core 1.4.55
 
