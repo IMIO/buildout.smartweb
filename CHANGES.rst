@@ -1,6 +1,22 @@
 1.5.43 (unreleased)
 -------------------
 
+- imio.smartweb.locales 1.1.42 => 1.1.45
+
+    - Add some translations for smartweb instances
+      [boulch]
+
+    - Update translations
+      [boulch]
+
+- imio.smartweb.core 1.4.57
+
+    - WEB-4463 : Allow adding imio.smartweb.SectionTimestampedPublications in imio.smartweb.Procedure
+      [boulch]
+
+    - WEB-4154 : Add description on imio.smartweb.SectionText to warn that this title will not be displayed to the citizen
+      [boulch]
+
 - imio.smartweb.policy 1.2.20
 
     - move message viewlet above banner
