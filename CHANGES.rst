@@ -1,6 +1,25 @@
 1.5.43 (unreleased)
 -------------------
 
+- imio.smartweb.common 1.2.58
+
+    - Remove the ``TokenAuthCoreAPIService`` adapter (WEB-4373 workaround): since
+      imio.omnia.core 1.0 (OIA-241) the Omnia Core API authenticates itself with a
+      Keycloak SSO-Apps token, and authlib overwrites the ``Authorization`` header
+      we injected, so the adapter only spent an extra ``imio.helpers.ws``
+      token round-trip per request. Drops the ``imio.helpers`` dependency and
+      requires ``imio.omnia.core >= 1.0``.
+      [boulch]
+
+    - Cache (per language) the remote directory entities vocabulary for 300s
+      Memoize the German topics and iam vocabularies
+      [boulch]
+
+    - Fix registry export (control panel / GenericSetup) crashing with
+      ``TypeError: Argument must be bytes or unicode, got 'NoneType'`` on
+      interface-aware records without a fieldName (e.g. ``smartweb.icon.*``)
+      [boulch]
+
 - imio.smartweb.locales 1.1.42 => 1.1.45
 
     - Add some translations for smartweb instances
