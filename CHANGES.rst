@@ -1,6 +1,11 @@
 1.5.43 (unreleased)
 -------------------
 
+- imio.omnia.core 1.2
+
+    - Set Plone as the default SITE_ID when not defined
+      [boulch]
+
 - imio.smartweb.common 1.2.58
 
     - Remove the ``TokenAuthCoreAPIService`` adapter (WEB-4373 workaround): since
