@@ -49,7 +49,7 @@
 
 - imio.smartweb.policy 1.2.20
 
-    - move message viewlet above banner
+    - move message viewlet above banner.
       [thomlamb]
 
 - imio.smartweb.core 1.4.56
