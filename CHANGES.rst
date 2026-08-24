@@ -1,7 +1,97 @@
 1.5.44 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.locales 1.1.46
+
+    - Add some translations for smartweb instances
+      [boulch]
+
+    - Update translations
+      [boulch]
+
+- imio.smartweb.core 1.4.58
+
+    - Fix moment.js locale (fr/nl/de) never applying to relative dates
+      [thomlamb]
+
+    - WEB-4461 : Activate the ``imio.smartweb.save_and_publish`` behavior (defined in
+      ``imio.smartweb.common``)
+      [boulch]
+
+    - Scope the agenda to the dates the view shows in every consumer, not just in
+      the React front: ``BaseEventsEndpoint`` falls back to the view's own scope
+      (past when ``only_past_events`` is set, upcoming otherwise) when the caller
+      sends no ``event_dates`` filter. The sitemap sent none and listed every event
+      ever published, oldest first. ``seo_html``'s own copy of the rule, hardcoded
+      to upcoming events, is dropped.
+      [boulch]
+
+    - Add a control-panel setting (Smartweb site admin) to configure, per authentic
+      source, whether it appears in the sitemap and how many items are listed
+      (max 1000). Applies to the HTML and XML sitemaps. Defaults: 50 for the agenda
+      and the news, 200 for the directory. The ordering is not configurable:
+      upcoming events, most recent news, most recently modified contacts.
+      [boulch]
+
+    - Fetch the remote items of a sitemap source page by page (100 at a time) with
+      a time budget, instead of one request for the whole cap: a large ``@search``
+      exceeded the endpoint's 20 s timeout, and ``get_json`` returning ``None``
+      dropped the source from the sitemap altogether. Partial results are now kept.
+      [boulch]
+
+    - Make the ``seo_html`` fallback of the directory, agenda and news views
+      crawlable: its link list sat in a ``<noscript>`` under a
+      ``window.location.href`` redirect, so Googlebot only ever saw the redirect.
+      The redirect is gone, the list is rendered plainly and the page keeps its
+      ``X-Robots-Tag: noindex, follow``. Its entry point is declared in
+      ``sitemap.xml`` only, no longer in the HTML sitemap where a visitor clicking
+      it landed on the fallback instead of the React listing. The six
+      ``... : SEO Links`` msgids become one per source: ``All contacts`` /
+      ``All events`` / ``All news``.
+      [boulch]
+
+    - Align the ``rel="prev"`` / ``rel="next"`` links of ``seo_html`` with the batch
+      the page actually lists: they fell back to a hardcoded ``b_size`` of 10, so
+      crawlers walked a 100-item page in 10-item steps.
+      [boulch]
+
+    - Reserve the "Delete taxonomy" action of the taxonomy control panel to the
+      Manager role. Site Administrators can still add and edit taxonomies.
+      [boulch]
+
+    - Answer 404 when a news or agenda item page points to a remote
+      item that no longer exists at the authentic source. ``NewsViewView.news`` and
+      ``EventsViewView.event`` formatted the item without checking that it had been
+      found, and the resulting AttributeError surfaced as a server error. Only
+      requests sent without a referer take that path, so the error was mostly
+      served to crawlers following a stale sitemap entry or an indexed URL.
+      ``direct_access`` is now memoized, so that testing the item before rendering
+      does not query the authentic source a second time.
+      [boulch]
+
+    - Guard ``BaseRestView.direct_access`` for a view with no authentic source
+      (campaign view): it would raise UnboundLocalError while building the remote
+      URL. Latent so far, since only the directory, news and agenda templates read
+      that property; the item check added above made it reachable.
+      [boulch]
+
+    - Add timeouts to HTTP calls that had none.
+      The Cirkwi view now degrades to a 504 in place of the widget instead of
+      failing the whole page.
+      [boulch]
+
+    - Never write to the ZODB while rendering a remote section for an anonymous
+      visitor: the modification date is only refreshed for authenticated users.
+      [boulch]
+
+- imio.smartweb.common 1.2.59
+
+    - WEB-4461 : Add a "Save and publish" button on the add and edit forms, enabled per content
+      type through the new ``imio.smartweb.save_and_publish`` behavior. The button is
+      only offered to users who may actually publish: on the add form the workflow
+      guard is checked against the container, so an editor without the publication
+      permission never sees the button
+      [boulch]
 
 
 1.5.43 (2026-08-11)
