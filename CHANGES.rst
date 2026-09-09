@@ -1,6 +1,52 @@
 1.5.46 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.4.60
+
+    - CITIBDC-659: Override languageselector.pt to add bootstrap class for dropdown menu
+      [thomlamb]
+
+    - Fix section-text container max with
+      [thomlamb]
+
+    - Add upgrade step to set col-sm-12 default class
+      [thomlamb]
+
+    - WEB-4469: Add new feature to align section with text.
+      [thomlamb]
+
+    - WIP: WEB-4044: Add feature poc to inline edit text.
+      [thomlamb]
+
+    - SUP-55141 : Directory detail map : same fix for the annuaire. No authentic source change
+      needed there, ``imio.directory`` keeps the coordinates on a UID query
+      [boulch]
+
+    - SUP-55141 : Agenda detail map : center it on the event instead of Brussels when the event
+      page is reached directly. Needs ``imio.events.core`` >= 1.2.57, which stops blanking
+      ``geolocation`` on a UID query
+      [boulch]
+
+    - WEB-4484 : Show ``imio.smartweb.CampaignView`` in the navigation menu: the ideabox
+      profile now adds it to ``plone.displayed_types`` (removed again by
+      ``ideabox_uninstall``), with an upgrade step for existing ideabox sites.
+      [boulch]
+
+- imio.smartweb.common 1.2.60
+
+    - WEBBDC-2790 : Move the remote directory contact vocabulary, the ``Choice``/ajax-select
+      converter, the two proxy views (``@@directory_contact_info`` and
+      ``@@directory_entities_info``) and the contact autofill script here from
+      ``imio.events.core``, so both ``imio.events.core`` and ``imio.news.core`` can share
+      them. ``get_directory_url()`` is now used by every caller, so the
+      ``imio.smartweb.common.directory_url`` registry override is honoured consistently.
+      [boulch]
+
+    - WEB-4485 : Restore the ``plone.content_css`` purge lost in 1.2.29, which let the
+      TinyMCE ``importcss`` plugin re-add the barceloneta ``.highlight-inline`` and
+      ``p.highlight-paragraph`` styles to the Formats menu.
+      [boulch]
+
 - imio.smartweb.locales 1.1.47
 
     - Add translations for section alignment (fr/nl/de)
