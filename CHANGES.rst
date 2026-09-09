@@ -1,7 +1,10 @@
 1.5.46 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.locales 1.1.47
+
+    - Add translations for section alignment (fr/nl/de)
+    [thomlamb]
 
 
 1.5.45 (2026-09-02)
