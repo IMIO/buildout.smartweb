@@ -1,8 +1,12 @@
 1.5.48 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- collective.big.bang 1.2.2
 
+    - Fix upgrade-steps script (and expansion.started) raising TypeError: ('Not enough context information 
+      to get parent', None) on upgrade steps that touch local utilities. The site was never registered via 
+      zope.component.hooks.setSite() before running upgrade steps, unlike create_plone_site. 
+      [bsuttor]
 
 1.5.47 (2026-09-14)
 -------------------
