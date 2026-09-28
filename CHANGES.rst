@@ -1,6 +1,11 @@
 1.5.48 (unreleased)
 -------------------
 
+- imio.smartweb.locales 1.4.48
+
+   - Add translations for portal_actions ticketing
+     [boulch]
+
 - collective.big.bang 1.2.2
 
     - Fix upgrade-steps script (and expansion.started) raising TypeError: ('Not enough context information 
