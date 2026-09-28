@@ -1,6 +1,14 @@
 1.5.48 (unreleased)
 -------------------
 
+- imio.smartweb.core 1.4.62
+
+    - Add the ``@@text_align_container_false`` view. Use this view one time only.
+      It sets ``text_align_container`` to ``False`` on all ``imio.smartweb.Page``
+      and ``imio.smartweb.Procedure`` items. It does not change the sections.
+      Remove previous one shot align_section_to_text view.
+      [boulch]
+
 - imio.smartweb.locales 1.4.48
 
    - Add translations for portal_actions ticketing
