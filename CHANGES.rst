@@ -1,7 +1,13 @@
 1.5.49 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.locales 1.4.49
+
+    - Add translations for portal_actions ticketing
+      [boulch]
+
+    - Update translations
+      [boulch]
 
 
 1.5.48 (2026-09-28)
@@ -26,6 +32,7 @@
       to get parent', None) on upgrade steps that touch local utilities. The site was never registered via 
       zope.component.hooks.setSite() before running upgrade steps, unlike create_plone_site. 
       [bsuttor]
+
 
 1.5.47 (2026-09-14)
 -------------------
