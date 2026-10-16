@@ -1,7 +1,48 @@
 1.5.50 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- pas.plugins.kimug 1.9.5
+
+  - Close the ZODB connection opened by the `set_oidc_settings` startup
+    subscriber. The leaked connection kept its storage read snapshot open, which
+    blocked the `ALTER TABLE object_state` of plone.pgcatalog on zodb-pgjsonb
+    (lock timeout), so the first commit failed with
+    `column "path" of relation "object_state" does not exist`.
+    [remdub]
+
+- pas.plugins.kimug 1.9.4
+
+  - Use a lightweight endpoint for realm_exists method
+    [remdub]
+
+
+- pas.plugins.kimug 1.9.3
+
+  - Fix OIDC login crash when a Keycloak group name collides with an
+    existing Plone user id (e.g. the `imio` IdP-link alias): skip the unmappable
+    group instead of dereferencing `None` in `_create_update_groups`. 
+    [remdub]
+
+
+- pas.plugins.kimug 1.9.2
+
+  - Handle quoted list elements in puppet-rendered group env vars.
+    (erb templates returns us quoted list elements)
+    [remdub]
+
+
+- pas.plugins.kimug 1.9.1
+
+  - Remove deprecated `keycloak_redirect_uris` from the required env vars checked
+    by `varenvs_exist` (dead since 1.3.0, code purged in 1.4.0). 
+    [remdub]
+
+
+- pas.plugins.kimug 1.9.0
+
+  - Make the install-time user migration app-agnostic, driven by the 
+    `application_id` environment variable. 
+    [remdub]
 
 
 1.5.49 (2026-10-04)
