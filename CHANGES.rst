@@ -1,6 +1,17 @@
 1.5.50 (unreleased)
 -------------------
 
+- imio.smartweb.locales 1.1.50
+
+    - Add some translations for smartweb instances
+      [boulch]
+
+    - Update translations
+      [boulch]
+
+    - Colophon: rename ``IMIO`` msgid to ``iMio``
+      [thomlamb]
+
 - imio.smartweb.core 1.4.63
 
     - WEB-4495 : Add the labels of taxonomy terms to ``SearchableText``, for all content types.
