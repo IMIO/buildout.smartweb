@@ -1,7 +1,62 @@
 1.5.51 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.common 1.2.62
+
+  - ODWB : hide the push key in logs (sent url and connection / timeout errors).
+    [remdub]
+
+  - WEB-4404 : Send BAN requests to the caching servers after the transaction
+    commit. A page requested between the BAN and the commit was cached again
+    with the old content (e.g. a message not yet (de)activated).
+    [remdub]
+
+  - WEB-4404 : Add a timeout on BAN requests (``BAN_TIMEOUT``, 5 s) so an
+    unreachable caching server can't block the save. A failing server is logged
+    and the next ones are still banned.
+    [remdub]
+
+- imio.smartweb.common 1.2.61
+
+  - ODWB : add ``odwb_send`` to send items by batches (push or delete) and
+    return a sending summary (service, total, sent, batches).
+    [boulch]
+
+  - Add ``imio.smartweb.common.sso``: ``get_sso_auth_header()`` gives the
+    ``Authorization`` header to call another iMio application. It is a Keycloak
+    (sso-apps) token, kept in cache until it expires, or a basic auth fallback
+    (``SSO_APPS_USER_USERNAME`` / ``SSO_APPS_USER_PASSWORD``) when the SSO config is
+    not complete (local development). Also add ``basic_auth_header()``.
+  - ODWB : add ``odwb_post`` returning ODWB status code and response text
+    (``status_code`` is None when ODWB is unreachable). ``odwb_query`` is unchanged.
+    [boulch]
+
+  - Security: restrict ``@find`` endpoint. Only read catalog columns
+    or dexterity schema fields: field names given by the client are never called
+    anymore (brains acquire from ``portal_catalog``, so any zero-argument method of
+    the object or of the catalog could be triggered) and private names (``_*``)
+    are ignored or rejected.
+    [boulch]
+
+  - @find (type_of_request=catalog): add ``_group_by`` (``ancestor_type`` or
+    ``field``) and ``_aggregate`` (``list``, ``count``, ``distinct_count``)
+    special parameters to group and aggregate catalog results
+    [boulch]
+
+  - Add an AI button below the lead image caption field.
+    The button shows only when the caption field is visible (text sections).
+    The button sends the image to the new ``@@process-image-metadata`` view.
+    The view sends the image to the Omnia ``deduce-metadata`` agent.
+    The button writes the title of the result in the caption field.
+    [boulch]
+
+  - Add an upgrade step (1044 to 1045) to register the ``ia_image_metadata.js``
+    bundle.
+    [boulch]
+
+  - Refactor : Add get_image_file function. This function returns the
+    image of an object in the format of deduce_metadata.
+    [boulch]
 
 
 1.5.50 (2026-10-20)
