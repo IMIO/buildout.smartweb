@@ -1,6 +1,16 @@
 1.5.52 (unreleased)
 -------------------
 
+- collective.messagesviewlet 1.0b5
+
+  - Fix messages disappearing (or appearing) up to 2 hours too early when the
+    server isn't in UTC: the catalog was queried with a naive local "now",
+    which the `start`/`end` DateRecurringIndex reads as UTC
+    [remdub]
+  - `add_message`: default `start` is now computed at call time, in the portal
+    timezone, instead of once at import time
+    [remdub]
+
 - imio.smarteb.policy 1.2.22
 
   - WEB-4404 : Add the ``lastBan`` ETag component (imio.smartweb.common) to
