@@ -1,6 +1,13 @@
 1.5.52 (unreleased)
 -------------------
 
+- imio.smartweb.policy 1.2.23
+
+  - WEB-4404 : Ban the pages showing a message when its start or end date is
+    reached (``tick_fifteen``), so the message appears / disappears without
+    waiting for the cache to expire and browsers don't get a 304.
+    [remdub]
+
 - collective.messagesviewlet 1.0b5
 
   - Fix messages disappearing (or appearing) up to 2 hours too early when the
