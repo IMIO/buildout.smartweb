@@ -1,7 +1,20 @@
 1.5.52 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smarteb.policy 1.2.22
+
+  - WEB-4404 : Add the ``lastBan`` ETag component (imio.smartweb.common) to
+    moderateCaching, terseCaching and weakCaching. Adding a message changes the
+    pages ETag, so browsers get the new page instead of a 304.
+    Requires imio.smartweb.common >= 1.2.63 (upgrade step 1044 to 1045).
+    [remdub]
+
+- imio.smartweb.common 1.2.63
+
+  - WEB-4404 : Add a ``lastBan`` ETag component, the time of the site's last
+    BAN. A BAN (message, footer, hero banner) now changes the pages ETag, so
+    browsers get the new page instead of a 304.
+    [remdub]
 
 
 1.5.51 (2026-10-21)
