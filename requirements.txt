@@ -1,1 +1,9 @@
 -r https://dist.plone.org/release/6.2.1/requirements.txt
+# Plone security advisory 20260831
+plone.autoform==2.0.5
+plone.restapi==9.15.7
+
+# Plone security advisory 20261022
+plone.app.content==4.2.1
+pip==26.2.2
+certifi==2026.10.19
