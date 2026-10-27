@@ -1,6 +1,23 @@
 1.5.52 (unreleased)
 -------------------
 
+- imio.smartweb.locales 1.1.51
+
+    - Add some translations for smartweb instances
+      [boulch]
+
+    - Update translations
+      [boulch]
+
+- imio.smartweb.core 1.4.65
+
+    - Events view : fix the "This weekend" filter. The weekend was Sunday and Monday,
+      not Saturday and Sunday. Cause: the filter used the moment.js locale to find the
+      end of the week. In French, Dutch and German, the week ends on Sunday (not on
+      Saturday as in English), thus the weekend started one day too late.
+      The "This week" filter had the same problem: it stopped on the next Monday.
+      [boulch]
+
 - imio.smartweb.core 1.4.64
 
     - Contact sections : a new contact of the directory is in the list of contacts of the edit
