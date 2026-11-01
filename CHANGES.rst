@@ -1,7 +1,24 @@
 1.5.53 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.core 1.4.66
+
+    - Fix the global search on news and directory: ``@search`` with ``_core`` gave
+      an error 503 (``KeyError: 'container_uid'``). Since plone.restapi 9.15.7, the
+      summary serializer removes the ``metadata_fields`` that are not columns of the
+      local catalog. The fields of the authentic sources Solr cores are now declared
+      as ``non_metadata_attributes``.
+      [boulch]
+
+    - IDBOX-75 : Campaign view : display projects without image (with a placeholder).
+      Before, a single project without image made the whole list of projects empty.
+      [thomlamb]
+
+    - Fix ``index_taxonomy_labels`` upgrade step (1088 to 1089) on sites whose catalog
+      contains entries for missing objects: they are now skipped (with a warning).
+      Before, the upgrade failed, so the next step (SVG icons registry record)
+      never ran and the Smartweb control panel raised a ``KeyError``.
+      [thomlamb]
 
 
 1.5.52 (2026-10-27)
