@@ -1,7 +1,13 @@
 1.5.54 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- imio.smartweb.common 1.2.64
+
+    - WEB-4507 : Fix the ``started_zope`` startup subscriber: commit the resource
+      registry mtime update, which was never saved, so the ``resourceRegistries``
+      ETag changes at each instance restart. Close the ZODB connection it opened,
+      which stayed idle in transaction on PostgreSQL for the whole process lifetime.
+      [remdub]
 
 
 1.5.53 (2026-11-01)
