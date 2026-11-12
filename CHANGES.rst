@@ -1,6 +1,9 @@
 1.5.54 (unreleased)
 -------------------
 
+- WEB-4531 : Plone security fix 20261110
+  [remdub, boulch]
+
 - imio.smartweb.common 1.2.64
 
     - WEB-4507 : Fix the ``started_zope`` startup subscriber: commit the resource
