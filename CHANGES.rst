@@ -1,5 +1,14 @@
-1.5.54 (unreleased)
+1.5.55 (unreleased)
 -------------------
+
+- Nothing changed yet.
+
+
+1.5.54 (2026-11-12)
+-------------------
+
+- WEB-4531 : Plone security fix 20261110
+  [remdub, boulch]
 
 - imio.smartweb.common 1.2.64
 
