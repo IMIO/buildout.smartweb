@@ -84,7 +84,7 @@ that workaround can go.
 | [1. iMio, `src/` checkouts](#1-imio-and-collective-packages-checked-out-in-src) | 10 | Migrate (recipe below) |
 | [2. iMio, eggs](#2-eggs-written-by-imio) | 10 | Check out, migrate, release (7 migrated, not released: all but imio.omnia.core, imio.omnia.tinymce and collective.faceted.map) |
 | [3a. Third-party, native release available](#3a-native-release-already-available-bump-the-pin) | 6 | Bumped (2026-11-16), checks pending |
-| [3b. Third-party, still old-style](#3b-still-old-style-upstream-contribute-or-wait) | 19 | Contribute upstream or wait (collective.anysurfer migrated on `plone62`, not released) |
+| [3b. Third-party, still old-style](#3b-still-old-style-upstream-contribute-or-wait) | 19 | Contribute upstream or wait (collective.anysurfer and collective.autopublishing migrated on `plone62`, not released) |
 | [4. Plone and Zope core](#4-plone-and-zope-core-nothing-to-do) | 5 | Nothing to do |
 
 ## How the inventory was built
@@ -769,7 +769,7 @@ options are, in order of preference:
 | Package | Pinned | Latest on PyPI | Notes | Done |
 |---|---|---|---|---|
 | collective.anysurfer | 1.4.7 | 1.4.7 (2022) | Migrated on `plone62` (see [below](#collectiveanysurfer)) | [x] (not released) |
-| collective.autopublishing | 1.1b1 | 1.1b1 (2022) | Last release 2022 | [ ] |
+| collective.autopublishing | 1.1b1 | 1.1b1 (2022) | Migrated on `plone62` (see [below](#collectiveautopublishing)) | [x] (not released) |
 | collective.complexrecordsproxy | 1.1 | 1.1 (2022) | | [ ] |
 | collective.exportimport | 1.15 | 1.16 (2026-02) | Active, but 1.16 and `main` still old-style. Blocked Plone 6.2.3: fixed on a `plone62` branch, PR to open | [ ] |
 | collective.fingerpointing | 1.8.3 | 1.8.3 (2022) | Blocked Plone 6.2.3: fixed on a `plone62` branch, PR to open | [ ] |
@@ -827,6 +827,52 @@ collective.autoscaling:
   only), then pin it in `versions.cfg` (currently `1.4.7`). The repository
   belongs to the `collective` organisation: open a PR there. Other
   applications on Plone 4.3 to 6.0 must stay on 1.4.x.
+
+### collective.autopublishing
+
+Namespace `collective`. Migrated on the `plone62` branch (2026-11-16), which
+`sources.cfg` checks out and `prod.cfg` adds to `auto-checkout`. It follows
+collective.anysurfer:
+
+- plone.meta 2.12.0 configures it, and the metadata moved to `pyproject.toml`.
+  `setup.py` is now only `setup()`. The package moved from the repository
+  root to a `src/` layout, which plone.meta's tox expects. The buildout
+  configuration (Plone 5.2 and 6.0), the hand-written GitHub workflow,
+  `setup.cfg`, `.coveragerc` and `.gitattributes` are gone, and the README,
+  CHANGES, CONTRIBUTORS and LICENSE are now in Markdown.
+- No other `pkg_resources` use. The views are registered for
+  `IPloneSiteRoot` from `plone.base`, and the behavior registration lost its
+  `for` (no effect without a factory, plone.behavior warned at startup).
+- The test layer imported `plone.app.contenttypes.testing`, which needs
+  plone.app.robotframework: it now loads the plone.app.contenttypes ZCML and
+  sets `simple_publication_workflow` on top of `PLONE_FIXTURE`. New tests
+  render the control panel and the report view. The doctest no longer imports
+  `interlude`.
+- The report view (`@@autopublish-report`) used the `eva.content` i18n
+  domain and had no i18n markup: it is now translatable, with French
+  translations.
+- Depends on collective.timedevents, whose 1.1 release blocks Plone 6.2.3
+  (see [blockers](#blockers-for-plone-623)). Until it is released, the
+  package's `mx.ini` and tox (`test_deps_additional` in `.meta.toml`) install
+  its `plone62` branch from GitHub. Replace both with a version pin once it is
+  out. collective.complexrecordsproxy 1.1 is still old-style, but its wheel
+  imports next to the native portions without horse-with-no-namespace (its
+  `nspkg.pth`, no `pkg_resources` call).
+- The package is tested with tox and zope.testrunner, not buildout: the
+  plone.meta test matrix covers Plone 6.2.3 and 6.1 on Python 3.10 to 3.13,
+  and `make install` builds a uv development environment on Plone 6.2.3
+  (`mx.ini`, `instance.yaml`). Checked on a Plone 6.2.3 classic site:
+  installation, control panel, report view and `@@tick_hourly`.
+- Not yet checked from buildout.smartweb (steps 5.1 and 5.2 of the recipe):
+  the branch isn't pushed yet, so `buildout -c prod.cfg` fails until it is,
+  and it isn't in `dev.cfg`'s `auto-checkout`, so `bin/instance` still loads
+  the 1.1b1 egg.
+- Release it as **2.0.0** (breaking: native namespace, Plone 6.1 and 6.2
+  only), after a collective.timedevents release without `pkg_resources`
+  (a PyPI release can't depend on a git branch), then pin it in
+  `versions.cfg` (currently `1.1b1`). The repository belongs to the
+  `collective` organisation: open a PR there. Other applications on Plone 5.2
+  or 6.0 must stay on 1.1b1.
 
 ## 4. Plone and Zope core: nothing to do
 
