@@ -40,7 +40,7 @@ on Plone 6.2.3 (2026-11-16), and scanning the eggs that `bin/test` and
 | collective.privacy | 1.1.0b2 | `get_distribution()` in `storage.py`, `browser/consent.py` | Fixed on a `plone62` branch, checked out through `sources.cfg` ([see below](#fixes-for-the-third-party-blockers)). PR to open upstream |
 | collective.timedevents | 1.1 | `get_distribution()` in `__init__.py` | Fixed on a `plone62` branch, checked out through `sources.cfg` ([see below](#fixes-for-the-third-party-blockers)). PR to open upstream |
 | collective.exportimport | 1.15 | `get_distribution()` / `DistributionNotFound` in `export_content.py`, `export_other.py`, `import_other.py`, `serializer.py` | Fixed on a `plone62` branch, checked out through `sources.cfg` ([see below](#fixes-for-the-third-party-blockers)). PR to open upstream |
-| imio.smartweb.core | checkout | `resource_filename()` in `browser/anysurfer.py` | Migrate it ([group 1](#imiosmartwebcommon-core-locales-policy)) |
+| imio.smartweb.core | checkout | `resource_filename()` in `browser/anysurfer.py` | Fixed on the `plone62` branch, checked out through `sources.cfg` ([group 1](#imiosmartwebcommon-core-locales-policy)) |
 | eea.facetednavigation | 16.4 | `get_distribution()` in `subtypes/subtyper.py` | Bump to 16.5 (still old-style, but no more `pkg_resources` calls) |
 | collective.taxonomy | 3.1.7 | `DistributionNotFound` in `behavior.py` | Bumped to 4.0.0 ([3a](#3a-native-release-already-available-bump-the-pin)) |
 | plone.app.imagecropping | 3.0.3 | `get_distribution()` in `__init__.py` | Bumped to 4.0.0 |
@@ -63,9 +63,11 @@ and they make the namespace module (`plone`, `collective`…) look only in the
 - `collective`: fixed by migrating the four `collective.*` checkouts (pivot,
   messagesviewlet, preventactions, upgrade), which broke
   `collective.recipe.omelette`, `collective.recipe.vscode`, etc.
-- `imio` and `pas`: no recipe lives in these namespaces, so the remaining
-  old-style checkout (imio.smartweb.core) doesn't break buildout.
-  pas.plugins.kimug is migrated (see [below](#paspluginskimug)).
+- `imio` and `pas`: no recipe lives in these namespaces, so old-style
+  checkouts there don't break buildout. imio.smartweb.core and
+  pas.plugins.kimug are migrated anyway (see
+  [below](#imiosmartwebcommon-core-locales-policy) and
+  [below](#paspluginskimug)).
 
 Since 2026-11-16, buildout.smartweb's buildout passes on Plone 6.2.3.
 `bin/instance fg` still stops on the `pkg_resources` calls in the table above.
@@ -273,7 +275,7 @@ Highest priority: this is our code, checked out by mr.developer in dev.
 | Package | Checked-out branch | Files to delete | Other changes | Done |
 |---|---|---|---|---|
 | imio.smartweb.common | `main` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | Migrated on `main`, before the `plone62` branch workflow: move it to a `plone62` branch. Tests blocked by imio.helpers (see [blockers](#blockers-for-plone-623)) | [x] (not released) |
-| imio.smartweb.core | `main` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | `pkg_resources` in `browser/anysurfer.py`. In progress (taken by a colleague) | [ ] |
+| imio.smartweb.core | `plone62` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | `pkg_resources` in `browser/anysurfer.py`; `LockInfoViewlet` import; `sitemap.xml.gz` pagination; own buildout moved to Plone 6.2.3 (see below) | [x] (not released) |
 | imio.smartweb.locales | `plone62` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | Own buildout (releaser, i18ndude) moved to Plone 6.2.3 | [x] (not released) |
 | imio.smartweb.policy | `plone62` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | Own buildout moved to Plone 6.2.3 and buildout.smartweb `plone62` | [x] (not released) |
 | pas.plugins.kimug | `plone62` | `src/pas/__init__.py`, `src/pas/plugins/__init__.py` | Configured with plone.meta 2.12.0, metadata moved to `pyproject.toml`. Plone 6.1 and 6.2 only, needs pas.plugins.oidc >= 2.1.0 (see below) | [x] (not released) |
@@ -309,6 +311,25 @@ class AccessibilityInfo(BrowserView):
         str(files("Products.CMFPlone") / "browser/templates/accessibility-info.pt")
     )
 ```
+
+The imio.smartweb.core `plone62` branch (2026-11-16) also fixes two other
+Plone 6.2 breakages, and moves its own buildout to Plone 6.2.3:
+
+- `contents/sections/views.py` imports `LockInfoViewlet` from
+  `plone.app.layout.viewlets.locking` instead of `plone.locking.browser.info`.
+- `sitemap.xml.gz`: plone.app.layout 6 paginates the sitemap (without a
+  `page` parameter, the view returns an index of pages).
+  `CustomSiteMapView` now overrides `_objects` instead of `objects`, so the
+  smartweb items (authentic sources included) are counted in the index and
+  split across `?page=N`. New test in `tests/test_sitemap.py`.
+- `base.cfg` extends Plone 6.2.3 and buildout.smartweb's `plone62`
+  `versions.cfg` / `sources.cfg`, and adds the third-party blockers
+  (imio.helpers, collective.privacy, collective.fingerpointing,
+  collective.exportimport, collective.timedevents,
+  collective.behavior.talcondition) to `auto-checkout`.
+- `setup.py` classifiers: Plone 6.1 replaced by 6.2. Plone 6.0 is still
+  listed: drop it before the release, since native namespaces and the
+  imports above need Plone 6.2.
 
 Each one gets its own `plone62` branch ([step 0](#0-work-on-a-plone62-branch)).
 Release the four together and pin the new versions in one commit.
