@@ -64,8 +64,8 @@ and they make the namespace module (`plone`, `collective`…) look only in the
   messagesviewlet, preventactions, upgrade), which broke
   `collective.recipe.omelette`, `collective.recipe.vscode`, etc.
 - `imio` and `pas`: no recipe lives in these namespaces, so the remaining
-  old-style checkouts (imio.smartweb.core, pas.plugins.kimug) don't break
-  buildout.
+  old-style checkout (imio.smartweb.core) doesn't break buildout.
+  pas.plugins.kimug is migrated (see [below](#paspluginskimug)).
 
 Since 2026-11-16, buildout.smartweb's buildout passes on Plone 6.2.3.
 `bin/instance fg` still stops on the `pkg_resources` calls in the table above.
@@ -276,7 +276,7 @@ Highest priority: this is our code, checked out by mr.developer in dev.
 | imio.smartweb.core | `main` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | `pkg_resources` in `browser/anysurfer.py`. In progress (taken by a colleague) | [ ] |
 | imio.smartweb.locales | `plone62` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | Own buildout (releaser, i18ndude) moved to Plone 6.2.3 | [x] (not released) |
 | imio.smartweb.policy | `plone62` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | Own buildout moved to Plone 6.2.3 and buildout.smartweb `plone62` | [x] (not released) |
-| pas.plugins.kimug | `main` | `src/pas/__init__.py`, `src/pas/plugins/__init__.py` | In progress (taken by a colleague) | [ ] |
+| pas.plugins.kimug | `plone62` | `src/pas/__init__.py`, `src/pas/plugins/__init__.py` | Configured with plone.meta 2.12.0, metadata moved to `pyproject.toml`. Plone 6.1 and 6.2 only, needs pas.plugins.oidc >= 2.1.0 (see below) | [x] (not released) |
 | plone.formwidget.geolocation | upstream `master` | — | Switched from the IMIO fork to collective `master`, already native (see below) | [x] (waiting for the 4.0.0 release) |
 | collective.pivot | `plone62` | `src/collective/__init__.py` | `pkg_resources` in `locales/update.py`; drops Python 2 | [x] (not released) |
 | collective.messagesviewlet | `plone62` | `src/collective/__init__.py` | Python 2 branch in `__init__.py`; drops Python 2 | [x] (not released) |
@@ -315,17 +315,25 @@ Release the four together and pin the new versions in one commit.
 
 ### pas.plugins.kimug
 
-Namespaces `pas`, `pas.plugins`. The package has a `pyproject.toml`, but
-packaging is still declared in `setup.py`, so the standard recipe applies:
+Namespaces `pas`, `pas.plugins`. Migrated on the `plone62` branch
+(2026-11-16), which `sources.cfg` checks out. It follows
+collective.preventactions rather than the `setup.py` recipe above:
 
-```diff
--    namespace_packages=["pas", "pas.plugins"],
-+    packages=find_namespace_packages("src", exclude=["ez_setup"]),
-```
-
-```sh
-git rm src/pas/__init__.py src/pas/plugins/__init__.py
-```
+- plone.meta 2.12.0 did the work: `switch-to-pep420` deleted
+  `src/pas/__init__.py` and `src/pas/plugins/__init__.py`, then
+  `setup-to-pyproject` moved the metadata to `pyproject.toml`. `setup.py` is now
+  only `setup()`, and setuptools finds the native namespace packages by itself,
+  so there is no `find_namespace_packages`.
+- No other `pkg_resources` use.
+- The `pas.plugins` namespace is shared with pas.plugins.oidc, native since
+  2.1.0. kimug now requires `pas.plugins.oidc>=2.1.0` (`versions.cfg` already
+  pins 2.1.0) and supports Plone 6.1 and 6.2 only, like oidc 2.1.0.
+- The package is tested with pytest and tox, not buildout: the plone.meta test
+  matrix covers Plone 6.2.3 and 6.1 on Python 3.10 to 3.13, and `make install`
+  builds a uv development environment on Plone 6.2.3.
+- Not yet checked from buildout.smartweb (steps 5.1 and 5.2 of the recipe).
+- Release it as **2.0.0** (breaking: native namespace, drops Plone 6.0), then
+  pin it in `versions.cfg` (currently `1.9.5`).
 
 ### plone.formwidget.geolocation
 
