@@ -27,15 +27,20 @@ Only the failing attribute access does.
 
 ### Blockers for Plone 6.2.3
 
-Found by running the imio.smartweb.common tests on Plone 6.2.3 (2026-11-16)
-and scanning the eggs they load. Each of these calls `pkg_resources` beyond
-`declare_namespace` and fails at import time:
+Found by running the imio.smartweb.common tests and starting buildout.smartweb
+on Plone 6.2.3 (2026-11-16), and scanning the eggs that `bin/test` and
+`bin/instance` load. Each of these calls `pkg_resources` beyond
+`declare_namespace` and fails at import time. The first four stop
+`bin/instance fg`:
 
 | Package | Pinned | Call | Fix |
 |---|---|---|---|
 | imio.helpers | 1.3.11 | `get_distribution()` in `__init__.py`, `xhtml.py`, `patches.py` | **None released**: 1.3.18 and `master` still call it. Migrate it ([group 2](#2-eggs-written-by-imio)) |
 | collective.fingerpointing | 1.8.3 | `get_distribution()` in `subscribers/__init__.py` | None released: open a PR |
 | collective.privacy | 1.1.0b2 | `get_distribution()` in `storage.py`, `browser/consent.py` | None released: open a PR |
+| collective.timedevents | 1.1 | `get_distribution()` in `__init__.py` | None released (last release 2021, `master` untouched since 2025-02): open a PR |
+| collective.exportimport | 1.15 | `get_distribution()` / `DistributionNotFound` in `export_content.py`, `export_other.py`, `import_other.py`, `serializer.py` | None released: 1.16 and `main` still call it. Open a PR |
+| imio.smartweb.core | checkout | `resource_filename()` in `browser/anysurfer.py` | Migrate it ([group 1](#imiosmartwebcommon-core-locales-policy)) |
 | eea.facetednavigation | 16.4 | `get_distribution()` in `subtypes/subtyper.py` | Bump to 16.5 (still old-style, but no more `pkg_resources` calls) |
 | collective.taxonomy | 3.1.7 | `DistributionNotFound` in `behavior.py` | Bump to 4.0.0 ([3a](#3a-native-release-already-available-bump-the-pin)) |
 | plone.app.imagecropping | 3.0.3 | `get_distribution()` in `__init__.py` | Bumped to 4.0.0 |
@@ -55,13 +60,15 @@ and they make the namespace module (`plone`, `collective`…) look only in the
 
 - `plone`: fixed by switching plone.formwidget.geolocation to upstream
   `master`, which is native (see [below](#ploneformwidgetgeolocation)).
-- `collective`: still blocked by the four old-style `collective.*` checkouts
-  (pivot, messagesviewlet, preventactions, upgrade), which break
-  `collective.recipe.omelette`, `collective.recipe.vscode`, etc. Migrate them
-  to unblock buildout.
+- `collective`: fixed by migrating the four `collective.*` checkouts (pivot,
+  messagesviewlet, preventactions, upgrade), which broke
+  `collective.recipe.omelette`, `collective.recipe.vscode`, etc.
 - `imio` and `pas`: no recipe lives in these namespaces, so the remaining
-  old-style checkouts (imio.smartweb.core, .policy, pas.plugins.kimug) don't
-  break buildout.
+  old-style checkouts (imio.smartweb.core, pas.plugins.kimug) don't break
+  buildout.
+
+Since 2026-11-16, buildout.smartweb's buildout passes on Plone 6.2.3.
+`bin/instance fg` still stops on the `pkg_resources` calls in the table above.
 
 Mixing both styles works today only because of `horse-with-no-namespace`,
 installed in the virtualenv by `requirements.txt` and imported in
@@ -268,13 +275,13 @@ Highest priority: this is our code, checked out by mr.developer in dev.
 | imio.smartweb.common | `main` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | Migrated on `main`, before the `plone62` branch workflow: move it to a `plone62` branch. Tests blocked by imio.helpers (see [blockers](#blockers-for-plone-623)) | [x] (not released) |
 | imio.smartweb.core | `main` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | `pkg_resources` in `browser/anysurfer.py` | [ ] |
 | imio.smartweb.locales | `plone62` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | Own buildout (releaser, i18ndude) moved to Plone 6.2.3 | [x] (not released) |
-| imio.smartweb.policy | `main` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | — | [ ] |
+| imio.smartweb.policy | `plone62` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | Own buildout moved to Plone 6.2.3 and buildout.smartweb `plone62` | [x] (not released) |
 | pas.plugins.kimug | `main` | `src/pas/__init__.py`, `src/pas/plugins/__init__.py` | — | [ ] |
 | plone.formwidget.geolocation | upstream `master` | — | Switched from the IMIO fork to collective `master`, already native (see below) | [x] (waiting for the 4.0.0 release) |
-| collective.pivot | `main` | `src/collective/__init__.py` | `pkg_resources` in `locales/update.py` | [ ] |
-| collective.messagesviewlet | `master` | `src/collective/__init__.py` | Python 2 branch in `__init__.py` | [ ] |
-| collective.preventactions | `plone6` | `src/collective/__init__.py` | — | [ ] |
-| collective.upgrade | `plone61` | `src/collective/__init__.py` | Delete `bootstrap.py` | [ ] |
+| collective.pivot | `plone62` | `src/collective/__init__.py` | `pkg_resources` in `locales/update.py`; drops Python 2 | [x] (not released) |
+| collective.messagesviewlet | `plone62` | `src/collective/__init__.py` | Python 2 branch in `__init__.py`; drops Python 2 | [x] (not released) |
+| collective.preventactions | `plone6` | — | Already migrated upstream on `plone6`: pull | [x] (not released) |
+| collective.upgrade | `plone61` | — | Already migrated upstream on `plone61`: pull | [x] (not released) |
 
 ### imio.smartweb.common, .core, .locales, .policy
 
@@ -341,56 +348,34 @@ Upstream `master` (4.0.0, unreleased) is already migrated: native namespaces,
 The old fork checkout must be moved away before mr.developer can clone the new
 URL (`bin/develop co plone.formwidget.geolocation`).
 
-### collective.pivot
+### collective.pivot and collective.messagesviewlet
 
-Namespace `collective`.
+Migrated on a new `plone62` branch in each repository (pivot: IMIO,
+messagesviewlet: collective), and `sources.cfg` points to it.
 
-```sh
-git rm src/collective/__init__.py
-```
+- Standard recipe, then `git rm src/collective/__init__.py`.
+- pivot: `locales/update.py` uses `str(files(domain))` instead of
+  `pkg_resources.resource_filename(domain, "")`.
+- messagesviewlet: the Python 2 branches in `__init__.py` (the last
+  `pkg_resources` reference) are gone. `six` is still used in `utils.py` and
+  `message.py`, so it stays.
+- **Breaking: drops Python 2.** Native namespaces need Python 3, so the
+  Python 2.7 jobs (Plone 4.3, and 5.1 for messagesviewlet) are removed from the
+  CI matrix and the classifiers. Their config files (`test_plone4.3.cfg`,
+  `plone-4.3.x.cfg`, `plone-5.1.x.cfg`, `requirements_plone-4.3.x.txt`…) are
+  still there: delete them when the branch is merged. Other iMio applications
+  still on Plone 4.3 must stay on the current releases.
+- New Plone 6.2.3 test config (`test_plone6.2.cfg` / `plone-6.2.x.cfg` and
+  `requirements_plone-6.2.x.txt`) and CI job. The Plone 5.2, 6.0 and 6.1
+  requirements now install `horse-with-no-namespace`, which those Plone
+  releases don't ship.
 
-`src/collective/pivot/locales/update.py` (a developer script for i18n) uses
-`pkg_resources.resource_filename(domain, "")`. Replace it with:
+### collective.preventactions and collective.upgrade
 
-```python
-from importlib.resources import files
-os.chdir(str(files(domain)))
-```
-
-The classifiers stop at Python 3.9 and Plone 6.0, so update them.
-
-### collective.messagesviewlet
-
-Namespace `collective`. `setup.py` uses single quotes:
-
-```diff
--    packages=find_packages('src', exclude=['ez_setup']),
--    namespace_packages=['collective'],
-+    packages=find_namespace_packages('src', exclude=['ez_setup']),
-```
-
-```sh
-git rm src/collective/__init__.py
-```
-
-`src/collective/messagesviewlet/__init__.py` imports `pkg_resources` only in
-its `if six.PY2:` branch. That branch never runs, but drop it along with `six`
-to remove the last `pkg_resources` reference. This is a `collective` repo, so
-open a PR there.
-
-### collective.preventactions
-
-Namespace `collective`. Standard recipe, then `git rm src/collective/__init__.py`.
-The checkout is on branch `plone6`, and PyPI's last release is 0.3.0 (2019):
-make the migration on that branch and release from it, or contribute to the
-`collective` repo.
-
-### collective.upgrade
-
-Namespace `collective`. Standard recipe, then `git rm src/collective/__init__.py`.
-Also delete `bootstrap.py`, an old zc.buildout bootstrap script full of
-`pkg_resources` calls that modern buildout no longer uses. Remove it from
-`flake8-exclude` in `buildout.cfg` too. The checkout is on branch `plone61`.
+Nothing to do: upstream already switched to native namespaces on the branches
+`sources.cfg` checks out (`plone6`, `plone61`; upgrade also dropped
+`bootstrap.py`). Pull them, and delete the stale
+`src/collective/__pycache__` and `collective_*-nspkg.pth` files (step 5).
 
 ## 2. Eggs written by iMio
 
@@ -465,7 +450,7 @@ options are, in order of preference:
 | collective.anysurfer | 1.4.7 | 1.4.7 (2022) | | [ ] |
 | collective.autopublishing | 1.1b1 | 1.1b1 (2022) | Last release 2022 | [ ] |
 | collective.complexrecordsproxy | 1.1 | 1.1 (2022) | | [ ] |
-| collective.exportimport | 1.15 | 1.16 (2026-02) | Active: check the main branch first | [ ] |
+| collective.exportimport | 1.15 | 1.16 (2026-02) | Active, but 1.16 and `main` still old-style. Blocks Plone 6.2.3 (calls `pkg_resources`) | [ ] |
 | collective.fingerpointing | 1.8.3 | 1.8.3 (2022) | Blocks Plone 6.2.3 (calls `pkg_resources`) | [ ] |
 | collective.geolocationbehavior | 1.7.2 | 1.7.2 (2021) | | [ ] |
 | collective.geotransform | 3.0 | 3.0 (2023) | | [ ] |
@@ -476,7 +461,7 @@ options are, in order of preference:
 | collective.sendinblue | 2.0.4 | 2.0.4 (2025) | | [ ] |
 | collective.solr | 9.4.0 | 10.1.1 (2026-03) | Active: check the main branch first | [ ] |
 | collective.themefragments | 2.12 | 2.12 (2019) | Last release 2019 | [ ] |
-| collective.timedevents | 1.1 | 1.1 (2021) | | [ ] |
+| collective.timedevents | 1.1 | 1.1 (2021) | Blocks Plone 6.2.3 (calls `pkg_resources`) | [ ] |
 | collective.z3cform.select2 | 3.0.0b6 | 3.0.0b9 (2023) | Namespaces `collective`, `collective.z3cform` | [ ] |
 | eea.facetednavigation | 16.4 | 16.5 (2026-10) | Active: check the default branch (`develop`) first. Bump to 16.5 for Plone 6.2.3: it no longer calls `pkg_resources` | [ ] |
 | plone.gallery | 1.1.6 | 1.1.6 (2023) | | [ ] |
