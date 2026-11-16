@@ -1,7 +1,7 @@
 # Migrating to native namespace packages (PEP 420)
 
 Inventory of the packages in the SmartWeb stack (branch `plone62`, Plone
-6.2.2.1) that still use old-style namespace packages, and how to migrate each
+6.2.3) that still use old-style namespace packages, and how to migrate each
 of them.
 
 Last checked: 2026-11-10, against the eggs loaded by `bin/instance` and the
@@ -43,6 +43,13 @@ and scanning the eggs they load. Each of these calls `pkg_resources` beyond
 Babel, Paste, pytz and grpcio-tools also mention `pkg_resources`, but only as
 a guarded fallback that isn't reached on Python 3.12.
 
+buildout.smartweb itself also stops on 6.2.3 (zc.buildout 6.0.2), before
+installing anything: `ModuleNotFoundError: No module named 'plone.recipe'`
+while loading `plone.recipe.zope2instance`. Just before the error, buildout
+warns that `plone` was already imported from the old-style
+`src/plone.formwidget.geolocation/plone/__init__.py`. Migrating
+plone.formwidget.geolocation is the likely fix (not confirmed yet).
+
 Mixing both styles works today only because of `horse-with-no-namespace`,
 installed in the virtualenv by `requirements.txt` and imported in
 `[instance] initialization` (`base.cfg`). Once every package below is native,
@@ -76,6 +83,34 @@ This is what
 [collective.big.bang `bfe22ca`](https://github.com/collective/collective.big.bang/commit/bfe22ca)
 did. All the packages in groups 1 and 2 use setuptools with a `setup.py`, so the
 same steps apply to each of them.
+
+### 0. Work on a `plone62` branch
+
+Don't migrate on `main`: `main` is what production runs today, on the Plone
+6.1 stack. Each package gets a `plone62` branch, and buildout.smartweb's own
+`plone62` branch checks it out through mr.developer.
+
+1. In the package, start from an up-to-date `main`:
+
+   ```sh
+   cd src/imio.smartweb.locales
+   git switch main && git pull --ff-only
+   git switch -c plone62
+   ```
+
+2. In buildout.smartweb's `sources.cfg`, point the package to the branch:
+
+   ```diff
+   -imio.smartweb.locales = git ${remotes:imio}/imio.smartweb.locales.git pushurl=... branch=main
+   +imio.smartweb.locales = git ${remotes:imio}/imio.smartweb.locales.git pushurl=... branch=plone62
+   ```
+
+3. Apply steps 1 to 5 below on that branch, then push it
+   (`git push -u origin plone62`).
+
+The package is released from the branch only when the Plone 6.2 stack goes
+to production (step 6). Until then, keep `main` releasable for the Plone 6.1
+stack, and merge `main` into `plone62` when it moves on.
 
 ### 1. `setup.py`
 
@@ -146,6 +181,19 @@ and in `requirements.txt`:
 Plone's `requirements.txt` already installs `horse-with-no-namespace`, so
 don't add it yourself.
 
+If the package's buildout extends buildout.smartweb's `versions.cfg` and
+`sources.cfg`, extend them from the `plone62` branch, not `main`:
+
+```ini
+    https://raw.githubusercontent.com/IMIO/buildout.smartweb/refs/heads/plone62/versions.cfg
+    https://raw.githubusercontent.com/IMIO/buildout.smartweb/plone62/sources.cfg
+```
+
+After changing `requirements.txt`, refresh the virtualenv: `make install`
+does not rerun once `bin/buildout` exists, so run `uv pip install -r
+requirements.txt` (buildout.smartweb) or `bin/pip install -r requirements.txt`
+(package). Otherwise buildout stops on a `VersionConflict` for `zc.buildout`.
+
 ### 5. Clean up and check
 
 ```sh
@@ -171,6 +219,10 @@ Then, from `buildout.smartweb`:
 
 ### 6. Release
 
+When the Plone 6.2 stack goes to production:
+
+- Merge the package's `plone62` branch into `main`, and set `branch=main` again
+  in `sources.cfg`.
 - Release a new version, a minor bump at least, with a changelog entry such as
   *"Migrate to PEP 420 native namespaces (setuptools 81 / Plone 6.2)"*.
 - If the package also keeps test requirements for Plone 6.0 or 6.1 (whose
@@ -194,9 +246,9 @@ Highest priority: this is our code, checked out by mr.developer in dev.
 
 | Package | Checked-out branch | Files to delete | Other changes | Done |
 |---|---|---|---|---|
-| imio.smartweb.common | `main` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | Test buildout moved to Plone 6.2.3: tests blocked by imio.helpers (see [blockers](#blockers-for-plone-623)) | [x] (not released) |
+| imio.smartweb.common | `main` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | Migrated on `main`, before the `plone62` branch workflow: move it to a `plone62` branch. Tests blocked by imio.helpers (see [blockers](#blockers-for-plone-623)) | [x] (not released) |
 | imio.smartweb.core | `main` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | `pkg_resources` in `browser/anysurfer.py` | [ ] |
-| imio.smartweb.locales | `main` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | — | [ ] |
+| imio.smartweb.locales | `plone62` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | Own buildout (releaser, i18ndude) moved to Plone 6.2.3 | [x] (not released) |
 | imio.smartweb.policy | `main` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | — | [ ] |
 | pas.plugins.kimug | `main` | `src/pas/__init__.py`, `src/pas/plugins/__init__.py` | — | [ ] |
 | plone.formwidget.geolocation | `fix-geosearch` | `plone/__init__.py`, `plone/formwidget/__init__.py` | No `src/` layout (see below) | [ ] |
@@ -232,6 +284,7 @@ class AccessibilityInfo(BrowserView):
     )
 ```
 
+Each one gets its own `plone62` branch ([step 0](#0-work-on-a-plone62-branch)).
 Release the four together and pin the new versions in one commit.
 
 ### pas.plugins.kimug
