@@ -35,7 +35,7 @@ on Plone 6.2.3 (2026-11-16), and scanning the eggs that `bin/test` and
 
 | Package | Pinned | Call | Fix |
 |---|---|---|---|
-| imio.helpers | 1.3.11 | `get_distribution()` in `__init__.py`, `xhtml.py`, `patches.py` | **None released**: 1.3.18 and `master` still call it. Migrate it ([group 2](#2-eggs-written-by-imio)). In progress (taken by a colleague) |
+| imio.helpers | 1.3.18 | `get_distribution()` in `__init__.py`, `xhtml.py`, `patches.py` | **None released**: 1.3.19 and `master` still call it. Fixed on a `plone62` branch by a colleague, checked out through `sources.cfg` in `prod.cfg` but not yet in `dev.cfg` ([see below](#imiohelpers)) |
 | collective.fingerpointing | 1.8.3 | `get_distribution()` in `subscribers/__init__.py` | Fixed on a `plone62` branch, checked out through `sources.cfg` ([see below](#fixes-for-the-third-party-blockers)). PR to open upstream |
 | collective.privacy | 1.1.0b2 | `get_distribution()` in `storage.py`, `browser/consent.py` | Fixed on a `plone62` branch, checked out through `sources.cfg` ([see below](#fixes-for-the-third-party-blockers)). PR to open upstream |
 | collective.timedevents | 1.1 | `get_distribution()` in `__init__.py` | Fixed on a `plone62` branch, checked out through `sources.cfg` ([see below](#fixes-for-the-third-party-blockers)). PR to open upstream |
@@ -82,7 +82,7 @@ that workaround can go.
 | Group | Packages | Action |
 |---|---|---|
 | [1. iMio, `src/` checkouts](#1-imio-and-collective-packages-checked-out-in-src) | 10 | Migrate (recipe below) |
-| [2. iMio, eggs](#2-eggs-written-by-imio) | 10 | Check out, migrate, release (imio.pyutils, imio.prometheus, imio.gdpr, collective.autoscaling and iaweb.privacy migrated, not released) |
+| [2. iMio, eggs](#2-eggs-written-by-imio) | 10 | Check out, migrate, release (7 migrated, not released: all but imio.omnia.core, imio.omnia.tinymce and collective.faceted.map) |
 | [3a. Third-party, native release available](#3a-native-release-already-available-bump-the-pin) | 6 | Bumped (2026-11-16), checks pending |
 | [3b. Third-party, still old-style](#3b-still-old-style-upstream-contribute-or-wait) | 19 | Contribute upstream or wait |
 | [4. Plone and Zope core](#4-plone-and-zope-core-nothing-to-do) | 5 | Nothing to do |
@@ -441,13 +441,13 @@ directory (usually `src/`), so check the actual layout first.
 
 | Package | Pinned | Latest on PyPI | Files to delete | Done |
 |---|---|---|---|---|
-| imio.helpers | 1.3.11 | 1.3.18 | `imio/__init__.py`. In progress (taken by a colleague) | [ ] |
+| imio.helpers | 1.3.18 | 1.3.19 | `imio/__init__.py`. Migrated on `plone62` by a colleague (see [below](#imiohelpers)) | [x] (not released) |
 | imio.pyutils | 1.2.2 | 1.2.2 | None: native on Python 3 only, still compatible with Python 2.7. Migrated on `plone62` (see [below](#imiopyutils)) | [x] (not released) |
 | imio.prometheus | 1.0.1 | 1.0.1 | `imio/__init__.py`. Migrated on `plone62` (see [below](#imioprometheus)) | [x] (not released) |
 | imio.gdpr | 1.2.3 | 1.2.3 | `imio/__init__.py`. Migrated on `plone62` (see [below](#imiogdpr)) | [x] (not released) |
 | imio.omnia.core | 1.2 | 1.3 | `imio/__init__.py`, `imio/omnia/__init__.py` | [ ] |
 | imio.omnia.tinymce | 1.0 | 1.0 | `imio/__init__.py`, `imio/omnia/__init__.py` | [ ] |
-| collective.behavior.talcondition | 1.1.1 | 1.1.3 | `collective/__init__.py`, `collective/behavior/__init__.py` | [ ] |
+| collective.behavior.talcondition | 1.1.3 | 1.1.3 | `collective/__init__.py`, `collective/behavior/__init__.py`. Migrated on `plone62` by a colleague (see [below](#collectivebehaviortalcondition)) | [x] (not released) |
 | collective.autoscaling | 1.2 | 1.2 | `collective/__init__.py`. Migrated on `plone62` (see [below](#collectiveautoscaling)) | [x] (not released) |
 | collective.faceted.map | 1.0.0 | 1.0.0 | `collective/__init__.py`, `collective/faceted/__init__.py` | [ ] |
 | iaweb.privacy | 1.0a2 | 1.0a2 | `iaweb/__init__.py`. Migrated on `plone62` (see [below](#iawebprivacy)) | [x] (not released) |
@@ -455,18 +455,52 @@ directory (usually `src/`), so check the actual layout first.
 Notes:
 
 - **imio.helpers** and **imio.pyutils** are used by many other iMio
-  applications (not only SmartWeb). Before releasing, check that those
-  applications either run horse-with-no-namespace or are already migrated.
-- **imio.helpers** blocks Plone 6.2.3: every release (up to 1.3.18) and
-  `master` call `pkg_resources.get_distribution()` / `DistributionNotFound` in
-  `__init__.py`, `xhtml.py` and `patches.py`. Replace them with
-  `importlib.metadata` (`version()` / `PackageNotFoundError`) and migrate it
-  first.
+  applications (not only SmartWeb). imio.pyutils keeps Python 2.7 support, but
+  imio.helpers' `plone62` branch drops Python 2 and Plone before 6.2, so those
+  applications must stay on imio.helpers 1.3.x (see [below](#imiohelpers)).
+- **imio.helpers** blocks Plone 6.2.3 until its `plone62` branch is released:
+  every release (up to 1.3.19) and `master` still call `pkg_resources`.
 - **imio.omnia.core** and **imio.omnia.tinymce** share the `imio.omnia`
   namespace: migrate them together.
 - Packages under `collective` (talcondition, autoscaling, faceted.map) live in
   the `collective` GitHub organisation or are released by iMio: open a PR in
   the repository listed in the egg's metadata.
+
+### imio.helpers
+
+Namespace `imio`. Migrated by a colleague on the `plone62` branch
+(2026-11-16, `4b8ec68`), which `sources.cfg` checks out and `prod.cfg` adds to
+`auto-checkout`. It follows [the recipe](#the-migration-recipe) and keeps its
+`setup.py` and buildout:
+
+- `find_namespace_packages`, no more `namespace_packages`, and
+  `src/imio/__init__.py` is gone. `python_requires=">=3.10"`, classifiers
+  updated (Plone 6.2, Python 3.10 to 3.13).
+- The `pkg_resources` calls that blocked Plone 6.2.3 are replaced with
+  `importlib.metadata.distribution()` / `PackageNotFoundError`: `ftw.labels` in
+  `__init__.py`, `collective.solr` in `patches.py`, `collective.ckeditor` in
+  `xhtml.py`.
+- **Breaking: drops Python 2.7 and Plone 4.3** (CI matrix and classifiers),
+  without a Python 2 fallback like imio.pyutils. `six`, `future`,
+  `pathlib2` and the Python 2 extras are still there: they can go in a later
+  cleanup.
+- Tested with buildout: new `test-6.2.cfg` (buildout.plonetest
+  `test-6.2.x.cfg`) and `requirements-6.2.txt` (Plone `6.2-latest`
+  constraints). The GitHub Actions matrix is Plone 6.2 on Python 3.13, and it
+  passes. `test-6.2.cfg` checks out collective.behavior.talcondition's
+  `plone62` branch, a test dependency.
+- The branch is 2 commits behind `master`: 1.3.19 was released from `master`
+  the same day, without the migration. `CHANGES.rst` on `plone62` still adds
+  the entry under 1.3.19: merge `master` into `plone62` and move the entry.
+- No PR opened yet.
+- Not yet checked from buildout.smartweb (steps 5.1 and 5.2 of the recipe):
+  it isn't in `dev.cfg`'s `auto-checkout`, so `bin/instance` still loads the
+  1.3.18 egg, which still stops `bin/instance fg` on Plone 6.2.3.
+- Release it as **2.0.0**, not 1.3.20 (breaking: native namespace, Python
+  3.10+ and Plone 6.2 only), then pin it in `versions.cfg` (currently
+  `1.3.18`). `master` still releases 1.3.x for the other iMio applications:
+  agree with its maintainers on a 1.3.x maintenance branch before merging
+  `plone62` into `master`.
 
 ### imio.pyutils
 
@@ -567,6 +601,34 @@ imio.prometheus, it follows [the recipe](#the-migration-recipe) and keeps its
   namespace, Python 3.10+ and Plone 6.2 only): release it as **2.0.0**, then
   pin it in `versions.cfg` (currently `1.2.3`). Other iMio applications on
   Python 2 or older Plone must stay on 1.2.x.
+
+### collective.behavior.talcondition
+
+Namespaces `collective`, `collective.behavior`. Migrated by a colleague on the
+`plone62` branch (2026-11-16, `81b5782`), which `sources.cfg` checks out and
+`prod.cfg` adds to `auto-checkout`. In SmartWeb, it is a dependency of
+collective.messagesviewlet (used by imio.smartweb.core's `rest/messages.py`),
+and a test dependency of imio.helpers. It follows
+[the recipe](#the-migration-recipe) and keeps its `setup.py` and buildout:
+
+- `find_namespace_packages`, no more `namespace_packages`, and
+  `src/collective/__init__.py` and `src/collective/behavior/__init__.py` are
+  gone. `python_requires='>=3.10'`, the universal wheel option is removed, and
+  the classifiers are updated (Plone 6.2, Python 3.10 to 3.13).
+- No `pkg_resources` use beyond the namespace declarations, so it didn't block
+  Plone 6.2.3. `utils.py`: `raise(e)` becomes `raise e`.
+- **Breaking: drops Python 2.7 and 3.7, and Plone 4.3 to 6.1** (CI matrix and
+  classifiers).
+- Tested with buildout: new `test-6.2.cfg` and `requirements-6.2.txt`. The
+  GitHub Actions matrix is Plone 6.2 on Python 3.13, and it passes.
+- Up to date with `master`. No PR opened yet.
+- Not yet checked from buildout.smartweb (steps 5.1 and 5.2 of the recipe):
+  it isn't in `dev.cfg`'s `auto-checkout`, so `bin/instance` still loads the
+  1.1.3 egg.
+- `CHANGES.rst` announces **1.1.4**, but the change is breaking: release it as
+  **2.0.0**, then pin it in `versions.cfg` (currently `1.1.3`). The repository
+  belongs to the `collective` organisation: open a PR there. Other iMio
+  applications on Python 2 or Plone 4.3 to 6.1 must stay on 1.1.x.
 
 ### collective.autoscaling
 
