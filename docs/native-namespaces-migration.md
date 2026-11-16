@@ -21,6 +21,28 @@ one is missing. The stub only provides `declare_namespace`: any other call,
 such as `pkg_resources.resource_filename()` or `get_distribution()`, raises an
 error. Step 3 of the recipe is therefore mandatory before moving to 6.2.3.
 
+Watch out: with the stub in place, `import pkg_resources` succeeds, so a
+`try: import pkg_resources / except ImportError` guard does not catch it.
+Only the failing attribute access does.
+
+### Blockers for Plone 6.2.3
+
+Found by running the imio.smartweb.common tests on Plone 6.2.3 (2026-11-16)
+and scanning the eggs they load. Each of these calls `pkg_resources` beyond
+`declare_namespace` and fails at import time:
+
+| Package | Pinned | Call | Fix |
+|---|---|---|---|
+| imio.helpers | 1.3.11 | `get_distribution()` in `__init__.py`, `xhtml.py`, `patches.py` | **None released**: 1.3.18 and `master` still call it. Migrate it ([group 2](#2-eggs-written-by-imio)) |
+| collective.fingerpointing | 1.8.3 | `get_distribution()` in `subscribers/__init__.py` | None released: open a PR |
+| collective.privacy | 1.1.0b2 | `get_distribution()` in `storage.py`, `browser/consent.py` | None released: open a PR |
+| eea.facetednavigation | 16.4 | `get_distribution()` in `subtypes/subtyper.py` | Bump to 16.5 (still old-style, but no more `pkg_resources` calls) |
+| collective.taxonomy | 3.1.7 | `DistributionNotFound` in `behavior.py` | Bump to 4.0.0 ([3a](#3a-native-release-already-available-bump-the-pin)) |
+| plone.app.imagecropping | 3.0.3 | `get_distribution()` in `__init__.py` | Bumped to 4.0.0 |
+
+Babel, Paste, pytz and grpcio-tools also mention `pkg_resources`, but only as
+a guarded fallback that isn't reached on Python 3.12.
+
 Mixing both styles works today only because of `horse-with-no-namespace`,
 installed in the virtualenv by `requirements.txt` and imported in
 `[instance] initialization` (`base.cfg`). Once every package below is native,
@@ -172,7 +194,7 @@ Highest priority: this is our code, checked out by mr.developer in dev.
 
 | Package | Checked-out branch | Files to delete | Other changes | Done |
 |---|---|---|---|---|
-| imio.smartweb.common | `main` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | Test buildout moved to Plone 6.2.3 | [x] (not released) |
+| imio.smartweb.common | `main` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | Test buildout moved to Plone 6.2.3: tests blocked by imio.helpers (see [blockers](#blockers-for-plone-623)) | [x] (not released) |
 | imio.smartweb.core | `main` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | `pkg_resources` in `browser/anysurfer.py` | [ ] |
 | imio.smartweb.locales | `main` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | — | [ ] |
 | imio.smartweb.policy | `main` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | — | [ ] |
@@ -331,6 +353,11 @@ Notes:
 - **imio.helpers** and **imio.pyutils** are used by many other iMio
   applications (not only SmartWeb). Before releasing, check that those
   applications either run horse-with-no-namespace or are already migrated.
+- **imio.helpers** blocks Plone 6.2.3: every release (up to 1.3.18) and
+  `master` call `pkg_resources.get_distribution()` / `DistributionNotFound` in
+  `__init__.py`, `xhtml.py` and `patches.py`. Replace them with
+  `importlib.metadata` (`version()` / `PackageNotFoundError`) and migrate it
+  first.
 - **imio.omnia.core** and **imio.omnia.tinymce** share the `imio.omnia`
   namespace: migrate them together.
 - Packages under `collective` (talcondition, autoscaling, faceted.map) live in
@@ -348,8 +375,8 @@ their changelog first.
 
 | Package | Pinned | Native release | Notes | Done |
 |---|---|---|---|---|
-| collective.taxonomy | 3.1.7 | 4.0.0 (2026-10-20) | Major bump: check the taxonomy pages and widgets | [ ] |
-| plone.app.imagecropping | 3.0.3 | 4.0.0 (2026-10-30) | Major bump: check the cropping editor | [ ] |
+| collective.taxonomy | 3.1.7 | 4.0.0 (2026-10-20) | Major bump: check the taxonomy pages and widgets. Required for Plone 6.2.3 | [ ] |
+| plone.app.imagecropping | 3.0.3 | 4.0.0 (2026-10-30) | Bumped 2026-11-16 (only breaking change: Plone 6.2 only). Check the cropping editor | [x] |
 | plone.formwidget.recaptcha | 2.3.0 | 4.0.0 (2026-11-10) | Major bump, released today: let it settle before pinning | [ ] |
 | plone.patternslib | 9.10.3.1 | 9.11.1 (2026-09-19) | Minor bump: check the front-end JavaScript | [ ] |
 | zope.minmax | 3.0 | 4.0 (2025-09-12) | Major bump | [ ] |
@@ -372,19 +399,19 @@ options are, in order of preference:
 | collective.autopublishing | 1.1b1 | 1.1b1 (2022) | Last release 2022 | [ ] |
 | collective.complexrecordsproxy | 1.1 | 1.1 (2022) | | [ ] |
 | collective.exportimport | 1.15 | 1.16 (2026-02) | Active: check the main branch first | [ ] |
-| collective.fingerpointing | 1.8.3 | 1.8.3 (2022) | | [ ] |
+| collective.fingerpointing | 1.8.3 | 1.8.3 (2022) | Blocks Plone 6.2.3 (calls `pkg_resources`) | [ ] |
 | collective.geolocationbehavior | 1.7.2 | 1.7.2 (2021) | | [ ] |
 | collective.geotransform | 3.0 | 3.0 (2023) | | [ ] |
 | collective.instancebehavior | 0.5 | 0.5 (2021) | | [ ] |
 | collective.js.jqueryui | 2.2.0 | 2.2.0 (2023) | Namespaces `collective`, `collective.js` | [ ] |
-| collective.privacy | 1.1.0b2 | 1.1.0b2 (2022) | | [ ] |
+| collective.privacy | 1.1.0b2 | 1.1.0b2 (2022) | Blocks Plone 6.2.3 (calls `pkg_resources`) | [ ] |
 | collective.prometheus | 1.6.1 | 1.6.1 (2022) | `plone.observability` now provides metrics: check whether it is still needed | [ ] |
 | collective.sendinblue | 2.0.4 | 2.0.4 (2025) | | [ ] |
 | collective.solr | 9.4.0 | 10.1.1 (2026-03) | Active: check the main branch first | [ ] |
 | collective.themefragments | 2.12 | 2.12 (2019) | Last release 2019 | [ ] |
 | collective.timedevents | 1.1 | 1.1 (2021) | | [ ] |
 | collective.z3cform.select2 | 3.0.0b6 | 3.0.0b9 (2023) | Namespaces `collective`, `collective.z3cform` | [ ] |
-| eea.facetednavigation | 16.4 | 16.5 (2026-10) | Active: check the main branch first | [ ] |
+| eea.facetednavigation | 16.4 | 16.5 (2026-10) | Active: check the default branch (`develop`) first. Bump to 16.5 for Plone 6.2.3: it no longer calls `pkg_resources` | [ ] |
 | plone.gallery | 1.1.6 | 1.1.6 (2023) | | [ ] |
 | hurry.filesize | 0.9 | 0.9 (2009) | Unmaintained (last release 2009): find which package requires it | [ ] |
 
