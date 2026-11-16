@@ -43,12 +43,25 @@ and scanning the eggs they load. Each of these calls `pkg_resources` beyond
 Babel, Paste, pytz and grpcio-tools also mention `pkg_resources`, but only as
 a guarded fallback that isn't reached on Python 3.12.
 
-buildout.smartweb itself also stops on 6.2.3 (zc.buildout 6.0.2), before
-installing anything: `ModuleNotFoundError: No module named 'plone.recipe'`
-while loading `plone.recipe.zope2instance`. Just before the error, buildout
-warns that `plone` was already imported from the old-style
-`src/plone.formwidget.geolocation/plone/__init__.py`. Migrating
-plone.formwidget.geolocation is the likely fix (not confirmed yet).
+buildout.smartweb itself also stops on 6.2.3 (zc.buildout 6.0.2) while
+loading its recipes, with `ModuleNotFoundError: No module named
+'plone.recipe'` (or `'collective.recipe'`). The cause: each old-style package
+checked out in `src/` leaves a `<package>-<version>-nspkg.pth` file in the
+develop-eggs directory (`~/.buildout/develop-eggs`, shared by all your
+buildouts through `~/.buildout/default.cfg`). zc.buildout 6 loads these files,
+and they make the namespace module (`plone`, `collective`…) look only in the
+`src/` checkouts, so recipe eggs in the same namespace can't be found.
+`horse-with-no-namespace` doesn't fix this.
+
+- `plone`: fixed by switching plone.formwidget.geolocation to upstream
+  `master`, which is native (see [below](#ploneformwidgetgeolocation)).
+- `collective`: still blocked by the four old-style `collective.*` checkouts
+  (pivot, messagesviewlet, preventactions, upgrade), which break
+  `collective.recipe.omelette`, `collective.recipe.vscode`, etc. Migrate them
+  to unblock buildout.
+- `imio` and `pas`: no recipe lives in these namespaces, so the remaining
+  old-style checkouts (imio.smartweb.core, .policy, pas.plugins.kimug) don't
+  break buildout.
 
 Mixing both styles works today only because of `horse-with-no-namespace`,
 installed in the virtualenv by `requirements.txt` and imported in
@@ -199,7 +212,13 @@ requirements.txt` (buildout.smartweb) or `bin/pip install -r requirements.txt`
 ```sh
 rm -rf src/*.egg-info build
 find src -name "*.pyc" -delete      # stale bytecode can hide a missing file
+# reinstalling the develop egg doesn't remove its old namespace file
+rm -f ~/.buildout/develop-eggs/imio_smartweb_locales-*-nspkg.pth
 ```
+
+Adapt the last line to the package (dots become underscores). That file
+otherwise keeps forcing the old-style namespace, see
+[blockers](#blockers-for-plone-623).
 
 Then, from `buildout.smartweb`:
 
@@ -251,7 +270,7 @@ Highest priority: this is our code, checked out by mr.developer in dev.
 | imio.smartweb.locales | `plone62` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | Own buildout (releaser, i18ndude) moved to Plone 6.2.3 | [x] (not released) |
 | imio.smartweb.policy | `main` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | — | [ ] |
 | pas.plugins.kimug | `main` | `src/pas/__init__.py`, `src/pas/plugins/__init__.py` | — | [ ] |
-| plone.formwidget.geolocation | `fix-geosearch` | `plone/__init__.py`, `plone/formwidget/__init__.py` | No `src/` layout (see below) | [ ] |
+| plone.formwidget.geolocation | upstream `master` | — | Switched from the IMIO fork to collective `master`, already native (see below) | [x] (waiting for the 4.0.0 release) |
 | collective.pivot | `main` | `src/collective/__init__.py` | `pkg_resources` in `locales/update.py` | [ ] |
 | collective.messagesviewlet | `master` | `src/collective/__init__.py` | Python 2 branch in `__init__.py` | [ ] |
 | collective.preventactions | `plone6` | `src/collective/__init__.py` | — | [ ] |
@@ -301,31 +320,26 @@ packaging is still declared in `setup.py`, so the standard recipe applies:
 git rm src/pas/__init__.py src/pas/plugins/__init__.py
 ```
 
-### plone.formwidget.geolocation (IMIO fork)
+### plone.formwidget.geolocation
 
-Namespaces `plone`, `plone.formwidget`. This package has **no `src/`
-directory**: the code lives in `plone/` at the root of the repository. Without
-a filter, `find_namespace_packages()` would also turn `docs/`, `resources/` and
-any other directory into packages, so restrict it:
+Done by switching from the IMIO fork (branch `fix-geosearch`) to upstream
+`collective/plone.formwidget.geolocation`, branch `master`, in `sources.cfg`.
+Upstream `master` (4.0.0, unreleased) is already migrated: native namespaces,
+`src/` layout, Plone 6.2 only.
 
-```diff
--from setuptools import find_packages
-+from setuptools import find_namespace_packages
- ...
--    packages=find_packages(),
--    namespace_packages=["plone", "plone.formwidget"],
-+    packages=find_namespace_packages(include=["plone.*"]),
-```
+- **Nothing lost**: the fork's four commits (pat-leaflet upgrade, and the
+  `default_input_zoom` / `default_display_zoom` control panel options) were
+  released upstream in 3.0.6 and 3.0.7, and are on `master`.
+- **Upgrade step**: the fork's profile is 2001, upstream's is 2002. Existing
+  sites get one pending upgrade, "Add zoom for input and display", which
+  re-imports the registry records of the zoom options. Run it and check that
+  the zoom values set in the control panel are kept.
+- **Production**: `versions.cfg` still pins 3.0.6. Before the Plone 6.2 stack
+  goes to production, pin the 4.0.0 release once it is out, or ask the
+  maintainers for one.
 
-```sh
-git rm plone/__init__.py plone/formwidget/__init__.py
-```
-
-Check the wheel content carefully: it must contain only
-`plone/formwidget/geolocation/...`. The classifiers stop at Python 3.10 and
-Plone 6.0, so update them. The fork is on branch `fix-geosearch` and pinned at
-3.0.6 in `versions.cfg` (PyPI has 3.0.7): decide whether to migrate the fork or
-contribute to `collective/plone.formwidget.geolocation`.
+The old fork checkout must be moved away before mr.developer can clone the new
+URL (`bin/develop co plone.formwidget.geolocation`).
 
 ### collective.pivot
 
