@@ -1,8 +1,19 @@
 1.5.55 (unreleased)
 -------------------
 
-- WEB-4533 : Bump plone.app.imagecropping to 4.0.0 (PEP 420 native namespaces, no more ``pkg_resources``)
-  [bsuttor]
+- WEB-4533 : Bump packages for PEP 420 native namespaces and drop of ``pkg_resources``
+    - collective.geolocationbehavior 2.0.0
+    - collective.preventactions 0.4.0
+    - collective.taxonomy 4.0.0
+    - eea.facetednavigation 16.5
+    - pas.plugins.kimug 2.0.0
+    - pas.plugins.oidc 2.1.0
+    - plone.app.imagecropping 4.0.0
+    - plone.formwidget.recaptcha 4.0.0
+    - plone.patternslib 9.11.1
+    - zope.minmax 4.0
+    - zope.session 5.1
+  [boulch, bsuttor, remdub]
 
 
 1.5.54 (2026-11-12)
