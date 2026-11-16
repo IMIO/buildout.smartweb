@@ -1,7 +1,8 @@
 1.5.55 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- WEB-4533 : Bump plone.app.imagecropping to 4.0.0 (PEP 420 native namespaces, no more ``pkg_resources``)
+  [bsuttor]
 
 
 1.5.54 (2026-11-12)
