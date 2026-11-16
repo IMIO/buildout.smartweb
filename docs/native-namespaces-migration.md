@@ -36,10 +36,10 @@ on Plone 6.2.3 (2026-11-16), and scanning the eggs that `bin/test` and
 | Package | Pinned | Call | Fix |
 |---|---|---|---|
 | imio.helpers | 1.3.11 | `get_distribution()` in `__init__.py`, `xhtml.py`, `patches.py` | **None released**: 1.3.18 and `master` still call it. Migrate it ([group 2](#2-eggs-written-by-imio)). In progress (taken by a colleague) |
-| collective.fingerpointing | 1.8.3 | `get_distribution()` in `subscribers/__init__.py` | None released: open a PR |
-| collective.privacy | 1.1.0b2 | `get_distribution()` in `storage.py`, `browser/consent.py` | None released: open a PR |
-| collective.timedevents | 1.1 | `get_distribution()` in `__init__.py` | None released (last release 2021, `master` untouched since 2025-02): open a PR |
-| collective.exportimport | 1.15 | `get_distribution()` / `DistributionNotFound` in `export_content.py`, `export_other.py`, `import_other.py`, `serializer.py` | None released: 1.16 and `main` still call it. Open a PR |
+| collective.fingerpointing | 1.8.3 | `get_distribution()` in `subscribers/__init__.py` | Fixed on a `plone62` branch, checked out through `sources.cfg` ([see below](#fixes-for-the-third-party-blockers)). PR to open upstream |
+| collective.privacy | 1.1.0b2 | `get_distribution()` in `storage.py`, `browser/consent.py` | Fixed on a `plone62` branch, checked out through `sources.cfg` ([see below](#fixes-for-the-third-party-blockers)). PR to open upstream |
+| collective.timedevents | 1.1 | `get_distribution()` in `__init__.py` | Fixed on a `plone62` branch, checked out through `sources.cfg` ([see below](#fixes-for-the-third-party-blockers)). PR to open upstream |
+| collective.exportimport | 1.15 | `get_distribution()` / `DistributionNotFound` in `export_content.py`, `export_other.py`, `import_other.py`, `serializer.py` | Fixed on a `plone62` branch, checked out through `sources.cfg` ([see below](#fixes-for-the-third-party-blockers)). PR to open upstream |
 | imio.smartweb.core | checkout | `resource_filename()` in `browser/anysurfer.py` | Migrate it ([group 1](#imiosmartwebcommon-core-locales-policy)) |
 | eea.facetednavigation | 16.4 | `get_distribution()` in `subtypes/subtyper.py` | Bump to 16.5 (still old-style, but no more `pkg_resources` calls) |
 | collective.taxonomy | 3.1.7 | `DistributionNotFound` in `behavior.py` | Bump to 4.0.0 ([3a](#3a-native-release-already-available-bump-the-pin)) |
@@ -434,6 +434,41 @@ their changelog first.
 | zope.minmax | 3.0 | 4.0 (2025-09-12) | Major bump | [ ] |
 | zope.session | 5.1 | 6.0 (2025-09-12) | Major bump | [ ] |
 
+### Fixes for the third-party blockers
+
+collective.exportimport, .fingerpointing, .privacy and .timedevents have no
+release without `pkg_resources` calls. Each one is checked out on a local
+`plone62` branch (`sources.cfg`, `auto-checkout` in `dev.cfg`) with two
+separate changes:
+
+1. **Replace `pkg_resources`** (the upstream PR). All four still support
+   Python 2.7, and exportimport also runs on old Plone 4 sites to export
+   them, so the fix stays compatible:
+
+   ```python
+   try:
+       from importlib.metadata import PackageNotFoundError
+       from importlib.metadata import version as get_version
+   except ImportError:  # Python 2.7 and Python 3 < 3.8
+       from pkg_resources import DistributionNotFound as PackageNotFoundError
+       from pkg_resources import get_distribution
+
+       def get_version(name):
+           return get_distribution(name).version
+   ```
+
+   then `get_version("x")` / `except PackageNotFoundError`. exportimport and
+   fingerpointing define it once in their package `__init__.py`. privacy's
+   `email.Utils` check is replaced by `from email.utils import formatdate`
+   (available since Python 2.5).
+2. **Native namespaces** (only for our checkout, drops Python 2). As an
+   old-style `src/` checkout, each would write a `collective_*-nspkg.pth`
+   that hides the `collective.recipe.*` eggs and breaks buildout again
+   ([blockers](#blockers-for-plone-623)).
+
+Commit and push them separately: open the upstream PR from the first one only.
+Once they are released, drop the checkouts and pin the releases.
+
 ### 3b. Still old-style upstream: contribute or wait
 
 The latest release on PyPI still uses old-style namespaces. For each one, the
@@ -450,18 +485,18 @@ options are, in order of preference:
 | collective.anysurfer | 1.4.7 | 1.4.7 (2022) | | [ ] |
 | collective.autopublishing | 1.1b1 | 1.1b1 (2022) | Last release 2022 | [ ] |
 | collective.complexrecordsproxy | 1.1 | 1.1 (2022) | | [ ] |
-| collective.exportimport | 1.15 | 1.16 (2026-02) | Active, but 1.16 and `main` still old-style. Blocks Plone 6.2.3 (calls `pkg_resources`) | [ ] |
-| collective.fingerpointing | 1.8.3 | 1.8.3 (2022) | Blocks Plone 6.2.3 (calls `pkg_resources`) | [ ] |
+| collective.exportimport | 1.15 | 1.16 (2026-02) | Active, but 1.16 and `main` still old-style. Blocked Plone 6.2.3: fixed on a `plone62` branch, PR to open | [ ] |
+| collective.fingerpointing | 1.8.3 | 1.8.3 (2022) | Blocked Plone 6.2.3: fixed on a `plone62` branch, PR to open | [ ] |
 | collective.geolocationbehavior | 1.7.2 | 1.7.2 (2021) | | [ ] |
 | collective.geotransform | 3.0 | 3.0 (2023) | | [ ] |
 | collective.instancebehavior | 0.5 | 0.5 (2021) | | [ ] |
 | collective.js.jqueryui | 2.2.0 | 2.2.0 (2023) | Namespaces `collective`, `collective.js` | [ ] |
-| collective.privacy | 1.1.0b2 | 1.1.0b2 (2022) | Blocks Plone 6.2.3 (calls `pkg_resources`) | [ ] |
+| collective.privacy | 1.1.0b2 | 1.1.0b2 (2022) | Blocked Plone 6.2.3: fixed on a `plone62` branch, PR to open | [ ] |
 | collective.prometheus | 1.6.1 | 1.6.1 (2022) | `plone.observability` now provides metrics: check whether it is still needed | [ ] |
 | collective.sendinblue | 2.0.4 | 2.0.4 (2025) | | [ ] |
 | collective.solr | 9.4.0 | 10.1.1 (2026-03) | Active: check the main branch first | [ ] |
 | collective.themefragments | 2.12 | 2.12 (2019) | Last release 2019 | [ ] |
-| collective.timedevents | 1.1 | 1.1 (2021) | Blocks Plone 6.2.3 (calls `pkg_resources`) | [ ] |
+| collective.timedevents | 1.1 | 1.1 (2021) | Blocked Plone 6.2.3: fixed on a `plone62` branch, PR to open | [ ] |
 | collective.z3cform.select2 | 3.0.0b6 | 3.0.0b9 (2023) | Namespaces `collective`, `collective.z3cform` | [ ] |
 | eea.facetednavigation | 16.4 | 16.5 (2026-10) | Active: check the default branch (`develop`) first. Bump to 16.5 for Plone 6.2.3: it no longer calls `pkg_resources` | [ ] |
 | plone.gallery | 1.1.6 | 1.1.6 (2023) | | [ ] |
