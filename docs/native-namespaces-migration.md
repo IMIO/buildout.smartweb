@@ -278,7 +278,7 @@ Highest priority: this is our code, checked out by mr.developer in dev.
 | imio.smartweb.core | `plone62` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | `pkg_resources` in `browser/anysurfer.py`; `LockInfoViewlet` import; `sitemap.xml.gz` pagination; own buildout moved to Plone 6.2.3 (see below) | [x] (not released) |
 | imio.smartweb.locales | `plone62` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | Own buildout (releaser, i18ndude) moved to Plone 6.2.3 | [x] (not released) |
 | imio.smartweb.policy | `plone62` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | Own buildout moved to Plone 6.2.3 and buildout.smartweb `plone62` | [x] (not released) |
-| pas.plugins.kimug | `plone62` | `src/pas/__init__.py`, `src/pas/plugins/__init__.py` | Configured with plone.meta 2.12.0, metadata moved to `pyproject.toml`. Plone 6.1 and 6.2 only, needs pas.plugins.oidc >= 2.1.0 (see below) | [x] (not released) |
+| pas.plugins.kimug | `main` | `src/pas/__init__.py`, `src/pas/plugins/__init__.py` | Configured with plone.meta 2.12.0, metadata moved to `pyproject.toml`. Plone 6.1 and 6.2 only, needs pas.plugins.oidc >= 2.1.0 (see below). Released as 2.0.0 (PR #34) | [x] (released 2.0.0) |
 | plone.formwidget.geolocation | upstream `master` | — | Switched from the IMIO fork to collective `master`, already native (see below) | [x] (waiting for the 4.0.0 release) |
 | collective.pivot | `plone62` | `src/collective/__init__.py` | `pkg_resources` in `locales/update.py`; drops Python 2 | [x] (not released) |
 | collective.messagesviewlet | `plone62` | `src/collective/__init__.py` | Python 2 branch in `__init__.py`; drops Python 2 | [x] (not released) |
@@ -337,8 +337,9 @@ Release the four together and pin the new versions in one commit.
 ### pas.plugins.kimug
 
 Namespaces `pas`, `pas.plugins`. Migrated on the `plone62` branch
-(2026-11-16), which `sources.cfg` checks out. It follows
-collective.preventactions rather than the `setup.py` recipe above:
+(2026-11-16), merged into `main` (PR #34) and released as **2.0.0** the same
+day. `sources.cfg` checks out `main` again and `versions.cfg` pins 2.0.0. It
+follows collective.preventactions rather than the `setup.py` recipe above:
 
 - plone.meta 2.12.0 did the work: `switch-to-pep420` deleted
   `src/pas/__init__.py` and `src/pas/plugins/__init__.py`, then
@@ -353,8 +354,10 @@ collective.preventactions rather than the `setup.py` recipe above:
   matrix covers Plone 6.2.3 and 6.1 on Python 3.10 to 3.13, and `make install`
   builds a uv development environment on Plone 6.2.3.
 - Not yet checked from buildout.smartweb (steps 5.1 and 5.2 of the recipe).
-- Release it as **2.0.0** (breaking: native namespace, drops Plone 6.0), then
-  pin it in `versions.cfg` (currently `1.9.5`).
+- Released as **2.0.0** (breaking: native namespace, Plone 6.1 and 6.2 only)
+  and pinned in `versions.cfg` (was `1.9.5`). It is still in the
+  `auto-checkout` of `dev.cfg` and `prod.cfg`. Other iMio applications on
+  Plone 6.0 must stay on 1.9.x.
 
 ### plone.formwidget.geolocation
 
@@ -607,9 +610,6 @@ collective.autoscaling:
   plone.meta test matrix covers Plone 6.2.3 and 6.1 on Python 3.10 to 3.13,
   and `make install` builds a uv development environment on Plone 6.2.3
   (`mx.ini`, `instance.yaml`).
-- The `plone62` branch is not pushed yet, so mr.developer can't check it out:
-  `buildout -c prod.cfg` fails until it is pushed (`dev.cfg` doesn't check it
-  out).
 - Not yet checked from buildout.smartweb (steps 5.1 and 5.2 of the recipe):
   it isn't in `dev.cfg`'s `auto-checkout`, so `bin/instance` still loads the
   1.0a2 egg.
