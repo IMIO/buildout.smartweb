@@ -80,7 +80,7 @@ that workaround can go.
 | Group | Packages | Action |
 |---|---|---|
 | [1. iMio, `src/` checkouts](#1-imio-and-collective-packages-checked-out-in-src) | 10 | Migrate (recipe below) |
-| [2. iMio, eggs](#2-eggs-written-by-imio) | 10 | Check out, migrate, release |
+| [2. iMio, eggs](#2-eggs-written-by-imio) | 10 | Check out, migrate, release (imio.prometheus migrated, not released) |
 | [3a. Third-party, native release available](#3a-native-release-already-available-bump-the-pin) | 6 | Bumped (2026-11-16), checks pending |
 | [3b. Third-party, still old-style](#3b-still-old-style-upstream-contribute-or-wait) | 19 | Contribute upstream or wait |
 | [4. Plone and Zope core](#4-plone-and-zope-core-nothing-to-do) | 5 | Nothing to do |
@@ -399,7 +399,7 @@ directory (usually `src/`), so check the actual layout first.
 |---|---|---|---|---|
 | imio.helpers | 1.3.11 | 1.3.18 | `imio/__init__.py`. In progress (taken by a colleague) | [ ] |
 | imio.pyutils | 1.2.1 | 1.2.2 | `imio/__init__.py` | [ ] |
-| imio.prometheus | 1.0.1 | 1.0.1 | `imio/__init__.py` | [ ] |
+| imio.prometheus | 1.0.1 | 1.0.1 | `imio/__init__.py`. Migrated on `plone62` (see [below](#imioprometheus)) | [x] (not released) |
 | imio.gdpr | 1.2.3 | 1.2.3 | `imio/__init__.py` | [ ] |
 | imio.omnia.core | 1.2 | 1.3 | `imio/__init__.py`, `imio/omnia/__init__.py` | [ ] |
 | imio.omnia.tinymce | 1.0 | 1.0 | `imio/__init__.py`, `imio/omnia/__init__.py` | [ ] |
@@ -423,6 +423,31 @@ Notes:
 - Packages under `collective` (talcondition, autoscaling, faceted.map) live in
   the `collective` GitHub organisation or are released by iMio: open a PR in
   the repository listed in the egg's metadata.
+
+### imio.prometheus
+
+Namespace `imio`. Migrated on the `plone62` branch (2026-11-16), which
+`sources.cfg` checks out and `prod.cfg` adds to `auto-checkout`. It follows
+pas.plugins.kimug rather than the `setup.py` recipe above:
+
+- plone.meta 2.12.0 configures it, and the metadata moved to `pyproject.toml`.
+  `setup.py` is now only `setup()`, so there is no `find_namespace_packages`.
+- `pkg_resources` was only used by the `update_locale` script
+  (`locales/update.py`), which isn't imported at runtime, so it didn't block
+  Plone 6.2.3. It now uses the pathlib version of pas.plugins.kimug.
+  `INonInstallable` is imported from `plone.base`.
+- Drops the dependencies the code never imported (z3c.jbot,
+  plone.app.dexterity, plone.restapi) and the unused robot acceptance layer.
+- The package is tested with tox and zope.testrunner, not buildout: the
+  plone.meta test matrix covers Plone 6.2.3 and 6.1 on Python 3.10 to 3.13,
+  and `make install` builds a uv development environment on Plone 6.2.3
+  (`mx.ini`, `instance.yaml`).
+- Not yet checked from buildout.smartweb (steps 5.1 and 5.2 of the recipe):
+  it isn't in `dev.cfg`'s `auto-checkout`, so `bin/instance` still loads the
+  1.0.1 egg.
+- Release it as **2.0.0** (breaking: native namespace, Plone 6.1 and 6.2
+  only), then pin it in `versions.cfg` (currently `1.0.1`). Other iMio
+  applications on Python 2 or Plone 4.3 to 6.0 must stay on 1.0.x.
 
 ## 3. Third-party eggs
 
