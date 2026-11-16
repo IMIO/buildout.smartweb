@@ -274,7 +274,7 @@ Highest priority: this is our code, checked out by mr.developer in dev.
 
 | Package | Checked-out branch | Files to delete | Other changes | Done |
 |---|---|---|---|---|
-| imio.smartweb.common | `main` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | Migrated on `main`, before the `plone62` branch workflow: move it to a `plone62` branch. Tests blocked by imio.helpers (see [blockers](#blockers-for-plone-623)) | [x] (not released) |
+| imio.smartweb.common | `plone62` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | `@search-filters` fix for plone.restapi 10; own buildout moved to Plone 6.2.3 (see below) | [x] (not released) |
 | imio.smartweb.core | `plone62` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | `pkg_resources` in `browser/anysurfer.py`; `LockInfoViewlet` import; `sitemap.xml.gz` pagination; own buildout moved to Plone 6.2.3 (see below) | [x] (not released) |
 | imio.smartweb.locales | `plone62` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | Own buildout (releaser, i18ndude) moved to Plone 6.2.3 | [x] (not released) |
 | imio.smartweb.policy | `plone62` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | Own buildout moved to Plone 6.2.3 and buildout.smartweb `plone62` | [x] (not released) |
@@ -311,6 +311,26 @@ class AccessibilityInfo(BrowserView):
         str(files("Products.CMFPlone") / "browser/templates/accessibility-info.pt")
     )
 ```
+
+The imio.smartweb.common `plone62` branch (2026-11-16) also fixes two
+Plone 6.2 breakages, and moves its own buildout to Plone 6.2.3:
+
+- `@search-filters` always returned an empty result: since plone.restapi 10,
+  the catalog query adapter drops `metadata_fields` from the query.
+  `rest/search_filters.py` now pops `metadata_fields` before `_parse_query`.
+- `test_iframe_transform` uses closed `<iframe>` tags: with libxml2 2.14
+  (HTML5 parsing), the content of an unclosed `<iframe>` is text, as in
+  browsers.
+- `base.cfg` extends Plone 6.2.3 and buildout.smartweb's `plone62`
+  `versions.cfg` / `sources.cfg`, and adds imio.helpers,
+  collective.behavior.talcondition and collective.privacy to `auto-checkout`.
+  Its `[versions]` also restores Plone 6.2.3 pins that buildout.smartweb used
+  to override (plone.restapi, z3c.form, protobuf, collective.taxonomy,
+  eea.facetednavigation…). buildout.smartweb now pins Plone 6.2.3, so these
+  overrides can go.
+- `setup.py` classifiers: Plone 6.2 added next to 6.1. 6.1 still works only
+  with `horse-with-no-namespace` installed, as for the other migrated
+  packages.
 
 The imio.smartweb.core `plone62` branch (2026-11-16) also fixes two other
 Plone 6.2 breakages, and moves its own buildout to Plone 6.2.3:
