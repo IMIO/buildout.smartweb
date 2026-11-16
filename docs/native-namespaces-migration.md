@@ -35,7 +35,7 @@ on Plone 6.2.3 (2026-11-16), and scanning the eggs that `bin/test` and
 
 | Package | Pinned | Call | Fix |
 |---|---|---|---|
-| imio.helpers | 1.3.11 | `get_distribution()` in `__init__.py`, `xhtml.py`, `patches.py` | **None released**: 1.3.18 and `master` still call it. Migrate it ([group 2](#2-eggs-written-by-imio)) |
+| imio.helpers | 1.3.11 | `get_distribution()` in `__init__.py`, `xhtml.py`, `patches.py` | **None released**: 1.3.18 and `master` still call it. Migrate it ([group 2](#2-eggs-written-by-imio)). In progress (taken by a colleague) |
 | collective.fingerpointing | 1.8.3 | `get_distribution()` in `subscribers/__init__.py` | None released: open a PR |
 | collective.privacy | 1.1.0b2 | `get_distribution()` in `storage.py`, `browser/consent.py` | None released: open a PR |
 | collective.timedevents | 1.1 | `get_distribution()` in `__init__.py` | None released (last release 2021, `master` untouched since 2025-02): open a PR |
@@ -273,10 +273,10 @@ Highest priority: this is our code, checked out by mr.developer in dev.
 | Package | Checked-out branch | Files to delete | Other changes | Done |
 |---|---|---|---|---|
 | imio.smartweb.common | `main` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | Migrated on `main`, before the `plone62` branch workflow: move it to a `plone62` branch. Tests blocked by imio.helpers (see [blockers](#blockers-for-plone-623)) | [x] (not released) |
-| imio.smartweb.core | `main` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | `pkg_resources` in `browser/anysurfer.py` | [ ] |
+| imio.smartweb.core | `main` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | `pkg_resources` in `browser/anysurfer.py`. In progress (taken by a colleague) | [ ] |
 | imio.smartweb.locales | `plone62` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | Own buildout (releaser, i18ndude) moved to Plone 6.2.3 | [x] (not released) |
 | imio.smartweb.policy | `plone62` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | Own buildout moved to Plone 6.2.3 and buildout.smartweb `plone62` | [x] (not released) |
-| pas.plugins.kimug | `main` | `src/pas/__init__.py`, `src/pas/plugins/__init__.py` | — | [ ] |
+| pas.plugins.kimug | `main` | `src/pas/__init__.py`, `src/pas/plugins/__init__.py` | In progress (taken by a colleague) | [ ] |
 | plone.formwidget.geolocation | upstream `master` | — | Switched from the IMIO fork to collective `master`, already native (see below) | [x] (waiting for the 4.0.0 release) |
 | collective.pivot | `plone62` | `src/collective/__init__.py` | `pkg_resources` in `locales/update.py`; drops Python 2 | [x] (not released) |
 | collective.messagesviewlet | `plone62` | `src/collective/__init__.py` | Python 2 branch in `__init__.py`; drops Python 2 | [x] (not released) |
@@ -389,7 +389,7 @@ directory (usually `src/`), so check the actual layout first.
 
 | Package | Pinned | Latest on PyPI | Files to delete | Done |
 |---|---|---|---|---|
-| imio.helpers | 1.3.11 | 1.3.18 | `imio/__init__.py` | [ ] |
+| imio.helpers | 1.3.11 | 1.3.18 | `imio/__init__.py`. In progress (taken by a colleague) | [ ] |
 | imio.pyutils | 1.2.1 | 1.2.2 | `imio/__init__.py` | [ ] |
 | imio.prometheus | 1.0.1 | 1.0.1 | `imio/__init__.py` | [ ] |
 | imio.gdpr | 1.2.3 | 1.2.3 | `imio/__init__.py` | [ ] |
