@@ -5,14 +5,21 @@ Inventory of the packages in the SmartWeb stack (branch `plone62`, Plone
 of them.
 
 Last checked: 2026-11-10, against the eggs loaded by `bin/instance` and the
-latest releases on PyPI.
+latest releases on PyPI. Updated 2026-11-16 for Plone 6.2.3.
 
 ## Why
 
 Old-style namespaces rely on `pkg_resources`: each namespace directory has an
 `__init__.py` calling `declare_namespace`, `setup.py` lists the namespaces in
 `namespace_packages`, and wheel installs leave `*-nspkg.pth` files. setuptools
-81 deprecates `pkg_resources` and will remove it.
+81 deprecates `pkg_resources`, and the setuptools 84.2.1 pinned by Plone 6.2.3
+no longer ships it.
+
+Under Plone 6.2.3, old-style eggs still import because
+`horse-with-no-namespace` installs a stub `pkg_resources` module when the real
+one is missing. The stub only provides `declare_namespace`: any other call,
+such as `pkg_resources.resource_filename()` or `get_distribution()`, raises an
+error. Step 3 of the recipe is therefore mandatory before moving to 6.2.3.
 
 Mixing both styles works today only because of `horse-with-no-namespace`,
 installed in the virtualenv by `requirements.txt` and imported in
@@ -96,7 +103,28 @@ path = str(files("Products.CMFPlone") / "browser/templates/x.pt")
 version = get_version("my.package")
 ```
 
-### 4. Clean up and check
+### 4. Test against Plone 6.2.3
+
+Point the package's own test buildout to the Plone 6.2.3 pins, in `base.cfg`
+(or the file that extends the Plone versions):
+
+```ini
+extends =
+    https://dist.plone.org/release/6.2.3/versions.cfg
+    https://dist.plone.org/release/6.2.3/versions-ecosystem.cfg
+    https://dist.plone.org/release/6.2.3/versions-extra.cfg
+```
+
+and in `requirements.txt`:
+
+```text
+-r https://dist.plone.org/release/6.2.3/requirements.txt
+```
+
+Plone's `requirements.txt` already installs `horse-with-no-namespace`, so
+don't add it yourself.
+
+### 5. Clean up and check
 
 ```sh
 rm -rf src/*.egg-info build
@@ -119,13 +147,14 @@ Then, from `buildout.smartweb`:
 
    This should print nothing.
 
-### 5. Release
+### 6. Release
 
 - Release a new version, a minor bump at least, with a changelog entry such as
   *"Migrate to PEP 420 native namespaces (setuptools 81 / Plone 6.2)"*.
-- If the package still supports Plone 6.0 or 6.1, the test requirements for
-  those versions need `horse-with-no-namespace`, installed in the virtualenv
-  with pip or uv (not with buildout). collective.big.bang did this in
+- If the package also keeps test requirements for Plone 6.0 or 6.1 (whose
+  `requirements.txt` don't include it), add `horse-with-no-namespace` to them,
+  installed in the virtualenv with pip or uv (not with buildout).
+  collective.big.bang did this in
   [`8ec39db`](https://github.com/collective/collective.big.bang/commit/8ec39db).
 - Pin the new version in `buildout.smartweb/versions.cfg`.
 
@@ -143,7 +172,7 @@ Highest priority: this is our code, checked out by mr.developer in dev.
 
 | Package | Checked-out branch | Files to delete | Other changes | Done |
 |---|---|---|---|---|
-| imio.smartweb.common | `main` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | — | [ ] |
+| imio.smartweb.common | `main` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | Test buildout moved to Plone 6.2.3 | [x] (not released) |
 | imio.smartweb.core | `main` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | `pkg_resources` in `browser/anysurfer.py` | [ ] |
 | imio.smartweb.locales | `main` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | — | [ ] |
 | imio.smartweb.policy | `main` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | — | [ ] |
@@ -363,6 +392,11 @@ options are, in order of preference:
 
 These come from the Plone and Zope pins. Plone and Zope release them, so they
 will become native through future Plone releases.
+
+Plone 6.2.3 already pins native releases of the first three: plone.app.content
+5.0.1, plone.autoform 3.0.1 and plone.restapi 10.2.1. Moving buildout.smartweb
+to 6.2.3 and dropping the security-advisory overrides from `requirements.txt`
+settles them.
 
 | Package | Version | Where it comes from |
 |---|---|---|
