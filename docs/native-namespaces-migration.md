@@ -42,7 +42,7 @@ on Plone 6.2.3 (2026-11-16), and scanning the eggs that `bin/test` and
 | collective.exportimport | 1.15 | `get_distribution()` / `DistributionNotFound` in `export_content.py`, `export_other.py`, `import_other.py`, `serializer.py` | Fixed on a `plone62` branch, checked out through `sources.cfg` ([see below](#fixes-for-the-third-party-blockers)). PR to open upstream |
 | imio.smartweb.core | checkout | `resource_filename()` in `browser/anysurfer.py` | Migrate it ([group 1](#imiosmartwebcommon-core-locales-policy)) |
 | eea.facetednavigation | 16.4 | `get_distribution()` in `subtypes/subtyper.py` | Bump to 16.5 (still old-style, but no more `pkg_resources` calls) |
-| collective.taxonomy | 3.1.7 | `DistributionNotFound` in `behavior.py` | Bump to 4.0.0 ([3a](#3a-native-release-already-available-bump-the-pin)) |
+| collective.taxonomy | 3.1.7 | `DistributionNotFound` in `behavior.py` | Bumped to 4.0.0 ([3a](#3a-native-release-already-available-bump-the-pin)) |
 | plone.app.imagecropping | 3.0.3 | `get_distribution()` in `__init__.py` | Bumped to 4.0.0 |
 
 Babel, Paste, pytz and grpcio-tools also mention `pkg_resources`, but only as
@@ -81,7 +81,7 @@ that workaround can go.
 |---|---|---|
 | [1. iMio, `src/` checkouts](#1-imio-and-collective-packages-checked-out-in-src) | 10 | Migrate (recipe below) |
 | [2. iMio, eggs](#2-eggs-written-by-imio) | 10 | Check out, migrate, release |
-| [3a. Third-party, native release available](#3a-native-release-already-available-bump-the-pin) | 6 | Bump the pin in `versions.cfg` |
+| [3a. Third-party, native release available](#3a-native-release-already-available-bump-the-pin) | 6 | Bumped (2026-11-16), checks pending |
 | [3b. Third-party, still old-style](#3b-still-old-style-upstream-contribute-or-wait) | 19 | Contribute upstream or wait |
 | [4. Plone and Zope core](#4-plone-and-zope-core-nothing-to-do) | 5 | Nothing to do |
 
@@ -433,14 +433,17 @@ uses native namespaces. Bump the pin, then run buildout, start the instance and
 test the feature that uses the package. Most are major version bumps, so read
 their changelog first.
 
+All six were bumped on 2026-11-16 (`12dde8e`). The checks in the Notes column
+are still to do.
+
 | Package | Pinned | Native release | Notes | Done |
 |---|---|---|---|---|
-| collective.taxonomy | 3.1.7 | 4.0.0 (2026-10-20) | Major bump: check the taxonomy pages and widgets. Required for Plone 6.2.3 | [ ] |
+| collective.taxonomy | 3.1.7 | 4.0.0 (2026-10-20) | Bumped 2026-11-16. Major bump: check the taxonomy pages and widgets | [x] |
 | plone.app.imagecropping | 3.0.3 | 4.0.0 (2026-10-30) | Bumped 2026-11-16 (only breaking change: Plone 6.2 only). Check the cropping editor | [x] |
-| plone.formwidget.recaptcha | 2.3.0 | 4.0.0 (2026-11-10) | Major bump, released today: let it settle before pinning | [ ] |
-| plone.patternslib | 9.10.3.1 | 9.11.1 (2026-09-19) | Minor bump: check the front-end JavaScript | [ ] |
-| zope.minmax | 3.0 | 4.0 (2025-09-12) | Major bump | [ ] |
-| zope.session | 5.1 | 6.0 (2025-09-12) | Major bump | [ ] |
+| plone.formwidget.recaptcha | 2.3.0 | 4.0.0 (2026-11-10) | Bumped 2026-11-16. Major bump: check the forms that use the captcha | [x] |
+| plone.patternslib | 9.10.3.1 | 9.11.1 (2026-09-19) | Bumped 2026-11-16. Minor bump: check the front-end JavaScript | [x] |
+| zope.minmax | 3.0 | 4.0 (2025-09-12) | Bumped 2026-11-16. Major bump | [x] |
+| zope.session | 5.1 | 6.0 (2025-09-12) | Bumped 2026-11-16. Major bump | [x] |
 
 ### Fixes for the third-party blockers
 
