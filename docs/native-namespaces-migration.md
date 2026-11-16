@@ -80,7 +80,7 @@ that workaround can go.
 | Group | Packages | Action |
 |---|---|---|
 | [1. iMio, `src/` checkouts](#1-imio-and-collective-packages-checked-out-in-src) | 10 | Migrate (recipe below) |
-| [2. iMio, eggs](#2-eggs-written-by-imio) | 10 | Check out, migrate, release (imio.prometheus migrated, not released) |
+| [2. iMio, eggs](#2-eggs-written-by-imio) | 10 | Check out, migrate, release (imio.prometheus and collective.autoscaling migrated, not released) |
 | [3a. Third-party, native release available](#3a-native-release-already-available-bump-the-pin) | 6 | Bumped (2026-11-16), checks pending |
 | [3b. Third-party, still old-style](#3b-still-old-style-upstream-contribute-or-wait) | 19 | Contribute upstream or wait |
 | [4. Plone and Zope core](#4-plone-and-zope-core-nothing-to-do) | 5 | Nothing to do |
@@ -404,7 +404,7 @@ directory (usually `src/`), so check the actual layout first.
 | imio.omnia.core | 1.2 | 1.3 | `imio/__init__.py`, `imio/omnia/__init__.py` | [ ] |
 | imio.omnia.tinymce | 1.0 | 1.0 | `imio/__init__.py`, `imio/omnia/__init__.py` | [ ] |
 | collective.behavior.talcondition | 1.1.1 | 1.1.3 | `collective/__init__.py`, `collective/behavior/__init__.py` | [ ] |
-| collective.autoscaling | 1.2 | 1.2 | `collective/__init__.py` | [ ] |
+| collective.autoscaling | 1.2 | 1.2 | `collective/__init__.py`. Migrated on `plone62` (see [below](#collectiveautoscaling)) | [x] (not released) |
 | collective.faceted.map | 1.0.0 | 1.0.0 | `collective/__init__.py`, `collective/faceted/__init__.py` | [ ] |
 | iaweb.privacy | 1.0a2 | 1.0a2 | `iaweb/__init__.py` | [ ] |
 
@@ -448,6 +448,37 @@ pas.plugins.kimug rather than the `setup.py` recipe above:
 - Release it as **2.0.0** (breaking: native namespace, Plone 6.1 and 6.2
   only), then pin it in `versions.cfg` (currently `1.0.1`). Other iMio
   applications on Python 2 or Plone 4.3 to 6.0 must stay on 1.0.x.
+
+### collective.autoscaling
+
+Namespace `collective`. Migrated on the `plone62` branch (2026-11-16), which
+`sources.cfg` checks out and `prod.cfg` adds to `auto-checkout`. It follows
+pas.plugins.kimug rather than the `setup.py` recipe above:
+
+- plone.meta 2.12.0 configures it, and the metadata moved to `pyproject.toml`.
+  `setup.py` is now only `setup()`, so there is no `find_namespace_packages`.
+  The buildout configuration (`base.cfg`, `plone-5.2.x.cfg`,
+  `plone-6.0.x.cfg`, their requirements files) is gone, and the README,
+  CHANGES, CONTRIBUTORS and LICENSE are now in Markdown.
+- No other `pkg_resources` use. The Python 2 branches (`cStringIO`) are gone.
+  `IPloneSiteRoot`, `INonInstallable` and `get_installer` are imported from
+  `plone.base`, and the test layers use `plone.testing.zope`.
+- `configure.zcml` now includes the CMFCore permissions its views use: the
+  package failed to load when it was included before Plone
+  (`zcml_package_includes`). Through autoinclude, as in buildout.smartweb, it
+  always loaded after Plone, which hid the problem.
+- The package is tested with tox and zope.testrunner, not buildout: the
+  plone.meta test matrix covers Plone 6.2.3 and 6.1 on Python 3.10 to 3.13,
+  robot scenarios included (Selenium, headless Chrome), and `make install`
+  builds a uv development environment on Plone 6.2.3 (`mx.ini`,
+  `instance.yaml`).
+- Not yet checked from buildout.smartweb (steps 5.1 and 5.2 of the recipe):
+  it isn't in `dev.cfg`'s `auto-checkout`, so `bin/instance` still loads the
+  1.2 egg.
+- Release it as **2.0.0** (breaking: native namespace, Plone 6.1 and 6.2
+  only), then pin it in `versions.cfg` (currently `1.2`). The repository
+  belongs to the `collective` organisation: open a PR there. Other iMio
+  applications on Plone 4.3 to 6.0 must stay on 1.x.
 
 ## 3. Third-party eggs
 
