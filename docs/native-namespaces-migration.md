@@ -82,7 +82,7 @@ that workaround can go.
 | Group | Packages | Action |
 |---|---|---|
 | [1. iMio, `src/` checkouts](#1-imio-and-collective-packages-checked-out-in-src) | 10 | Migrate (recipe below) |
-| [2. iMio, eggs](#2-eggs-written-by-imio) | 10 | Check out, migrate, release (imio.prometheus, imio.gdpr, collective.autoscaling and iaweb.privacy migrated, not released) |
+| [2. iMio, eggs](#2-eggs-written-by-imio) | 10 | Check out, migrate, release (imio.pyutils, imio.prometheus, imio.gdpr, collective.autoscaling and iaweb.privacy migrated, not released) |
 | [3a. Third-party, native release available](#3a-native-release-already-available-bump-the-pin) | 6 | Bumped (2026-11-16), checks pending |
 | [3b. Third-party, still old-style](#3b-still-old-style-upstream-contribute-or-wait) | 19 | Contribute upstream or wait |
 | [4. Plone and Zope core](#4-plone-and-zope-core-nothing-to-do) | 5 | Nothing to do |
@@ -419,7 +419,7 @@ directory (usually `src/`), so check the actual layout first.
 | Package | Pinned | Latest on PyPI | Files to delete | Done |
 |---|---|---|---|---|
 | imio.helpers | 1.3.11 | 1.3.18 | `imio/__init__.py`. In progress (taken by a colleague) | [ ] |
-| imio.pyutils | 1.2.1 | 1.2.2 | `imio/__init__.py` | [ ] |
+| imio.pyutils | 1.2.2 | 1.2.2 | None: native on Python 3 only, still compatible with Python 2.7. Migrated on `plone62` (see [below](#imiopyutils)) | [x] (not released) |
 | imio.prometheus | 1.0.1 | 1.0.1 | `imio/__init__.py`. Migrated on `plone62` (see [below](#imioprometheus)) | [x] (not released) |
 | imio.gdpr | 1.2.3 | 1.2.3 | `imio/__init__.py`. Migrated on `plone62` (see [below](#imiogdpr)) | [x] (not released) |
 | imio.omnia.core | 1.2 | 1.3 | `imio/__init__.py`, `imio/omnia/__init__.py` | [ ] |
@@ -444,6 +444,53 @@ Notes:
 - Packages under `collective` (talcondition, autoscaling, faceted.map) live in
   the `collective` GitHub organisation or are released by iMio: open a PR in
   the repository listed in the egg's metadata.
+
+### imio.pyutils
+
+Namespace `imio`. Migrated on the `plone62` branch (2026-11-16), which
+`sources.cfg` checks out and `dev.cfg` and `prod.cfg` add to `auto-checkout`.
+Unlike the other packages, it **keeps Python 2.7 support**: many other iMio
+applications still run on Python 2, and PEP 420 doesn't exist there. So
+`setup.py` picks the namespace style from the Python version that builds it:
+
+```python
+if sys.version_info[0] < 3:
+    from setuptools import find_packages
+
+    namespace_kwargs = {
+        "packages": find_packages(exclude=["ez_setup"]),
+        "namespace_packages": ["imio"],
+    }
+else:
+    from setuptools import find_namespace_packages
+
+    namespace_kwargs = {"packages": find_namespace_packages(include=["imio.*"])}
+
+setup(
+    ...,
+    **namespace_kwargs  # last, without a trailing comma (Python 2 syntax)
+)
+```
+
+- `imio/__init__.py` stays in the source tree, for Python 2. On Python 3,
+  `imio` isn't listed as a package, so the wheel ships only `imio/pyutils/`
+  and no namespace file.
+- `MANIFEST.in` includes `imio/__init__.py`. Without it, the sdist built on
+  Python 3 would lack that file, and installing it on Python 2 would fail.
+- The release wheel is `py3-none-any` (the universal wheel option was already
+  removed in 1.2.1). Python 2 installs from the sdist and gets the old-style
+  namespace, as before.
+- When the source tree is on `sys.path` on Python 3 (develop egg,
+  `pip install -e .`), the leftover `imio/__init__.py` extends `__path__`
+  (horse-with-no-namespace, or its `pkgutil` fallback), so the other `imio.*`
+  packages are still found.
+- Checked: the Python 3 wheel imports next to another native `imio` portion
+  without horse-with-no-namespace; the sdist installs on Python 2.7 with the
+  old `nspkg.pth`; the 22 tests pass on Python 2.7 and 3.12 (editable install,
+  as in CI); buildout.smartweb no longer lists it as old-style, and
+  `bin/zopepy` imports it with the `imio.smartweb.*` packages.
+- No other `pkg_resources` use. No breaking change, so release it as
+  **1.3.0** (minor bump), then pin it in `versions.cfg` (currently `1.2.2`).
 
 ### imio.prometheus
 
