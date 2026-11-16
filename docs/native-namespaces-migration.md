@@ -80,7 +80,7 @@ that workaround can go.
 | Group | Packages | Action |
 |---|---|---|
 | [1. iMio, `src/` checkouts](#1-imio-and-collective-packages-checked-out-in-src) | 10 | Migrate (recipe below) |
-| [2. iMio, eggs](#2-eggs-written-by-imio) | 10 | Check out, migrate, release (imio.prometheus and collective.autoscaling migrated, not released) |
+| [2. iMio, eggs](#2-eggs-written-by-imio) | 10 | Check out, migrate, release (imio.prometheus, imio.gdpr and collective.autoscaling migrated, not released) |
 | [3a. Third-party, native release available](#3a-native-release-already-available-bump-the-pin) | 6 | Bumped (2026-11-16), checks pending |
 | [3b. Third-party, still old-style](#3b-still-old-style-upstream-contribute-or-wait) | 19 | Contribute upstream or wait |
 | [4. Plone and Zope core](#4-plone-and-zope-core-nothing-to-do) | 5 | Nothing to do |
@@ -400,7 +400,7 @@ directory (usually `src/`), so check the actual layout first.
 | imio.helpers | 1.3.11 | 1.3.18 | `imio/__init__.py`. In progress (taken by a colleague) | [ ] |
 | imio.pyutils | 1.2.1 | 1.2.2 | `imio/__init__.py` | [ ] |
 | imio.prometheus | 1.0.1 | 1.0.1 | `imio/__init__.py`. Migrated on `plone62` (see [below](#imioprometheus)) | [x] (not released) |
-| imio.gdpr | 1.2.3 | 1.2.3 | `imio/__init__.py` | [ ] |
+| imio.gdpr | 1.2.3 | 1.2.3 | `imio/__init__.py`. Migrated on `plone62` (see [below](#imiogdpr)) | [x] (not released) |
 | imio.omnia.core | 1.2 | 1.3 | `imio/__init__.py`, `imio/omnia/__init__.py` | [ ] |
 | imio.omnia.tinymce | 1.0 | 1.0 | `imio/__init__.py`, `imio/omnia/__init__.py` | [ ] |
 | collective.behavior.talcondition | 1.1.1 | 1.1.3 | `collective/__init__.py`, `collective/behavior/__init__.py` | [ ] |
@@ -448,6 +448,34 @@ pas.plugins.kimug rather than the `setup.py` recipe above:
 - Release it as **2.0.0** (breaking: native namespace, Plone 6.1 and 6.2
   only), then pin it in `versions.cfg` (currently `1.0.1`). Other iMio
   applications on Python 2 or Plone 4.3 to 6.0 must stay on 1.0.x.
+
+### imio.gdpr
+
+Namespace `imio`. Migrated on the `plone62` branch (2026-11-16), which
+`sources.cfg` checks out and `prod.cfg` adds to `auto-checkout`. Unlike
+imio.prometheus, it follows [the recipe](#the-migration-recipe) and keeps its
+`setup.py` and buildout:
+
+- `find_namespace_packages`, no more `namespace_packages`, and
+  `src/imio/__init__.py` is gone. `python_requires='>=3.10'`, classifiers
+  updated (Plone 6.2, Python 3.10 to 3.13).
+- No `pkg_resources` use beyond the namespace declaration, so it didn't block
+  Plone 6.2.3.
+- `views.py` compares `content.language` instead of calling `Language()`.
+  The test layer is based on `PLONE_APP_CONTENTTYPES_FIXTURE` directly.
+- Code formatted with black and isort, flake8 warnings fixed.
+- Tested with buildout: new `plone62.cfg` and `requirements-6.2.txt`, and a
+  GitHub Actions workflow (`IMIO/gha-workflows` `package-full-test`, Python
+  3.12 and 3.13) replaces Travis.
+- `six` and the `HAS_PLONE_5_AND_MORE` check are still there: they can go in
+  a later cleanup.
+- Not yet checked from buildout.smartweb (steps 5.1 and 5.2 of the recipe):
+  it isn't in `dev.cfg`'s `auto-checkout`, so `bin/instance` still loads the
+  1.2.3 egg.
+- `CHANGES.rst` announces **1.2.4**, but the change is breaking (native
+  namespace, Python 3.10+ and Plone 6.2 only): release it as **2.0.0**, then
+  pin it in `versions.cfg` (currently `1.2.3`). Other iMio applications on
+  Python 2 or older Plone must stay on 1.2.x.
 
 ### collective.autoscaling
 
