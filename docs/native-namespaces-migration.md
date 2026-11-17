@@ -10,8 +10,8 @@ Last updated: 2026-11-17.
 ## Status
 
 **9 pinned** (2 migrated, 7 bumped) · **5 merged**, not released · **11 PRs
-open** · **12 branches pushed**, no PR yet · **2 branches local**, not pushed
-yet · **5 not started** (none of them blocks Plone 6.2.3)
+open** · **12 branches pushed**, no PR yet · **3 branches local**, not pushed
+yet · **4 not started** (none of them blocks Plone 6.2.3)
 
 ✅ done · ⬜ to do · ➖ not applicable · 🚧 its pinned release calls
 `pkg_resources` and fails on Plone 6.2.3 ([blockers](#blockers-for-plone-623))
@@ -37,7 +37,7 @@ yet · **5 not started** (none of them blocks Plone 6.2.3)
 | [collective.prometheus](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [collective.solr](native-namespaces-packages.md#collectivesolr) | ✅ | ✅ | [#408](https://github.com/collective/collective.solr/pull/408) | ⬜ | ⬜ | ⬜ |
 | [collective.taxonomy](native-namespaces-packages.md#bumped-to-a-native-release) | ➖ | ⬜ | ➖ | ➖ | 4.0.0 | ✅ |
-| [collective.themefragments](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [collective.themefragments](native-namespaces-packages.md#collectivethemefragments) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [collective.timedevents](native-namespaces-packages.md#collectivetimedevents) 🚧 | ✅ | ✅ | [#13](https://github.com/collective/collective.timedevents/pull/13) | ⬜ | ⬜ | ⬜ |
 | [collective.upgrade](native-namespaces-packages.md#collectiveupgrade) | ✅ | ✅ | [#17](https://github.com/collective/collective.upgrade/pull/17) | ⬜ | ⬜ | ⬜ |
 | [collective.z3cform.select2](native-namespaces-packages.md#collectivez3cformselect2) | ✅ | ✅ | [#15](https://github.com/collective/collective.z3cform.select2/pull/15) | ✅ | ⬜ | ⬜ |
@@ -122,6 +122,9 @@ Rows with ⬜ in the PR column:
 - [ ] collective.instancebehavior (collective): push the local `plone62`
   branch first, and ask upstream which license applies
   ([details](native-namespaces-packages.md#collectiveinstancebehavior))
+- [ ] collective.themefragments (collective): push the local `plone62`
+  branch first, and ask upstream about the license version
+  ([details](native-namespaces-packages.md#collectivethemefragments))
 
 ### Check from buildout.smartweb
 
@@ -144,6 +147,7 @@ release can't depend on a git branch, so the order matters:
 - [ ] imio.pyutils as 1.3.0 (not breaking; `master` says 1.2.4.dev0).
   collective.geotransform as 4.0.0 (3.0 is its Plone 6.0 release).
   collective.instancebehavior as 0.6 (never released, 0.5 is the latest).
+  collective.themefragments as 3.0.0 (2.12, from 2019, is the latest).
   Every other package as 2.0.0.
 - [ ] Ask upstream for collective.fingerpointing 2.0.0,
   plone.formwidget.geolocation 4.0.0, collective.js.jqueryui 3.0.0 and
@@ -173,6 +177,9 @@ release can't depend on a git branch, so the order matters:
 - [ ] collective.js.jqueryui: whatever uses jQuery UI, which the bundle never
   loaded before
   [#58](https://github.com/collective/collective.js.jqueryui/pull/58).
+- [ ] collective.themefragments: the theme fragments and their Python
+  modules, with debug mode off (the theme cache, which the tests don't
+  cover).
 
 ### Fix upstream
 
@@ -183,7 +190,7 @@ release can't depend on a git branch, so the order matters:
 
 ### Not started
 
-- [ ] The 5 [still old-style](native-namespaces-packages.md#still-old-style-upstream)
+- [ ] The 4 [still old-style](native-namespaces-packages.md#still-old-style-upstream)
   third-party packages. For each one, in order of preference:
   1. Check the repository's main branch: the migration may already be merged
      and only waiting for a release. Ask the maintainers for a release.

@@ -582,6 +582,71 @@ and it was never checked out.
   is still there on the branch.
 - Once #408 is merged and 11.0.0 released, drop the checkout and pin it.
 
+## collective.themefragments
+
+**Namespace** `collective` · **Repository**
+[collective/collective.themefragments](https://github.com/collective/collective.themefragments),
+branch `plone62` (**local, not pushed yet**) · **Variant**
+[plone.meta](native-namespaces-migration.md#variant-plonemeta) · **Checked
+out by** `dev.cfg`, `prod.cfg` · **Older stacks** (Plone 4.3 to 6.0, Python
+2.7) stay on 2.12
+
+Migrated 2026-11-17. In SmartWeb, imio.smartweb.policy requires it, includes
+its ZCML and allows `requests` in RestrictedPython for the fragment modules.
+The fragment tile isn't loaded: plone.tiles isn't installed.
+
+- **The branch only exists in `~/github-collective/collective.themefragments`**,
+  cloned into `src/` by hand (with the GitHub `origin` that `sources.cfg`
+  names). Push it before anyone else runs buildout: mr.developer can't
+  clone a branch that isn't on GitHub. Then open the PR.
+- plone.meta 2.12.0 configures it, and the metadata moved to `pyproject.toml`,
+  written by hand (`setup-to-pyproject` can't parse the `long_description`
+  concatenation). `setup.py` is now only `setup()`. The package was already
+  in a `src/` layout. The z3c.autoinclude entry point became a
+  `plone.autoinclude.plugin` one. The README and CHANGES are now in Markdown,
+  and a `CONTRIBUTORS.md` lists the git authors.
+- **License**: `setup.py` only said "GPL", and there was no license file.
+  The metadata says SPDX `GPL-2.0-only` and `LICENSE.md` / `LICENSE.GPL` were
+  added, like plone.app.theming, which the fragments come from. Ask upstream
+  before releasing.
+- Gone: Travis (Plone 4.3 to 5.2, Python 2.7 to 3.7), the buildout
+  configurations based on buildout.plonetest, and `bootstrap.py`.
+- No other `pkg_resources` use. The Python 2 and Plone 4 code is gone: `six`
+  (which was never declared), the Python 2 encoding of the fragment name in
+  the tile forms (the unreleased 2.13.1 fix, dropped from the changelog), the
+  plone.app.widgets fallbacks and the `IThemingPolicy` import guard.
+  `safe_text` comes from `plone.base`.
+- **plone.app.widgets is no longer a dependency**: it was deprecated (removed
+  in Plone 7), and collective.themefragments was the only package that pulled
+  it into buildout.smartweb (`bin/instance` no longer lists it). The tile
+  field permission checker is now registered for `IFieldPermissionChecker`
+  from plone.app.z3cform, the interface the plone.app.widgets alias pointed
+  to: without plone.app.widgets, it wasn't registered at all.
+- The tile stays optional (its ZCML is only loaded when plone.tiles is
+  installed): what it imports is now declared in a `tiles` extra.
+  z3c.dependencychecker 3.0 doesn't count extras for missing imports, so
+  `.meta.toml` ignores these packages, with a comment.
+- `configure.zcml` includes the CMFCore permissions (the tile uses
+  `cmf.ModifyPortalContent`), and the tests use `plone.testing.zope`.
+- **Version 3.0.0, not 2.0.0**: 2.12 is already a 2.x release.
+- Tested with tox and zope.testrunner: the plone.meta test matrix covers
+  Plone 6.2.3 and 6.1 on Python 3.10 to 3.13 (11 functional tests of the
+  traversal views, which already passed on 6.2.3 before the changes). Run
+  locally: the whole matrix, plus lint, coverage, dependencies, circular and
+  release-check. **Not covered by the tests**: the fragment tile (no tile
+  tests, 31% coverage of `tiles.py`) and the theme cache, which only runs
+  with debug mode off (the tests force it on).
+- `make install` builds a uv development environment on Plone 6.2.3 (the
+  Makefile of collective.complexrecordsproxy: the package doesn't depend on
+  Products.CMFPlone, so it adds it and plone.app.contenttypes), and the
+  instance starts with the package's ZCML (`zcml_package_includes`).
+  `make release` runs zest.releaser through uvx, so zest.releaser isn't a
+  dependency.
+- Checked from buildout.smartweb: `.venv/bin/buildout -N` doesn't list it as
+  old-style, `bin/zopepy` imports it from the `src/` checkout, and the wheel
+  has no namespace marker. `versions.cfg` still pins 2.12, as for the other
+  checked-out packages.
+
 ## collective.timedevents
 
 **Namespace** `collective` · **Repository**
@@ -1045,7 +1110,6 @@ each one: [not started](native-namespaces-migration.md#not-started).
 | Package | Pinned | Latest on PyPI | Notes |
 |---|---|---|---|
 | collective.prometheus | 1.6.1 | 1.6.1 (2022) | `plone.observability` now provides metrics: check whether it is still needed |
-| collective.themefragments | 2.12 | 2.12 (2019) | Last release 2019 |
 | eea.facetednavigation | 16.5 | 16.5 (2026-10) | Moved to [collective/eea.facetednavigation](https://github.com/collective/eea.facetednavigation) (`eea/` is archived). Its `main` is still old-style, with no namespace PR open (checked 2026-11-17). 16.5 no longer calls `get_distribution()` (`subtypes/subtyper.py`), which blocked Plone 6.2.3 |
 | plone.gallery | 1.1.6 | 1.1.6 (2023) | |
 | hurry.filesize | 0.9 | 0.9 (2009) | Unmaintained: find which package requires it |
