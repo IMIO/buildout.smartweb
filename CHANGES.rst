@@ -15,6 +15,9 @@
     - zope.session 5.1
   [boulch, bsuttor, remdub]
 
+- WEB-4533 : Plone 6.2.3 migration
+  [boulch, bsuttor, remdub]
+
 
 1.5.54 (2026-11-12)
 -------------------
