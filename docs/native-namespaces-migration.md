@@ -10,8 +10,8 @@ Last updated: 2026-11-17.
 ## Status
 
 **9 pinned** (2 migrated, 7 bumped) · **5 merged**, not released · **11 PRs
-open** · **12 branches pushed**, no PR yet · **3 branches local**, not pushed
-yet · **4 not started** (none of them blocks Plone 6.2.3)
+open** · **12 branches pushed**, no PR yet · **4 branches local**, not pushed
+yet · **3 not started** (none of them blocks Plone 6.2.3)
 
 ✅ done · ⬜ to do · ➖ not applicable · 🚧 its pinned release calls
 `pkg_resources` and fails on Plone 6.2.3 ([blockers](#blockers-for-plone-623))
@@ -41,7 +41,7 @@ yet · **4 not started** (none of them blocks Plone 6.2.3)
 | [collective.timedevents](native-namespaces-packages.md#collectivetimedevents) 🚧 | ✅ | ✅ | [#13](https://github.com/collective/collective.timedevents/pull/13) | ⬜ | ⬜ | ⬜ |
 | [collective.upgrade](native-namespaces-packages.md#collectiveupgrade) | ✅ | ✅ | [#17](https://github.com/collective/collective.upgrade/pull/17) | ⬜ | ⬜ | ⬜ |
 | [collective.z3cform.select2](native-namespaces-packages.md#collectivez3cformselect2) | ✅ | ✅ | [#15](https://github.com/collective/collective.z3cform.select2/pull/15) | ✅ | ⬜ | ⬜ |
-| [eea.facetednavigation](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [eea.facetednavigation](native-namespaces-packages.md#eeafacetednavigation) | local | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [hurry.filesize](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [iaweb.privacy](native-namespaces-packages.md#iawebprivacy) | ✅ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [imio.gdpr](native-namespaces-packages.md#imiogdpr) | ✅ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
@@ -113,6 +113,8 @@ Rows with ⬜ in the PR column:
 - [ ] imio.helpers, once its maintainers agree on a 1.3.x maintenance branch
   for the other iMio applications
 - [ ] collective.behavior.talcondition (collective)
+- [ ] eea.facetednavigation (collective): push the local `plone62` branch
+  first ([details](native-namespaces-packages.md#eeafacetednavigation))
 - [ ] collective.faceted.map (affinitic)
 - [ ] collective.exportimport (collective): upstream keeps Python 2, so the
   `importlib-metadata` branch is the PR, and `plone62` may stay ours
@@ -174,6 +176,9 @@ release can't depend on a git branch, so the order matters:
 - [ ] collective.z3cform.select2: the select2 widgets.
 - [ ] collective.instancebehavior: imio.smartweb.core's instance behaviors
   form (enable then disable a taxonomy on a page).
+- [ ] eea.facetednavigation 17.0.0.dev0: the faceted views, their widgets and
+  the faceted edit form (zpretty reformatted every template, and the JS
+  bundles moved under `src/`).
 - [ ] collective.js.jqueryui: whatever uses jQuery UI, which the bundle never
   loaded before
   [#58](https://github.com/collective/collective.js.jqueryui/pull/58).
@@ -190,7 +195,7 @@ release can't depend on a git branch, so the order matters:
 
 ### Not started
 
-- [ ] The 4 [still old-style](native-namespaces-packages.md#still-old-style-upstream)
+- [ ] The 3 [still old-style](native-namespaces-packages.md#still-old-style-upstream)
   third-party packages. For each one, in order of preference:
   1. Check the repository's main branch: the migration may already be merged
      and only waiting for a release. Ask the maintainers for a release.
@@ -480,6 +485,11 @@ supports Plone 6.1 and 6.2 only, on Python 3.10 to 3.13, and is released as
 9. If a dependency is only fixed on an unreleased branch, install that branch
    from GitHub in `mx.ini` and tox (`test_deps_additional` in `.meta.toml`)
    until it is released.
+10. Run `tox -e format` until it passes: it stops at the first hook that
+    changes a file. zpretty puts `tal:` attributes on their own lines and
+    sorts the attributes, so the rendered HTML changes (`<legend >`,
+    `<input class="..." type="...">`): doctests that compare markup need
+    ellipses.
 
 ### Variant: keep Python 2
 

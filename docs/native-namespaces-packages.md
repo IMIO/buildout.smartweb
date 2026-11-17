@@ -734,6 +734,63 @@ native, merged on 2026-11-17
 Check the select2 widgets on a SmartWeb site. `sources.cfg` checks out
 `master` until 4.0.0b1 is released: then drop the checkout and pin it.
 
+## eea.facetednavigation
+
+**Namespace** `eea` · **Repository**
+[collective/eea.facetednavigation](https://github.com/collective/eea.facetednavigation),
+branch `plone62` (local, not pushed yet) · **Variant**
+[plone.meta](native-namespaces-migration.md#variant-plonemeta) · **Checked
+out by** `dev.cfg`, `prod.cfg` · **Older stacks** (Plone 5.2 and 6.0) stay
+on 16.x
+
+EEA archived [eea/eea.facetednavigation](https://github.com/eea/eea.facetednavigation):
+collective's repository is now the main one, and released 16.5. 16.5 already
+dropped its `get_distribution()` call (`subtypes/subtyper.py`), which blocked
+Plone 6.2.3, so only the namespace was left. Migrated, then modernized like
+pas.plugins.kimug, on 2026-11-17.
+
+- `eea/__init__.py` is gone, and the package moved to a `src/` layout. The
+  webpack, sass, eslint and prettier paths (`package.json`,
+  `webpack.config.js`, `resources/*`, `.eslintignore`) follow it.
+- The metadata moved to `pyproject.toml` by hand (`setup.py` concatenates
+  `long_description`): `setup.py` is now only `setup()`, the version is no
+  longer read from `version.txt`, and the z3c.autoinclude entry point became a
+  `plone.autoinclude.plugin` one. The changelog moved from `docs/HISTORY.txt`
+  to `CHANGES.rst`.
+- plone.meta 2.12.0 configures it (tox, GitHub Actions test matrix,
+  pre-commit). Its format hooks touched about 220 files (pyupgrade, isort,
+  black, zpretty).
+- **zpretty changes the rendered HTML**: it puts `tal:` attributes on their
+  own lines and sorts the attributes, so Chameleon renders `<legend >` and
+  `<input class="..." type="...">`. Valid HTML, but the doctests that matched
+  `<legend>` and `<input type=` now use ellipses (`docs/unicode.txt`, the
+  autocomplete and text `widget.txt`).
+- `docs/wrapper.txt` no longer prints `sandbox.getFolderContents` and
+  `sandbox.queryCatalog`: Plone 6.1 and 6.2 don't ship these skin scripts.
+  The wrapper still provides both.
+- codespell: typos fixed in comments, docs and the changelog. The JS and
+  template identifiers (`colapse`, `alph`, `oll`, `aLine`) and the
+  `filters bellow` msgid are ignored, so existing translations still match.
+  Generated bundles, `yarn.lock` and the `.po`/`.pot` files are skipped.
+- Dependencies the code imports are declared (checked by
+  z3c.dependencychecker). `collective.solr` and `eea.cache` stay optional
+  (imported in `try/except ImportError`).
+- Gone: Jenkins, `docker-compose.yml`, `zope.conf`, `constraints.txt`,
+  `setup.cfg`, `.vscode`, `DEVELOP.md` and the old GitHub workflows (black,
+  flake8, zpretty, docker, test). The JS workflows (eslint, prettier) stay.
+- `make install` builds a uv development environment on Plone 6.2.3, from
+  collective.messagesviewlet's Makefile without the i18n target, plus
+  `make resources` (yarn build of `browser/static`). `make create-site`
+  installs the add-on, with no pending upgrade.
+- The wheel holds the same files as 16.5, except `version.txt` and the `.mo`
+  files, which are compiled at release time.
+- Checked from buildout.smartweb: `.venv/bin/buildout -N` no longer lists it
+  as old-style, and `bin/zopepy` imports it from the checkout
+  (`src/eea.facetednavigation/src`) with the `plone.autoinclude` entry point.
+- Tests: the plone.meta test matrix passes on Plone 6.2.3 and 6.1 with Python
+  3.10 to 3.13 (24 tests), and so do `lint` and `dependencies`.
+- **Breaking: Plone 6.1 and 6.2 only, Python 3.10 to 3.13.** Release 17.0.0.
+
 ## iaweb.privacy
 
 **Namespace** `iaweb` · **Repository**
@@ -1110,6 +1167,5 @@ each one: [not started](native-namespaces-migration.md#not-started).
 | Package | Pinned | Latest on PyPI | Notes |
 |---|---|---|---|
 | collective.prometheus | 1.6.1 | 1.6.1 (2022) | `plone.observability` now provides metrics: check whether it is still needed |
-| eea.facetednavigation | 16.5 | 16.5 (2026-10) | Moved to [collective/eea.facetednavigation](https://github.com/collective/eea.facetednavigation) (`eea/` is archived). Its `main` is still old-style, with no namespace PR open (checked 2026-11-17). 16.5 no longer calls `get_distribution()` (`subtypes/subtyper.py`), which blocked Plone 6.2.3 |
 | plone.gallery | 1.1.6 | 1.1.6 (2023) | |
 | hurry.filesize | 0.9 | 0.9 (2009) | Unmaintained: find which package requires it |
