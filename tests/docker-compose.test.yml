@@ -1,0 +1,62 @@
+---
+# Stack for `make test` and the CI image tests: the production image built from this
+# checkout, with throwaway Postgres, memcached and Solr. No fixed host port, nothing
+# mounted from var/ or written to solr/, so it can run next to the dev instance.
+services:
+  instance:
+    build: ..
+    depends_on:
+      postgres:
+        condition: service_healthy
+      memcached:
+        condition: service_started
+      solr:
+        condition: service_started
+    environment:
+      - ENV=dev
+      - MEMCACHE_SERVER=memcached
+      - MEMCACHE_DEFAULT_AGE=10800
+      - RELSTORAGE_HOSTNAME=postgres
+      - RELSTORAGE_PORT=5432
+      - RELSTORAGE_DB=smartweb_test
+      - RELSTORAGE_USER=smartweb_test
+      - RELSTORAGE_PASSWORD=smartweb_test
+      - ZODB_CACHE_SIZE=30000
+      - ZEO_CLIENT_CACHE_SIZE=256MB
+      - PROJECT_ID=smartweb-test
+      - ACTIVE_BIGBANG=True
+      - PLONE_EXTENSION_IDS=plone.app.caching:default,plonetheme.barceloneta:default,imio.smartweb.policy:default
+      - DEFAULT_LANGUAGE=fr
+      - ADMIN_PASSWORD=admin
+      - COLLECTIVE_SOLR_HOST=solr
+      - COLLECTIVE_SOLR_PORT=8983
+      - COLLECTIVE_SOLR_BASE=/solr/web
+      - COLLECTIVE_SOLR_LOGIN=solr
+      - COLLECTIVE_SOLR_PASSWORD=SolrRocks
+    ports:
+      - "127.0.0.1::8080"
+    healthcheck:
+      # big.bang creates the site before Zope serves, which takes longer than the
+      # Dockerfile healthcheck allows.
+      test: ["CMD-SHELL", "wget -q -O - http://127.0.0.1:8080/ok | grep -q OK"]
+      interval: 10s
+      timeout: 10s
+      retries: 3
+      start_period: 300s
+  postgres:
+    image: postgres:17.6
+    environment:
+      - POSTGRES_DB=smartweb_test
+      - POSTGRES_USER=smartweb_test
+      - POSTGRES_PASSWORD=smartweb_test
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U smartweb_test -d smartweb_test"]
+      interval: 2s
+      retries: 30
+  memcached:
+    image: memcached:1.5.20
+  solr:
+    image: solr:9.6.1-slim
+    command: solr-precreate web /solr-config/web
+    volumes:
+      - ../solr/plone/web/conf:/solr-config/web/conf:ro

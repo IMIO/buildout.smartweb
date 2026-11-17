@@ -1,7 +1,11 @@
 1.5.55 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- WEB-3639 : Add ``make test``: build the production image, boot it with Postgres, Solr and
+  memcached, and run smoke tests (``IMIO/gha`` ``plone-image-test-notify`` checks plus
+  ``tests/test_smartweb.py``). CI runs them on pull requests. Replaces the docker-compose v1
+  ``tests/test_starting.py``
+  [remdub]
 
 
 1.5.54 (2026-11-12)

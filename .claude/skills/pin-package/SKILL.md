@@ -54,7 +54,12 @@ In `/srv/instances/buildout.smartweb/CHANGES.rst`, insert a new block under the 
 
 If there is already a `- {package_name}` block in the unreleased section, add the new block as a new entry above that package, ensuring proper indentation.
 
-### 6. Commit
+### 6. Offer the image test
+Ask the user whether to run `make test` before committing. It builds the production image with the new pin,
+boots it and runs the smoke tests (several minutes; needs `docker login harbor.imio.be`). If it fails, show
+the failing tests and do not commit.
+
+### 7. Commit
 ```bash
 git -C /srv/instances/buildout.smartweb add versions.cfg CHANGES.rst
 git -C /srv/instances/buildout.smartweb commit -m "Pinned {package_name} = {new_version}"

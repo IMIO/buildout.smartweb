@@ -1,0 +1,6 @@
+# Regexes, one per line, searched in each instance log record (a timestamped line
+# and the traceback under it). A record that matches one is not reported by
+# test_log_has_no_errors. Put a comment line saying why above each entry.
+
+# The test stack has no Keycloak: pas.plugins.kimug logs its missing settings at startup.
+pas\.plugins\.kimug\.utils.*Missing environment variables

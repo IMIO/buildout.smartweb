@@ -1,0 +1,20 @@
+name: Test image
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    uses: IMIO/gha-workflows/.github/workflows/plone-image-test.yml@WEB-3639
+    with:
+      addons: imio.smartweb.policy
+      log_allowlist: tests/log_allowlist.txt
+      runner_label: gha-runners-smartweb
+    secrets:
+      mattermost_webhook_url: ${{ secrets.SMARTWEB_MATTERMOST_WEBHOOK_URL }}
+      registry_url: ${{ secrets.HARBOR_URL }}
+      registry_username: ${{ secrets.SMARTWEB_HARBOR_USERNAME }}
+      registry_password: ${{ secrets.SMARTWEB_HARBOR_PASSWORD }}
