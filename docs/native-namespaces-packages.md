@@ -344,6 +344,67 @@ imio.smartweb.policy requires it and includes its ZCML.
   has no namespace marker. `versions.cfg` still pins 3.0, as for the other
   checked-out packages.
 
+## collective.instancebehavior
+
+**Namespace** `collective` · **Repository**
+[collective/collective.instancebehavior](https://github.com/collective/collective.instancebehavior),
+branch `plone62` (**local, not pushed yet**) · **Variant**
+[plone.meta](native-namespaces-migration.md#variant-plonemeta) · **Checked
+out by** `dev.cfg`, `prod.cfg` · **Older stacks** (Plone 6.1 and older,
+Python 2.7) stay on 0.5
+
+Migrated 2026-11-17, like collective.geotransform. In SmartWeb,
+imio.smartweb.core requires it and includes its ZCML: its instance behaviors
+form calls `enable_behaviors` / `disable_behaviors` to add collective.taxonomy
+behaviors to a single page or procedure.
+
+- **The branch only exists in `~/github-collective/collective.instancebehavior`**,
+  cloned into `src/` by hand (with the GitHub `origin` that `sources.cfg`
+  names). Push it before anyone else runs buildout: mr.developer can't
+  clone a branch that isn't on GitHub. Then open the PR.
+- plone.meta 2.12.0 configures it, and the metadata moved to `pyproject.toml`,
+  written by hand (`setup-to-pyproject` can't parse the `long_description`
+  built by `read_file()`). `setup.py` is now only `setup()`. The package was
+  already in a `src/` layout. The README, CHANGES, CONTRIBUTORS and LICENSE
+  are now in Markdown. The z3c.autoinclude entry point became a
+  `plone.autoinclude.plugin` one, and the license is SPDX `GPL-2.0-only` (the
+  README says GPLv2). pyroma requires an author email: Robert Niederreiter's,
+  from the git history.
+- **License mismatch, left as is**: `LICENSE.md` (formerly `LICENSE.rst`) has
+  held a BSD 3-clause text since the initial packaging in 2013, while the
+  README, the metadata and `LICENSE.GPL` say GPLv2. Ask upstream which one
+  applies before releasing.
+- Gone: the Plone 5.2 buildout (`buildout.cfg`, `requirements.txt`),
+  `setup.cfg` and `DEVELOP.rst`. There was no Travis file or CI to remove.
+- No other `pkg_resources` use. The code doesn't change apart from the lint
+  autofixes (`super()`, imports) and the docstring examples, which flake8
+  checked as doctests. `transaction`, which the helpers import, is now
+  declared.
+- **Version 0.6, not 2.0.0**: 0.6 was never released (`master` already said
+  0.6.dev0, with "Drop Python 2 support"), so the breaking changes join it.
+- **Two existing behaviours, left unchanged** (in `master` too):
+  `enable_behaviors` and `disable_behaviors` commit the transaction
+  themselves (added in 2024 so the modification timestamp changes before
+  reindexing), and they call `reindexObject(idxs=("object_provides"))`, a
+  string instead of a tuple: CMFCore's indexing queue drops it, so every
+  index is reindexed instead of `object_provides` only.
+- Tested with tox and zope.testrunner: the plone.meta test matrix covers
+  Plone 6.2.3 and 6.1 on Python 3.10 to 3.13. The only test asserted
+  `1 == 1`: five functional tests now cover `enable_behaviors`,
+  `disable_behaviors`, `instance_behaviors_of` and the behavior assignable,
+  with a test behavior and Dexterity type. Run locally: the whole matrix,
+  plus lint, coverage, dependencies, circular and release-check.
+- `make install` builds a uv development environment on Plone 6.2.3 (the
+  Makefile of collective.complexrecordsproxy: Plone isn't a dependency, so
+  it adds Products.CMFPlone and plone.app.contenttypes), and the instance
+  starts with the package's ZCML (`zcml_package_includes`). `make release`
+  runs zest.releaser through uvx, so zest.releaser isn't a dependency.
+- Checked from buildout.smartweb: `.venv/bin/buildout -N` no longer lists it as
+  old-style, `bin/zopepy` imports it from the `src/` checkout, and the wheel
+  has no namespace marker. `versions.cfg` still pins 0.5, as for the other
+  checked-out packages. imio.smartweb.core's own tests
+  (`test_instance_behaviors.py`) haven't been run against the branch.
+
 ## collective.js.jqueryui
 
 **Namespaces** `collective`, `collective.js` · **Repository**
@@ -975,7 +1036,6 @@ each one: [not started](native-namespaces-migration.md#not-started).
 
 | Package | Pinned | Latest on PyPI | Notes |
 |---|---|---|---|
-| collective.instancebehavior | 0.5 | 0.5 (2021) | |
 | collective.prometheus | 1.6.1 | 1.6.1 (2022) | `plone.observability` now provides metrics: check whether it is still needed |
 | collective.sendinblue | 2.0.4 | 2.0.4 (2025) | |
 | collective.themefragments | 2.12 | 2.12 (2019) | Last release 2019 |

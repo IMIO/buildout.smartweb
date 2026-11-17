@@ -10,8 +10,8 @@ Last updated: 2026-11-17.
 ## Status
 
 **9 pinned** (2 migrated, 7 bumped) · **5 merged**, not released · **11 PRs
-open** · **12 branches pushed**, no PR yet · **1 branch local**, not pushed
-yet · **7 not started** (none of them blocks Plone 6.2.3)
+open** · **12 branches pushed**, no PR yet · **2 branches local**, not pushed
+yet · **6 not started** (none of them blocks Plone 6.2.3)
 
 ✅ done · ⬜ to do · ➖ not applicable · 🚧 its pinned release calls
 `pkg_resources` and fails on Plone 6.2.3 ([blockers](#blockers-for-plone-623))
@@ -28,7 +28,7 @@ yet · **7 not started** (none of them blocks Plone 6.2.3)
 | [collective.fingerpointing](native-namespaces-packages.md#collectivefingerpointing) 🚧 | ✅ | ⬜ | [#110](https://github.com/collective/collective.fingerpointing/pull/110) | ✅ | ⬜ | ⬜ |
 | [collective.geolocationbehavior](native-namespaces-packages.md#bumped-to-a-native-release) | ➖ | ⬜ | ➖ | ➖ | 2.0.0 | ✅ |
 | [collective.geotransform](native-namespaces-packages.md#collectivegeotransform) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
-| [collective.instancebehavior](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [collective.instancebehavior](native-namespaces-packages.md#collectiveinstancebehavior) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [collective.js.jqueryui](native-namespaces-packages.md#collectivejsjqueryui) | ✅ | ✅ | [#57](https://github.com/collective/collective.js.jqueryui/pull/57) | ✅ | ⬜ | ⬜ |
 | [collective.messagesviewlet](native-namespaces-packages.md#collectivemessagesviewlet) | ✅ | ✅ | [#24](https://github.com/collective/collective.messagesviewlet/pull/24) | ⬜ | ⬜ | ⬜ |
 | [collective.pivot](native-namespaces-packages.md#collectivepivot) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
@@ -116,6 +116,9 @@ Rows with ⬜ in the PR column:
   ([details](native-namespaces-packages.md#collectiveexportimport))
 - [ ] collective.geotransform (collective): push the local `plone62` branch
   first ([details](native-namespaces-packages.md#collectivegeotransform))
+- [ ] collective.instancebehavior (collective): push the local `plone62`
+  branch first, and ask upstream which license applies
+  ([details](native-namespaces-packages.md#collectiveinstancebehavior))
 
 ### Check from buildout.smartweb
 
@@ -136,8 +139,9 @@ release can't depend on a git branch, so the order matters:
 - [ ] The four imio.smartweb.* together, pinned in one commit. Drop Plone 6.0
   from imio.smartweb.core's classifiers first.
 - [ ] imio.pyutils as 1.3.0 (not breaking; `master` says 1.2.4.dev0).
-  collective.geotransform as 4.0.0 (3.0 is its Plone 6.0 release). Every
-  other package as 2.0.0.
+  collective.geotransform as 4.0.0 (3.0 is its Plone 6.0 release).
+  collective.instancebehavior as 0.6 (never released, 0.5 is the latest).
+  Every other package as 2.0.0.
 - [ ] Ask upstream for collective.fingerpointing 2.0.0,
   plone.formwidget.geolocation 4.0.0, collective.js.jqueryui 3.0.0 and
   collective.z3cform.select2 4.0.0b1, and for collective.solr 11.0.0 once
@@ -161,6 +165,8 @@ release can't depend on a git branch, so the order matters:
   faceted navigation and indexing. Check the production Solr version too
   ([details](native-namespaces-packages.md#collectivesolr)).
 - [ ] collective.z3cform.select2: the select2 widgets.
+- [ ] collective.instancebehavior: imio.smartweb.core's instance behaviors
+  form (enable then disable a taxonomy on a page).
 - [ ] collective.js.jqueryui: whatever uses jQuery UI, which the bundle never
   loaded before
   [#58](https://github.com/collective/collective.js.jqueryui/pull/58).
@@ -174,7 +180,7 @@ release can't depend on a git branch, so the order matters:
 
 ### Not started
 
-- [ ] The 7 [still old-style](native-namespaces-packages.md#still-old-style-upstream)
+- [ ] The 6 [still old-style](native-namespaces-packages.md#still-old-style-upstream)
   third-party packages. For each one, in order of preference:
   1. Check the repository's main branch: the migration may already be merged
      and only waiting for a release. Ask the maintainers for a release.
