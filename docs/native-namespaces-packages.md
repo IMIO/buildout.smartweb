@@ -44,6 +44,10 @@ Migrated 2026-11-16, following collective.autoscaling.
   Plone 6.2.3 and 6.1 on Python 3.10 to 3.13. Checked by hand on a Plone 6.2.3
   classic site: page titles (views, search, 404), accessibility page, control
   panel.
+- Checked from buildout.smartweb: `.venv/bin/buildout -N` no longer lists it
+  as old-style, `bin/zopepy` imports it from the `src/` checkout, and the
+  wheel has no namespace marker. `versions.cfg` still pins 1.4.7, as for the
+  other checked-out packages.
 
 ## collective.autopublishing
 
@@ -84,6 +88,10 @@ Migrated 2026-11-16, following collective.anysurfer.
 - Tested with tox and zope.testrunner: the plone.meta test matrix covers
   Plone 6.2.3 and 6.1 on Python 3.10 to 3.13. Checked on a Plone 6.2.3
   classic site: installation, control panel, report view and `@@tick_hourly`.
+- Checked from buildout.smartweb: `.venv/bin/buildout -N` no longer lists it
+  as old-style, `bin/zopepy` imports it from the `src/` checkout, and the
+  wheel has no namespace marker. `versions.cfg` still pins 1.1b1, as for the
+  other checked-out packages.
 
 ## collective.autoscaling
 
@@ -110,6 +118,10 @@ Migrated 2026-11-16, following pas.plugins.kimug.
 - Tested with tox and zope.testrunner: the plone.meta test matrix covers
   Plone 6.2.3 and 6.1 on Python 3.10 to 3.13, robot scenarios included
   (Selenium, headless Chrome).
+- Checked from buildout.smartweb: `.venv/bin/buildout -N` no longer lists it
+  as old-style, `bin/zopepy` imports it from the `src/` checkout, and the
+  wheel has no namespace marker. `versions.cfg` still pins 1.2, as for the
+  other checked-out packages.
 
 ## collective.behavior.talcondition
 
@@ -135,6 +147,10 @@ dependency of collective.messagesviewlet (used by imio.smartweb.core's
 - Tested with buildout: new `test-6.2.cfg` and `requirements-6.2.txt`. The
   GitHub Actions matrix is Plone 6.2 on Python 3.13, and it passes.
 - `CHANGES.rst` announces 1.1.4, but the change is breaking: release 2.0.0.
+- Checked from buildout.smartweb: `.venv/bin/buildout -N` no longer lists it
+  as old-style, `bin/zopepy` imports it from the `src/` checkout, and the
+  wheel has no namespace marker. `versions.cfg` still pins 1.1.3, as for the
+  other checked-out packages.
 
 ## collective.complexrecordsproxy
 
@@ -172,6 +188,10 @@ user in SmartWeb.
   package: the Makefile adds Products.CMFPlone and plone.app.contenttypes for
   the instance. Checked on a Plone 6.2.3 classic site: settings written and
   read back through the site's `portal_registry`.
+- Checked from buildout.smartweb: `.venv/bin/buildout -N` no longer lists it
+  as old-style, `bin/zopepy` imports it from the `src/` checkout, and the
+  wheel has no namespace marker. `versions.cfg` still pins 1.1, as for the
+  other checked-out packages.
 
 ## collective.exportimport
 
@@ -251,6 +271,10 @@ Migrated 2026-11-16, then modernized like collective.messagesviewlet
   content import on the Plone 6.2 stack. To fix in plone.restapi (only use
   the multipart branch when `"part" in value`), or work around in
   exportimport.
+- Checked from buildout.smartweb: `.venv/bin/buildout -N` no longer lists it
+  as old-style, `bin/zopepy` imports it from the `src/` checkout, and the
+  wheel has no namespace marker. `versions.cfg` still pins 1.16, as for the
+  other checked-out packages.
 
 ## collective.faceted.map
 
@@ -278,6 +302,10 @@ Migrated 2026-11-17 (`c5c4b5a`).
   gone.
 - **Breaking: drops Python before 3.10 and Plone before 6.2** (classifiers).
   `CHANGES.rst` announces 1.0.1: release 2.0.0.
+- Checked from buildout.smartweb: `.venv/bin/buildout -N` no longer lists it
+  as old-style, `bin/zopepy` imports it from the `src/` checkout, and the
+  wheel has no namespace marker. `versions.cfg` still pins 1.0.0, as for the
+  other checked-out packages.
 
 ## collective.fingerpointing
 
@@ -293,6 +321,11 @@ native, merged on 2026-11-16 ([#110](https://github.com/collective/collective.fi
 Our `importlib-metadata` PR (#111) was closed in favor of it. `sources.cfg`
 checks out `master` until 2.0.0 is released: then drop the checkout and pin
 it.
+
+- Checked from buildout.smartweb: `.venv/bin/buildout -N` no longer lists it
+  as old-style, `bin/zopepy` imports it from the `src/` checkout, and the
+  wheel has no namespace marker. `versions.cfg` still pins 1.8.3, as for the
+  other checked-out packages.
 
 ## collective.geotransform
 
@@ -826,6 +859,10 @@ Migrated 2026-11-16, following collective.autoscaling.
   load. Now fixed. Nothing in SmartWeb includes `all.zcml`.
 - Tested with tox and zope.testrunner: the plone.meta test matrix covers
   Plone 6.2.3 and 6.1 on Python 3.10 to 3.13.
+- Checked from buildout.smartweb: `.venv/bin/buildout -N` no longer lists it
+  as old-style, `bin/zopepy` imports it from the `src/` checkout, and the
+  wheel has no namespace marker. `versions.cfg` still pins 1.0a2, as for the
+  other checked-out packages.
 
 ## imio.gdpr
 
@@ -851,6 +888,10 @@ Migrated 2026-11-16.
   a later cleanup.
 - **Breaking: Python 3.10+ and Plone 6.2 only.** `CHANGES.rst` announces
   1.2.4: release 2.0.0.
+- Checked from buildout.smartweb: `.venv/bin/buildout -N` no longer lists it
+  as old-style, `bin/zopepy` imports it from the `src/` checkout, and the
+  wheel has no namespace marker. `versions.cfg` still pins 1.2.3, as for the
+  other checked-out packages.
 
 ## imio.helpers
 
@@ -888,6 +929,10 @@ Migrated by a colleague on 2026-11-16 (`4b8ec68`).
   not 1.3.20. `master` still releases 1.3.x for the other applications: agree
   with its maintainers on a 1.3.x maintenance branch before merging `plone62`
   into `master`.
+- Checked from buildout.smartweb: `.venv/bin/buildout -N` no longer lists it
+  as old-style, `bin/zopepy` imports it from the `src/` checkout, and the
+  wheel has no namespace marker. `versions.cfg` still pins 1.3.18, as for the
+  other checked-out packages.
 
 ## imio.omnia.core
 
@@ -915,6 +960,10 @@ imio.omnia.tinymce: release them together, since an old-style
   are gone.
 - **Breaking: native namespace, Plone 6.1 and 6.2, Python 3.12+.**
   `CHANGES.rst` announces 1.4: release 2.0.0.
+- Checked from buildout.smartweb: `.venv/bin/buildout -N` no longer lists it
+  as old-style, `bin/zopepy` imports it from the `src/` checkout, and the
+  wheel has no namespace marker. `versions.cfg` still pins 1.2, as for the
+  other checked-out packages.
 
 ## imio.omnia.tinymce
 
@@ -943,6 +992,10 @@ Migrated 2026-11-17 (`52d308d`), like imio.omnia.core: release them together.
   that feature until the branch is merged.
 - **Breaking: native namespace, Plone 6.1 and 6.2, Python 3.12+.** Release
   2.0.0.
+- Checked from buildout.smartweb: `.venv/bin/buildout -N` no longer lists it
+  as old-style, `bin/zopepy` imports it from the `src/` checkout, and the
+  wheel has no namespace marker. `versions.cfg` still pins 1.0, as for the
+  other checked-out packages.
 
 ## imio.prometheus
 
@@ -966,6 +1019,10 @@ Migrated 2026-11-16, following pas.plugins.kimug.
 - Tested with tox and zope.testrunner: the plone.meta test matrix covers
   Plone 6.2.3 and 6.1 on Python 3.10 to 3.13, and `make install` builds a uv
   development environment on Plone 6.2.3 (`mx.ini`, `instance.yaml`).
+- Checked from buildout.smartweb: `.venv/bin/buildout -N` no longer lists it
+  as old-style, `bin/zopepy` imports it from the `src/` checkout, and the
+  wheel has no namespace marker. `versions.cfg` still pins 1.0.1, as for the
+  other checked-out packages.
 
 ## imio.pyutils
 
@@ -1119,6 +1176,9 @@ migrated with plone.meta:
 - The package is tested with pytest and tox, not buildout: the plone.meta test
   matrix covers Plone 6.2.3 and 6.1 on Python 3.10 to 3.13, and `make install`
   builds a uv development environment on Plone 6.2.3.
+- Checked from buildout.smartweb: `.venv/bin/buildout -N` no longer develops
+  it, and `bin/zopepy` imports the pinned 2.0.0 egg, which has no namespace
+  marker (no `pas/__init__.py` or `pas/plugins/__init__.py`).
 
 ## plone.formwidget.geolocation
 

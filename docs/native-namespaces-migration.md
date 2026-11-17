@@ -18,14 +18,14 @@ yet · **3 not started** (none of them blocks Plone 6.2.3)
 
 | Package | Branch | Checked | PR | Merged | Released | Pinned |
 |---|:-:|:-:|:-:|:-:|:-:|:-:|
-| [collective.anysurfer](native-namespaces-packages.md#collectiveanysurfer) | ✅ | ⬜ | [#9](https://github.com/collective/collective.anysurfer/pull/9) | ⬜ | ⬜ | ⬜ |
-| [collective.autopublishing](native-namespaces-packages.md#collectiveautopublishing) | ✅ | ⬜ | [#12](https://github.com/collective/collective.autopublishing/pull/12) | ⬜ | ⬜ | ⬜ |
-| [collective.autoscaling](native-namespaces-packages.md#collectiveautoscaling) | ✅ | ⬜ | [#9](https://github.com/collective/collective.autoscaling/pull/9) | ⬜ | ⬜ | ⬜ |
-| [collective.behavior.talcondition](native-namespaces-packages.md#collectivebehaviortalcondition) | ✅ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| [collective.complexrecordsproxy](native-namespaces-packages.md#collectivecomplexrecordsproxy) | ✅ | ⬜ | [#3](https://github.com/collective/collective.complexrecordsproxy/pull/3) | ⬜ | ⬜ | ⬜ |
-| [collective.exportimport](native-namespaces-packages.md#collectiveexportimport) 🚧 | ✅ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| [collective.faceted.map](native-namespaces-packages.md#collectivefacetedmap) | ✅ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| [collective.fingerpointing](native-namespaces-packages.md#collectivefingerpointing) 🚧 | ✅ | ⬜ | [#110](https://github.com/collective/collective.fingerpointing/pull/110) | ✅ | ⬜ | ⬜ |
+| [collective.anysurfer](native-namespaces-packages.md#collectiveanysurfer) | ✅ | ✅ | [#9](https://github.com/collective/collective.anysurfer/pull/9) | ⬜ | ⬜ | ⬜ |
+| [collective.autopublishing](native-namespaces-packages.md#collectiveautopublishing) | ✅ | ✅ | [#12](https://github.com/collective/collective.autopublishing/pull/12) | ⬜ | ⬜ | ⬜ |
+| [collective.autoscaling](native-namespaces-packages.md#collectiveautoscaling) | ✅ | ✅ | [#9](https://github.com/collective/collective.autoscaling/pull/9) | ⬜ | ⬜ | ⬜ |
+| [collective.behavior.talcondition](native-namespaces-packages.md#collectivebehaviortalcondition) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [collective.complexrecordsproxy](native-namespaces-packages.md#collectivecomplexrecordsproxy) | ✅ | ✅ | [#3](https://github.com/collective/collective.complexrecordsproxy/pull/3) | ⬜ | ⬜ | ⬜ |
+| [collective.exportimport](native-namespaces-packages.md#collectiveexportimport) 🚧 | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [collective.faceted.map](native-namespaces-packages.md#collectivefacetedmap) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [collective.fingerpointing](native-namespaces-packages.md#collectivefingerpointing) 🚧 | ✅ | ✅ | [#110](https://github.com/collective/collective.fingerpointing/pull/110) | ✅ | ⬜ | ⬜ |
 | [collective.geolocationbehavior](native-namespaces-packages.md#bumped-to-a-native-release) | ➖ | ⬜ | ➖ | ➖ | 2.0.0 | ✅ |
 | [collective.geotransform](native-namespaces-packages.md#collectivegeotransform) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [collective.instancebehavior](native-namespaces-packages.md#collectiveinstancebehavior) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
@@ -43,18 +43,18 @@ yet · **3 not started** (none of them blocks Plone 6.2.3)
 | [collective.z3cform.select2](native-namespaces-packages.md#collectivez3cformselect2) | ✅ | ✅ | [#15](https://github.com/collective/collective.z3cform.select2/pull/15) | ✅ | ⬜ | ⬜ |
 | [eea.facetednavigation](native-namespaces-packages.md#eeafacetednavigation) | ✅ | ✅ | [#65](https://github.com/collective/eea.facetednavigation/pull/65) | ⬜ | ⬜ | ⬜ |
 | [hurry.filesize](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| [iaweb.privacy](native-namespaces-packages.md#iawebprivacy) | ✅ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| [imio.gdpr](native-namespaces-packages.md#imiogdpr) | ✅ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| [imio.helpers](native-namespaces-packages.md#imiohelpers) 🚧 | ✅ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| [imio.omnia.core](native-namespaces-packages.md#imioomniacore) | ✅ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| [imio.omnia.tinymce](native-namespaces-packages.md#imioomniatinymce) | ✅ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| [imio.prometheus](native-namespaces-packages.md#imioprometheus) | ✅ | ⬜ | [#2](https://github.com/IMIO/imio.prometheus/pull/2) | ⬜ | ⬜ | ⬜ |
+| [iaweb.privacy](native-namespaces-packages.md#iawebprivacy) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [imio.gdpr](native-namespaces-packages.md#imiogdpr) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [imio.helpers](native-namespaces-packages.md#imiohelpers) 🚧 | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [imio.omnia.core](native-namespaces-packages.md#imioomniacore) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [imio.omnia.tinymce](native-namespaces-packages.md#imioomniatinymce) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [imio.prometheus](native-namespaces-packages.md#imioprometheus) | ✅ | ✅ | [#2](https://github.com/IMIO/imio.prometheus/pull/2) | ⬜ | ⬜ | ⬜ |
 | [imio.pyutils](native-namespaces-packages.md#imiopyutils) | ✅ | ✅ | [#4](https://github.com/IMIO/imio.pyutils/pull/4) | ✅ | ⬜ | ⬜ |
 | [imio.smartweb.common](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy) | ✅ | ✅ | [#37](https://github.com/IMIO/imio.smartweb.common/pull/37) | ⬜ | ⬜ | ⬜ |
 | [imio.smartweb.core](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy) 🚧 | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [imio.smartweb.locales](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [imio.smartweb.policy](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
-| [pas.plugins.kimug](native-namespaces-packages.md#paspluginskimug) | ✅ | ⬜ | [#34](https://github.com/IMIO/pas.plugins.kimug/pull/34) | ✅ | 2.0.0 | ✅ |
+| [pas.plugins.kimug](native-namespaces-packages.md#paspluginskimug) | ✅ | ✅ | [#34](https://github.com/IMIO/pas.plugins.kimug/pull/34) | ✅ | 2.0.0 | ✅ |
 | [plone.app.imagecropping](native-namespaces-packages.md#bumped-to-a-native-release) | ➖ | ⬜ | ➖ | ➖ | 4.0.0 | ✅ |
 | [plone.formwidget.geolocation](native-namespaces-packages.md#ploneformwidgetgeolocation) | ✅ | ✅ | ➖ | ✅ | ⬜ | ⬜ |
 | [plone.formwidget.recaptcha](native-namespaces-packages.md#bumped-to-a-native-release) | ➖ | ⬜ | ➖ | ➖ | 4.0.0 | ✅ |
@@ -70,9 +70,9 @@ Columns:
   already exists.
 - **Checked**: buildout.smartweb loads the branch ([step 5](#5-clean-up-and-check)):
   `.venv/bin/buildout -N` no longer lists it as old-style, and `bin/zopepy`
-  imports it from the checkout. `bin/instance fg` is still to run
-  ([below](#start-bininstance-fg)). For a bumped package: the feature that
-  uses it is tested on a SmartWeb site.
+  imports it from the checkout (or, once released and pinned, from the egg).
+  `bin/instance fg` serves with every checkout loaded (2026-11-17). For a
+  bumped package: the feature that uses it is tested on a SmartWeb site.
 - **PR**: link to the pull request that merges the branch. ⬜: none opened
   yet. ➖: done upstream, without us.
 - **Released**: the native version on PyPI. **Pinned**: `versions.cfg` pins it.
@@ -86,14 +86,6 @@ depends on it, so it doesn't need to be migrated
 ([details](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy)).
 
 ## What's left
-
-### Start `bin/instance fg`
-
-- [ ] `dev.cfg` now checks out imio.helpers' `plone62` branch, like
-  `prod.cfg`, so dev no longer loads the 1.3.18 egg, which calls
-  `pkg_resources`. Re-run `.venv/bin/buildout -N`, then run
-  [step 5](#5-clean-up-and-check) (`bin/instance fg`) for every package
-  checked out.
 
 ### Update the branches
 
@@ -125,12 +117,6 @@ Rows with ⬜ in the PR column:
 - [ ] collective.themefragments (collective): push the local `plone62`
   branch first, and ask upstream about the license version
   ([details](native-namespaces-packages.md#collectivethemefragments))
-
-### Check from buildout.smartweb
-
-- [ ] Rows with ⬜ in the Checked column: run
-  [step 5](#5-clean-up-and-check). `dev.cfg` now checks out the same packages
-  as `prod.cfg`.
 
 ### Release
 
