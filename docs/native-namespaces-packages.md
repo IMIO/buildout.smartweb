@@ -979,6 +979,6 @@ each one: [not started](native-namespaces-migration.md#not-started).
 | collective.prometheus | 1.6.1 | 1.6.1 (2022) | `plone.observability` now provides metrics: check whether it is still needed |
 | collective.sendinblue | 2.0.4 | 2.0.4 (2025) | |
 | collective.themefragments | 2.12 | 2.12 (2019) | Last release 2019 |
-| eea.facetednavigation | 16.5 | 16.5 (2026-10) | Active: check the default branch (`develop`) first. 16.5 no longer calls `get_distribution()` (`subtypes/subtyper.py`), which blocked Plone 6.2.3 |
+| eea.facetednavigation | 16.5 | 16.5 (2026-10) | Moved to [collective/eea.facetednavigation](https://github.com/collective/eea.facetednavigation) (`eea/` is archived). Its `main` is still old-style, with no namespace PR open (checked 2026-11-17). 16.5 no longer calls `get_distribution()` (`subtypes/subtyper.py`), which blocked Plone 6.2.3 |
 | plone.gallery | 1.1.6 | 1.1.6 (2023) | |
 | hurry.filesize | 0.9 | 0.9 (2009) | Unmaintained: find which package requires it |
