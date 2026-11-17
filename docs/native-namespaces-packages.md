@@ -738,8 +738,9 @@ Check the select2 widgets on a SmartWeb site. `sources.cfg` checks out
 
 **Namespace** `eea` · **Repository**
 [collective/eea.facetednavigation](https://github.com/collective/eea.facetednavigation),
-branch `plone62` (local, not pushed yet) · **Variant**
-[plone.meta](native-namespaces-migration.md#variant-plonemeta) · **Checked
+branch `plone62`
+([#65](https://github.com/collective/eea.facetednavigation/pull/65)) ·
+**Variant** [plone.meta](native-namespaces-migration.md#variant-plonemeta) · **Checked
 out by** `dev.cfg`, `prod.cfg` · **Older stacks** (Plone 5.2 and 6.0) stay
 on 16.x
 

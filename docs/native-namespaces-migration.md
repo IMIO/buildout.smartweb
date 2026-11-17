@@ -9,8 +9,8 @@ Last updated: 2026-11-17.
 
 ## Status
 
-**9 pinned** (2 migrated, 7 bumped) · **5 merged**, not released · **11 PRs
-open** · **12 branches pushed**, no PR yet · **4 branches local**, not pushed
+**9 pinned** (2 migrated, 7 bumped) · **5 merged**, not released · **12 PRs
+open** · **12 branches pushed**, no PR yet · **3 branches local**, not pushed
 yet · **3 not started** (none of them blocks Plone 6.2.3)
 
 ✅ done · ⬜ to do · ➖ not applicable · 🚧 its pinned release calls
@@ -41,7 +41,7 @@ yet · **3 not started** (none of them blocks Plone 6.2.3)
 | [collective.timedevents](native-namespaces-packages.md#collectivetimedevents) 🚧 | ✅ | ✅ | [#13](https://github.com/collective/collective.timedevents/pull/13) | ⬜ | ⬜ | ⬜ |
 | [collective.upgrade](native-namespaces-packages.md#collectiveupgrade) | ✅ | ✅ | [#17](https://github.com/collective/collective.upgrade/pull/17) | ⬜ | ⬜ | ⬜ |
 | [collective.z3cform.select2](native-namespaces-packages.md#collectivez3cformselect2) | ✅ | ✅ | [#15](https://github.com/collective/collective.z3cform.select2/pull/15) | ✅ | ⬜ | ⬜ |
-| [eea.facetednavigation](native-namespaces-packages.md#eeafacetednavigation) | local | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [eea.facetednavigation](native-namespaces-packages.md#eeafacetednavigation) | ✅ | ✅ | [#65](https://github.com/collective/eea.facetednavigation/pull/65) | ⬜ | ⬜ | ⬜ |
 | [hurry.filesize](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [iaweb.privacy](native-namespaces-packages.md#iawebprivacy) | ✅ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [imio.gdpr](native-namespaces-packages.md#imiogdpr) | ✅ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
@@ -113,8 +113,6 @@ Rows with ⬜ in the PR column:
 - [ ] imio.helpers, once its maintainers agree on a 1.3.x maintenance branch
   for the other iMio applications
 - [ ] collective.behavior.talcondition (collective)
-- [ ] eea.facetednavigation (collective): push the local `plone62` branch
-  first ([details](native-namespaces-packages.md#eeafacetednavigation))
 - [ ] collective.faceted.map (affinitic)
 - [ ] collective.exportimport (collective): upstream keeps Python 2, so the
   `importlib-metadata` branch is the PR, and `plone62` may stay ours
