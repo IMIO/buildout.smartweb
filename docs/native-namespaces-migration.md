@@ -82,7 +82,7 @@ that workaround can go.
 | Group | Packages | Action |
 |---|---|---|
 | [1. iMio, `src/` checkouts](#1-imio-and-collective-packages-checked-out-in-src) | 10 | Migrate (recipe below) |
-| [2. iMio, eggs](#2-eggs-written-by-imio) | 10 | Check out, migrate, release (9 migrated, not released: all but collective.faceted.map) |
+| [2. iMio, eggs](#2-eggs-written-by-imio) | 10 | Check out, migrate, release (all 10 migrated, none released) |
 | [3a. Third-party, native release available](#3a-native-release-already-available-bump-the-pin) | 6 | Bumped (2026-11-16), checks pending |
 | [3b. Third-party, still old-style](#3b-still-old-style-upstream-contribute-or-wait) | 19 | Contribute upstream or wait (collective.anysurfer, collective.autopublishing, collective.complexrecordsproxy and collective.timedevents migrated on `plone62`, not released) |
 | [4. Plone and Zope core](#4-plone-and-zope-core-nothing-to-do) | 5 | Nothing to do |
@@ -449,7 +449,7 @@ directory (usually `src/`), so check the actual layout first.
 | imio.omnia.tinymce | 1.0 | 1.0 | `imio/__init__.py`, `imio/omnia/__init__.py`. Migrated on `plone62` (see [below](#imioomniatinymce)) | [x] (not released) |
 | collective.behavior.talcondition | 1.1.3 | 1.1.3 | `collective/__init__.py`, `collective/behavior/__init__.py`. Migrated on `plone62` by a colleague (see [below](#collectivebehaviortalcondition)) | [x] (not released) |
 | collective.autoscaling | 1.2 | 1.2 | `collective/__init__.py`. Migrated on `plone62` (see [below](#collectiveautoscaling)) | [x] (not released) |
-| collective.faceted.map | 1.0.0 | 1.0.0 | `collective/__init__.py`, `collective/faceted/__init__.py` | [ ] |
+| collective.faceted.map | 1.0.0 | 1.0.0 | `collective/__init__.py`, `collective/faceted/__init__.py`. Migrated on `plone62` (see [below](#collectivefacetedmap)) | [x] (not released) |
 | iaweb.privacy | 1.0a2 | 1.0a2 | `iaweb/__init__.py`. Migrated on `plone62` (see [below](#iawebprivacy)) | [x] (not released) |
 
 Notes:
@@ -465,8 +465,8 @@ Notes:
   old-style `imio/omnia/__init__.py` left by either one needs
   `pkg_resources`.
 - Packages under `collective` (talcondition, autoscaling, faceted.map) live in
-  the `collective` GitHub organisation or are released by iMio: open a PR in
-  the repository listed in the egg's metadata.
+  the `collective` GitHub organisation (faceted.map: `affinitic`) or are
+  released by iMio: open a PR in the repository listed in the egg's metadata.
 
 ### imio.helpers
 
@@ -717,6 +717,36 @@ pas.plugins.kimug rather than the `setup.py` recipe above:
   only), then pin it in `versions.cfg` (currently `1.2`). The repository
   belongs to the `collective` organisation: open a PR there. Other iMio
   applications on Plone 4.3 to 6.0 must stay on 1.x.
+
+### collective.faceted.map
+
+Namespaces `collective`, `collective.faceted`. Migrated on the `plone62`
+branch of `affinitic/collective.faceted.map` (2026-11-17, `c5c4b5a`), which
+`sources.cfg` checks out (new `affinitic` remote) and `prod.cfg` adds to
+`auto-checkout`. It follows [the recipe](#the-migration-recipe) and keeps its `setup.py` and
+buildout:
+
+- `find_namespace_packages`, no more `namespace_packages`, and
+  `src/collective/__init__.py` and `src/collective/faceted/__init__.py` are
+  gone. `python_requires='>=3.10'`, classifiers updated (Plone 6.2, Python
+  3.10 to 3.13).
+- `locales/update.py` uses `importlib.resources` instead of
+  `pkg_resources`.
+- `test_map_view` fixed for Plone 6: it renders the map view through
+  `@@faceted_query` on a faceted folder (the `getFolderContents` skin script
+  is gone), and the test layer loads eea.facetednavigation. `not_skip`
+  removed from the isort configuration.
+- Tested with buildout: new `plone6.2.x.cfg` and `requirements6.2.x.txt`. The
+  GitHub Actions matrix is Plone 6.2 on Python 3.12 and 3.13; Travis CI is
+  gone.
+- **Breaking: drops Python before 3.10 and Plone before 6.2** (classifiers).
+- Not yet checked from buildout.smartweb (steps 5.1 and 5.2 of the recipe):
+  it isn't in `dev.cfg`'s `auto-checkout`, so `bin/instance` still loads the
+  1.0.0 egg.
+- `CHANGES.rst` announces **1.0.1**, but the change is breaking: release it as
+  **2.0.0**, then pin it in `versions.cfg` (currently `1.0.0`). Open a PR on
+  `affinitic/collective.faceted.map`. Other applications on Python 2 or
+  Plone before 6.2 must stay on 1.0.x.
 
 ### iaweb.privacy
 
