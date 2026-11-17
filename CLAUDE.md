@@ -9,6 +9,7 @@ make install          # Create venv, install deps via uv, run buildout
 make start            # Start Zope instance in foreground (also starts Solr) — serves the built prod React bundle, no VITE_DEV_URL needed
 make dev              # Same as make start, plus a Vite dev server (webcomponents/) for React HMR
 make build            # Build the webcomponents production bundle (npm run build)
+make test             # Build the prod image, boot it with Postgres/Solr/memcached and run the smoke tests
 make lint             # Run pre-commit hooks on all files (uvx pre-commit run --all)
 make cleanall         # Remove venv, eggs, bin, parts — full clean rebuild
 make upgrade-steps    # Run pending Plone portal upgrade steps
@@ -50,6 +51,22 @@ bin/test
 ```
 
 Or use the package's own buildout (e.g. `src/imio.smartweb.core/buildout.cfg`).
+
+### Image smoke tests
+
+`make test` checks the stack as a whole after a pin or source change: it builds the production image
+(`prod.cfg`), starts it with `tests/docker-compose.test.yml` (throwaway Postgres, memcached, Solr; random
+host ports, nothing mounted from `var/`), lets `collective.big.bang` create the site, then runs:
+
+- the generic Plone checks from IMIO/gha `plone-image-test-notify` (health probes, add-ons installed with no
+  pending upgrade, site root and its JS/CSS, control panels, no error in the instance log);
+- `tests/test_smartweb.py` (SmartWeb content types, search).
+
+Log records that are known noise go in `tests/log_allowlist.txt`. Building needs `docker login harbor.imio.be`
+(private base image). To work on the generic checks, point `PLONE_IMAGE_TEST` at a local clone of IMIO/gha:
+`make test PLONE_IMAGE_TEST=/path/to/gha/plone-image-test-notify`.
+
+CI runs the same tests on pull requests (`tests.yml`).
 
 ## Pre-commit hooks
 

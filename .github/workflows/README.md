@@ -152,6 +152,14 @@ sequenceDiagram
 
 ---
 
+## tests.yml — Test the image
+
+**Trigger:** pull request, or manual via `workflow_dispatch`. It does not gate `dev.yml` and `staging.yml` yet: on Plone 6.1.5, `collective.z3cform.datagridfield` 3.0.5 leaves a pending upgrade step on every fresh site, so `test_no_pending_upgrades` fails. Once Plone 6.2 (datagridfield 4.0.3) is merged, `build-push` will need this job, so a failing image never gets the `:dev` or `:staging` tag.
+
+It calls the reusable workflow `IMIO/gha-workflows/.github/workflows/plone-image-test.yml`, which builds the image from `tests/docker-compose.test.yml`, boots it and runs the generic checks of `IMIO/gha/plone-image-test-notify` plus `tests/test_smartweb.py`. Locally: `make test`.
+
+---
+
 ## prod.yml — Promote staging to production
 
 **Trigger:** any git tag push, or manual via `workflow_dispatch`.
