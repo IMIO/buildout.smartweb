@@ -281,7 +281,7 @@ Highest priority: this is our code, checked out by mr.developer in dev.
 | pas.plugins.kimug | `main` | `src/pas/__init__.py`, `src/pas/plugins/__init__.py` | Configured with plone.meta 2.12.0, metadata moved to `pyproject.toml`. Plone 6.1 and 6.2 only, needs pas.plugins.oidc >= 2.1.0 (see below). Released as 2.0.0 (PR #34) | [x] (released 2.0.0) |
 | plone.formwidget.geolocation | upstream `master` | — | Switched from the IMIO fork to collective `master`, already native (see below) | [x] (waiting for the 4.0.0 release) |
 | collective.pivot | `plone62` | `src/collective/__init__.py` | `pkg_resources` in `locales/update.py`; drops Python 2 | [x] (not released) |
-| collective.messagesviewlet | `plone62` | `src/collective/__init__.py` | Python 2 branch in `__init__.py`; drops Python 2 | [x] (not released) |
+| collective.messagesviewlet | `plone62` | `src/collective/__init__.py` | Configured with plone.meta 2.12.0, metadata moved to `pyproject.toml`. Plone 6.1 and 6.2 only (see [below](#collectivemessagesviewlet)) | [x] (not released) |
 | collective.preventactions | `plone6` | — | Already migrated upstream on `plone6`: pull | [x] (not released) |
 | collective.upgrade | `plone61` | — | Already migrated upstream on `plone61`: pull | [x] (not released) |
 
@@ -400,27 +400,69 @@ Upstream `master` (4.0.0, unreleased) is already migrated: native namespaces,
 The old fork checkout must be moved away before mr.developer can clone the new
 URL (`bin/develop co plone.formwidget.geolocation`).
 
-### collective.pivot and collective.messagesviewlet
+### collective.pivot
 
-Migrated on a new `plone62` branch in each repository (pivot: IMIO,
-messagesviewlet: collective), and `sources.cfg` points to it.
+Migrated on a new `plone62` branch (IMIO repository), and `sources.cfg` points
+to it.
 
 - Standard recipe, then `git rm src/collective/__init__.py`.
-- pivot: `locales/update.py` uses `str(files(domain))` instead of
+- `locales/update.py` uses `str(files(domain))` instead of
   `pkg_resources.resource_filename(domain, "")`.
-- messagesviewlet: the Python 2 branches in `__init__.py` (the last
-  `pkg_resources` reference) are gone. `six` is still used in `utils.py` and
-  `message.py`, so it stays.
 - **Breaking: drops Python 2.** Native namespaces need Python 3, so the
-  Python 2.7 jobs (Plone 4.3, and 5.1 for messagesviewlet) are removed from the
-  CI matrix and the classifiers. Their config files (`test_plone4.3.cfg`,
-  `plone-4.3.x.cfg`, `plone-5.1.x.cfg`, `requirements_plone-4.3.x.txt`…) are
-  still there: delete them when the branch is merged. Other iMio applications
-  still on Plone 4.3 must stay on the current releases.
-- New Plone 6.2.3 test config (`test_plone6.2.cfg` / `plone-6.2.x.cfg` and
-  `requirements_plone-6.2.x.txt`) and CI job. The Plone 5.2, 6.0 and 6.1
+  Python 2.7 job (Plone 4.3) is removed from the CI matrix and the
+  classifiers. Its config files (`test_plone4.3.cfg`,
+  `requirements_plone-4.3.x.txt`…) are still there: delete them when the
+  branch is merged. Other iMio applications still on Plone 4.3 must stay on the
+  current releases.
+- New Plone 6.2.3 test config (`test_plone6.2.cfg` and
+  `requirements_plone-6.2.x.txt`) and CI job. The Plone 5.2 and 6.0
   requirements now install `horse-with-no-namespace`, which those Plone
   releases don't ship.
+
+### collective.messagesviewlet
+
+Namespace `collective`. Migrated on the `plone62` branch of the collective
+repository (2026-11-16), then modernized like pas.plugins.kimug (2026-11-17).
+`sources.cfg` checks it out, and `dev.cfg` and `prod.cfg` add it to
+`auto-checkout`.
+
+- `src/collective/__init__.py` is gone, and the Python 2 branches in
+  `__init__.py` (the last `pkg_resources` reference) too.
+- plone.meta 2.12.0 configures it (tox, GitHub Actions test matrix,
+  pre-commit), and `setup-to-pyproject` moved the metadata to
+  `pyproject.toml`. `setup.py` is now only `setup()`, so there is no
+  `find_namespace_packages`. The z3c.autoinclude entry point became a
+  `plone.autoinclude.plugin` one. `setup-to-pyproject` can't parse
+  `packages=find_namespace_packages(...)`: remove `packages` and
+  `package_dir` from `setup.py` before running it.
+- **Breaking: Plone 6.1 and 6.2 only, Python 3.10 to 3.13.** The plone.meta
+  test matrix covers Plone 6.2.3 and 6.1 on Python 3.10 to 3.13 (22 tests).
+  Other iMio applications on Plone 4.3 to 6.0 must stay on 1.0b5. The Plone 5.2
+  job had been failing since 2026-10-22 anyway: setuptools 75.3 builds
+  plone.app.robotframework 1.5.6 as `plone_app_robotframework`, which
+  zc.buildout 3.4 can't find.
+- Gone: Travis, the buildout configuration (`base.cfg`, `plone-*.x.cfg`,
+  `versions*.cfg`, `requirements*.txt`, `code-analysis.cfg`), `.coveragerc`, the
+  hand-written GitHub workflow, and the Selenium robot tests (with the
+  acceptance layer and their test dependencies): they need
+  `plone/app/robotframework/selenium.robot`, which plone.app.robotframework 3
+  (pinned by Plone 6.2.3) no longer ships, and the old CI never ran them.
+- `make install` builds a uv development environment on Plone 6.2.3 (`mx.ini`,
+  `instance.yaml`, `scripts/create_site.py`), from kimug's Makefile without the
+  Keycloak targets. `make i18n` runs `locales/update.sh`.
+- `IPloneSiteRoot` and `INonInstallable` come from `plone.base`, `six` is
+  dropped, and the dependencies the code imports are declared (checked by
+  z3c.dependencychecker). `plone.formwidget.datetime` is only imported on
+  Plone 4, and is ignored by the checker. The other Plone 4 and 5 code paths
+  (`HAS_PLONE_5_AND_MORE`, the `plone4`/`plone5` profiles) are still there.
+- Checked from buildout.smartweb: `.venv/bin/buildout -N` no longer lists it as
+  old-style, `bin/zopepy` imports it from the checkout with the
+  `plone.autoinclude` entry point, and the wheel has no namespace marker.
+  `bin/instance fg` still stops earlier, on imio.helpers 1.3.18
+  ([blockers](#blockers-for-plone-623)).
+- Release it as **2.0.0** (breaking: native namespace, Plone 6.1 and 6.2
+  only), not 1.0b6, then pin it in `versions.cfg` (currently `1.0b5`). The
+  repository belongs to the `collective` organisation: open a PR there.
 
 ### collective.preventactions and collective.upgrade
 
