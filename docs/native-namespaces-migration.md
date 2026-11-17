@@ -40,7 +40,7 @@ on Plone 6.2.3 (2026-11-16), and scanning the eggs that `bin/test` and
 | collective.fingerpointing | 1.8.3 | `get_distribution()` in `subscribers/__init__.py` | Fixed upstream on `master` (2.0.0.dev0, Plone 6.2, native namespace; merged 2026-11-17), checked out through `sources.cfg`. Waiting for the 2.0.0 release |
 | collective.privacy | 1.1.0b2 | `get_distribution()` in `storage.py`, `browser/consent.py` | Fixed on a `plone62` branch, then modernized like collective.messagesviewlet, checked out through `sources.cfg` ([see below](#collectiveprivacy)). PR to open upstream |
 | collective.timedevents | 1.1 | `get_distribution()` in `__init__.py` | Fixed on a `plone62` branch, then modernized like collective.messagesviewlet, checked out through `sources.cfg` ([see below](#collectivetimedevents)). PR to open upstream |
-| collective.exportimport | 1.15 | `get_distribution()` / `DistributionNotFound` in `export_content.py`, `export_other.py`, `import_other.py`, `serializer.py` | Fixed on a `plone62` branch, checked out through `sources.cfg` ([see below](#fixes-for-the-third-party-blockers)). PR to open upstream |
+| collective.exportimport | 1.15 | `get_distribution()` / `DistributionNotFound` in `export_content.py`, `export_other.py`, `import_other.py`, `serializer.py` | Fixed on a `plone62` branch, checked out through `sources.cfg` ([see below](#collectiveexportimport)). PR to open upstream |
 | imio.smartweb.core | checkout | `resource_filename()` in `browser/anysurfer.py` | Fixed on the `plone62` branch, checked out through `sources.cfg` ([group 1](#imiosmartwebcommon-core-locales-policy)) |
 | eea.facetednavigation | 16.5 | `get_distribution()` in `subtypes/subtyper.py` | Bumped to 16.5 (still old-style, but no more `pkg_resources` calls) |
 | collective.taxonomy | 3.1.7 | `DistributionNotFound` in `behavior.py` | Bumped to 4.0.0 ([3a](#3a-native-release-already-available-bump-the-pin)) |
@@ -85,7 +85,7 @@ that workaround can go.
 | [1. iMio, `src/` checkouts](#1-imio-and-collective-packages-checked-out-in-src) | 10 | Migrate (recipe below) |
 | [2. iMio, eggs](#2-eggs-written-by-imio) | 10 | Check out, migrate, release (all 10 migrated, none released) |
 | [3a. Third-party, native release available](#3a-native-release-already-available-bump-the-pin) | 6 | Bumped (2026-11-16), checks pending |
-| [3b. Third-party, still old-style](#3b-still-old-style-upstream-contribute-or-wait) | 19 | Contribute upstream or wait (collective.anysurfer, collective.autopublishing, collective.complexrecordsproxy, collective.privacy and collective.timedevents migrated on `plone62`, not released) |
+| [3b. Third-party, still old-style](#3b-still-old-style-upstream-contribute-or-wait) | 19 | Contribute upstream or wait (collective.anysurfer, collective.autopublishing, collective.complexrecordsproxy, collective.exportimport, collective.privacy and collective.timedevents migrated on `plone62`, not released) |
 | [4. Plone and Zope core](#4-plone-and-zope-core-nothing-to-do) | 5 | Nothing to do |
 
 ## How the inventory was built
@@ -894,6 +894,12 @@ collective.privacy went the same way on its `plone62` branch (see
 with the Python 2.7 fallback) still works as a standalone upstream PR, if the
 maintainers want to keep Python 2.
 
+collective.exportimport went the same way on its `plone62` branch too (see
+[below](#collectiveexportimport)). Its `importlib-metadata` branch
+(`importlib.metadata` with the Python 2.7 fallback) stays the upstream PR:
+exportimport also runs on Plone 4 and Python 2 sites to export them, so
+upstream must keep Python 2.
+
 collective.fingerpointing went further upstream: `master` (2.0.0.dev0, merged
 2026-11-17) is Plone 6.2 only, Python 3.10+ and native, so `sources.cfg`
 checks out `master` instead of a local branch. Once 2.0.0 is released, drop
@@ -915,7 +921,7 @@ options are, in order of preference:
 | collective.anysurfer | 1.4.7 | 1.4.7 (2022) | Migrated on `plone62` (see [below](#collectiveanysurfer)) | [x] (not released) |
 | collective.autopublishing | 1.1b1 | 1.1b1 (2022) | Migrated on `plone62` (see [below](#collectiveautopublishing)) | [x] (not released) |
 | collective.complexrecordsproxy | 1.1 | 1.1 (2022) | Migrated on `plone62` (see [below](#collectivecomplexrecordsproxy)) | [x] (not released) |
-| collective.exportimport | 1.15 | 1.16 (2026-02) | Active, but 1.16 and `main` still old-style. Blocked Plone 6.2.3: fixed on a `plone62` branch, PR to open | [ ] |
+| collective.exportimport | 1.15 | 1.16 (2026-02) | Active, but 1.16 and `main` still old-style. Migrated on `plone62` (see [below](#collectiveexportimport)). Image and file import broken on Plone 6.2.3 by plone.restapi 10.2 | [x] (not released) |
 | collective.fingerpointing | 1.8.3 | 1.8.3 (2022) | Migrated upstream: `master` (2.0.0.dev0) is native and Plone 6.2 only, checked out through `sources.cfg` | [x] (not released) |
 | collective.geolocationbehavior | 1.7.2 | 1.7.2 (2021) | | [ ] |
 | collective.geotransform | 3.0 | 3.0 (2023) | | [ ] |
@@ -1059,6 +1065,80 @@ collective.autopublishing, which is its only user in SmartWeb:
   only), then pin it in `versions.cfg` (currently `1.1`). The repository
   belongs to the `collective` organisation: open a PR there. Other
   applications on Plone 4.3 to 6.0 or Python 2.7 must stay on 1.1.
+
+### collective.exportimport
+
+Namespace `collective`. Migrated on the `plone62` branch of the collective
+repository (2026-11-16), then modernized like collective.messagesviewlet
+(2026-11-17). `sources.cfg` checks it out, and `dev.cfg` and `prod.cfg` add it
+to `auto-checkout`.
+
+- `src/collective/__init__.py` is gone. `__init__.py` imports `get_version`
+  and `PackageNotFoundError` from `importlib.metadata` only (the
+  `pkg_resources` fallback for Python 2.7 is gone), and the
+  `update_locale` script (`locales/update.py`) finds the package folder with
+  `importlib.resources.files()` instead of
+  `pkg_resources.resource_filename()`.
+- plone.meta 2.12.0 configures it (tox, GitHub Actions test matrix,
+  pre-commit, dependabot), and `setup-to-pyproject` moved the metadata to
+  `pyproject.toml`. `setup.py` is now only `setup()`. The z3c.autoinclude
+  entry point became a `plone.autoinclude.plugin` one. Before running
+  `setup-to-pyproject`, remove from `setup.py` the `sys.version_info` branch
+  (Python 2 pins), `packages` and `package_dir`, and write
+  `install_requires` inline: the converter can't parse them. Run plone.meta
+  in a clone named `collective.exportimport` whose `origin` is the GitHub
+  URL: it takes the package name from the folder name, and only writes the
+  GitHub workflows for a GitHub remote.
+- **Breaking: Plone 6.1 and 6.2 only, Python 3.10 to 3.13**, released as
+  **2.0.0** (version `2.0.0.dev0`). The README explains that exporting from
+  Plone 4.3 to 6.0 or Python 2 needs 1.x in the old site, and that 2.x
+  imports the result (same json format).
+- `six` is dropped. pyupgrade rewrote most uses (`six.moves.urllib`,
+  `six.text_type`, the `if six.PY2:` imports), and the remaining `six.PY2` /
+  `six.PY3` branches were removed by hand. The other lint autofixes (isort,
+  black, zpretty) and the flake8 and codespell findings are applied: bare
+  `except:` became `except Exception:`, an unused `BlocksJSONFieldSerializer`
+  import is gone, typos fixed. The JSON samples in the `import_*.pt`
+  templates get `i18n:ignore`, and one untranslated sentence in
+  `import_content.pt` gets `i18n:translate` (not yet in the `.pot`). The Plone
+  4 and 5 code paths (Archetypes, LinguaPlone, `Products.CMFPlone.interfaces`
+  imports) are kept: they are guarded and are what exportimport exports from.
+- The dependencies the code imports are declared (checked by
+  z3c.dependencychecker): Zope, Products.CMFPlone, plone.app.contenttypes,
+  python-dateutil… The guarded imports (Archetypes, ATContentTypes,
+  LinguaPlone, plone.app.multilingual, plone.app.discussion,
+  collective.relationhelpers, z3c.relationfield…) are in
+  `dependencies_ignores`. The test extra needs `plone.app.contenttypes[test]`:
+  `plone.app.contenttypes.testing` imports plone.app.robotframework.
+- Gone: the buildout configuration (`base.cfg`, `buildout.cfg`,
+  `test-*.x.cfg`), `requirements*.txt`, `setup.cfg`, `DEVELOP.rst`, the Sphinx
+  stub (`docs/conf.py`, `docs/index.rst`; the README images stay in `docs/`)
+  and the hand-written GitHub workflow (Plone 4.3 to 6.0 with Python 2.7
+  docker images). There was no Travis.
+- `make install` builds a uv development environment on Plone 6.2.3 (`mx.ini`,
+  `instance.yaml`, `scripts/create_site.py`), from messagesviewlet's Makefile.
+  exportimport has no GenericSetup profile, so `create_site.py` only creates
+  the site: the `@@export_*` and `@@import_*` views work as soon as the package
+  is loaded. Checked: `make install` then `make create-site` build the
+  environment and create the site.
+- Tests (zope.testrunner through tox): Plone 6.1 on Python 3.10, 52 tests
+  pass. Plone 6.2.3 on Python 3.12, 4 fail (`test_import_contenttree`,
+  `test_import_imports_but_ignores_constrains`, `test_import_workflow_history`,
+  `test_reset_dates`), with the 1.x code too. The cause is plone.restapi
+  10.2.1 (pinned by Plone 6.2.3, still in 10.3.0 and `main`):
+  `NamedFieldDeserializer` reads `request.form[value["part"]]` whenever the
+  request is `multipart/form-data`, even if the value carries inline `data`.
+  The `@@import_content` form always posts multipart, so every image and file
+  is dropped (`KeyError: 'part'`, "Didn't add Image"). This affects any
+  content import on the Plone 6.2 stack. To fix in plone.restapi (only use
+  the multipart branch when `"part" in value`), or work around in
+  exportimport.
+- Not yet checked from buildout.smartweb (steps 5.1 and 5.2 of the recipe):
+  `.venv/bin/buildout -N` and `bin/zopepy` with the checkout.
+- Release it as **2.0.0**, then pin it in `versions.cfg` (currently `1.16`).
+  The repository belongs to the `collective` organisation: open a PR there,
+  or keep the branch for SmartWeb if upstream wants to keep Python 2 on
+  `main`. Other applications on Plone 6.0 or older must stay on 1.x.
 
 ### collective.timedevents
 
