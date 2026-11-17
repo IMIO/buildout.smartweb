@@ -9,8 +9,8 @@ Last updated: 2026-11-17.
 
 ## Status
 
-**9 pinned** (2 migrated, 7 bumped) · **3 merged**, not released · **10 PRs
-open** · **12 branches pushed**, no PR yet · **11 not started** (none of them
+**9 pinned** (2 migrated, 7 bumped) · **5 merged**, not released · **11 PRs
+open** · **12 branches pushed**, no PR yet · **8 not started** (none of them
 blocks Plone 6.2.3)
 
 ✅ done · ⬜ to do · ➖ not applicable · 🚧 its pinned release calls
@@ -29,19 +29,19 @@ blocks Plone 6.2.3)
 | [collective.geolocationbehavior](native-namespaces-packages.md#bumped-to-a-native-release) | ➖ | ⬜ | ➖ | ➖ | 2.0.0 | ✅ |
 | [collective.geotransform](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [collective.instancebehavior](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| [collective.js.jqueryui](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [collective.js.jqueryui](native-namespaces-packages.md#collectivejsjqueryui) | ✅ | ✅ | [#57](https://github.com/collective/collective.js.jqueryui/pull/57) | ✅ | ⬜ | ⬜ |
 | [collective.messagesviewlet](native-namespaces-packages.md#collectivemessagesviewlet) | ✅ | ✅ | [#24](https://github.com/collective/collective.messagesviewlet/pull/24) | ⬜ | ⬜ | ⬜ |
 | [collective.pivot](native-namespaces-packages.md#collectivepivot) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [collective.preventactions](native-namespaces-packages.md#collectivepreventactions) | ✅ | ✅ | [#2](https://github.com/collective/collective.preventactions/pull/2) | ✅ | 0.4.0 | ✅ |
 | [collective.privacy](native-namespaces-packages.md#collectiveprivacy) 🚧 | ✅ | ✅ | [#22](https://github.com/collective/collective.privacy/pull/22) | ⬜ | ⬜ | ⬜ |
 | [collective.prometheus](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [collective.sendinblue](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| [collective.solr](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [collective.solr](native-namespaces-packages.md#collectivesolr) | ✅ | ✅ | [#408](https://github.com/collective/collective.solr/pull/408) | ⬜ | ⬜ | ⬜ |
 | [collective.taxonomy](native-namespaces-packages.md#bumped-to-a-native-release) | ➖ | ⬜ | ➖ | ➖ | 4.0.0 | ✅ |
 | [collective.themefragments](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [collective.timedevents](native-namespaces-packages.md#collectivetimedevents) 🚧 | ✅ | ✅ | [#13](https://github.com/collective/collective.timedevents/pull/13) | ⬜ | ⬜ | ⬜ |
 | [collective.upgrade](native-namespaces-packages.md#collectiveupgrade) | ✅ | ✅ | [#17](https://github.com/collective/collective.upgrade/pull/17) | ⬜ | ⬜ | ⬜ |
-| [collective.z3cform.select2](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [collective.z3cform.select2](native-namespaces-packages.md#collectivez3cformselect2) | ✅ | ✅ | [#15](https://github.com/collective/collective.z3cform.select2/pull/15) | ✅ | ⬜ | ⬜ |
 | [eea.facetednavigation](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [hurry.filesize](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [iaweb.privacy](native-namespaces-packages.md#iawebprivacy) | ✅ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
@@ -134,8 +134,10 @@ release can't depend on a git branch, so the order matters:
   from imio.smartweb.core's classifiers first.
 - [ ] imio.pyutils as 1.3.0 (not breaking; `master` says 1.2.4.dev0). Every
   other package as 2.0.0.
-- [ ] Ask upstream for collective.fingerpointing 2.0.0 and
-  plone.formwidget.geolocation 4.0.0.
+- [ ] Ask upstream for collective.fingerpointing 2.0.0,
+  plone.formwidget.geolocation 4.0.0, collective.js.jqueryui 3.0.0 and
+  collective.z3cform.select2 4.0.0b1, and for collective.solr 11.0.0 once
+  [#408](https://github.com/collective/collective.solr/pull/408) is merged.
 
 ### Check by hand on a SmartWeb site
 
@@ -151,6 +153,13 @@ release can't depend on a git branch, so the order matters:
   gone).
 - [ ] collective.anysurfer: the search page and the breadcrumb (Plone 5
   markup).
+- [ ] collective.solr 11.0.0.dev0 (two major versions from 9.4.0): search,
+  faceted navigation and indexing. Check the production Solr version too
+  ([details](native-namespaces-packages.md#collectivesolr)).
+- [ ] collective.z3cform.select2: the select2 widgets.
+- [ ] collective.js.jqueryui: whatever uses jQuery UI, which the bundle never
+  loaded before
+  [#58](https://github.com/collective/collective.js.jqueryui/pull/58).
 
 ### Fix upstream
 
@@ -161,7 +170,7 @@ release can't depend on a git branch, so the order matters:
 
 ### Not started
 
-- [ ] The 11 [still old-style](native-namespaces-packages.md#still-old-style-upstream)
+- [ ] The 8 [still old-style](native-namespaces-packages.md#still-old-style-upstream)
   third-party packages. For each one, in order of preference:
   1. Check the repository's main branch: the migration may already be merged
      and only waiting for a release. Ask the maintainers for a release.

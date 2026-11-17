@@ -291,6 +291,22 @@ Our `importlib-metadata` PR (#111) was closed in favor of it. `sources.cfg`
 checks out `master` until 2.0.0 is released: then drop the checkout and pin
 it.
 
+## collective.js.jqueryui
+
+**Namespaces** `collective`, `collective.js` · **Repository**
+[collective/collective.js.jqueryui](https://github.com/collective/collective.js.jqueryui),
+branch `master` (upstream) · **Checked out by** `dev.cfg`, `prod.cfg` ·
+**Older stacks** stay on 2.2.x
+
+Migrated upstream: `master` (3.0.0.dev0) is Plone 6.2 only, Python 3.10+ and
+native, merged on 2026-11-17
+([#57](https://github.com/collective/collective.js.jqueryui/pull/57)). No
+`pkg_resources` use. [#58](https://github.com/collective/collective.js.jqueryui/pull/58),
+merged the same day, fixes the plugin resource ids of the aggregated
+JavaScript: until then, jQuery UI was never loaded. Check what uses it on a
+SmartWeb site. `sources.cfg` checks out `master` until 3.0.0 is released:
+then drop the checkout and pin it.
+
 ## collective.messagesviewlet
 
 **Namespace** `collective` · **Repository**
@@ -429,6 +445,29 @@ Fixed and migrated 2026-11-16, then modernized like collective.messagesviewlet
 - iaweb.privacy's `mx.ini` and tox install this branch from GitHub: release
   privacy first, then replace the branch there.
 
+## collective.solr
+
+**Namespace** `collective` · **Repository**
+[collective/collective.solr](https://github.com/collective/collective.solr),
+branch `pep-420-native-namespace` (upstream) · **Checked out by** `dev.cfg`,
+`prod.cfg` · **Older stacks** stay on 10.x (Plone 6.0 and 6.1)
+
+Migrated upstream on `pep-420-native-namespace` (11.0.0.dev0: Plone 6.2 only,
+Python 3.10+, native), still open
+([#408](https://github.com/collective/collective.solr/pull/408)). No
+`pkg_resources` use. This upstream branch replaces the IMIO fork in
+`sources.cfg`: the fork entry pointed to a `main` branch that doesn't exist,
+and it was never checked out.
+
+- **Two major versions** from the pinned 9.4.0. 10.0.0 drops Python 3.9,
+  Plone 5.2 and Solr 9.0 and 9.1 (dev runs Solr 9.6.1: check the production
+  version), and reimplements Solr faceting for Classic UI. 11.0.0 removes the
+  old Archetypes code. Test search, faceted navigation and indexing on a
+  SmartWeb site.
+- imio.helpers patches `SolrIndexProcessor.index` (`patches.py`): the method
+  is still there on the branch.
+- Once #408 is merged and 11.0.0 released, drop the checkout and pin it.
+
 ## collective.timedevents
 
 **Namespace** `collective` · **Repository**
@@ -499,6 +538,22 @@ native namespace, into `master`) and
 support, into `plone61`). Delete the stale `src/collective/__pycache__` and
 `collective_*-nspkg.pth` files
 ([step 5](native-namespaces-migration.md#5-clean-up-and-check)).
+
+## collective.z3cform.select2
+
+**Namespaces** `collective`, `collective.z3cform` · **Repository**
+[collective/collective.z3cform.select2](https://github.com/collective/collective.z3cform.select2),
+branch `master` (upstream) · **Checked out by** `dev.cfg`, `prod.cfg` ·
+**Older stacks** stay on 3.0.0b9
+
+Migrated upstream: `master` (4.0.0b1.dev0) is Plone 6.2 only, Python 3.10+ and
+native, merged on 2026-11-17
+([#15](https://github.com/collective/collective.z3cform.select2/pull/15)). No
+`pkg_resources` use. `master` also carries unreleased changes made since
+3.0.0b9: Plone 6.1 support, without Plone 4 and 5
+([#14](https://github.com/collective/collective.z3cform.select2/pull/14)).
+Check the select2 widgets on a SmartWeb site. `sources.cfg` checks out
+`master` until 4.0.0b1 is released: then drop the checkout and pin it.
 
 ## iaweb.privacy
 
@@ -869,12 +924,9 @@ each one: [not started](native-namespaces-migration.md#not-started).
 |---|---|---|---|
 | collective.geotransform | 3.0 | 3.0 (2023) | |
 | collective.instancebehavior | 0.5 | 0.5 (2021) | |
-| collective.js.jqueryui | 2.2.0 | 2.2.0 (2023) | Namespaces `collective`, `collective.js` |
 | collective.prometheus | 1.6.1 | 1.6.1 (2022) | `plone.observability` now provides metrics: check whether it is still needed |
 | collective.sendinblue | 2.0.4 | 2.0.4 (2025) | |
-| collective.solr | 9.4.0 | 10.1.1 (2026-03) | Active: check the main branch first. `sources.cfg` also lists the IMIO fork (`main`), not checked out |
 | collective.themefragments | 2.12 | 2.12 (2019) | Last release 2019 |
-| collective.z3cform.select2 | 3.0.0b9 | 3.0.0b9 (2023) | Namespaces `collective`, `collective.z3cform` |
 | eea.facetednavigation | 16.5 | 16.5 (2026-10) | Active: check the default branch (`develop`) first. 16.5 no longer calls `get_distribution()` (`subtypes/subtyper.py`), which blocked Plone 6.2.3 |
 | plone.gallery | 1.1.6 | 1.1.6 (2023) | |
 | hurry.filesize | 0.9 | 0.9 (2009) | Unmaintained: find which package requires it |
