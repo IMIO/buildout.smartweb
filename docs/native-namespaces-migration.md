@@ -6,7 +6,7 @@ of them.
 
 Last checked: 2026-11-10, against the eggs loaded by `bin/instance` and the
 latest releases on PyPI. Updated 2026-11-16 for Plone 6.2.3, and 2026-11-17
-for collective.timedevents.
+for collective.timedevents and collective.privacy.
 
 ## Why
 
@@ -38,7 +38,7 @@ on Plone 6.2.3 (2026-11-16), and scanning the eggs that `bin/test` and
 |---|---|---|---|
 | imio.helpers | 1.3.18 | `get_distribution()` in `__init__.py`, `xhtml.py`, `patches.py` | **None released**: 1.3.19 and `master` still call it. Fixed on a `plone62` branch by a colleague, checked out through `sources.cfg` in `prod.cfg` but not yet in `dev.cfg` ([see below](#imiohelpers)) |
 | collective.fingerpointing | 1.8.3 | `get_distribution()` in `subscribers/__init__.py` | Fixed upstream on `master` (2.0.0.dev0, Plone 6.2, native namespace; merged 2026-11-17), checked out through `sources.cfg`. Waiting for the 2.0.0 release |
-| collective.privacy | 1.1.0b2 | `get_distribution()` in `storage.py`, `browser/consent.py` | Fixed on a `plone62` branch, checked out through `sources.cfg` ([see below](#fixes-for-the-third-party-blockers)). PR to open upstream |
+| collective.privacy | 1.1.0b2 | `get_distribution()` in `storage.py`, `browser/consent.py` | Fixed on a `plone62` branch, then modernized like collective.messagesviewlet, checked out through `sources.cfg` ([see below](#collectiveprivacy)). PR to open upstream |
 | collective.timedevents | 1.1 | `get_distribution()` in `__init__.py` | Fixed on a `plone62` branch, then modernized like collective.messagesviewlet, checked out through `sources.cfg` ([see below](#collectivetimedevents)). PR to open upstream |
 | collective.exportimport | 1.15 | `get_distribution()` / `DistributionNotFound` in `export_content.py`, `export_other.py`, `import_other.py`, `serializer.py` | Fixed on a `plone62` branch, checked out through `sources.cfg` ([see below](#fixes-for-the-third-party-blockers)). PR to open upstream |
 | imio.smartweb.core | checkout | `resource_filename()` in `browser/anysurfer.py` | Fixed on the `plone62` branch, checked out through `sources.cfg` ([group 1](#imiosmartwebcommon-core-locales-policy)) |
@@ -85,7 +85,7 @@ that workaround can go.
 | [1. iMio, `src/` checkouts](#1-imio-and-collective-packages-checked-out-in-src) | 10 | Migrate (recipe below) |
 | [2. iMio, eggs](#2-eggs-written-by-imio) | 10 | Check out, migrate, release (all 10 migrated, none released) |
 | [3a. Third-party, native release available](#3a-native-release-already-available-bump-the-pin) | 6 | Bumped (2026-11-16), checks pending |
-| [3b. Third-party, still old-style](#3b-still-old-style-upstream-contribute-or-wait) | 19 | Contribute upstream or wait (collective.anysurfer, collective.autopublishing, collective.complexrecordsproxy and collective.timedevents migrated on `plone62`, not released) |
+| [3b. Third-party, still old-style](#3b-still-old-style-upstream-contribute-or-wait) | 19 | Contribute upstream or wait (collective.anysurfer, collective.autopublishing, collective.complexrecordsproxy, collective.privacy and collective.timedevents migrated on `plone62`, not released) |
 | [4. Plone and Zope core](#4-plone-and-zope-core-nothing-to-do) | 5 | Nothing to do |
 
 ## How the inventory was built
@@ -889,6 +889,11 @@ collective.timedevents went further on its `plone62` branch: configured with
 plone.meta, Plone 6.1 and 6.2 only, and the Python 2.7 fallback is gone (see
 [below](#collectivetimedevents)). Its upstream PR is the whole branch.
 
+collective.privacy went the same way on its `plone62` branch (see
+[below](#collectiveprivacy)). Its first commit (`bb46b06`, `importlib.metadata`
+with the Python 2.7 fallback) still works as a standalone upstream PR, if the
+maintainers want to keep Python 2.
+
 collective.fingerpointing went further upstream: `master` (2.0.0.dev0, merged
 2026-11-17) is Plone 6.2 only, Python 3.10+ and native, so `sources.cfg`
 checks out `master` instead of a local branch. Once 2.0.0 is released, drop
@@ -916,7 +921,7 @@ options are, in order of preference:
 | collective.geotransform | 3.0 | 3.0 (2023) | | [ ] |
 | collective.instancebehavior | 0.5 | 0.5 (2021) | | [ ] |
 | collective.js.jqueryui | 2.2.0 | 2.2.0 (2023) | Namespaces `collective`, `collective.js` | [ ] |
-| collective.privacy | 1.1.0b2 | 1.1.0b2 (2022) | Blocked Plone 6.2.3: fixed on a `plone62` branch, PR to open | [ ] |
+| collective.privacy | 1.1.0b2 | 1.1.0b2 (2022) | Blocked Plone 6.2.3: migrated on `plone62` (see [below](#collectiveprivacy)), checked out through `auto-checkout` in `dev.cfg` and `prod.cfg`. PR to open | [x] (not released) |
 | collective.prometheus | 1.6.1 | 1.6.1 (2022) | `plone.observability` now provides metrics: check whether it is still needed | [ ] |
 | collective.sendinblue | 2.0.4 | 2.0.4 (2025) | | [ ] |
 | collective.solr | 9.4.0 | 10.1.1 (2026-03) | Active: check the main branch first | [ ] |
@@ -1105,6 +1110,61 @@ it out, and `dev.cfg` and `prod.cfg` add it to `auto-checkout`.
   only), then pin it in `versions.cfg` (currently `1.1`) and replace the
   branch in collective.autopublishing. The repository belongs to the
   `collective` organisation: open a PR there.
+
+### collective.privacy
+
+Namespace `collective`. Fixed and migrated on the `plone62` branch
+(2026-11-16), then modernized like collective.messagesviewlet (2026-11-17).
+`sources.cfg` checks it out, and `dev.cfg` and `prod.cfg` add it to
+`auto-checkout`.
+
+- `src/collective/__init__.py` is gone. `storage.py` uses
+  `email.utils.formatdate`, and `browser/consent.py` no longer looks up
+  `plone.directives.form` at all (it was the Plone 4 fallback), so the last
+  `pkg_resources` reference is gone.
+- plone.meta 2.12.0 configures it (tox, GitHub Actions test matrix,
+  pre-commit), and the metadata moved to `pyproject.toml`, written by hand
+  (`setup.py` is now only `setup()`). The z3c.autoinclude entry point became a
+  `plone.autoinclude.plugin` one, and the license is SPDX `GPL-2.0-only`.
+  Version 2.0.0.dev0.
+- **Breaking: Plone 6.1 and 6.2 only, Python 3.10 to 3.13.** Other
+  applications on Python 2 or Plone 4.3 to 6.0 must stay on 1.1.0b2.
+- Gone: Travis, GitLab CI, the buildout configuration (`base.cfg`,
+  `buildout.cfg`, `travis.cfg`, `plone-4.3.x.cfg` to `plone-5.2.x.cfg`,
+  `versions.cfg`, `requirements.txt`), `setup.cfg`, `.coveragerc`,
+  `DEVELOP.rst`, `bobtemplate.cfg`, and the Selenium robot tests (with the
+  acceptance layer): they need `plone/app/robotframework/selenium.robot`,
+  which plone.app.robotframework 3 no longer ships. They were the only tests
+  of the JavaScript consent banner, which is now untested: check it by hand
+  on a SmartWeb site.
+- `INonInstallable`, `safe_text` and `get_installer` come from `plone.base`,
+  `six` is dropped, and the jbot overrides of the Plone 4 skin templates
+  (`Products.CMFPlone.skins.*`) are gone. The override of the Plone 6
+  `sendto_template.pt` is kept: it is still Plone 6.2.3's template plus the
+  privacy notice. The dependencies the code imports are declared (checked by
+  z3c.dependencychecker), including plone.app.upgrade (`upgrades.py`).
+- Tests: 6 of the 7 tests failed on Plone 6.2.3. The setup tests used the
+  `portal_quickinstaller` API (`isProductInstalled`, `uninstallProducts`),
+  and the cookie test expected the old cookie keys (`max_age`, Zope now
+  returns `Max-Age`). They are fixed, and
+  new tests render `@@consent` and `@@consent-json` (9 tests). They pass on
+  Plone 6.2.3 / Python 3.13 and Plone 6.1 / Python 3.10, with lint,
+  dependencies and circular checks.
+- Codespell fixed `separeted` in a ZCML field description, which is also a
+  msgid: the `.pot` and `.po` files follow.
+- `make install` builds a uv development environment on Plone 6.2.3
+  (`mx.ini`, `instance.yaml`, `scripts/create_site.py`), from
+  collective.messagesviewlet's Makefile. `make i18n` runs `locales/update.sh`.
+- Checked from buildout.smartweb: `bin/zopepy` imports it from the `src/`
+  checkout (2.0.0.dev0) with the `plone.autoinclude` entry point, `collective`
+  is a native namespace (not in horse-with-no-namespace's list), and the
+  wheel has no namespace marker.
+- iaweb.privacy's `mx.ini` and tox install this branch from GitHub
+  ([above](#iawebprivacy)): nothing changes there.
+- Release it as **2.0.0** (breaking: native namespace, Plone 6.1 and 6.2
+  only), then pin it in `versions.cfg` (currently `1.1.0b2`) and replace the
+  branch in iaweb.privacy. The repository belongs to the `collective`
+  organisation: open a PR there.
 
 ## 4. Plone and Zope core: nothing to do
 
