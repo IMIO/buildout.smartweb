@@ -36,7 +36,7 @@ on Plone 6.2.3 (2026-11-16), and scanning the eggs that `bin/test` and
 | Package | Pinned | Call | Fix |
 |---|---|---|---|
 | imio.helpers | 1.3.18 | `get_distribution()` in `__init__.py`, `xhtml.py`, `patches.py` | **None released**: 1.3.19 and `master` still call it. Fixed on a `plone62` branch by a colleague, checked out through `sources.cfg` in `prod.cfg` but not yet in `dev.cfg` ([see below](#imiohelpers)) |
-| collective.fingerpointing | 1.8.3 | `get_distribution()` in `subscribers/__init__.py` | Fixed on a `plone62` branch, checked out through `sources.cfg` ([see below](#fixes-for-the-third-party-blockers)). PR to open upstream |
+| collective.fingerpointing | 1.8.3 | `get_distribution()` in `subscribers/__init__.py` | Fixed upstream on `master` (2.0.0.dev0, Plone 6.2, native namespace; merged 2026-11-17), checked out through `sources.cfg`. Waiting for the 2.0.0 release |
 | collective.privacy | 1.1.0b2 | `get_distribution()` in `storage.py`, `browser/consent.py` | Fixed on a `plone62` branch, checked out through `sources.cfg` ([see below](#fixes-for-the-third-party-blockers)). PR to open upstream |
 | collective.timedevents | 1.1 | `get_distribution()` in `__init__.py` | Fixed on a `plone62` branch, checked out through `sources.cfg` ([see below](#fixes-for-the-third-party-blockers)). PR to open upstream |
 | collective.exportimport | 1.15 | `get_distribution()` / `DistributionNotFound` in `export_content.py`, `export_other.py`, `import_other.py`, `serializer.py` | Fixed on a `plone62` branch, checked out through `sources.cfg` ([see below](#fixes-for-the-third-party-blockers)). PR to open upstream |
@@ -809,12 +809,12 @@ are still to do.
 
 ### Fixes for the third-party blockers
 
-collective.exportimport, .fingerpointing, .privacy and .timedevents have no
-release without `pkg_resources` calls. Each one is checked out on a local
-`plone62` branch (`sources.cfg`, `auto-checkout` in `dev.cfg`) with two
+collective.exportimport, .privacy and .timedevents have no release without
+`pkg_resources` calls. Each one is checked out on a local `plone62` branch
+(`sources.cfg`, `auto-checkout` in `dev.cfg`) with two
 separate changes:
 
-1. **Replace `pkg_resources`** (the upstream PR). All four still support
+1. **Replace `pkg_resources`** (the upstream PR). All three still support
    Python 2.7, and exportimport also runs on old Plone 4 sites to export
    them, so the fix stays compatible:
 
@@ -830,8 +830,8 @@ separate changes:
            return get_distribution(name).version
    ```
 
-   then `get_version("x")` / `except PackageNotFoundError`. exportimport and
-   fingerpointing define it once in their package `__init__.py`. privacy's
+   then `get_version("x")` / `except PackageNotFoundError`. exportimport
+   defines it once in its package `__init__.py`. privacy's
    `email.Utils` check is replaced by `from email.utils import formatdate`
    (available since Python 2.5).
 2. **Native namespaces** (only for our checkout, drops Python 2). As an
@@ -841,6 +841,11 @@ separate changes:
 
 Commit and push them separately: open the upstream PR from the first one only.
 Once they are released, drop the checkouts and pin the releases.
+
+collective.fingerpointing went further upstream: `master` (2.0.0.dev0, merged
+2026-11-17) is Plone 6.2 only, Python 3.10+ and native, so `sources.cfg`
+checks out `master` instead of a local branch. Once 2.0.0 is released, drop
+the checkout and pin it.
 
 ### 3b. Still old-style upstream: contribute or wait
 
@@ -859,7 +864,7 @@ options are, in order of preference:
 | collective.autopublishing | 1.1b1 | 1.1b1 (2022) | Migrated on `plone62` (see [below](#collectiveautopublishing)) | [x] (not released) |
 | collective.complexrecordsproxy | 1.1 | 1.1 (2022) | Migrated on `plone62` (see [below](#collectivecomplexrecordsproxy)) | [x] (not released) |
 | collective.exportimport | 1.15 | 1.16 (2026-02) | Active, but 1.16 and `main` still old-style. Blocked Plone 6.2.3: fixed on a `plone62` branch, PR to open | [ ] |
-| collective.fingerpointing | 1.8.3 | 1.8.3 (2022) | Blocked Plone 6.2.3: fixed on a `plone62` branch, PR to open | [ ] |
+| collective.fingerpointing | 1.8.3 | 1.8.3 (2022) | Migrated upstream: `master` (2.0.0.dev0) is native and Plone 6.2 only, checked out through `sources.cfg` | [x] (not released) |
 | collective.geolocationbehavior | 1.7.2 | 1.7.2 (2021) | | [ ] |
 | collective.geotransform | 3.0 | 3.0 (2023) | | [ ] |
 | collective.instancebehavior | 0.5 | 0.5 (2021) | | [ ] |
