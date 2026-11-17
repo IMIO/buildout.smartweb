@@ -1,12 +1,185 @@
 # Migrating to native namespace packages (PEP 420)
 
-Inventory of the packages in the SmartWeb stack (branch `plone62`, Plone
-6.2.3) that still use old-style namespace packages, and how to migrate each
-of them.
+Tracks the move of the SmartWeb stack (branch `plone62`, Plone 6.2.3) away
+from old-style namespace packages: where each package stands, what's left to
+do, and how to migrate one. What changed in each package, and its gotchas:
+[package details](native-namespaces-packages.md).
 
-Last checked: 2026-11-10, against the eggs loaded by `bin/instance` and the
-latest releases on PyPI. Updated 2026-11-16 for Plone 6.2.3, and 2026-11-17
-for collective.timedevents and collective.privacy.
+Last updated: 2026-11-17.
+
+## Status
+
+**9 pinned** (2 migrated, 7 bumped) · **3 merged**, not released · **10 PRs
+open** · **12 branches pushed**, no PR yet · **11 not started** (none of them
+blocks Plone 6.2.3)
+
+✅ done · ⬜ to do · ➖ not applicable · 🚧 its pinned release calls
+`pkg_resources` and fails on Plone 6.2.3 ([blockers](#blockers-for-plone-623))
+
+| Package | Branch | Checked | PR | Merged | Released | Pinned |
+|---|:-:|:-:|:-:|:-:|:-:|:-:|
+| [collective.anysurfer](native-namespaces-packages.md#collectiveanysurfer) | ✅ | ⬜ | [#9](https://github.com/collective/collective.anysurfer/pull/9) | ⬜ | ⬜ | ⬜ |
+| [collective.autopublishing](native-namespaces-packages.md#collectiveautopublishing) | ✅ | ⬜ | [#12](https://github.com/collective/collective.autopublishing/pull/12) | ⬜ | ⬜ | ⬜ |
+| [collective.autoscaling](native-namespaces-packages.md#collectiveautoscaling) | ✅ | ⬜ | [#9](https://github.com/collective/collective.autoscaling/pull/9) | ⬜ | ⬜ | ⬜ |
+| [collective.behavior.talcondition](native-namespaces-packages.md#collectivebehaviortalcondition) | ✅ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [collective.complexrecordsproxy](native-namespaces-packages.md#collectivecomplexrecordsproxy) | ✅ | ⬜ | [#3](https://github.com/collective/collective.complexrecordsproxy/pull/3) | ⬜ | ⬜ | ⬜ |
+| [collective.exportimport](native-namespaces-packages.md#collectiveexportimport) 🚧 | ✅ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [collective.faceted.map](native-namespaces-packages.md#collectivefacetedmap) | ✅ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [collective.fingerpointing](native-namespaces-packages.md#collectivefingerpointing) 🚧 | ✅ | ⬜ | [#110](https://github.com/collective/collective.fingerpointing/pull/110) | ✅ | ⬜ | ⬜ |
+| [collective.geolocationbehavior](native-namespaces-packages.md#bumped-to-a-native-release) | ➖ | ⬜ | ➖ | ➖ | 2.0.0 | ✅ |
+| [collective.geotransform](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [collective.instancebehavior](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [collective.js.jqueryui](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [collective.messagesviewlet](native-namespaces-packages.md#collectivemessagesviewlet) | ✅ | ✅ | [#24](https://github.com/collective/collective.messagesviewlet/pull/24) | ⬜ | ⬜ | ⬜ |
+| [collective.pivot](native-namespaces-packages.md#collectivepivot) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [collective.preventactions](native-namespaces-packages.md#collectivepreventactions) | ✅ | ✅ | [#2](https://github.com/collective/collective.preventactions/pull/2) | ✅ | 0.4.0 | ✅ |
+| [collective.privacy](native-namespaces-packages.md#collectiveprivacy) 🚧 | ✅ | ✅ | [#22](https://github.com/collective/collective.privacy/pull/22) | ⬜ | ⬜ | ⬜ |
+| [collective.prometheus](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [collective.sendinblue](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [collective.solr](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [collective.taxonomy](native-namespaces-packages.md#bumped-to-a-native-release) | ➖ | ⬜ | ➖ | ➖ | 4.0.0 | ✅ |
+| [collective.themefragments](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [collective.timedevents](native-namespaces-packages.md#collectivetimedevents) 🚧 | ✅ | ✅ | [#13](https://github.com/collective/collective.timedevents/pull/13) | ⬜ | ⬜ | ⬜ |
+| [collective.upgrade](native-namespaces-packages.md#collectiveupgrade) | ✅ | ✅ | [#17](https://github.com/collective/collective.upgrade/pull/17) | ⬜ | ⬜ | ⬜ |
+| [collective.z3cform.select2](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [eea.facetednavigation](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [hurry.filesize](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [iaweb.privacy](native-namespaces-packages.md#iawebprivacy) | ✅ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [imio.gdpr](native-namespaces-packages.md#imiogdpr) | ✅ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [imio.helpers](native-namespaces-packages.md#imiohelpers) 🚧 | ✅ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [imio.omnia.core](native-namespaces-packages.md#imioomniacore) | ✅ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [imio.omnia.tinymce](native-namespaces-packages.md#imioomniatinymce) | ✅ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [imio.prometheus](native-namespaces-packages.md#imioprometheus) | ✅ | ⬜ | [#2](https://github.com/IMIO/imio.prometheus/pull/2) | ⬜ | ⬜ | ⬜ |
+| [imio.pyutils](native-namespaces-packages.md#imiopyutils) | ✅ | ✅ | [#4](https://github.com/IMIO/imio.pyutils/pull/4) | ✅ | ⬜ | ⬜ |
+| [imio.smartweb.common](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy) | ✅ | ✅ | [#37](https://github.com/IMIO/imio.smartweb.common/pull/37) | ⬜ | ⬜ | ⬜ |
+| [imio.smartweb.core](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy) 🚧 | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [imio.smartweb.locales](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [imio.smartweb.policy](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [pas.plugins.kimug](native-namespaces-packages.md#paspluginskimug) | ✅ | ⬜ | [#34](https://github.com/IMIO/pas.plugins.kimug/pull/34) | ✅ | 2.0.0 | ✅ |
+| [plone.app.imagecropping](native-namespaces-packages.md#bumped-to-a-native-release) | ➖ | ⬜ | ➖ | ➖ | 4.0.0 | ✅ |
+| [plone.formwidget.geolocation](native-namespaces-packages.md#ploneformwidgetgeolocation) | ✅ | ✅ | ➖ | ✅ | ⬜ | ⬜ |
+| [plone.formwidget.recaptcha](native-namespaces-packages.md#bumped-to-a-native-release) | ➖ | ⬜ | ➖ | ➖ | 4.0.0 | ✅ |
+| [plone.gallery](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [plone.patternslib](native-namespaces-packages.md#bumped-to-a-native-release) | ➖ | ⬜ | ➖ | ➖ | 9.11.1 | ✅ |
+| [zope.minmax](native-namespaces-packages.md#bumped-to-a-native-release) | ➖ | ⬜ | ➖ | ➖ | 4.0 | ✅ |
+| [zope.session](native-namespaces-packages.md#bumped-to-a-native-release) | ➖ | ⬜ | ➖ | ➖ | 6.0 | ✅ |
+
+Columns:
+
+- **Branch**: a native branch is pushed (ours or upstream's). ➖: nothing to
+  migrate, a native release already exists.
+- **Checked**: buildout.smartweb loads the branch ([step 5](#5-clean-up-and-check)):
+  `.venv/bin/buildout -N` no longer lists it as old-style, and `bin/zopepy`
+  imports it from the checkout. `bin/instance fg` can't start until
+  imio.helpers is checked out in dev ([below](#unblock-bininstance-fg)). For a
+  bumped package: the feature that uses it is tested on a SmartWeb site.
+- **PR**: link to the pull request that merges the branch. ⬜: none opened
+  yet. ➖: done upstream, without us.
+- **Released**: the native version on PyPI. **Pinned**: `versions.cfg` pins it.
+
+Plone and Zope core packages aren't listed: Plone 6.2.3 pins native releases
+of plone.app.content, plone.autoform, plone.restapi and Paste. PasteDeploy
+3.1.0 is still old-style, and comes with Plone's pins: nothing to do.
+
+## What's left
+
+### Unblock `bin/instance fg`
+
+- [ ] Add imio.helpers to `auto-checkout` in `dev.cfg`: only `prod.cfg` checks
+  out its `plone62` branch, so dev still loads the 1.3.18 egg, which calls
+  `pkg_resources`.
+- [ ] Then run [step 5](#5-clean-up-and-check) (`bin/instance fg`) for every
+  package checked out.
+
+### Update the branches
+
+- [ ] imio.helpers: merge `master` into `plone62` (2 commits behind, 1.3.19
+  was released from `master`), and move the `CHANGES.rst` entry out of 1.3.19.
+- [ ] imio.omnia.tinymce: merge `master` into `plone62` (4 commits behind, 1.1
+  was released from `master` on 2026-11-16, without the migration). Commit
+  `a9c4c86` (simplify-text and structure-text) is still in neither.
+
+### Open pull requests
+
+Rows with ⬜ in the PR column:
+
+- [ ] imio.smartweb.core, .locales, .policy (common has one already)
+- [ ] collective.pivot, imio.gdpr, imio.omnia.core, imio.omnia.tinymce,
+  iaweb.privacy (IMIO)
+- [ ] imio.helpers, once its maintainers agree on a 1.3.x maintenance branch
+  for the other iMio applications
+- [ ] collective.behavior.talcondition (collective)
+- [ ] collective.faceted.map (affinitic)
+- [ ] collective.exportimport (collective): upstream keeps Python 2, so the
+  `importlib-metadata` branch is the PR, and `plone62` may stay ours
+  ([details](native-namespaces-packages.md#collectiveexportimport))
+
+### Check from buildout.smartweb
+
+- [ ] Rows with ⬜ in the Checked column: add the package to `auto-checkout` in
+  `dev.cfg` (most are only in `prod.cfg`), then run
+  [step 5](#5-clean-up-and-check).
+
+### Release
+
+When the Plone 6.2 stack goes to production ([step 6](#6-release)). A PyPI
+release can't depend on a git branch, so the order matters:
+
+- [ ] collective.timedevents, then collective.autopublishing (replace the
+  branch in its `mx.ini` and tox).
+- [ ] collective.privacy, then iaweb.privacy (same).
+- [ ] imio.omnia.core and imio.omnia.tinymce together (shared `imio.omnia`
+  namespace).
+- [ ] The four imio.smartweb.* together, pinned in one commit. Drop Plone 6.0
+  from imio.smartweb.core's classifiers first.
+- [ ] imio.pyutils as 1.3.0 (not breaking; `master` says 1.2.4.dev0). Every
+  other package as 2.0.0.
+- [ ] Ask upstream for collective.fingerpointing 2.0.0 and
+  plone.formwidget.geolocation 4.0.0.
+
+### Check by hand on a SmartWeb site
+
+- [ ] collective.taxonomy 4.0.0: taxonomy pages and widgets.
+- [ ] plone.app.imagecropping 4.0.0: the cropping editor.
+- [ ] plone.formwidget.recaptcha 4.0.0: the forms that use the captcha.
+- [ ] plone.patternslib 9.11.1: the front-end JavaScript.
+- [ ] collective.geolocationbehavior 2.0.0, zope.minmax 4.0, zope.session 6.0:
+  major bumps.
+- [ ] plone.formwidget.geolocation: run the "Add zoom for input and display"
+  upgrade step, and check that the zoom values are kept.
+- [ ] collective.privacy: the JavaScript consent banner (its only tests are
+  gone).
+- [ ] collective.anysurfer: the search page and the breadcrumb (Plone 5
+  markup).
+
+### Fix upstream
+
+- [ ] plone.restapi 10.2.1 drops every image and file imported by
+  collective.exportimport (and any multipart content import) on Plone 6.2.3:
+  fix it there, or work around it in exportimport
+  ([details](native-namespaces-packages.md#collectiveexportimport)).
+
+### Not started
+
+- [ ] The 11 [still old-style](native-namespaces-packages.md#still-old-style-upstream)
+  third-party packages. For each one, in order of preference:
+  1. Check the repository's main branch: the migration may already be merged
+     and only waiting for a release. Ask the maintainers for a release.
+  2. Open a PR applying [the recipe](#the-migration-recipe).
+  3. If the package is unmaintained and we still need it, fork it under IMIO.
+  4. If we no longer need it, remove it.
+
+### Clean up
+
+- [ ] imio.smartweb.common's own `base.cfg`: drop the `[versions]` that restore
+  Plone 6.2.3 pins, buildout.smartweb pins 6.2.3 now.
+- [ ] collective.pivot: delete the Plone 4.3 config files when merging.
+- [ ] pas.plugins.kimug and collective.preventactions are released and pinned:
+  drop them from `auto-checkout` in `dev.cfg` unless you work on them
+  (preventactions still checks out its old `plone6` branch).
+- [ ] Once the last old-style package is gone, remove `horse-with-no-namespace`
+  from `base.cfg` (`eggs` and `initialization`). Plone's `requirements.txt`
+  still installs it.
 
 ## Why
 
@@ -20,37 +193,34 @@ Under Plone 6.2.3, old-style eggs still import because
 `horse-with-no-namespace` installs a stub `pkg_resources` module when the real
 one is missing. The stub only provides `declare_namespace`: any other call,
 such as `pkg_resources.resource_filename()` or `get_distribution()`, raises an
-error. Step 3 of the recipe is therefore mandatory before moving to 6.2.3.
+error. [Step 3](#3-remove-other-pkg_resources-uses) of the recipe is
+therefore mandatory before moving to 6.2.3.
 
 Watch out: with the stub in place, `import pkg_resources` succeeds, so a
 `try: import pkg_resources / except ImportError` guard does not catch it.
 Only the failing attribute access does.
 
+Mixing both styles works today only because of `horse-with-no-namespace`,
+installed by Plone's `requirements.txt` and imported in
+`[instance] initialization` (`base.cfg`). Once every package is native, that
+workaround can go.
+
 ### Blockers for Plone 6.2.3
 
 Found by running the imio.smartweb.common tests and starting buildout.smartweb
 on Plone 6.2.3 (2026-11-16), and scanning the eggs that `bin/test` and
-`bin/instance` load. Each of these calls `pkg_resources` beyond
-`declare_namespace` and fails at import time. The first four stop
-`bin/instance fg`:
+`bin/instance` load.
 
-| Package | Pinned | Call | Fix |
-|---|---|---|---|
-| imio.helpers | 1.3.18 | `get_distribution()` in `__init__.py`, `xhtml.py`, `patches.py` | **None released**: 1.3.19 and `master` still call it. Fixed on a `plone62` branch by a colleague, checked out through `sources.cfg` in `prod.cfg` but not yet in `dev.cfg` ([see below](#imiohelpers)) |
-| collective.fingerpointing | 1.8.3 | `get_distribution()` in `subscribers/__init__.py` | Fixed upstream on `master` (2.0.0.dev0, Plone 6.2, native namespace; merged 2026-11-17), checked out through `sources.cfg`. Waiting for the 2.0.0 release |
-| collective.privacy | 1.1.0b2 | `get_distribution()` in `storage.py`, `browser/consent.py` | Fixed on a `plone62` branch, then modernized like collective.messagesviewlet, checked out through `sources.cfg` ([see below](#collectiveprivacy)). PR to open upstream |
-| collective.timedevents | 1.1 | `get_distribution()` in `__init__.py` | Fixed on a `plone62` branch, then modernized like collective.messagesviewlet, checked out through `sources.cfg` ([see below](#collectivetimedevents)). PR to open upstream |
-| collective.exportimport | 1.15 | `get_distribution()` / `DistributionNotFound` in `export_content.py`, `export_other.py`, `import_other.py`, `serializer.py` | Fixed on a `plone62` branch, checked out through `sources.cfg` ([see below](#collectiveexportimport)). PR to open upstream |
-| imio.smartweb.core | checkout | `resource_filename()` in `browser/anysurfer.py` | Fixed on the `plone62` branch, checked out through `sources.cfg` ([group 1](#imiosmartwebcommon-core-locales-policy)) |
-| eea.facetednavigation | 16.5 | `get_distribution()` in `subtypes/subtyper.py` | Bumped to 16.5 (still old-style, but no more `pkg_resources` calls) |
-| collective.taxonomy | 3.1.7 | `DistributionNotFound` in `behavior.py` | Bumped to 4.0.0 ([3a](#3a-native-release-already-available-bump-the-pin)) |
-| plone.app.imagecropping | 3.0.3 | `get_distribution()` in `__init__.py` | Bumped to 4.0.0 |
-
+**At import time.** The 🚧 packages call `pkg_resources` beyond
+`declare_namespace` in every release: their fixed branch stays checked out
+until it is released. Each package's details say which call it was.
+eea.facetednavigation 16.5, collective.taxonomy 4.0.0 and
+plone.app.imagecropping 4.0.0 had the same problem, solved by bumping them.
 Babel, Paste, pytz and grpcio-tools also mention `pkg_resources`, but only as
 a guarded fallback that isn't reached on Python 3.12.
 
-buildout.smartweb itself also stops on 6.2.3 (zc.buildout 6.0.2) while
-loading its recipes, with `ModuleNotFoundError: No module named
+**While running buildout.** buildout.smartweb stopped on 6.2.3 (zc.buildout
+6.0.2) while loading its recipes, with `ModuleNotFoundError: No module named
 'plone.recipe'` (or `'collective.recipe'`). The cause: each old-style package
 checked out in `src/` leaves a `<package>-<version>-nspkg.pth` file in the
 develop-eggs directory (`~/.buildout/develop-eggs`, shared by all your
@@ -60,52 +230,23 @@ and they make the namespace module (`plone`, `collective`…) look only in the
 `horse-with-no-namespace` doesn't fix this.
 
 - `plone`: fixed by switching plone.formwidget.geolocation to upstream
-  `master`, which is native (see [below](#ploneformwidgetgeolocation)).
-- `collective`: fixed by migrating the four `collective.*` checkouts (pivot,
-  messagesviewlet, preventactions, upgrade), which broke
-  `collective.recipe.omelette`, `collective.recipe.vscode`, etc.
+  `master`, which is native.
+- `collective`: fixed by migrating the `collective.*` checkouts, which broke
+  `collective.recipe.omelette`, `collective.recipe.vscode`, etc. An old-style
+  `collective.*` checkout breaks buildout again: migrate it before checking it
+  out.
 - `imio` and `pas`: no recipe lives in these namespaces, so old-style
-  checkouts there don't break buildout. imio.smartweb.core and
-  pas.plugins.kimug are migrated anyway (see
-  [below](#imiosmartwebcommon-core-locales-policy) and
-  [below](#paspluginskimug)).
+  checkouts there don't break buildout.
 
 Since 2026-11-16, buildout.smartweb's buildout passes on Plone 6.2.3.
-`bin/instance fg` still stops on the `pkg_resources` calls in the table above.
-
-Mixing both styles works today only because of `horse-with-no-namespace`,
-installed in the virtualenv by `requirements.txt` and imported in
-`[instance] initialization` (`base.cfg`). Once every package below is native,
-that workaround can go.
-
-## Status at a glance
-
-| Group | Packages | Action |
-|---|---|---|
-| [1. iMio, `src/` checkouts](#1-imio-and-collective-packages-checked-out-in-src) | 10 | Migrate (recipe below) |
-| [2. iMio, eggs](#2-eggs-written-by-imio) | 10 | Check out, migrate, release (all 10 migrated, none released) |
-| [3a. Third-party, native release available](#3a-native-release-already-available-bump-the-pin) | 6 | Bumped (2026-11-16), checks pending |
-| [3b. Third-party, still old-style](#3b-still-old-style-upstream-contribute-or-wait) | 19 | Contribute upstream or wait (collective.anysurfer, collective.autopublishing, collective.complexrecordsproxy, collective.exportimport, collective.privacy and collective.timedevents migrated on `plone62`, not released) |
-| [4. Plone and Zope core](#4-plone-and-zope-core-nothing-to-do) | 5 | Nothing to do |
-
-## How the inventory was built
-
-- `src/` packages: buildout's warning (*"Some development packages are using
-  old style namespace packages"*) and `namespace_packages.txt` in each
-  `.egg-info`.
-- Eggs: a `*-nspkg.pth` or `namespace_packages.txt` file in the eggs listed in
-  `bin/instance`.
-- PyPI: the latest wheel (or sdist) of each package, checked for the same
-  markers and for `declare_namespace`.
-- Out of scope: prod-only eggs (`RelStorage`, `pylibmc`, `psycopg2`), which
-  don't use namespaces.
 
 ## The migration recipe
 
 This is what
 [collective.big.bang `bfe22ca`](https://github.com/collective/collective.big.bang/commit/bfe22ca)
-did. All the packages in groups 1 and 2 use setuptools with a `setup.py`, so the
-same steps apply to each of them.
+did. It applies to any package with a `setup.py`. Two variants follow:
+[plone.meta](#variant-plonemeta), which also modernizes the package, and
+[keep Python 2](#variant-keep-python-2).
 
 ### 0. Work on a `plone62` branch
 
@@ -129,7 +270,7 @@ Don't migrate on `main`: `main` is what production runs today, on the Plone
    ```
 
 3. Apply steps 1 to 5 below on that branch, then push it
-   (`git push -u origin plone62`).
+   (`git push -u origin plone62`) and open the PR.
 
 The package is released from the branch only when the Plone 6.2 stack goes
 to production (step 6). Until then, keep `main` releasable for the Plone 6.1
@@ -230,13 +371,16 @@ Adapt the last line to the package (dots become underscores). That file
 otherwise keeps forcing the old-style namespace, see
 [blockers](#blockers-for-plone-623).
 
-Then, from `buildout.smartweb`:
+Then, from `buildout.smartweb`, with the package in `auto-checkout` in
+`dev.cfg`:
 
 1. Run `.venv/bin/buildout -N`. The package must no longer be listed in the
    *"old style namespace packages"* warning.
 2. Run `bin/instance fg` and wait for `Serving on http://0.0.0.0:8080` with no
-   traceback.
-3. Run the package's own tests (`bin/test` or `make test` in the package).
+   traceback. Until imio.helpers is checked out in dev, check that
+   `bin/zopepy -c "import <package>"` imports it from `src/` instead.
+3. Run the package's own tests (`bin/test`, `make test` or `tox` in the
+   package).
 4. Check that the build contains no namespace marker:
 
    ```sh
@@ -246,314 +390,71 @@ Then, from `buildout.smartweb`:
 
    This should print nothing.
 
+Then tick **Checked** in the [status table](#status).
+
 ### 6. Release
 
 When the Plone 6.2 stack goes to production:
 
 - Merge the package's `plone62` branch into `main`, and set `branch=main` again
   in `sources.cfg`.
-- Release a new version, a minor bump at least, with a changelog entry such as
-  *"Migrate to PEP 420 native namespaces (setuptools 81 / Plone 6.2)"*.
+- Release a new version with a changelog entry such as *"Migrate to PEP 420
+  native namespaces (setuptools 81 / Plone 6.2)"*. Dropping Python 2 or a
+  Plone version is breaking: release **2.0.0**, even if `CHANGES.rst` announces
+  a patch release. Applications on the older stacks then stay on the 1.x
+  releases (each package's details say which).
 - If the package also keeps test requirements for Plone 6.0 or 6.1 (whose
   `requirements.txt` don't include it), add `horse-with-no-namespace` to them,
   installed in the virtualenv with pip or uv (not with buildout).
   collective.big.bang did this in
   [`8ec39db`](https://github.com/collective/collective.big.bang/commit/8ec39db).
-- Pin the new version in `buildout.smartweb/versions.cfg`.
+- Pin the new version in `buildout.smartweb/versions.cfg`, and remove the
+  package from `auto-checkout`.
 
-### Rules
+### Variant: plone.meta
 
-- **Keep `horse-with-no-namespace` until the last package is migrated.** A
-  native `imio` namespace and old-style `imio.*` eggs only coexist through it.
-- **Migrate packages that share a namespace together** (the four
-  `imio.smartweb.*`), so the `imio.smartweb` namespace never has two styles in
-  your own code.
+Most packages migrated after pas.plugins.kimug went further: plone.meta
+configures them (tox, GitHub Actions, pre-commit) and their metadata moves to
+`pyproject.toml`, so `setup.py` is only `setup()` and setuptools finds the
+namespace packages by itself (no `find_namespace_packages`). The package then
+supports Plone 6.1 and 6.2 only, on Python 3.10 to 3.13, and is released as
+2.0.0.
 
-## 1. iMio and collective packages checked out in `src/`
+1. Remove `packages` and `package_dir` from `setup.py`, any
+   `sys.version_info` branch, and write `install_requires` inline:
+   `setup-to-pyproject` can't parse them. It can't parse a `long_description`
+   concatenation either, and it always commits: in that case, write the
+   `[project]` section by hand.
+2. Run plone.meta 2.12.0 in a clone named after the package, whose `origin`
+   is the GitHub URL: it takes the package name from the folder name, and
+   only writes the GitHub workflows for a GitHub remote. `switch-to-pep420`
+   deletes the namespace `__init__.py` files, `setup-to-pyproject` moves the
+   metadata.
+3. A package at the repository root moves to a `src/` layout, which
+   plone.meta's tox expects.
+4. The z3c.autoinclude entry point becomes a `plone.autoinclude.plugin` one.
+5. If the package uses CMFCore permissions (`cmf.ManagePortal`…), its
+   `configure.zcml` includes `Products.CMFCore` (`permissions.zcml`).
+   Otherwise it fails to load when included before Plone
+   (`zcml_package_includes`). Autoinclude, as in buildout.smartweb, always
+   loads it after Plone and hides the problem.
+6. Robot tests that need `plone/app/robotframework/selenium.robot` fail:
+   plone.app.robotframework 3 (pinned by Plone 6.2.3) no longer ships it.
+7. Declare the dependencies the code imports (tox runs
+   z3c.dependencychecker). `IPloneSiteRoot`, `INonInstallable`,
+   `get_installer` and `safe_text` come from `plone.base`.
+8. For a development environment, copy collective.messagesviewlet's
+   `Makefile`, `mx.ini`, `instance.yaml` and `scripts/create_site.py`:
+   `make install` builds a uv environment on Plone 6.2.3.
+9. If a dependency is only fixed on an unreleased branch, install that branch
+   from GitHub in `mx.ini` and tox (`test_deps_additional` in `.meta.toml`)
+   until it is released.
 
-Highest priority: this is our code, checked out by mr.developer in dev.
+### Variant: keep Python 2
 
-| Package | Checked-out branch | Files to delete | Other changes | Done |
-|---|---|---|---|---|
-| imio.smartweb.common | `plone62` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | `@search-filters` fix for plone.restapi 10; own buildout moved to Plone 6.2.3 (see below) | [x] (not released) |
-| imio.smartweb.core | `plone62` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | `pkg_resources` in `browser/anysurfer.py`; `LockInfoViewlet` import; `sitemap.xml.gz` pagination; own buildout moved to Plone 6.2.3 (see below) | [x] (not released) |
-| imio.smartweb.locales | `plone62` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | Own buildout (releaser, i18ndude) moved to Plone 6.2.3 | [x] (not released) |
-| imio.smartweb.policy | `plone62` | `src/imio/__init__.py`, `src/imio/smartweb/__init__.py` | Own buildout moved to Plone 6.2.3 and buildout.smartweb `plone62` | [x] (not released) |
-| pas.plugins.kimug | `main` | `src/pas/__init__.py`, `src/pas/plugins/__init__.py` | Configured with plone.meta 2.12.0, metadata moved to `pyproject.toml`. Plone 6.1 and 6.2 only, needs pas.plugins.oidc >= 2.1.0 (see below). Released as 2.0.0 (PR #34) | [x] (released 2.0.0) |
-| plone.formwidget.geolocation | upstream `master` | — | Switched from the IMIO fork to collective `master`, already native (see below) | [x] (waiting for the 4.0.0 release) |
-| collective.pivot | `plone62` | `src/collective/__init__.py` | `pkg_resources` in `locales/update.py`; drops Python 2 | [x] (not released) |
-| collective.messagesviewlet | `plone62` | `src/collective/__init__.py` | Configured with plone.meta 2.12.0, metadata moved to `pyproject.toml`. Plone 6.1 and 6.2 only (see [below](#collectivemessagesviewlet)) | [x] (not released) |
-| collective.preventactions | `plone6` | — | Already migrated upstream on `plone6`: pull | [x] (not released) |
-| collective.upgrade | `plone61` | — | Already migrated upstream on `plone61`: pull | [x] (not released) |
-
-### imio.smartweb.common, .core, .locales, .policy
-
-Same change in all four (namespaces `imio`, `imio.smartweb`):
-
-```diff
--    packages=find_packages("src", exclude=["ez_setup"]),
--    namespace_packages=["imio", "imio.smartweb"],
-+    packages=find_namespace_packages("src", exclude=["ez_setup"]),
-```
-
-```sh
-git rm src/imio/__init__.py src/imio/smartweb/__init__.py
-```
-
-For **imio.smartweb.core** only, `src/imio/smartweb/core/browser/anysurfer.py`
-also uses `pkg_resources`:
-
-```python
-from importlib.resources import files
-
-class AccessibilityInfo(BrowserView):
-    hide_herobanner = True
-    index = ViewPageTemplateFile(
-        str(files("Products.CMFPlone") / "browser/templates/accessibility-info.pt")
-    )
-```
-
-The imio.smartweb.common `plone62` branch (2026-11-16) also fixes two
-Plone 6.2 breakages, and moves its own buildout to Plone 6.2.3:
-
-- `@search-filters` always returned an empty result: since plone.restapi 10,
-  the catalog query adapter drops `metadata_fields` from the query.
-  `rest/search_filters.py` now pops `metadata_fields` before `_parse_query`.
-- `test_iframe_transform` uses closed `<iframe>` tags: with libxml2 2.14
-  (HTML5 parsing), the content of an unclosed `<iframe>` is text, as in
-  browsers.
-- `base.cfg` extends Plone 6.2.3 and buildout.smartweb's `plone62`
-  `versions.cfg` / `sources.cfg`, and adds imio.helpers,
-  collective.behavior.talcondition and collective.privacy to `auto-checkout`.
-  Its `[versions]` also restores Plone 6.2.3 pins that buildout.smartweb used
-  to override (plone.restapi, z3c.form, protobuf, collective.taxonomy,
-  eea.facetednavigation…). buildout.smartweb now pins Plone 6.2.3, so these
-  overrides can go.
-- `setup.py` classifiers: Plone 6.2 added next to 6.1. 6.1 still works only
-  with `horse-with-no-namespace` installed, as for the other migrated
-  packages.
-
-The imio.smartweb.core `plone62` branch (2026-11-16) also fixes two other
-Plone 6.2 breakages, and moves its own buildout to Plone 6.2.3:
-
-- `contents/sections/views.py` imports `LockInfoViewlet` from
-  `plone.app.layout.viewlets.locking` instead of `plone.locking.browser.info`.
-- `sitemap.xml.gz`: plone.app.layout 6 paginates the sitemap (without a
-  `page` parameter, the view returns an index of pages).
-  `CustomSiteMapView` now overrides `_objects` instead of `objects`, so the
-  smartweb items (authentic sources included) are counted in the index and
-  split across `?page=N`. New test in `tests/test_sitemap.py`.
-- `base.cfg` extends Plone 6.2.3 and buildout.smartweb's `plone62`
-  `versions.cfg` / `sources.cfg`, and adds the third-party blockers
-  (imio.helpers, collective.privacy, collective.fingerpointing,
-  collective.exportimport, collective.timedevents,
-  collective.behavior.talcondition) to `auto-checkout`.
-- `setup.py` classifiers: Plone 6.1 replaced by 6.2. Plone 6.0 is still
-  listed: drop it before the release, since native namespaces and the
-  imports above need Plone 6.2.
-
-Each one gets its own `plone62` branch ([step 0](#0-work-on-a-plone62-branch)).
-Release the four together and pin the new versions in one commit.
-
-### pas.plugins.kimug
-
-Namespaces `pas`, `pas.plugins`. Migrated on the `plone62` branch
-(2026-11-16), merged into `main` (PR #34) and released as **2.0.0** the same
-day. `sources.cfg` checks out `main` again and `versions.cfg` pins 2.0.0. It
-follows collective.preventactions rather than the `setup.py` recipe above:
-
-- plone.meta 2.12.0 did the work: `switch-to-pep420` deleted
-  `src/pas/__init__.py` and `src/pas/plugins/__init__.py`, then
-  `setup-to-pyproject` moved the metadata to `pyproject.toml`. `setup.py` is now
-  only `setup()`, and setuptools finds the native namespace packages by itself,
-  so there is no `find_namespace_packages`.
-- No other `pkg_resources` use.
-- The `pas.plugins` namespace is shared with pas.plugins.oidc, native since
-  2.1.0. kimug now requires `pas.plugins.oidc>=2.1.0` (`versions.cfg` already
-  pins 2.1.0) and supports Plone 6.1 and 6.2 only, like oidc 2.1.0.
-- The package is tested with pytest and tox, not buildout: the plone.meta test
-  matrix covers Plone 6.2.3 and 6.1 on Python 3.10 to 3.13, and `make install`
-  builds a uv development environment on Plone 6.2.3.
-- Not yet checked from buildout.smartweb (steps 5.1 and 5.2 of the recipe).
-- Released as **2.0.0** (breaking: native namespace, Plone 6.1 and 6.2 only)
-  and pinned in `versions.cfg` (was `1.9.5`). It is still in the
-  `auto-checkout` of `dev.cfg` and `prod.cfg`. Other iMio applications on
-  Plone 6.0 must stay on 1.9.x.
-
-### plone.formwidget.geolocation
-
-Done by switching from the IMIO fork (branch `fix-geosearch`) to upstream
-`collective/plone.formwidget.geolocation`, branch `master`, in `sources.cfg`.
-Upstream `master` (4.0.0, unreleased) is already migrated: native namespaces,
-`src/` layout, Plone 6.2 only.
-
-- **Nothing lost**: the fork's four commits (pat-leaflet upgrade, and the
-  `default_input_zoom` / `default_display_zoom` control panel options) were
-  released upstream in 3.0.6 and 3.0.7, and are on `master`.
-- **Upgrade step**: the fork's profile is 2001, upstream's is 2002. Existing
-  sites get one pending upgrade, "Add zoom for input and display", which
-  re-imports the registry records of the zoom options. Run it and check that
-  the zoom values set in the control panel are kept.
-- **Production**: `versions.cfg` still pins 3.0.6. Before the Plone 6.2 stack
-  goes to production, pin the 4.0.0 release once it is out, or ask the
-  maintainers for one.
-
-The old fork checkout must be moved away before mr.developer can clone the new
-URL (`bin/develop co plone.formwidget.geolocation`).
-
-### collective.pivot
-
-Migrated on a new `plone62` branch (IMIO repository), and `sources.cfg` points
-to it.
-
-- Standard recipe, then `git rm src/collective/__init__.py`.
-- `locales/update.py` uses `str(files(domain))` instead of
-  `pkg_resources.resource_filename(domain, "")`.
-- **Breaking: drops Python 2.** Native namespaces need Python 3, so the
-  Python 2.7 job (Plone 4.3) is removed from the CI matrix and the
-  classifiers. Its config files (`test_plone4.3.cfg`,
-  `requirements_plone-4.3.x.txt`…) are still there: delete them when the
-  branch is merged. Other iMio applications still on Plone 4.3 must stay on the
-  current releases.
-- New Plone 6.2.3 test config (`test_plone6.2.cfg` and
-  `requirements_plone-6.2.x.txt`) and CI job. The Plone 5.2 and 6.0
-  requirements now install `horse-with-no-namespace`, which those Plone
-  releases don't ship.
-
-### collective.messagesviewlet
-
-Namespace `collective`. Migrated on the `plone62` branch of the collective
-repository (2026-11-16), then modernized like pas.plugins.kimug (2026-11-17).
-`sources.cfg` checks it out, and `dev.cfg` and `prod.cfg` add it to
-`auto-checkout`.
-
-- `src/collective/__init__.py` is gone, and the Python 2 branches in
-  `__init__.py` (the last `pkg_resources` reference) too.
-- plone.meta 2.12.0 configures it (tox, GitHub Actions test matrix,
-  pre-commit), and `setup-to-pyproject` moved the metadata to
-  `pyproject.toml`. `setup.py` is now only `setup()`, so there is no
-  `find_namespace_packages`. The z3c.autoinclude entry point became a
-  `plone.autoinclude.plugin` one. `setup-to-pyproject` can't parse
-  `packages=find_namespace_packages(...)`: remove `packages` and
-  `package_dir` from `setup.py` before running it.
-- **Breaking: Plone 6.1 and 6.2 only, Python 3.10 to 3.13.** The plone.meta
-  test matrix covers Plone 6.2.3 and 6.1 on Python 3.10 to 3.13 (22 tests).
-  Other iMio applications on Plone 4.3 to 6.0 must stay on 1.0b5. The Plone 5.2
-  job had been failing since 2026-10-22 anyway: setuptools 75.3 builds
-  plone.app.robotframework 1.5.6 as `plone_app_robotframework`, which
-  zc.buildout 3.4 can't find.
-- Gone: Travis, the buildout configuration (`base.cfg`, `plone-*.x.cfg`,
-  `versions*.cfg`, `requirements*.txt`, `code-analysis.cfg`), `.coveragerc`, the
-  hand-written GitHub workflow, and the Selenium robot tests (with the
-  acceptance layer and their test dependencies): they need
-  `plone/app/robotframework/selenium.robot`, which plone.app.robotframework 3
-  (pinned by Plone 6.2.3) no longer ships, and the old CI never ran them.
-- `make install` builds a uv development environment on Plone 6.2.3 (`mx.ini`,
-  `instance.yaml`, `scripts/create_site.py`), from kimug's Makefile without the
-  Keycloak targets. `make i18n` runs `locales/update.sh`.
-- `IPloneSiteRoot` and `INonInstallable` come from `plone.base`, `six` is
-  dropped, and the dependencies the code imports are declared (checked by
-  z3c.dependencychecker). `plone.formwidget.datetime` is only imported on
-  Plone 4, and is ignored by the checker. The other Plone 4 and 5 code paths
-  (`HAS_PLONE_5_AND_MORE`, the `plone4`/`plone5` profiles) are still there.
-- Checked from buildout.smartweb: `.venv/bin/buildout -N` no longer lists it as
-  old-style, `bin/zopepy` imports it from the checkout with the
-  `plone.autoinclude` entry point, and the wheel has no namespace marker.
-  `bin/instance fg` still stops earlier, on imio.helpers 1.3.18
-  ([blockers](#blockers-for-plone-623)).
-- Release it as **2.0.0** (breaking: native namespace, Plone 6.1 and 6.2
-  only), not 1.0b6, then pin it in `versions.cfg` (currently `1.0b5`). The
-  repository belongs to the `collective` organisation: open a PR there.
-
-### collective.preventactions and collective.upgrade
-
-Nothing to do: upstream already switched to native namespaces on the branches
-`sources.cfg` checks out (`plone6`, `plone61`; upgrade also dropped
-`bootstrap.py`). Pull them, and delete the stale
-`src/collective/__pycache__` and `collective_*-nspkg.pth` files (step 5).
-
-## 2. Eggs written by iMio
-
-Classified by the author or repository in the egg metadata. None of them has a
-native release on PyPI yet.
-
-To migrate one: add it to `sources.cfg` and `auto-checkout` in `dev.cfg`,
-apply [the recipe](#the-migration-recipe), release, and remove it from
-`auto-checkout`. The files listed are relative to the package's source
-directory (usually `src/`), so check the actual layout first.
-
-| Package | Pinned | Latest on PyPI | Files to delete | Done |
-|---|---|---|---|---|
-| imio.helpers | 1.3.18 | 1.3.19 | `imio/__init__.py`. Migrated on `plone62` by a colleague (see [below](#imiohelpers)) | [x] (not released) |
-| imio.pyutils | 1.2.2 | 1.2.2 | None: native on Python 3 only, still compatible with Python 2.7. Migrated on `plone62` (see [below](#imiopyutils)) | [x] (not released) |
-| imio.prometheus | 1.0.1 | 1.0.1 | `imio/__init__.py`. Migrated on `plone62` (see [below](#imioprometheus)) | [x] (not released) |
-| imio.gdpr | 1.2.3 | 1.2.3 | `imio/__init__.py`. Migrated on `plone62` (see [below](#imiogdpr)) | [x] (not released) |
-| imio.omnia.core | 1.2 | 1.3 | `imio/__init__.py`, `imio/omnia/__init__.py`. Migrated on `plone62` (see [below](#imioomniacore)) | [x] (not released) |
-| imio.omnia.tinymce | 1.0 | 1.0 | `imio/__init__.py`, `imio/omnia/__init__.py`. Migrated on `plone62` (see [below](#imioomniatinymce)) | [x] (not released) |
-| collective.behavior.talcondition | 1.1.3 | 1.1.3 | `collective/__init__.py`, `collective/behavior/__init__.py`. Migrated on `plone62` by a colleague (see [below](#collectivebehaviortalcondition)) | [x] (not released) |
-| collective.autoscaling | 1.2 | 1.2 | `collective/__init__.py`. Migrated on `plone62` (see [below](#collectiveautoscaling)) | [x] (not released) |
-| collective.faceted.map | 1.0.0 | 1.0.0 | `collective/__init__.py`, `collective/faceted/__init__.py`. Migrated on `plone62` (see [below](#collectivefacetedmap)) | [x] (not released) |
-| iaweb.privacy | 1.0a2 | 1.0a2 | `iaweb/__init__.py`. Migrated on `plone62` (see [below](#iawebprivacy)) | [x] (not released) |
-
-Notes:
-
-- **imio.helpers** and **imio.pyutils** are used by many other iMio
-  applications (not only SmartWeb). imio.pyutils keeps Python 2.7 support, but
-  imio.helpers' `plone62` branch drops Python 2 and Plone before 6.2, so those
-  applications must stay on imio.helpers 1.3.x (see [below](#imiohelpers)).
-- **imio.helpers** blocks Plone 6.2.3 until its `plone62` branch is released:
-  every release (up to 1.3.19) and `master` still call `pkg_resources`.
-- **imio.omnia.core** and **imio.omnia.tinymce** share the `imio.omnia`
-  namespace: both are migrated on `plone62`. Release them together: an
-  old-style `imio/omnia/__init__.py` left by either one needs
-  `pkg_resources`.
-- Packages under `collective` (talcondition, autoscaling, faceted.map) live in
-  the `collective` GitHub organisation (faceted.map: `affinitic`) or are
-  released by iMio: open a PR in the repository listed in the egg's metadata.
-
-### imio.helpers
-
-Namespace `imio`. Migrated by a colleague on the `plone62` branch
-(2026-11-16, `4b8ec68`), which `sources.cfg` checks out and `prod.cfg` adds to
-`auto-checkout`. It follows [the recipe](#the-migration-recipe) and keeps its
-`setup.py` and buildout:
-
-- `find_namespace_packages`, no more `namespace_packages`, and
-  `src/imio/__init__.py` is gone. `python_requires=">=3.10"`, classifiers
-  updated (Plone 6.2, Python 3.10 to 3.13).
-- The `pkg_resources` calls that blocked Plone 6.2.3 are replaced with
-  `importlib.metadata.distribution()` / `PackageNotFoundError`: `ftw.labels` in
-  `__init__.py`, `collective.solr` in `patches.py`, `collective.ckeditor` in
-  `xhtml.py`.
-- **Breaking: drops Python 2.7 and Plone 4.3** (CI matrix and classifiers),
-  without a Python 2 fallback like imio.pyutils. `six`, `future`,
-  `pathlib2` and the Python 2 extras are still there: they can go in a later
-  cleanup.
-- Tested with buildout: new `test-6.2.cfg` (buildout.plonetest
-  `test-6.2.x.cfg`) and `requirements-6.2.txt` (Plone `6.2-latest`
-  constraints). The GitHub Actions matrix is Plone 6.2 on Python 3.13, and it
-  passes. `test-6.2.cfg` checks out collective.behavior.talcondition's
-  `plone62` branch, a test dependency.
-- The branch is 2 commits behind `master`: 1.3.19 was released from `master`
-  the same day, without the migration. `CHANGES.rst` on `plone62` still adds
-  the entry under 1.3.19: merge `master` into `plone62` and move the entry.
-- No PR opened yet.
-- Not yet checked from buildout.smartweb (steps 5.1 and 5.2 of the recipe):
-  it isn't in `dev.cfg`'s `auto-checkout`, so `bin/instance` still loads the
-  1.3.18 egg, which still stops `bin/instance fg` on Plone 6.2.3.
-- Release it as **2.0.0**, not 1.3.20 (breaking: native namespace, Python
-  3.10+ and Plone 6.2 only), then pin it in `versions.cfg` (currently
-  `1.3.18`). `master` still releases 1.3.x for the other iMio applications:
-  agree with its maintainers on a 1.3.x maintenance branch before merging
-  `plone62` into `master`.
-
-### imio.pyutils
-
-Namespace `imio`. Migrated on the `plone62` branch (2026-11-16), which
-`sources.cfg` checks out and `dev.cfg` and `prod.cfg` add to `auto-checkout`.
-Unlike the other packages, it **keeps Python 2.7 support**: many other iMio
-applications still run on Python 2, and PEP 420 doesn't exist there. So
-`setup.py` picks the namespace style from the Python version that builds it:
+PEP 420 doesn't exist on Python 2. imio.pyutils, used by many iMio
+applications still on Python 2, picks the namespace style from the Python
+version that builds it:
 
 ```python
 if sys.version_info[0] < 3:
@@ -574,692 +475,47 @@ setup(
 )
 ```
 
-- `imio/__init__.py` stays in the source tree, for Python 2. On Python 3,
-  `imio` isn't listed as a package, so the wheel ships only `imio/pyutils/`
-  and no namespace file.
-- `MANIFEST.in` includes `imio/__init__.py`. Without it, the sdist built on
-  Python 3 would lack that file, and installing it on Python 2 would fail.
-- The release wheel is `py3-none-any` (the universal wheel option was already
-  removed in 1.2.1). Python 2 installs from the sdist and gets the old-style
-  namespace, as before.
-- When the source tree is on `sys.path` on Python 3 (develop egg,
-  `pip install -e .`), the leftover `imio/__init__.py` extends `__path__`
-  (horse-with-no-namespace, or its `pkgutil` fallback), so the other `imio.*`
-  packages are still found.
-- Checked: the Python 3 wheel imports next to another native `imio` portion
-  without horse-with-no-namespace; the sdist installs on Python 2.7 with the
-  old `nspkg.pth`; the 22 tests pass on Python 2.7 and 3.12 (editable install,
-  as in CI); buildout.smartweb no longer lists it as old-style, and
-  `bin/zopepy` imports it with the `imio.smartweb.*` packages.
-- No other `pkg_resources` use. No breaking change, so release it as
-  **1.3.0** (minor bump), then pin it in `versions.cfg` (currently `1.2.2`).
-
-### imio.prometheus
-
-Namespace `imio`. Migrated on the `plone62` branch (2026-11-16), which
-`sources.cfg` checks out and `prod.cfg` adds to `auto-checkout`. It follows
-pas.plugins.kimug rather than the `setup.py` recipe above:
-
-- plone.meta 2.12.0 configures it, and the metadata moved to `pyproject.toml`.
-  `setup.py` is now only `setup()`, so there is no `find_namespace_packages`.
-- `pkg_resources` was only used by the `update_locale` script
-  (`locales/update.py`), which isn't imported at runtime, so it didn't block
-  Plone 6.2.3. It now uses the pathlib version of pas.plugins.kimug.
-  `INonInstallable` is imported from `plone.base`.
-- Drops the dependencies the code never imported (z3c.jbot,
-  plone.app.dexterity, plone.restapi) and the unused robot acceptance layer.
-- The package is tested with tox and zope.testrunner, not buildout: the
-  plone.meta test matrix covers Plone 6.2.3 and 6.1 on Python 3.10 to 3.13,
-  and `make install` builds a uv development environment on Plone 6.2.3
-  (`mx.ini`, `instance.yaml`).
-- Not yet checked from buildout.smartweb (steps 5.1 and 5.2 of the recipe):
-  it isn't in `dev.cfg`'s `auto-checkout`, so `bin/instance` still loads the
-  1.0.1 egg.
-- Release it as **2.0.0** (breaking: native namespace, Plone 6.1 and 6.2
-  only), then pin it in `versions.cfg` (currently `1.0.1`). Other iMio
-  applications on Python 2 or Plone 4.3 to 6.0 must stay on 1.0.x.
-
-### imio.gdpr
-
-Namespace `imio`. Migrated on the `plone62` branch (2026-11-16), which
-`sources.cfg` checks out and `prod.cfg` adds to `auto-checkout`. Unlike
-imio.prometheus, it follows [the recipe](#the-migration-recipe) and keeps its
-`setup.py` and buildout:
-
-- `find_namespace_packages`, no more `namespace_packages`, and
-  `src/imio/__init__.py` is gone. `python_requires='>=3.10'`, classifiers
-  updated (Plone 6.2, Python 3.10 to 3.13).
-- No `pkg_resources` use beyond the namespace declaration, so it didn't block
-  Plone 6.2.3.
-- `views.py` compares `content.language` instead of calling `Language()`.
-  The test layer is based on `PLONE_APP_CONTENTTYPES_FIXTURE` directly.
-- Code formatted with black and isort, flake8 warnings fixed.
-- Tested with buildout: new `plone62.cfg` and `requirements-6.2.txt`, and a
-  GitHub Actions workflow (`IMIO/gha-workflows` `package-full-test`, Python
-  3.12 and 3.13) replaces Travis.
-- `six` and the `HAS_PLONE_5_AND_MORE` check are still there: they can go in
-  a later cleanup.
-- Not yet checked from buildout.smartweb (steps 5.1 and 5.2 of the recipe):
-  it isn't in `dev.cfg`'s `auto-checkout`, so `bin/instance` still loads the
-  1.2.3 egg.
-- `CHANGES.rst` announces **1.2.4**, but the change is breaking (native
-  namespace, Python 3.10+ and Plone 6.2 only): release it as **2.0.0**, then
-  pin it in `versions.cfg` (currently `1.2.3`). Other iMio applications on
-  Python 2 or older Plone must stay on 1.2.x.
-
-### imio.omnia.core
-
-Namespaces `imio`, `imio.omnia`. Migrated on the `plone62` branch
-(2026-11-16, `ff59325`), which `sources.cfg` checks out and `prod.cfg` adds
-to `auto-checkout`. It follows [the recipe](#the-migration-recipe) and keeps
-its `setup.py` and buildout:
-
-- `find_namespace_packages`, no more `namespace_packages`, and
-  `src/imio/__init__.py` and `src/imio/omnia/__init__.py` are gone.
-  `python_requires='>=3.12'`, Plone 6.2 classifier added.
-- `locales/update.py` uses `importlib.resources.files` instead of
-  `pkg_resources.resource_filename`.
-- The missing `imio.helpers` dependency is declared.
-- Code formatted with black. `test_sync_env_to_registry_ignores_vocabulary_fields`
-  fixed (the database isn't opened when no env var is synced).
-- Tested with buildout: new `test_plone62.cfg` and `requirements-6.2.txt`, and
-  a GitHub Actions workflow (`IMIO/gha-workflows` `package-full-test`, Python
-  3.12 and 3.13). The unused `[remotes]` and `[sources]` parts of `base.cfg`
-  are gone.
-- Not yet checked from buildout.smartweb (steps 5.1 and 5.2 of the recipe):
-  it isn't in `dev.cfg`'s `auto-checkout`, so `bin/instance` still loads the
-  1.2 egg.
-- `CHANGES.rst` announces **1.4**, but the change is breaking (native
-  namespace, Plone 6.1 and 6.2, Python 3.12+): release it as **2.0.0**, together
-  with imio.omnia.tinymce (shared `imio.omnia` namespace), then pin it in
-  `versions.cfg` (currently `1.2`).
-
-### imio.omnia.tinymce
-
-Namespaces `imio`, `imio.omnia`. Migrated on the `plone62` branch
-(2026-11-17, `52d308d`), which `sources.cfg` checks out and `prod.cfg` adds
-to `auto-checkout`. It follows [the recipe](#the-migration-recipe) and keeps
-its `setup.py` and buildout, like imio.omnia.core:
-
-- `find_namespace_packages`, no more `namespace_packages`, and
-  `src/imio/__init__.py` and `src/imio/omnia/__init__.py` are gone.
-  `python_requires='>=3.12'`, Plone 6.2 classifier added.
-- `locales/update.py` uses `importlib.resources.files` instead of
-  `pkg_resources.resource_filename`.
-- Code formatted with black.
-- Tested with buildout: new `test_plone62.cfg` and `requirements-6.2.txt`
-  (`buildout.cfg` now extends `test_plone62.cfg`), and a GitHub Actions
-  workflow (`IMIO/gha-workflows` `package-full-test`, Python 3.12 and 3.13).
-- `sources.cfg` checked out `OIA-30-structure-simplify-text` before. Its
-  commit `a9c4c86` (replaces make-accessible by simplify-text and
-  structure-text) is in neither `master` nor `plone62`: SmartWeb doesn't have
-  that feature until the branch is merged.
-- Not yet checked from buildout.smartweb (steps 5.1 and 5.2 of the recipe):
-  it isn't in `dev.cfg`'s `auto-checkout`, so `bin/instance` still loads the
-  1.0 egg.
-- `CHANGES.rst` announces **1.1**, but the change is breaking (native
-  namespace, Plone 6.1 and 6.2, Python 3.12+): release it as **2.0.0**,
-  together with imio.omnia.core, then pin it in `versions.cfg` (currently
-  `1.0`).
-
-### collective.behavior.talcondition
-
-Namespaces `collective`, `collective.behavior`. Migrated by a colleague on the
-`plone62` branch (2026-11-16, `81b5782`), which `sources.cfg` checks out and
-`prod.cfg` adds to `auto-checkout`. In SmartWeb, it is a dependency of
-collective.messagesviewlet (used by imio.smartweb.core's `rest/messages.py`),
-and a test dependency of imio.helpers. It follows
-[the recipe](#the-migration-recipe) and keeps its `setup.py` and buildout:
-
-- `find_namespace_packages`, no more `namespace_packages`, and
-  `src/collective/__init__.py` and `src/collective/behavior/__init__.py` are
-  gone. `python_requires='>=3.10'`, the universal wheel option is removed, and
-  the classifiers are updated (Plone 6.2, Python 3.10 to 3.13).
-- No `pkg_resources` use beyond the namespace declarations, so it didn't block
-  Plone 6.2.3. `utils.py`: `raise(e)` becomes `raise e`.
-- **Breaking: drops Python 2.7 and 3.7, and Plone 4.3 to 6.1** (CI matrix and
-  classifiers).
-- Tested with buildout: new `test-6.2.cfg` and `requirements-6.2.txt`. The
-  GitHub Actions matrix is Plone 6.2 on Python 3.13, and it passes.
-- Up to date with `master`. No PR opened yet.
-- Not yet checked from buildout.smartweb (steps 5.1 and 5.2 of the recipe):
-  it isn't in `dev.cfg`'s `auto-checkout`, so `bin/instance` still loads the
-  1.1.3 egg.
-- `CHANGES.rst` announces **1.1.4**, but the change is breaking: release it as
-  **2.0.0**, then pin it in `versions.cfg` (currently `1.1.3`). The repository
-  belongs to the `collective` organisation: open a PR there. Other iMio
-  applications on Python 2 or Plone 4.3 to 6.1 must stay on 1.1.x.
-
-### collective.autoscaling
-
-Namespace `collective`. Migrated on the `plone62` branch (2026-11-16), which
-`sources.cfg` checks out and `prod.cfg` adds to `auto-checkout`. It follows
-pas.plugins.kimug rather than the `setup.py` recipe above:
-
-- plone.meta 2.12.0 configures it, and the metadata moved to `pyproject.toml`.
-  `setup.py` is now only `setup()`, so there is no `find_namespace_packages`.
-  The buildout configuration (`base.cfg`, `plone-5.2.x.cfg`,
-  `plone-6.0.x.cfg`, their requirements files) is gone, and the README,
-  CHANGES, CONTRIBUTORS and LICENSE are now in Markdown.
-- No other `pkg_resources` use. The Python 2 branches (`cStringIO`) are gone.
-  `IPloneSiteRoot`, `INonInstallable` and `get_installer` are imported from
-  `plone.base`, and the test layers use `plone.testing.zope`.
-- `configure.zcml` now includes the CMFCore permissions its views use: the
-  package failed to load when it was included before Plone
-  (`zcml_package_includes`). Through autoinclude, as in buildout.smartweb, it
-  always loaded after Plone, which hid the problem.
-- The package is tested with tox and zope.testrunner, not buildout: the
-  plone.meta test matrix covers Plone 6.2.3 and 6.1 on Python 3.10 to 3.13,
-  robot scenarios included (Selenium, headless Chrome), and `make install`
-  builds a uv development environment on Plone 6.2.3 (`mx.ini`,
-  `instance.yaml`).
-- Not yet checked from buildout.smartweb (steps 5.1 and 5.2 of the recipe):
-  it isn't in `dev.cfg`'s `auto-checkout`, so `bin/instance` still loads the
-  1.2 egg.
-- Release it as **2.0.0** (breaking: native namespace, Plone 6.1 and 6.2
-  only), then pin it in `versions.cfg` (currently `1.2`). The repository
-  belongs to the `collective` organisation: open a PR there. Other iMio
-  applications on Plone 4.3 to 6.0 must stay on 1.x.
-
-### collective.faceted.map
-
-Namespaces `collective`, `collective.faceted`. Migrated on the `plone62`
-branch of `affinitic/collective.faceted.map` (2026-11-17, `c5c4b5a`), which
-`sources.cfg` checks out (new `affinitic` remote) and `prod.cfg` adds to
-`auto-checkout`. It follows [the recipe](#the-migration-recipe) and keeps its `setup.py` and
-buildout:
-
-- `find_namespace_packages`, no more `namespace_packages`, and
-  `src/collective/__init__.py` and `src/collective/faceted/__init__.py` are
-  gone. `python_requires='>=3.10'`, classifiers updated (Plone 6.2, Python
-  3.10 to 3.13).
-- `locales/update.py` uses `importlib.resources` instead of
-  `pkg_resources`.
-- `test_map_view` fixed for Plone 6: it renders the map view through
-  `@@faceted_query` on a faceted folder (the `getFolderContents` skin script
-  is gone), and the test layer loads eea.facetednavigation. `not_skip`
-  removed from the isort configuration.
-- Tested with buildout: new `plone6.2.x.cfg` and `requirements6.2.x.txt`. The
-  GitHub Actions matrix is Plone 6.2 on Python 3.12 and 3.13; Travis CI is
-  gone.
-- **Breaking: drops Python before 3.10 and Plone before 6.2** (classifiers).
-- Not yet checked from buildout.smartweb (steps 5.1 and 5.2 of the recipe):
-  it isn't in `dev.cfg`'s `auto-checkout`, so `bin/instance` still loads the
-  1.0.0 egg.
-- `CHANGES.rst` announces **1.0.1**, but the change is breaking: release it as
-  **2.0.0**, then pin it in `versions.cfg` (currently `1.0.0`). Open a PR on
-  `affinitic/collective.faceted.map`. Other applications on Python 2 or
-  Plone before 6.2 must stay on 1.0.x.
-
-### iaweb.privacy
-
-Namespace `iaweb`. Migrated on the `plone62` branch (2026-11-16), which
-`sources.cfg` checks out and `prod.cfg` adds to `auto-checkout`. It follows
-collective.autoscaling:
-
-- plone.meta 2.12.0 configures it, and the metadata moved to `pyproject.toml`.
-  `setup.py` is now only `setup()`, so there is no `find_namespace_packages`.
-  The Plone 4.3 buildout, Travis, GitLab CI and the Python 2.7 GitHub workflow
-  are gone, and the README, CHANGES, CONTRIBUTORS and LICENSE are now in
-  Markdown. The broken `update_locale` console script (its module never
-  existed) is gone too.
-- No other `pkg_resources` use. `INonInstallable` is imported from
-  `plone.base`. The setup tests used `portal_quickinstaller`, so they couldn't
-  run on any Plone since 5.2: they now use `get_installer`. The unused robot
-  acceptance layer is gone.
-- Depends on collective.privacy, whose 1.1.0b2 release blocks Plone 6.2.3
-  (see [blockers](#blockers-for-plone-623)). Until it is released, the
-  package's `mx.ini` and tox (`test_deps_additional` in `.meta.toml`) install
-  its `plone62` branch from GitHub. Replace both with a version pin once it is
-  out.
-- `configure.zcml` now includes the CMFCore permissions that collective.privacy
-  uses (`cmf.ManagePortal`), as in collective.autoscaling: the package failed
-  to load when it was included before Plone (`zcml_package_includes`). In
-  buildout.smartweb, imio.smartweb.common includes it after Plone.
-- `rules/all.zcml` included a nonexistent `medial.zcml`, so it failed to
-  load. Now fixed. Nothing in SmartWeb includes `all.zcml`.
-- The package is tested with tox and zope.testrunner, not buildout: the
-  plone.meta test matrix covers Plone 6.2.3 and 6.1 on Python 3.10 to 3.13,
-  and `make install` builds a uv development environment on Plone 6.2.3
-  (`mx.ini`, `instance.yaml`).
-- Not yet checked from buildout.smartweb (steps 5.1 and 5.2 of the recipe):
-  it isn't in `dev.cfg`'s `auto-checkout`, so `bin/instance` still loads the
-  1.0a2 egg.
-- Release it as **2.0.0** (breaking: native namespace, Plone 6.1 and 6.2
-  only), then pin it in `versions.cfg` (currently `1.0a2`). Other iMio
-  applications on Plone 4.3 to 6.0 must stay on 1.0a2.
-
-## 3. Third-party eggs
-
-### 3a. Native release already available: bump the pin
-
-These packages are pinned in `versions.cfg`, and their latest release on PyPI
-uses native namespaces. Bump the pin, then run buildout, start the instance and
-test the feature that uses the package. Most are major version bumps, so read
-their changelog first.
-
-All six were bumped on 2026-11-16 (`12dde8e`). The checks in the Notes column
-are still to do.
-
-| Package | Pinned | Native release | Notes | Done |
-|---|---|---|---|---|
-| collective.taxonomy | 3.1.7 | 4.0.0 (2026-10-20) | Bumped 2026-11-16. Major bump: check the taxonomy pages and widgets | [x] |
-| plone.app.imagecropping | 3.0.3 | 4.0.0 (2026-10-30) | Bumped 2026-11-16 (only breaking change: Plone 6.2 only). Check the cropping editor | [x] |
-| plone.formwidget.recaptcha | 2.3.0 | 4.0.0 (2026-11-10) | Bumped 2026-11-16. Major bump: check the forms that use the captcha | [x] |
-| plone.patternslib | 9.10.3.1 | 9.11.1 (2026-09-19) | Bumped 2026-11-16. Minor bump: check the front-end JavaScript | [x] |
-| zope.minmax | 3.0 | 4.0 (2025-09-12) | Bumped 2026-11-16. Major bump | [x] |
-| zope.session | 5.1 | 6.0 (2025-09-12) | Bumped 2026-11-16. Major bump | [x] |
-
-### Fixes for the third-party blockers
-
-collective.exportimport, .privacy and .timedevents have no release without
-`pkg_resources` calls. Each one is checked out on a local `plone62` branch
-(`sources.cfg`, `auto-checkout` in `dev.cfg`) with two
-separate changes:
-
-1. **Replace `pkg_resources`** (the upstream PR). All three still support
-   Python 2.7, and exportimport also runs on old Plone 4 sites to export
-   them, so the fix stays compatible:
-
-   ```python
-   try:
-       from importlib.metadata import PackageNotFoundError
-       from importlib.metadata import version as get_version
-   except ImportError:  # Python 2.7 and Python 3 < 3.8
-       from pkg_resources import DistributionNotFound as PackageNotFoundError
-       from pkg_resources import get_distribution
-
-       def get_version(name):
-           return get_distribution(name).version
-   ```
-
-   then `get_version("x")` / `except PackageNotFoundError`. exportimport
-   defines it once in its package `__init__.py`. privacy's
-   `email.Utils` check is replaced by `from email.utils import formatdate`
-   (available since Python 2.5).
-2. **Native namespaces** (only for our checkout, drops Python 2). As an
-   old-style `src/` checkout, each would write a `collective_*-nspkg.pth`
-   that hides the `collective.recipe.*` eggs and breaks buildout again
-   ([blockers](#blockers-for-plone-623)).
-
-Commit and push them separately: open the upstream PR from the first one only.
-Once they are released, drop the checkouts and pin the releases.
-
-collective.timedevents went further on its `plone62` branch: configured with
-plone.meta, Plone 6.1 and 6.2 only, and the Python 2.7 fallback is gone (see
-[below](#collectivetimedevents)). Its upstream PR is the whole branch.
-
-collective.privacy went the same way on its `plone62` branch (see
-[below](#collectiveprivacy)). Its first commit (`bb46b06`, `importlib.metadata`
-with the Python 2.7 fallback) still works as a standalone upstream PR, if the
-maintainers want to keep Python 2.
-
-collective.exportimport went the same way on its `plone62` branch too (see
-[below](#collectiveexportimport)). Its `importlib-metadata` branch
-(`importlib.metadata` with the Python 2.7 fallback) stays the upstream PR:
-exportimport also runs on Plone 4 and Python 2 sites to export them, so
-upstream must keep Python 2.
-
-collective.fingerpointing went further upstream: `master` (2.0.0.dev0, merged
-2026-11-17) is Plone 6.2 only, Python 3.10+ and native, so `sources.cfg`
-checks out `master` instead of a local branch. Once 2.0.0 is released, drop
-the checkout and pin it.
-
-### 3b. Still old-style upstream: contribute or wait
-
-The latest release on PyPI still uses old-style namespaces. For each one, the
-options are, in order of preference:
-
-1. Check the repository's main branch: the migration may already be merged and
-   only waiting for a release. Ask the maintainers for a release.
-2. Open a PR applying [the recipe](#the-migration-recipe).
-3. If the package is unmaintained and we still need it, fork it under IMIO.
-4. If we no longer need it, remove it.
-
-| Package | Pinned | Latest on PyPI | Notes | Done |
-|---|---|---|---|---|
-| collective.anysurfer | 1.4.7 | 1.4.7 (2022) | Migrated on `plone62` (see [below](#collectiveanysurfer)) | [x] (not released) |
-| collective.autopublishing | 1.1b1 | 1.1b1 (2022) | Migrated on `plone62` (see [below](#collectiveautopublishing)) | [x] (not released) |
-| collective.complexrecordsproxy | 1.1 | 1.1 (2022) | Migrated on `plone62` (see [below](#collectivecomplexrecordsproxy)) | [x] (not released) |
-| collective.exportimport | 1.15 | 1.16 (2026-02) | Active, but 1.16 and `main` still old-style. Migrated on `plone62` (see [below](#collectiveexportimport)). Image and file import broken on Plone 6.2.3 by plone.restapi 10.2 | [x] (not released) |
-| collective.fingerpointing | 1.8.3 | 1.8.3 (2022) | Migrated upstream: `master` (2.0.0.dev0) is native and Plone 6.2 only, checked out through `sources.cfg` | [x] (not released) |
-| collective.geolocationbehavior | 1.7.2 | 1.7.2 (2021) | | [ ] |
-| collective.geotransform | 3.0 | 3.0 (2023) | | [ ] |
-| collective.instancebehavior | 0.5 | 0.5 (2021) | | [ ] |
-| collective.js.jqueryui | 2.2.0 | 2.2.0 (2023) | Namespaces `collective`, `collective.js` | [ ] |
-| collective.privacy | 1.1.0b2 | 1.1.0b2 (2022) | Blocked Plone 6.2.3: migrated on `plone62` (see [below](#collectiveprivacy)), checked out through `auto-checkout` in `dev.cfg` and `prod.cfg`. PR to open | [x] (not released) |
-| collective.prometheus | 1.6.1 | 1.6.1 (2022) | `plone.observability` now provides metrics: check whether it is still needed | [ ] |
-| collective.sendinblue | 2.0.4 | 2.0.4 (2025) | | [ ] |
-| collective.solr | 9.4.0 | 10.1.1 (2026-03) | Active: check the main branch first | [ ] |
-| collective.themefragments | 2.12 | 2.12 (2019) | Last release 2019 | [ ] |
-| collective.timedevents | 1.1 | 1.1 (2021) | Blocked Plone 6.2.3: migrated on `plone62` (see [below](#collectivetimedevents)), checked out through `auto-checkout` in `dev.cfg` and `prod.cfg`. PR to open | [x] (not released) |
-| collective.z3cform.select2 | 3.0.0b6 | 3.0.0b9 (2023) | Namespaces `collective`, `collective.z3cform` | [ ] |
-| eea.facetednavigation | 16.5 | 16.5 (2026-10) | Active: check the default branch (`develop`) first. Pinned to 16.5 for Plone 6.2.3: it no longer calls `pkg_resources` | [x] |
-| plone.gallery | 1.1.6 | 1.1.6 (2023) | | [ ] |
-| hurry.filesize | 0.9 | 0.9 (2009) | Unmaintained (last release 2009): find which package requires it | [ ] |
-
-### collective.anysurfer
-
-Namespace `collective`. Migrated on the `plone62` branch (2026-11-16), which
-`sources.cfg` checks out and `prod.cfg` adds to `auto-checkout`. It follows
-collective.autoscaling:
-
-- plone.meta 2.12.0 configures it, and the metadata moved to `pyproject.toml`.
-  `setup.py` is now only `setup()`. The buildout configuration (Plone 4.3 and
-  5.2), Travis, `bootstrap.py` and the hand-written GitHub workflow are gone,
-  and the README, CHANGES, CONTRIBUTORS and LICENSE are now in Markdown.
-- No other `pkg_resources` use. The Python 2 and Plone 4 code is gone: `six`,
-  the `HAS_PLONE_5` / `HAS_PLONE_6` flags (they called `plone.api` at import
-  time), the Plone 4 `search.js` and the overrides of templates that no longer
-  exist. `INonInstallable`, `IPloneSiteRoot` and `safe_text` are imported from
-  `plone.base`.
-- The tests couldn't run on any current stack (`unittest2` on Python 3.10+,
-  `portal_quickinstaller` on Plone 5.2+): they now use `unittest`,
-  `plone.testing.zope` and `get_installer`. They check French titles, so tox
-  compiles the `.mo` files (`zope_i18n_compile_mo_files`), as the buildout
-  test runner did.
-- What imio.smartweb.core uses doesn't change: `interfaces.ILayerSpecific`,
-  `layout.LayoutPolicy` and the `default` profile (still `0004`, no upgrade
-  step).
-- The jbot override of the search page and the breadcrumb viewlet template
-  still use the Plone 5 markup (no Bootstrap 5 classes). They render on Plone
-  6.2, but check them on a SmartWeb site.
-- The package is tested with tox and zope.testrunner, not buildout: the
-  plone.meta test matrix covers Plone 6.2.3 and 6.1 on Python 3.10 to 3.13,
-  and `make install` builds a uv development environment on Plone 6.2.3
-  (`mx.ini`, `instance.yaml`). Checked by hand on a Plone 6.2.3 classic site:
-  page titles (views, search, 404), accessibility page, control panel.
-- Not yet checked from buildout.smartweb (steps 5.1 and 5.2 of the recipe):
-  the branch isn't pushed yet, so `buildout -c prod.cfg` fails until it is,
-  and it isn't in `dev.cfg`'s `auto-checkout`, so `bin/instance` still loads
-  the 1.4.7 egg.
-- Release it as **2.0.0** (breaking: native namespace, Plone 6.1 and 6.2
-  only), then pin it in `versions.cfg` (currently `1.4.7`). The repository
-  belongs to the `collective` organisation: open a PR there. Other
-  applications on Plone 4.3 to 6.0 must stay on 1.4.x.
-
-### collective.autopublishing
-
-Namespace `collective`. Migrated on the `plone62` branch (2026-11-16), which
-`sources.cfg` checks out and `prod.cfg` adds to `auto-checkout`. It follows
-collective.anysurfer:
-
-- plone.meta 2.12.0 configures it, and the metadata moved to `pyproject.toml`.
-  `setup.py` is now only `setup()`. The package moved from the repository
-  root to a `src/` layout, which plone.meta's tox expects. The buildout
-  configuration (Plone 5.2 and 6.0), the hand-written GitHub workflow,
-  `setup.cfg`, `.coveragerc` and `.gitattributes` are gone, and the README,
-  CHANGES, CONTRIBUTORS and LICENSE are now in Markdown.
-- No other `pkg_resources` use. The views are registered for
-  `IPloneSiteRoot` from `plone.base`, and the behavior registration lost its
-  `for` (no effect without a factory, plone.behavior warned at startup).
-- The test layer imported `plone.app.contenttypes.testing`, which needs
-  plone.app.robotframework: it now loads the plone.app.contenttypes ZCML and
-  sets `simple_publication_workflow` on top of `PLONE_FIXTURE`. New tests
-  render the control panel and the report view. The doctest no longer imports
-  `interlude`.
-- The report view (`@@autopublish-report`) used the `eva.content` i18n
-  domain and had no i18n markup: it is now translatable, with French
-  translations.
-- Depends on collective.timedevents, whose 1.1 release blocks Plone 6.2.3
-  (see [blockers](#blockers-for-plone-623)). Until it is released, the
-  package's `mx.ini` and tox (`test_deps_additional` in `.meta.toml`) install
-  its `plone62` branch from GitHub. Replace both with a version pin once it is
-  out. collective.complexrecordsproxy 1.1 is still old-style, but its wheel
-  imports next to the native portions without horse-with-no-namespace (its
-  `nspkg.pth`, no `pkg_resources` call). Its `plone62` branch is native
-  (see [below](#collectivecomplexrecordsproxy)).
-- The package is tested with tox and zope.testrunner, not buildout: the
-  plone.meta test matrix covers Plone 6.2.3 and 6.1 on Python 3.10 to 3.13,
-  and `make install` builds a uv development environment on Plone 6.2.3
-  (`mx.ini`, `instance.yaml`). Checked on a Plone 6.2.3 classic site:
-  installation, control panel, report view and `@@tick_hourly`.
-- Not yet checked from buildout.smartweb (steps 5.1 and 5.2 of the recipe):
-  the branch isn't pushed yet, so `buildout -c prod.cfg` fails until it is,
-  and it isn't in `dev.cfg`'s `auto-checkout`, so `bin/instance` still loads
-  the 1.1b1 egg.
-- Release it as **2.0.0** (breaking: native namespace, Plone 6.1 and 6.2
-  only), after a collective.timedevents release without `pkg_resources`
-  (a PyPI release can't depend on a git branch), then pin it in
-  `versions.cfg` (currently `1.1b1`). The repository belongs to the
-  `collective` organisation: open a PR there. Other applications on Plone 5.2
-  or 6.0 must stay on 1.1b1.
-
-### collective.complexrecordsproxy
-
-Namespace `collective`. Migrated on the `plone62` branch (2026-11-17), which
-`sources.cfg` checks out and `prod.cfg` adds to `auto-checkout`. It follows
-collective.autopublishing, which is its only user in SmartWeb:
-
-- plone.meta 2.12.0 configures it, and the metadata moved to `pyproject.toml`.
-  `setup.py` is now only `setup()`. The package moved from the repository
-  root to a `src/` layout. The README, CHANGES and LICENSE are now in
-  Markdown, the licenses moved from `docs/` to the root, and a
-  `CONTRIBUTORS.md` lists the authors. There was no buildout, Travis or CI
-  to remove.
-- No other `pkg_resources` use. The code doesn't change, apart from the
-  import order and `__all__` in `__init__.py`. It is a library, not an
-  add-on (no ZCML, no profile), and depends on plone.registry and
-  zope.schema only.
-- The package had no tests: new unit tests on a plain plone.registry
-  `Registry` (no Plone layer) cover scalar, `Object` and tuple of `Object`
-  fields. collective.autopublishing's tests also pass on Plone 6.2.3 with
-  this branch instead of the 1.1 egg.
-- Two behaviors found while writing the tests, unchanged (1.1 has them too):
-  a tuple of more than 10 items is read back in the wrong order (items are
-  stored as `r0`, `r1`… and read in string order, `r10` before `r2`), and a
-  tuple field is read back as a mapping values view, which can't be indexed.
-  collective.autopublishing only iterates over it.
-- The package is tested with tox and zope.testrunner, not buildout: the
-  plone.meta test matrix covers Plone 6.2.3 and 6.1 on Python 3.10 to 3.13,
-  and `make install` builds a uv development environment on Plone 6.2.3
-  (`mx.ini`, `instance.yaml`). Plone isn't a dependency of the package: the
-  Makefile adds Products.CMFPlone and plone.app.contenttypes for the
-  instance. Checked on a Plone 6.2.3 classic site: settings written and read
-  back through the site's `portal_registry`.
-- Not yet checked from buildout.smartweb (steps 5.1 and 5.2 of the recipe):
-  the branch isn't pushed yet, so `buildout -c prod.cfg` fails until it is,
-  and it isn't in `dev.cfg`'s `auto-checkout`, so `bin/instance` still loads
-  the 1.1 egg.
-- Release it as **2.0.0** (breaking: native namespace, Plone 6.1 and 6.2
-  only), then pin it in `versions.cfg` (currently `1.1`). The repository
-  belongs to the `collective` organisation: open a PR there. Other
-  applications on Plone 4.3 to 6.0 or Python 2.7 must stay on 1.1.
-
-### collective.exportimport
-
-Namespace `collective`. Migrated on the `plone62` branch of the collective
-repository (2026-11-16), then modernized like collective.messagesviewlet
-(2026-11-17). `sources.cfg` checks it out, and `dev.cfg` and `prod.cfg` add it
-to `auto-checkout`.
-
-- `src/collective/__init__.py` is gone. `__init__.py` imports `get_version`
-  and `PackageNotFoundError` from `importlib.metadata` only (the
-  `pkg_resources` fallback for Python 2.7 is gone), and the
-  `update_locale` script (`locales/update.py`) finds the package folder with
-  `importlib.resources.files()` instead of
-  `pkg_resources.resource_filename()`.
-- plone.meta 2.12.0 configures it (tox, GitHub Actions test matrix,
-  pre-commit, dependabot), and `setup-to-pyproject` moved the metadata to
-  `pyproject.toml`. `setup.py` is now only `setup()`. The z3c.autoinclude
-  entry point became a `plone.autoinclude.plugin` one. Before running
-  `setup-to-pyproject`, remove from `setup.py` the `sys.version_info` branch
-  (Python 2 pins), `packages` and `package_dir`, and write
-  `install_requires` inline: the converter can't parse them. Run plone.meta
-  in a clone named `collective.exportimport` whose `origin` is the GitHub
-  URL: it takes the package name from the folder name, and only writes the
-  GitHub workflows for a GitHub remote.
-- **Breaking: Plone 6.1 and 6.2 only, Python 3.10 to 3.13**, released as
-  **2.0.0** (version `2.0.0.dev0`). The README explains that exporting from
-  Plone 4.3 to 6.0 or Python 2 needs 1.x in the old site, and that 2.x
-  imports the result (same json format).
-- `six` is dropped. pyupgrade rewrote most uses (`six.moves.urllib`,
-  `six.text_type`, the `if six.PY2:` imports), and the remaining `six.PY2` /
-  `six.PY3` branches were removed by hand. The other lint autofixes (isort,
-  black, zpretty) and the flake8 and codespell findings are applied: bare
-  `except:` became `except Exception:`, an unused `BlocksJSONFieldSerializer`
-  import is gone, typos fixed. The JSON samples in the `import_*.pt`
-  templates get `i18n:ignore`, and one untranslated sentence in
-  `import_content.pt` gets `i18n:translate` (not yet in the `.pot`). The Plone
-  4 and 5 code paths (Archetypes, LinguaPlone, `Products.CMFPlone.interfaces`
-  imports) are kept: they are guarded and are what exportimport exports from.
-- The dependencies the code imports are declared (checked by
-  z3c.dependencychecker): Zope, Products.CMFPlone, plone.app.contenttypes,
-  python-dateutil… The guarded imports (Archetypes, ATContentTypes,
-  LinguaPlone, plone.app.multilingual, plone.app.discussion,
-  collective.relationhelpers, z3c.relationfield…) are in
-  `dependencies_ignores`. The test extra needs `plone.app.contenttypes[test]`:
-  `plone.app.contenttypes.testing` imports plone.app.robotframework.
-- Gone: the buildout configuration (`base.cfg`, `buildout.cfg`,
-  `test-*.x.cfg`), `requirements*.txt`, `setup.cfg`, `DEVELOP.rst`, the Sphinx
-  stub (`docs/conf.py`, `docs/index.rst`; the README images stay in `docs/`)
-  and the hand-written GitHub workflow (Plone 4.3 to 6.0 with Python 2.7
-  docker images). There was no Travis.
-- `make install` builds a uv development environment on Plone 6.2.3 (`mx.ini`,
-  `instance.yaml`, `scripts/create_site.py`), from messagesviewlet's Makefile.
-  exportimport has no GenericSetup profile, so `create_site.py` only creates
-  the site: the `@@export_*` and `@@import_*` views work as soon as the package
-  is loaded. Checked: `make install` then `make create-site` build the
-  environment and create the site.
-- Tests (zope.testrunner through tox): Plone 6.1 on Python 3.10, 52 tests
-  pass. Plone 6.2.3 on Python 3.12, 4 fail (`test_import_contenttree`,
-  `test_import_imports_but_ignores_constrains`, `test_import_workflow_history`,
-  `test_reset_dates`), with the 1.x code too. The cause is plone.restapi
-  10.2.1 (pinned by Plone 6.2.3, still in 10.3.0 and `main`):
-  `NamedFieldDeserializer` reads `request.form[value["part"]]` whenever the
-  request is `multipart/form-data`, even if the value carries inline `data`.
-  The `@@import_content` form always posts multipart, so every image and file
-  is dropped (`KeyError: 'part'`, "Didn't add Image"). This affects any
-  content import on the Plone 6.2 stack. To fix in plone.restapi (only use
-  the multipart branch when `"part" in value`), or work around in
-  exportimport.
-- Not yet checked from buildout.smartweb (steps 5.1 and 5.2 of the recipe):
-  `.venv/bin/buildout -N` and `bin/zopepy` with the checkout.
-- Release it as **2.0.0**, then pin it in `versions.cfg` (currently `1.16`).
-  The repository belongs to the `collective` organisation: open a PR there,
-  or keep the branch for SmartWeb if upstream wants to keep Python 2 on
-  `main`. Other applications on Plone 6.0 or older must stay on 1.x.
-
-### collective.timedevents
-
-Namespace `collective`. Migrated on the `plone62` branch (2026-11-16), then
-modernized like collective.messagesviewlet (2026-11-17). `sources.cfg` checks
-it out, and `dev.cfg` and `prod.cfg` add it to `auto-checkout`.
-
-- `collective/__init__.py` is gone, and `__init__.py` reads its version with
-  `importlib.metadata` only (the `pkg_resources` fallback for Python 2.7 is
-  gone too).
-- plone.meta 2.12.0 configures it (tox, GitHub Actions test matrix,
-  pre-commit), and the metadata moved to `pyproject.toml`. `setup.py` is now
-  only `setup()`. The package moved from the repository root to a `src/`
-  layout, which plone.meta's tox expects, and `docs/HISTORY.txt` became
-  `CHANGES.rst`. The z3c.autoinclude entry point became a
-  `plone.autoinclude.plugin` one, and the license is now SPDX
-  `GPL-2.0-only` (was `GPL`). `setup-to-pyproject` can't parse the
-  `long_description` concatenation, and always commits: the `[project]`
-  section was written by hand.
-- **Breaking: Plone 6.1 and 6.2 only, Python 3.10 to 3.13.** The plone.meta
-  test matrix covers Plone 6.2.3 and 6.1 on Python 3.10 to 3.13 (6 tests,
-  unchanged). Other applications on Python 2 or Plone 4.3 to 6.0 must stay on
-  1.1.
-- Gone: Travis (README badge), the buildout configuration (`buildout.cfg`,
-  `plone-4.3.x.cfg`, `plone-5.1.x.cfg`, `plone-5.2.x.cfg`,
-  `requirements.txt`), `.coveragerc`, and the hand-written GitHub workflow
-  (Python 2.7 to 3.8, Plone 4.3 to 5.2).
-- plone.protect is now a declared dependency, imported without the
-  `HAS_PROTECT` fallback. `configure.zcml` always includes the CMFCore
-  permissions (`have plone-41` condition dropped). The dependencies the code
-  imports are declared (checked by z3c.dependencychecker).
-- `make install` builds a uv development environment on Plone 6.2.3
-  (`mx.ini`, `instance.yaml`, `scripts/create_site.py`), from
-  collective.messagesviewlet's Makefile without the i18n target (the package
-  has no locales).
-- Checked from buildout.smartweb: `.venv/bin/buildout -N` no longer lists it as
-  old-style, `bin/zopepy` imports it from the `src/` checkout (2.0.0.dev0)
-  with the `plone.autoinclude` entry point, and the wheel has no namespace
-  marker. The old develop egg (1.2.dev0, root layout) is replaced by
-  buildout: delete the stale `collective.timedevents.egg-info` at the
-  repository root if it is still there.
-- collective.autopublishing's `mx.ini` and tox install this branch from
-  GitHub ([above](#collectiveautopublishing)): the `src/` layout doesn't
-  change that.
-- The README still documents the Zope 2 `<clock-server>`, which WSGI Zope
-  no longer has: on Plone 6 the views are called by cron (or any HTTP
-  client) with a Manager account.
-- Release it as **2.0.0** (breaking: native namespace, Plone 6.1 and 6.2
-  only), then pin it in `versions.cfg` (currently `1.1`) and replace the
-  branch in collective.autopublishing. The repository belongs to the
-  `collective` organisation: open a PR there.
-
-### collective.privacy
-
-Namespace `collective`. Fixed and migrated on the `plone62` branch
-(2026-11-16), then modernized like collective.messagesviewlet (2026-11-17).
-`sources.cfg` checks it out, and `dev.cfg` and `prod.cfg` add it to
-`auto-checkout`.
-
-- `src/collective/__init__.py` is gone. `storage.py` uses
-  `email.utils.formatdate`, and `browser/consent.py` no longer looks up
-  `plone.directives.form` at all (it was the Plone 4 fallback), so the last
-  `pkg_resources` reference is gone.
-- plone.meta 2.12.0 configures it (tox, GitHub Actions test matrix,
-  pre-commit), and the metadata moved to `pyproject.toml`, written by hand
-  (`setup.py` is now only `setup()`). The z3c.autoinclude entry point became a
-  `plone.autoinclude.plugin` one, and the license is SPDX `GPL-2.0-only`.
-  Version 2.0.0.dev0.
-- **Breaking: Plone 6.1 and 6.2 only, Python 3.10 to 3.13.** Other
-  applications on Python 2 or Plone 4.3 to 6.0 must stay on 1.1.0b2.
-- Gone: Travis, GitLab CI, the buildout configuration (`base.cfg`,
-  `buildout.cfg`, `travis.cfg`, `plone-4.3.x.cfg` to `plone-5.2.x.cfg`,
-  `versions.cfg`, `requirements.txt`), `setup.cfg`, `.coveragerc`,
-  `DEVELOP.rst`, `bobtemplate.cfg`, and the Selenium robot tests (with the
-  acceptance layer): they need `plone/app/robotframework/selenium.robot`,
-  which plone.app.robotframework 3 no longer ships. They were the only tests
-  of the JavaScript consent banner, which is now untested: check it by hand
-  on a SmartWeb site.
-- `INonInstallable`, `safe_text` and `get_installer` come from `plone.base`,
-  `six` is dropped, and the jbot overrides of the Plone 4 skin templates
-  (`Products.CMFPlone.skins.*`) are gone. The override of the Plone 6
-  `sendto_template.pt` is kept: it is still Plone 6.2.3's template plus the
-  privacy notice. The dependencies the code imports are declared (checked by
-  z3c.dependencychecker), including plone.app.upgrade (`upgrades.py`).
-- Tests: 6 of the 7 tests failed on Plone 6.2.3. The setup tests used the
-  `portal_quickinstaller` API (`isProductInstalled`, `uninstallProducts`),
-  and the cookie test expected the old cookie keys (`max_age`, Zope now
-  returns `Max-Age`). They are fixed, and
-  new tests render `@@consent` and `@@consent-json` (9 tests). They pass on
-  Plone 6.2.3 / Python 3.13 and Plone 6.1 / Python 3.10, with lint,
-  dependencies and circular checks.
-- Codespell fixed `separeted` in a ZCML field description, which is also a
-  msgid: the `.pot` and `.po` files follow.
-- `make install` builds a uv development environment on Plone 6.2.3
-  (`mx.ini`, `instance.yaml`, `scripts/create_site.py`), from
-  collective.messagesviewlet's Makefile. `make i18n` runs `locales/update.sh`.
-- Checked from buildout.smartweb: `bin/zopepy` imports it from the `src/`
-  checkout (2.0.0.dev0) with the `plone.autoinclude` entry point, `collective`
-  is a native namespace (not in horse-with-no-namespace's list), and the
-  wheel has no namespace marker.
-- iaweb.privacy's `mx.ini` and tox install this branch from GitHub
-  ([above](#iawebprivacy)): nothing changes there.
-- Release it as **2.0.0** (breaking: native namespace, Plone 6.1 and 6.2
-  only), then pin it in `versions.cfg` (currently `1.1.0b2`) and replace the
-  branch in iaweb.privacy. The repository belongs to the `collective`
-  organisation: open a PR there.
-
-## 4. Plone and Zope core: nothing to do
-
-These come from the Plone and Zope pins. Plone and Zope release them, so they
-will become native through future Plone releases.
-
-Plone 6.2.3 already pins native releases of the first three: plone.app.content
-5.0.1, plone.autoform 3.0.1 and plone.restapi 10.2.1. Moving buildout.smartweb
-to 6.2.3 and dropping the security-advisory overrides from `requirements.txt`
-settles them.
-
-| Package | Version | Where it comes from |
-|---|---|---|
-| plone.app.content | 4.2.1 | `requirements.txt` (Plone security advisory 2026-10-22) |
-| plone.autoform | 2.0.5 | `requirements.txt` (Plone security advisory 2026-08-31) |
-| plone.restapi | 9.15.7 | `requirements.txt` (Plone security advisory 2026-08-31) |
-| PasteDeploy | 3.1.0 | Plone `requirements.txt` |
-| Paste | 3.10.1 | Zope pins (3.11.0, native, is on PyPI) |
+Keep `imio/__init__.py`, and include it in `MANIFEST.in` (see
+[imio.pyutils](native-namespaces-packages.md#imiopyutils)).
+
+For an upstream PR that only removes the `pkg_resources` calls and must keep
+Python 2, use a fallback:
+
+```python
+try:
+    from importlib.metadata import PackageNotFoundError
+    from importlib.metadata import version as get_version
+except ImportError:  # Python 2.7 and Python 3 < 3.8
+    from pkg_resources import DistributionNotFound as PackageNotFoundError
+    from pkg_resources import get_distribution
+
+    def get_version(name):
+        return get_distribution(name).version
+```
+
+then `get_version("x")` / `except PackageNotFoundError`. The namespace
+migration then goes in a separate commit, or a separate branch, that drops
+Python 2.
+
+### Rules
+
+- **Keep `horse-with-no-namespace` until the last package is migrated.** A
+  native `imio` namespace and old-style `imio.*` eggs only coexist through it.
+- **Migrate packages that share a namespace together** (the four
+  `imio.smartweb.*`, the two `imio.omnia.*`), so the namespace never has two
+  styles in your own code.
+
+## How the inventory was built
+
+Last full scan: 2026-11-10, against the eggs loaded by `bin/instance` and the
+latest releases on PyPI.
+
+- `src/` packages: buildout's warning (*"Some development packages are using
+  old style namespace packages"*) and `namespace_packages.txt` in each
+  `.egg-info`.
+- Eggs: a `*-nspkg.pth` or `namespace_packages.txt` file in the eggs listed in
+  `bin/instance`.
+- PyPI: the latest wheel (or sdist) of each package, checked for the same
+  markers and for `declare_namespace`.
+- Out of scope: prod-only eggs (`RelStorage`, `pylibmc`, `psycopg2`), which
+  don't use namespaces.
