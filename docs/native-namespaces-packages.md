@@ -291,6 +291,59 @@ Our `importlib-metadata` PR (#111) was closed in favor of it. `sources.cfg`
 checks out `master` until 2.0.0 is released: then drop the checkout and pin
 it.
 
+## collective.geotransform
+
+**Namespace** `collective` · **Repository**
+[collective/collective.geotransform](https://github.com/collective/collective.geotransform),
+branch `plone62` (**local, not pushed yet**) · **Variant**
+[plone.meta](native-namespaces-migration.md#variant-plonemeta) · **Checked
+out by** `dev.cfg`, `prod.cfg` · **Older stacks** (Plone 6.0) stay on 3.0
+
+Migrated 2026-11-17, like collective.complexrecordsproxy. In SmartWeb,
+imio.smartweb.policy requires it and includes its ZCML.
+
+- **The branch only exists in `~/github-collective/collective.geotransform`**,
+  cloned into `src/` by hand (with the GitHub `origin` that `sources.cfg`
+  names). Push it before anyone else runs buildout: mr.developer can't
+  clone a branch that isn't on GitHub. Then open the PR.
+- plone.meta 2.12.0 configures it, and the metadata moved to `pyproject.toml`,
+  written by hand (`setup-to-pyproject` can't parse the `long_description`
+  concatenation). `setup.py` is now only `setup()`. The package moved from
+  the repository root to a `src/` layout. The README, CHANGES
+  (`docs/HISTORY.txt`), CONTRIBUTORS and LICENSE are now in Markdown, at the
+  root. The z3c.autoinclude entry point became a `plone.autoinclude.plugin`
+  one, and the license is SPDX `GPL-2.0-or-later` (the license text says "or
+  any later version"). Version 4.0.0.dev0.
+- Gone: Travis, the Plone 6.0 buildout configuration (`base.cfg`,
+  `buildout.cfg`, `plone-6.0.x.cfg`, `code-analysis.cfg`, `versions.cfg`,
+  `requirements*.txt`) and the hand-written GitHub workflow.
+- No other `pkg_resources` use. `six` is dropped, and `safe_text`,
+  `IFilterSchema` and `IBundleRegistry` come from `plone.base`. In
+  `registry.xml`, the two bundle records keep their values, so existing sites
+  need no upgrade step. The robot layer uses `WSGI_SERVER_FIXTURE` from
+  `plone.testing.zope`. The dependencies the code imports are declared
+  (checked by z3c.dependencychecker), and lxml too: the transform asks
+  BeautifulSoup for its lxml parser.
+- **Breaking: Plone 6.1 and 6.2 only, Python 3.10 to 3.13.** Release 4.0.0:
+  3.0 is the Plone 6.0 release (`CHANGES` announced 3.0.1).
+- Tested with tox and zope.testrunner: the plone.meta test matrix covers
+  Plone 6.2.3 and 6.1 on Python 3.10 to 3.13. Run locally: Plone 6.2.3 on
+  Python 3.13 and Plone 6.1 on Python 3.10 (8 tests each), plus lint,
+  dependencies, circular and release-check. The robot scenario (Selenium,
+  headless Chrome) passes unchanged. It checks in the browser that
+  `geoMailDecoder.js` decodes the links, so the jQuery-based decoder still
+  works in the Plone 6.2 classic UI. robotsuite writes its reports to
+  `robot/`, which is ignored through `.meta.toml`.
+- `make install` builds a uv development environment on Plone 6.2.3 (`mx.ini`,
+  `instance.yaml` with `zcml_package_includes`), and the instance starts with
+  the package loaded. There is no create-site script: activate it in the
+  Add-ons control panel. `make release` runs zest.releaser through uvx, as in
+  collective.complexrecordsproxy, so zest.releaser isn't a dependency.
+- Checked from buildout.smartweb: `.venv/bin/buildout -N` no longer lists it as
+  old-style, `bin/zopepy` imports it from the `src/` checkout, and the wheel
+  has no namespace marker. `versions.cfg` still pins 3.0, as for the other
+  checked-out packages.
+
 ## collective.js.jqueryui
 
 **Namespaces** `collective`, `collective.js` · **Repository**
@@ -922,7 +975,6 @@ each one: [not started](native-namespaces-migration.md#not-started).
 
 | Package | Pinned | Latest on PyPI | Notes |
 |---|---|---|---|
-| collective.geotransform | 3.0 | 3.0 (2023) | |
 | collective.instancebehavior | 0.5 | 0.5 (2021) | |
 | collective.prometheus | 1.6.1 | 1.6.1 (2022) | `plone.observability` now provides metrics: check whether it is still needed |
 | collective.sendinblue | 2.0.4 | 2.0.4 (2025) | |
