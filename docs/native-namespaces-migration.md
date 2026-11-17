@@ -84,7 +84,7 @@ that workaround can go.
 | [1. iMio, `src/` checkouts](#1-imio-and-collective-packages-checked-out-in-src) | 10 | Migrate (recipe below) |
 | [2. iMio, eggs](#2-eggs-written-by-imio) | 10 | Check out, migrate, release (8 migrated, not released: all but imio.omnia.tinymce and collective.faceted.map) |
 | [3a. Third-party, native release available](#3a-native-release-already-available-bump-the-pin) | 6 | Bumped (2026-11-16), checks pending |
-| [3b. Third-party, still old-style](#3b-still-old-style-upstream-contribute-or-wait) | 19 | Contribute upstream or wait (collective.anysurfer, collective.autopublishing and collective.timedevents migrated on `plone62`, not released) |
+| [3b. Third-party, still old-style](#3b-still-old-style-upstream-contribute-or-wait) | 19 | Contribute upstream or wait (collective.anysurfer, collective.autopublishing, collective.complexrecordsproxy and collective.timedevents migrated on `plone62`, not released) |
 | [4. Plone and Zope core](#4-plone-and-zope-core-nothing-to-do) | 5 | Nothing to do |
 
 ## How the inventory was built
@@ -799,7 +799,7 @@ options are, in order of preference:
 |---|---|---|---|---|
 | collective.anysurfer | 1.4.7 | 1.4.7 (2022) | Migrated on `plone62` (see [below](#collectiveanysurfer)) | [x] (not released) |
 | collective.autopublishing | 1.1b1 | 1.1b1 (2022) | Migrated on `plone62` (see [below](#collectiveautopublishing)) | [x] (not released) |
-| collective.complexrecordsproxy | 1.1 | 1.1 (2022) | | [ ] |
+| collective.complexrecordsproxy | 1.1 | 1.1 (2022) | Migrated on `plone62` (see [below](#collectivecomplexrecordsproxy)) | [x] (not released) |
 | collective.exportimport | 1.15 | 1.16 (2026-02) | Active, but 1.16 and `main` still old-style. Blocked Plone 6.2.3: fixed on a `plone62` branch, PR to open | [ ] |
 | collective.fingerpointing | 1.8.3 | 1.8.3 (2022) | Blocked Plone 6.2.3: fixed on a `plone62` branch, PR to open | [ ] |
 | collective.geolocationbehavior | 1.7.2 | 1.7.2 (2021) | | [ ] |
@@ -886,7 +886,8 @@ collective.anysurfer:
   its `plone62` branch from GitHub. Replace both with a version pin once it is
   out. collective.complexrecordsproxy 1.1 is still old-style, but its wheel
   imports next to the native portions without horse-with-no-namespace (its
-  `nspkg.pth`, no `pkg_resources` call).
+  `nspkg.pth`, no `pkg_resources` call). Its `plone62` branch is native
+  (see [below](#collectivecomplexrecordsproxy)).
 - The package is tested with tox and zope.testrunner, not buildout: the
   plone.meta test matrix covers Plone 6.2.3 and 6.1 on Python 3.10 to 3.13,
   and `make install` builds a uv development environment on Plone 6.2.3
@@ -902,6 +903,47 @@ collective.anysurfer:
   `versions.cfg` (currently `1.1b1`). The repository belongs to the
   `collective` organisation: open a PR there. Other applications on Plone 5.2
   or 6.0 must stay on 1.1b1.
+
+### collective.complexrecordsproxy
+
+Namespace `collective`. Migrated on the `plone62` branch (2026-11-17), which
+`sources.cfg` checks out and `prod.cfg` adds to `auto-checkout`. It follows
+collective.autopublishing, which is its only user in SmartWeb:
+
+- plone.meta 2.12.0 configures it, and the metadata moved to `pyproject.toml`.
+  `setup.py` is now only `setup()`. The package moved from the repository
+  root to a `src/` layout. The README, CHANGES and LICENSE are now in
+  Markdown, the licenses moved from `docs/` to the root, and a
+  `CONTRIBUTORS.md` lists the authors. There was no buildout, Travis or CI
+  to remove.
+- No other `pkg_resources` use. The code doesn't change, apart from the
+  import order and `__all__` in `__init__.py`. It is a library, not an
+  add-on (no ZCML, no profile), and depends on plone.registry and
+  zope.schema only.
+- The package had no tests: new unit tests on a plain plone.registry
+  `Registry` (no Plone layer) cover scalar, `Object` and tuple of `Object`
+  fields. collective.autopublishing's tests also pass on Plone 6.2.3 with
+  this branch instead of the 1.1 egg.
+- Two behaviors found while writing the tests, unchanged (1.1 has them too):
+  a tuple of more than 10 items is read back in the wrong order (items are
+  stored as `r0`, `r1`… and read in string order, `r10` before `r2`), and a
+  tuple field is read back as a mapping values view, which can't be indexed.
+  collective.autopublishing only iterates over it.
+- The package is tested with tox and zope.testrunner, not buildout: the
+  plone.meta test matrix covers Plone 6.2.3 and 6.1 on Python 3.10 to 3.13,
+  and `make install` builds a uv development environment on Plone 6.2.3
+  (`mx.ini`, `instance.yaml`). Plone isn't a dependency of the package: the
+  Makefile adds Products.CMFPlone and plone.app.contenttypes for the
+  instance. Checked on a Plone 6.2.3 classic site: settings written and read
+  back through the site's `portal_registry`.
+- Not yet checked from buildout.smartweb (steps 5.1 and 5.2 of the recipe):
+  the branch isn't pushed yet, so `buildout -c prod.cfg` fails until it is,
+  and it isn't in `dev.cfg`'s `auto-checkout`, so `bin/instance` still loads
+  the 1.1 egg.
+- Release it as **2.0.0** (breaking: native namespace, Plone 6.1 and 6.2
+  only), then pin it in `versions.cfg` (currently `1.1`). The repository
+  belongs to the `collective` organisation: open a PR there. Other
+  applications on Plone 4.3 to 6.0 or Python 2.7 must stay on 1.1.
 
 ## 4. Plone and Zope core: nothing to do
 
