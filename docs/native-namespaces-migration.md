@@ -70,9 +70,9 @@ Columns:
   already exists.
 - **Checked**: buildout.smartweb loads the branch ([step 5](#5-clean-up-and-check)):
   `.venv/bin/buildout -N` no longer lists it as old-style, and `bin/zopepy`
-  imports it from the checkout. `bin/instance fg` can't start until
-  imio.helpers is checked out in dev ([below](#unblock-bininstance-fg)). For a
-  bumped package: the feature that uses it is tested on a SmartWeb site.
+  imports it from the checkout. `bin/instance fg` is still to run
+  ([below](#start-bininstance-fg)). For a bumped package: the feature that
+  uses it is tested on a SmartWeb site.
 - **PR**: link to the pull request that merges the branch. ⬜: none opened
   yet. ➖: done upstream, without us.
 - **Released**: the native version on PyPI. **Pinned**: `versions.cfg` pins it.
@@ -87,13 +87,13 @@ depends on it, so it doesn't need to be migrated
 
 ## What's left
 
-### Unblock `bin/instance fg`
+### Start `bin/instance fg`
 
-- [ ] Add imio.helpers to `auto-checkout` in `dev.cfg`: only `prod.cfg` checks
-  out its `plone62` branch, so dev still loads the 1.3.18 egg, which calls
-  `pkg_resources`.
-- [ ] Then run [step 5](#5-clean-up-and-check) (`bin/instance fg`) for every
-  package checked out.
+- [ ] `dev.cfg` now checks out imio.helpers' `plone62` branch, like
+  `prod.cfg`, so dev no longer loads the 1.3.18 egg, which calls
+  `pkg_resources`. Re-run `.venv/bin/buildout -N`, then run
+  [step 5](#5-clean-up-and-check) (`bin/instance fg`) for every package
+  checked out.
 
 ### Update the branches
 
@@ -128,9 +128,9 @@ Rows with ⬜ in the PR column:
 
 ### Check from buildout.smartweb
 
-- [ ] Rows with ⬜ in the Checked column: add the package to `auto-checkout` in
-  `dev.cfg` (most are only in `prod.cfg`), then run
-  [step 5](#5-clean-up-and-check).
+- [ ] Rows with ⬜ in the Checked column: run
+  [step 5](#5-clean-up-and-check). `dev.cfg` now checks out the same packages
+  as `prod.cfg`.
 
 ### Release
 
@@ -206,9 +206,9 @@ release can't depend on a git branch, so the order matters:
 - [ ] imio.smartweb.common's own `base.cfg`: drop the `[versions]` that restore
   Plone 6.2.3 pins, buildout.smartweb pins 6.2.3 now.
 - [ ] collective.pivot: delete the Plone 4.3 config files when merging.
-- [ ] pas.plugins.kimug and collective.preventactions are released and pinned:
-  drop them from `auto-checkout` in `dev.cfg` unless you work on them
-  (preventactions still checks out its old `plone6` branch).
+- [ ] collective.preventactions: `sources.cfg` still names its old `plone6`
+  branch, switch it to `master`. Like pas.plugins.kimug, it is released and
+  pinned, and no config checks it out any more.
 - [ ] Drop the `collective.sendinblue` pin from `versions.cfg`: nothing
   requires it once imio.smartweb.core's `plone62` branch drops it.
 - [ ] Once the last old-style package is gone, remove `horse-with-no-namespace`
@@ -410,9 +410,9 @@ Then, from `buildout.smartweb`, with the package in `auto-checkout` in
 
 1. Run `.venv/bin/buildout -N`. The package must no longer be listed in the
    *"old style namespace packages"* warning.
-2. Run `bin/instance fg` and wait for `Serving on http://0.0.0.0:8080` with no
-   traceback. Until imio.helpers is checked out in dev, check that
-   `bin/zopepy -c "import <package>"` imports it from `src/` instead.
+2. Check that `bin/zopepy -c "import <package>"` imports it from `src/`, then
+   run `bin/instance fg` and wait for `Serving on http://0.0.0.0:8080` with no
+   traceback.
 3. Run the package's own tests (`bin/test`, `make test` or `tox` in the
    package).
 4. Check that the build contains no namespace marker:

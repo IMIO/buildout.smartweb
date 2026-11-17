@@ -15,7 +15,8 @@ must stay on.
 [collective/collective.anysurfer](https://github.com/collective/collective.anysurfer),
 branch `plone62` · **Variant**
 [plone.meta](native-namespaces-migration.md#variant-plonemeta) · **Checked
-out by** `prod.cfg` · **Older stacks** (Plone 4.3 to 6.0) stay on 1.4.x
+out by** `dev.cfg`, `prod.cfg` · **Older stacks** (Plone 4.3 to 6.0) stay on
+1.4.x
 
 Migrated 2026-11-16, following collective.autoscaling.
 
@@ -50,7 +51,8 @@ Migrated 2026-11-16, following collective.autoscaling.
 [collective/collective.autopublishing](https://github.com/collective/collective.autopublishing),
 branch `plone62` · **Variant**
 [plone.meta](native-namespaces-migration.md#variant-plonemeta) · **Checked
-out by** `prod.cfg` · **Older stacks** (Plone 5.2, 6.0) stay on 1.1b1
+out by** `dev.cfg`, `prod.cfg` · **Older stacks** (Plone 5.2, 6.0) stay on
+1.1b1
 
 Migrated 2026-11-16, following collective.anysurfer.
 
@@ -89,7 +91,8 @@ Migrated 2026-11-16, following collective.anysurfer.
 [collective/collective.autoscaling](https://github.com/collective/collective.autoscaling),
 branch `plone62` · **Variant**
 [plone.meta](native-namespaces-migration.md#variant-plonemeta) · **Checked
-out by** `prod.cfg` · **Older stacks** (Plone 4.3 to 6.0) stay on 1.x
+out by** `dev.cfg`, `prod.cfg` · **Older stacks** (Plone 4.3 to 6.0) stay on
+1.x
 
 Migrated 2026-11-16, following pas.plugins.kimug.
 
@@ -114,8 +117,8 @@ Migrated 2026-11-16, following pas.plugins.kimug.
 [collective/collective.behavior.talcondition](https://github.com/collective/collective.behavior.talcondition),
 branch `plone62` · **Variant**
 [setup.py](native-namespaces-migration.md#the-migration-recipe) · **Checked
-out by** `prod.cfg` · **Older stacks** (Python 2, Plone 4.3 to 6.1) stay on
-1.1.x
+out by** `dev.cfg`, `prod.cfg` · **Older stacks** (Python 2, Plone 4.3 to
+6.1) stay on 1.1.x
 
 Migrated by a colleague on 2026-11-16 (`81b5782`). In SmartWeb, it is a
 dependency of collective.messagesviewlet (used by imio.smartweb.core's
@@ -139,8 +142,8 @@ dependency of collective.messagesviewlet (used by imio.smartweb.core's
 [collective/collective.complexrecordsproxy](https://github.com/collective/collective.complexrecordsproxy),
 branch `plone62` · **Variant**
 [plone.meta](native-namespaces-migration.md#variant-plonemeta) · **Checked
-out by** `prod.cfg` · **Older stacks** (Plone 4.3 to 6.0, Python 2.7) stay on
-1.1
+out by** `dev.cfg`, `prod.cfg` · **Older stacks** (Plone 4.3 to 6.0, Python
+2.7) stay on 1.1
 
 Migrated 2026-11-17, following collective.autopublishing, which is its only
 user in SmartWeb.
@@ -255,8 +258,8 @@ Migrated 2026-11-16, then modernized like collective.messagesviewlet
 [affinitic/collective.faceted.map](https://github.com/affinitic/collective.faceted.map),
 branch `plone62` · **Variant**
 [setup.py](native-namespaces-migration.md#the-migration-recipe) · **Checked
-out by** `prod.cfg` (`affinitic` remote in `sources.cfg`) · **Older stacks**
-(Python 2, Plone before 6.2) stay on 1.0.x
+out by** `dev.cfg`, `prod.cfg` (`affinitic` remote in `sources.cfg`) ·
+**Older stacks** (Python 2, Plone before 6.2) stay on 1.0.x
 
 Migrated 2026-11-17 (`c5c4b5a`).
 
@@ -489,15 +492,15 @@ current releases
 
 **Namespace** `collective` · **Repository**
 [collective/collective.preventactions](https://github.com/collective/collective.preventactions),
-branch `plone6` (upstream) · **Checked out by** `dev.cfg`
+branch `plone6` (upstream) · **Checked out by** none
 
 Migrated upstream on `plone6` (native namespace, `bootstrap.py` gone), merged
 into `master` on 2026-11-12
 ([#2](https://github.com/collective/collective.preventactions/pull/2)) and
-released as **0.4.0**, which `versions.cfg` pins. `sources.cfg` still checks
-out `plone6`: switch it to `master`, or drop the checkout. Delete the stale
-`src/collective/__pycache__` and `collective_*-nspkg.pth` files
-([step 5](native-namespaces-migration.md#5-clean-up-and-check)).
+released as **0.4.0**, which `versions.cfg` pins. No config checks it out
+any more, but `sources.cfg` still names `plone6`: switch it to `master`.
+Delete the stale `src/collective/__pycache__` and `collective_*-nspkg.pth`
+files ([step 5](native-namespaces-migration.md#5-clean-up-and-check)).
 
 ## collective.privacy
 
@@ -797,8 +800,8 @@ pas.plugins.kimug, on 2026-11-17.
 **Namespace** `iaweb` · **Repository**
 [IMIO/iaweb.privacy](https://github.com/IMIO/iaweb.privacy), branch `plone62`
 · **Variant** [plone.meta](native-namespaces-migration.md#variant-plonemeta) ·
-**Checked out by** `prod.cfg` · **Older stacks** (Plone 4.3 to 6.0) stay on
-1.0a2
+**Checked out by** `dev.cfg`, `prod.cfg` · **Older stacks** (Plone 4.3 to
+6.0) stay on 1.0a2
 
 Migrated 2026-11-16, following collective.autoscaling.
 
@@ -829,8 +832,8 @@ Migrated 2026-11-16, following collective.autoscaling.
 **Namespace** `imio` · **Repository**
 [IMIO/imio.gdpr](https://github.com/IMIO/imio.gdpr), branch `plone62` ·
 **Variant** [setup.py](native-namespaces-migration.md#the-migration-recipe) ·
-**Checked out by** `prod.cfg` · **Older stacks** (Python 2, older Plone) stay
-on 1.2.x
+**Checked out by** `dev.cfg`, `prod.cfg` · **Older stacks** (Python 2, older
+Plone) stay on 1.2.x
 
 Migrated 2026-11-16.
 
@@ -854,12 +857,11 @@ Migrated 2026-11-16.
 **Namespace** `imio` · **Repository**
 [IMIO/imio.helpers](https://github.com/IMIO/imio.helpers), branch `plone62` ·
 **Variant** [setup.py](native-namespaces-migration.md#the-migration-recipe) ·
-**Checked out by** `prod.cfg` only · **Older stacks** (Python 2, Plone before
-6.2) stay on 1.3.x
+**Checked out by** `dev.cfg`, `prod.cfg` · **Older stacks** (Python 2, Plone
+before 6.2) stay on 1.3.x
 
 🚧 Every release up to 1.3.19, and `master`, call `get_distribution()` in
-`__init__.py`, `xhtml.py` and `patches.py`. `dev.cfg` doesn't check out the
-branch, so dev still loads the 1.3.18 egg, which stops `bin/instance fg`.
+`__init__.py`, `xhtml.py` and `patches.py`.
 
 Migrated by a colleague on 2026-11-16 (`4b8ec68`).
 
@@ -893,7 +895,7 @@ Migrated by a colleague on 2026-11-16 (`4b8ec68`).
 [IMIO/imio.omnia.core](https://github.com/IMIO/imio.omnia.core), branch
 `plone62` · **Variant**
 [setup.py](native-namespaces-migration.md#the-migration-recipe) · **Checked
-out by** `prod.cfg`
+out by** `dev.cfg`, `prod.cfg`
 
 Migrated 2026-11-16 (`ff59325`). Shares the `imio.omnia` namespace with
 imio.omnia.tinymce: release them together, since an old-style
@@ -920,7 +922,7 @@ imio.omnia.tinymce: release them together, since an old-style
 [IMIO/imio.omnia.tinymce](https://github.com/IMIO/imio.omnia.tinymce), branch
 `plone62` · **Variant**
 [setup.py](native-namespaces-migration.md#the-migration-recipe) · **Checked
-out by** `prod.cfg`
+out by** `dev.cfg`, `prod.cfg`
 
 Migrated 2026-11-17 (`52d308d`), like imio.omnia.core: release them together.
 
@@ -948,8 +950,8 @@ Migrated 2026-11-17 (`52d308d`), like imio.omnia.core: release them together.
 [IMIO/imio.prometheus](https://github.com/IMIO/imio.prometheus), branch
 `plone62` · **Variant**
 [plone.meta](native-namespaces-migration.md#variant-plonemeta) · **Checked
-out by** `prod.cfg` · **Older stacks** (Python 2, Plone 4.3 to 6.0) stay on
-1.0.x
+out by** `dev.cfg`, `prod.cfg` · **Older stacks** (Python 2, Plone 4.3 to
+6.0) stay on 1.0.x
 
 Migrated 2026-11-16, following pas.plugins.kimug.
 
@@ -1097,12 +1099,13 @@ buildout.smartweb `plone62`.
 [IMIO/pas.plugins.kimug](https://github.com/IMIO/pas.plugins.kimug), branch
 `main` · **Variant**
 [plone.meta](native-namespaces-migration.md#variant-plonemeta) · **Checked
-out by** `dev.cfg` · **Older stacks** (Plone 6.0) stay on 1.9.x
+out by** none · **Older stacks** (Plone 6.0) stay on 1.9.x
 
 Migrated on `plone62` on 2026-11-16, merged into `main`
 ([#34](https://github.com/IMIO/pas.plugins.kimug/pull/34)) and released as
-**2.0.0** the same day. `sources.cfg` checks out `main` again and
-`versions.cfg` pins 2.0.0. The first package migrated with plone.meta:
+**2.0.0** the same day. `versions.cfg` pins 2.0.0, and no config checks it
+out any more (`sources.cfg` points to `main` again). The first package
+migrated with plone.meta:
 
 - plone.meta 2.12.0 did the work: `switch-to-pep420` deleted
   `src/pas/__init__.py` and `src/pas/plugins/__init__.py`, then
