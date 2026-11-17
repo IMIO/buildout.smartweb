@@ -934,6 +934,14 @@ The `plone62` branch (2026-11-16) also fixes two Plone 6.2 breakages:
   listed: drop it before the release, since native namespaces and the
   imports above need Plone 6.2.
 
+It also drops collective.sendinblue from `install_requires`, so that package
+(still old-style upstream) doesn't need to be migrated. The Sendinblue
+section was removed in 1.4.13, whose upgrade step 1073 uninstalls the
+add-on. Before releasing, check that every site has run step 1073 (on an
+older site, the step no longer finds the uninstall profile), and that no
+site still has a Sendinblue portlet assigned (the uninstall leaves them, as
+broken objects).
+
 **imio.smartweb.common**: the `plone62` branch (2026-11-16) also fixes two
 Plone 6.2 breakages:
 
@@ -1037,7 +1045,6 @@ each one: [not started](native-namespaces-migration.md#not-started).
 | Package | Pinned | Latest on PyPI | Notes |
 |---|---|---|---|
 | collective.prometheus | 1.6.1 | 1.6.1 (2022) | `plone.observability` now provides metrics: check whether it is still needed |
-| collective.sendinblue | 2.0.4 | 2.0.4 (2025) | |
 | collective.themefragments | 2.12 | 2.12 (2019) | Last release 2019 |
 | eea.facetednavigation | 16.5 | 16.5 (2026-10) | Moved to [collective/eea.facetednavigation](https://github.com/collective/eea.facetednavigation) (`eea/` is archived). Its `main` is still old-style, with no namespace PR open (checked 2026-11-17). 16.5 no longer calls `get_distribution()` (`subtypes/subtyper.py`), which blocked Plone 6.2.3 |
 | plone.gallery | 1.1.6 | 1.1.6 (2023) | |

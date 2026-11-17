@@ -11,7 +11,7 @@ Last updated: 2026-11-17.
 
 **9 pinned** (2 migrated, 7 bumped) · **5 merged**, not released · **11 PRs
 open** · **12 branches pushed**, no PR yet · **2 branches local**, not pushed
-yet · **6 not started** (none of them blocks Plone 6.2.3)
+yet · **5 not started** (none of them blocks Plone 6.2.3)
 
 ✅ done · ⬜ to do · ➖ not applicable · 🚧 its pinned release calls
 `pkg_resources` and fails on Plone 6.2.3 ([blockers](#blockers-for-plone-623))
@@ -35,7 +35,6 @@ yet · **6 not started** (none of them blocks Plone 6.2.3)
 | [collective.preventactions](native-namespaces-packages.md#collectivepreventactions) | ✅ | ✅ | [#2](https://github.com/collective/collective.preventactions/pull/2) | ✅ | 0.4.0 | ✅ |
 | [collective.privacy](native-namespaces-packages.md#collectiveprivacy) 🚧 | ✅ | ✅ | [#22](https://github.com/collective/collective.privacy/pull/22) | ⬜ | ⬜ | ⬜ |
 | [collective.prometheus](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| [collective.sendinblue](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [collective.solr](native-namespaces-packages.md#collectivesolr) | ✅ | ✅ | [#408](https://github.com/collective/collective.solr/pull/408) | ⬜ | ⬜ | ⬜ |
 | [collective.taxonomy](native-namespaces-packages.md#bumped-to-a-native-release) | ➖ | ⬜ | ➖ | ➖ | 4.0.0 | ✅ |
 | [collective.themefragments](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
@@ -81,6 +80,10 @@ Columns:
 Plone and Zope core packages aren't listed: Plone 6.2.3 pins native releases
 of plone.app.content, plone.autoform, plone.restapi and Paste. PasteDeploy
 3.1.0 is still old-style, and comes with Plone's pins: nothing to do.
+
+collective.sendinblue isn't listed either: imio.smartweb.core no longer
+depends on it, so it doesn't need to be migrated
+([details](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy)).
 
 ## What's left
 
@@ -180,7 +183,7 @@ release can't depend on a git branch, so the order matters:
 
 ### Not started
 
-- [ ] The 6 [still old-style](native-namespaces-packages.md#still-old-style-upstream)
+- [ ] The 5 [still old-style](native-namespaces-packages.md#still-old-style-upstream)
   third-party packages. For each one, in order of preference:
   1. Check the repository's main branch: the migration may already be merged
      and only waiting for a release. Ask the maintainers for a release.
@@ -196,6 +199,8 @@ release can't depend on a git branch, so the order matters:
 - [ ] pas.plugins.kimug and collective.preventactions are released and pinned:
   drop them from `auto-checkout` in `dev.cfg` unless you work on them
   (preventactions still checks out its old `plone6` branch).
+- [ ] Drop the `collective.sendinblue` pin from `versions.cfg`: nothing
+  requires it once imio.smartweb.core's `plone62` branch drops it.
 - [ ] Once the last old-style package is gone, remove `horse-with-no-namespace`
   from `base.cfg` (`eggs` and `initialization`). Plone's `requirements.txt`
   still installs it.
