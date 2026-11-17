@@ -8,7 +8,7 @@ permissions:
 
 jobs:
   test:
-    uses: IMIO/gha-workflows/.github/workflows/plone-image-test.yml@WEB-3639
+    uses: IMIO/gha-workflows/.github/workflows/plone-image-test.yml@v1
     with:
       addons: imio.smartweb.policy
       log_allowlist: tests/log_allowlist.txt
