@@ -5,7 +5,8 @@ Inventory of the packages in the SmartWeb stack (branch `plone62`, Plone
 of them.
 
 Last checked: 2026-11-10, against the eggs loaded by `bin/instance` and the
-latest releases on PyPI. Updated 2026-11-16 for Plone 6.2.3.
+latest releases on PyPI. Updated 2026-11-16 for Plone 6.2.3, and 2026-11-17
+for collective.timedevents.
 
 ## Why
 
@@ -38,7 +39,7 @@ on Plone 6.2.3 (2026-11-16), and scanning the eggs that `bin/test` and
 | imio.helpers | 1.3.18 | `get_distribution()` in `__init__.py`, `xhtml.py`, `patches.py` | **None released**: 1.3.19 and `master` still call it. Fixed on a `plone62` branch by a colleague, checked out through `sources.cfg` in `prod.cfg` but not yet in `dev.cfg` ([see below](#imiohelpers)) |
 | collective.fingerpointing | 1.8.3 | `get_distribution()` in `subscribers/__init__.py` | Fixed upstream on `master` (2.0.0.dev0, Plone 6.2, native namespace; merged 2026-11-17), checked out through `sources.cfg`. Waiting for the 2.0.0 release |
 | collective.privacy | 1.1.0b2 | `get_distribution()` in `storage.py`, `browser/consent.py` | Fixed on a `plone62` branch, checked out through `sources.cfg` ([see below](#fixes-for-the-third-party-blockers)). PR to open upstream |
-| collective.timedevents | 1.1 | `get_distribution()` in `__init__.py` | Fixed on a `plone62` branch, checked out through `sources.cfg` ([see below](#fixes-for-the-third-party-blockers)). PR to open upstream |
+| collective.timedevents | 1.1 | `get_distribution()` in `__init__.py` | Fixed on a `plone62` branch, then modernized like collective.messagesviewlet, checked out through `sources.cfg` ([see below](#collectivetimedevents)). PR to open upstream |
 | collective.exportimport | 1.15 | `get_distribution()` / `DistributionNotFound` in `export_content.py`, `export_other.py`, `import_other.py`, `serializer.py` | Fixed on a `plone62` branch, checked out through `sources.cfg` ([see below](#fixes-for-the-third-party-blockers)). PR to open upstream |
 | imio.smartweb.core | checkout | `resource_filename()` in `browser/anysurfer.py` | Fixed on the `plone62` branch, checked out through `sources.cfg` ([group 1](#imiosmartwebcommon-core-locales-policy)) |
 | eea.facetednavigation | 16.5 | `get_distribution()` in `subtypes/subtyper.py` | Bumped to 16.5 (still old-style, but no more `pkg_resources` calls) |
@@ -884,6 +885,10 @@ separate changes:
 Commit and push them separately: open the upstream PR from the first one only.
 Once they are released, drop the checkouts and pin the releases.
 
+collective.timedevents went further on its `plone62` branch: configured with
+plone.meta, Plone 6.1 and 6.2 only, and the Python 2.7 fallback is gone (see
+[below](#collectivetimedevents)). Its upstream PR is the whole branch.
+
 collective.fingerpointing went further upstream: `master` (2.0.0.dev0, merged
 2026-11-17) is Plone 6.2 only, Python 3.10+ and native, so `sources.cfg`
 checks out `master` instead of a local branch. Once 2.0.0 is released, drop
@@ -916,7 +921,7 @@ options are, in order of preference:
 | collective.sendinblue | 2.0.4 | 2.0.4 (2025) | | [ ] |
 | collective.solr | 9.4.0 | 10.1.1 (2026-03) | Active: check the main branch first | [ ] |
 | collective.themefragments | 2.12 | 2.12 (2019) | Last release 2019 | [ ] |
-| collective.timedevents | 1.1 | 1.1 (2021) | Blocked Plone 6.2.3: fixed on a `plone62` branch, checked out through `auto-checkout` in `dev.cfg` and `prod.cfg`. PR to open | [x] (not released) |
+| collective.timedevents | 1.1 | 1.1 (2021) | Blocked Plone 6.2.3: migrated on `plone62` (see [below](#collectivetimedevents)), checked out through `auto-checkout` in `dev.cfg` and `prod.cfg`. PR to open | [x] (not released) |
 | collective.z3cform.select2 | 3.0.0b6 | 3.0.0b9 (2023) | Namespaces `collective`, `collective.z3cform` | [ ] |
 | eea.facetednavigation | 16.5 | 16.5 (2026-10) | Active: check the default branch (`develop`) first. Pinned to 16.5 for Plone 6.2.3: it no longer calls `pkg_resources` | [x] |
 | plone.gallery | 1.1.6 | 1.1.6 (2023) | | [ ] |
@@ -1049,6 +1054,57 @@ collective.autopublishing, which is its only user in SmartWeb:
   only), then pin it in `versions.cfg` (currently `1.1`). The repository
   belongs to the `collective` organisation: open a PR there. Other
   applications on Plone 4.3 to 6.0 or Python 2.7 must stay on 1.1.
+
+### collective.timedevents
+
+Namespace `collective`. Migrated on the `plone62` branch (2026-11-16), then
+modernized like collective.messagesviewlet (2026-11-17). `sources.cfg` checks
+it out, and `dev.cfg` and `prod.cfg` add it to `auto-checkout`.
+
+- `collective/__init__.py` is gone, and `__init__.py` reads its version with
+  `importlib.metadata` only (the `pkg_resources` fallback for Python 2.7 is
+  gone too).
+- plone.meta 2.12.0 configures it (tox, GitHub Actions test matrix,
+  pre-commit), and the metadata moved to `pyproject.toml`. `setup.py` is now
+  only `setup()`. The package moved from the repository root to a `src/`
+  layout, which plone.meta's tox expects, and `docs/HISTORY.txt` became
+  `CHANGES.rst`. The z3c.autoinclude entry point became a
+  `plone.autoinclude.plugin` one, and the license is now SPDX
+  `GPL-2.0-only` (was `GPL`). `setup-to-pyproject` can't parse the
+  `long_description` concatenation, and always commits: the `[project]`
+  section was written by hand.
+- **Breaking: Plone 6.1 and 6.2 only, Python 3.10 to 3.13.** The plone.meta
+  test matrix covers Plone 6.2.3 and 6.1 on Python 3.10 to 3.13 (6 tests,
+  unchanged). Other applications on Python 2 or Plone 4.3 to 6.0 must stay on
+  1.1.
+- Gone: Travis (README badge), the buildout configuration (`buildout.cfg`,
+  `plone-4.3.x.cfg`, `plone-5.1.x.cfg`, `plone-5.2.x.cfg`,
+  `requirements.txt`), `.coveragerc`, and the hand-written GitHub workflow
+  (Python 2.7 to 3.8, Plone 4.3 to 5.2).
+- plone.protect is now a declared dependency, imported without the
+  `HAS_PROTECT` fallback. `configure.zcml` always includes the CMFCore
+  permissions (`have plone-41` condition dropped). The dependencies the code
+  imports are declared (checked by z3c.dependencychecker).
+- `make install` builds a uv development environment on Plone 6.2.3
+  (`mx.ini`, `instance.yaml`, `scripts/create_site.py`), from
+  collective.messagesviewlet's Makefile without the i18n target (the package
+  has no locales).
+- Checked from buildout.smartweb: `.venv/bin/buildout -N` no longer lists it as
+  old-style, `bin/zopepy` imports it from the `src/` checkout (2.0.0.dev0)
+  with the `plone.autoinclude` entry point, and the wheel has no namespace
+  marker. The old develop egg (1.2.dev0, root layout) is replaced by
+  buildout: delete the stale `collective.timedevents.egg-info` at the
+  repository root if it is still there.
+- collective.autopublishing's `mx.ini` and tox install this branch from
+  GitHub ([above](#collectiveautopublishing)): the `src/` layout doesn't
+  change that.
+- The README still documents the Zope 2 `<clock-server>`, which WSGI Zope
+  no longer has: on Plone 6 the views are called by cron (or any HTTP
+  client) with a Manager account.
+- Release it as **2.0.0** (breaking: native namespace, Plone 6.1 and 6.2
+  only), then pin it in `versions.cfg` (currently `1.1`) and replace the
+  branch in collective.autopublishing. The repository belongs to the
+  `collective` organisation: open a PR there.
 
 ## 4. Plone and Zope core: nothing to do
 
