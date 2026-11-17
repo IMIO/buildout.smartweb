@@ -41,7 +41,7 @@ on Plone 6.2.3 (2026-11-16), and scanning the eggs that `bin/test` and
 | collective.timedevents | 1.1 | `get_distribution()` in `__init__.py` | Fixed on a `plone62` branch, checked out through `sources.cfg` ([see below](#fixes-for-the-third-party-blockers)). PR to open upstream |
 | collective.exportimport | 1.15 | `get_distribution()` / `DistributionNotFound` in `export_content.py`, `export_other.py`, `import_other.py`, `serializer.py` | Fixed on a `plone62` branch, checked out through `sources.cfg` ([see below](#fixes-for-the-third-party-blockers)). PR to open upstream |
 | imio.smartweb.core | checkout | `resource_filename()` in `browser/anysurfer.py` | Fixed on the `plone62` branch, checked out through `sources.cfg` ([group 1](#imiosmartwebcommon-core-locales-policy)) |
-| eea.facetednavigation | 16.4 | `get_distribution()` in `subtypes/subtyper.py` | Bump to 16.5 (still old-style, but no more `pkg_resources` calls) |
+| eea.facetednavigation | 16.5 | `get_distribution()` in `subtypes/subtyper.py` | Bumped to 16.5 (still old-style, but no more `pkg_resources` calls) |
 | collective.taxonomy | 3.1.7 | `DistributionNotFound` in `behavior.py` | Bumped to 4.0.0 ([3a](#3a-native-release-already-available-bump-the-pin)) |
 | plone.app.imagecropping | 3.0.3 | `get_distribution()` in `__init__.py` | Bumped to 4.0.0 |
 
@@ -84,7 +84,7 @@ that workaround can go.
 | [1. iMio, `src/` checkouts](#1-imio-and-collective-packages-checked-out-in-src) | 10 | Migrate (recipe below) |
 | [2. iMio, eggs](#2-eggs-written-by-imio) | 10 | Check out, migrate, release (8 migrated, not released: all but imio.omnia.tinymce and collective.faceted.map) |
 | [3a. Third-party, native release available](#3a-native-release-already-available-bump-the-pin) | 6 | Bumped (2026-11-16), checks pending |
-| [3b. Third-party, still old-style](#3b-still-old-style-upstream-contribute-or-wait) | 19 | Contribute upstream or wait (collective.anysurfer and collective.autopublishing migrated on `plone62`, not released) |
+| [3b. Third-party, still old-style](#3b-still-old-style-upstream-contribute-or-wait) | 19 | Contribute upstream or wait (collective.anysurfer, collective.autopublishing and collective.timedevents migrated on `plone62`, not released) |
 | [4. Plone and Zope core](#4-plone-and-zope-core-nothing-to-do) | 5 | Nothing to do |
 
 ## How the inventory was built
@@ -811,9 +811,9 @@ options are, in order of preference:
 | collective.sendinblue | 2.0.4 | 2.0.4 (2025) | | [ ] |
 | collective.solr | 9.4.0 | 10.1.1 (2026-03) | Active: check the main branch first | [ ] |
 | collective.themefragments | 2.12 | 2.12 (2019) | Last release 2019 | [ ] |
-| collective.timedevents | 1.1 | 1.1 (2021) | Blocked Plone 6.2.3: fixed on a `plone62` branch, PR to open | [ ] |
+| collective.timedevents | 1.1 | 1.1 (2021) | Blocked Plone 6.2.3: fixed on a `plone62` branch, checked out through `auto-checkout` in `dev.cfg` and `prod.cfg`. PR to open | [x] (not released) |
 | collective.z3cform.select2 | 3.0.0b6 | 3.0.0b9 (2023) | Namespaces `collective`, `collective.z3cform` | [ ] |
-| eea.facetednavigation | 16.4 | 16.5 (2026-10) | Active: check the default branch (`develop`) first. Bump to 16.5 for Plone 6.2.3: it no longer calls `pkg_resources` | [ ] |
+| eea.facetednavigation | 16.5 | 16.5 (2026-10) | Active: check the default branch (`develop`) first. Pinned to 16.5 for Plone 6.2.3: it no longer calls `pkg_resources` | [x] |
 | plone.gallery | 1.1.6 | 1.1.6 (2023) | | [ ] |
 | hurry.filesize | 0.9 | 0.9 (2009) | Unmaintained (last release 2009): find which package requires it | [ ] |
 
