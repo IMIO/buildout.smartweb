@@ -302,6 +302,9 @@ Migrated 2026-11-17 (`c5c4b5a`).
   gone.
 - **Breaking: drops Python before 3.10 and Plone before 6.2** (classifiers).
   `CHANGES.rst` announces 1.0.1: release 2.0.0.
+- Its map viewlet triggers `leaflet.refresh` after each search, which only
+  the iMio plone.formwidget.geolocation bundle handles
+  ([details](plone-formwidget-geolocation.md)).
 - Checked from buildout.smartweb: `.venv/bin/buildout -N` no longer lists it
   as old-style, `bin/zopepy` imports it from the `src/` checkout, and the
   wheel has no namespace marker. `versions.cfg` still pins 1.0.0, as for the
@@ -1184,7 +1187,7 @@ migrated with plone.meta:
 
 **Namespaces** `plone`, `plone.formwidget` · **Repository**
 [collective/plone.formwidget.geolocation](https://github.com/collective/plone.formwidget.geolocation),
-branch `master` (upstream) · **Checked out by** `base.cfg`
+branch `master` (upstream) · **Checked out by** `base.cfg` (so prod too)
 
 Done by switching from the IMIO fork (branch `fix-geosearch`) to upstream
 `master` in `sources.cfg`. Upstream `master` (4.0.0, unreleased) is already
@@ -1192,18 +1195,33 @@ migrated: native namespaces, `src/` layout, Plone 6.2 only. It also fixed
 buildout for the `plone` namespace
 ([blockers](native-namespaces-migration.md#blockers-for-plone-623)).
 
-- **Nothing lost**: the fork's four commits (pat-leaflet upgrade, and the
-  `default_input_zoom` / `default_display_zoom` control panel options) were
-  released upstream in 3.0.6 and 3.0.7, and are on `master`.
+Why it is still checked out, and why it can't be pinned yet:
+[plone.formwidget.geolocation](plone-formwidget-geolocation.md).
+
+- **Lost: the faceted map refresh (WEB-4028).** The fork's bundle was built
+  from `affinitic/pat-leaflet@refresh-geojson`, which adds the
+  `leaflet.refresh` handler that collective.faceted.map and
+  imio.smartweb.core's faceted map trigger after each search. Upstream
+  pat-leaflet never merged it
+  ([#36](https://github.com/Patternslib/pat-leaflet/pull/36)), so `master`'s
+  bundle ignores the event, and the markers probably stay on the first
+  results. Found by reading the code, not yet checked in a browser. The
+  fork's other commits (pat-leaflet upgrade, and the `default_input_zoom` /
+  `default_display_zoom` control panel options) were released upstream in
+  3.0.6 and 3.0.7, and are on `master`.
 - **Upgrade step**: the fork's profile is 2001, upstream's is 2002. Existing
   sites get one pending upgrade, "Add zoom for input and display", which
   re-imports the registry records of the zoom options. Run it and check that
   the zoom values set in the control panel are kept.
-- **Production**: `versions.cfg` still pins 3.0.6. Before the Plone 6.2 stack
-  goes to production, pin the 4.0.0 release once it is out, or ask the
-  maintainers for one.
+- **Production**: `versions.cfg` still pins 3.0.6, but the checkout in
+  `base.cfg` overrides it, so every prod build clones the moving `master`.
+  No release has the refresh fix, neither 3.0.x nor a future 4.0.0: until
+  pat-leaflet releases it, check out an IMIO `plone62` branch with a rebuilt
+  bundle ([recommended path](plone-formwidget-geolocation.md#recommended-path)).
 - The old fork checkout must be moved away before mr.developer can clone the
-  new URL (`bin/develop co plone.formwidget.geolocation`).
+  new URL (`bin/develop co plone.formwidget.geolocation`). Until then, dev
+  still runs the old-style fork (3.0.4.dev0), with the fix, while a fresh
+  build gets `master`, without it.
 
 ## Bumped to a native release
 

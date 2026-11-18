@@ -5,7 +5,7 @@ from old-style namespace packages: where each package stands, what's left to
 do, and how to migrate one. What changed in each package, and its gotchas:
 [package details](native-namespaces-packages.md).
 
-Last updated: 2026-11-17.
+Last updated: 2026-11-18.
 
 ## Status
 
@@ -14,7 +14,9 @@ open** · **12 branches pushed**, no PR yet · **3 branches local**, not pushed
 yet · **3 not started** (none of them blocks Plone 6.2.3)
 
 ✅ done · ⬜ to do · ➖ not applicable · 🚧 its pinned release calls
-`pkg_resources` and fails on Plone 6.2.3 ([blockers](#blockers-for-plone-623))
+`pkg_resources` and fails on Plone 6.2.3 ([blockers](#blockers-for-plone-623)) ·
+⚠️ its native branch drops an iMio fix
+([details](plone-formwidget-geolocation.md))
 
 | Package | Branch | Checked | PR | Merged | Released | Pinned |
 |---|:-:|:-:|:-:|:-:|:-:|:-:|
@@ -56,7 +58,7 @@ yet · **3 not started** (none of them blocks Plone 6.2.3)
 | [imio.smartweb.policy](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [pas.plugins.kimug](native-namespaces-packages.md#paspluginskimug) | ✅ | ✅ | [#34](https://github.com/IMIO/pas.plugins.kimug/pull/34) | ✅ | 2.0.0 | ✅ |
 | [plone.app.imagecropping](native-namespaces-packages.md#bumped-to-a-native-release) | ➖ | ⬜ | ➖ | ➖ | 4.0.0 | ✅ |
-| [plone.formwidget.geolocation](native-namespaces-packages.md#ploneformwidgetgeolocation) | ✅ | ✅ | ➖ | ✅ | ⬜ | ⬜ |
+| [plone.formwidget.geolocation](native-namespaces-packages.md#ploneformwidgetgeolocation) ⚠️ | ✅ | ⬜ | ➖ | ✅ | ⬜ | ⬜ |
 | [plone.formwidget.recaptcha](native-namespaces-packages.md#bumped-to-a-native-release) | ➖ | ⬜ | ➖ | ➖ | 4.0.0 | ✅ |
 | [plone.gallery](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [plone.patternslib](native-namespaces-packages.md#bumped-to-a-native-release) | ➖ | ⬜ | ➖ | ➖ | 9.11.1 | ✅ |
@@ -94,6 +96,11 @@ depends on it, so it doesn't need to be migrated
 - [ ] imio.omnia.tinymce: merge `master` into `plone62` (4 commits behind, 1.1
   was released from `master` on 2026-11-16, without the migration). Commit
   `a9c4c86` (simplify-text and structure-text) is still in neither.
+- [ ] plone.formwidget.geolocation: create an IMIO `plone62` branch
+  (collective `master` plus the bundle rebuilt with the patched pat-leaflet),
+  point `sources.cfg` at it with a fixed `rev`, then re-clone `src/`, which
+  is still the old-style `fix-geosearch` fork
+  ([details](plone-formwidget-geolocation.md#recommended-path)).
 
 ### Open pull requests
 
@@ -136,9 +143,12 @@ release can't depend on a git branch, so the order matters:
   collective.themefragments as 3.0.0 (2.12, from 2019, is the latest).
   Every other package as 2.0.0.
 - [ ] Ask upstream for collective.fingerpointing 2.0.0,
-  plone.formwidget.geolocation 4.0.0, collective.js.jqueryui 3.0.0 and
-  collective.z3cform.select2 4.0.0b1, and for collective.solr 11.0.0 once
+  collective.js.jqueryui 3.0.0 and collective.z3cform.select2 4.0.0b1, and
+  for collective.solr 11.0.0 once
   [#408](https://github.com/collective/collective.solr/pull/408) is merged.
+- [ ] Ask upstream for plone.formwidget.geolocation 4.0.0 once pat-leaflet
+  has released the `leaflet.refresh` handler, with its bundle rebuilt against
+  it ([details](plone-formwidget-geolocation.md#recommended-path)).
 
 ### Check by hand on a SmartWeb site
 
@@ -149,7 +159,9 @@ release can't depend on a git branch, so the order matters:
 - [ ] collective.geolocationbehavior 2.0.0, zope.minmax 4.0, zope.session 6.0:
   major bumps.
 - [ ] plone.formwidget.geolocation: run the "Add zoom for input and display"
-  upgrade step, and check that the zoom values are kept.
+  upgrade step, and check that the zoom values are kept. On a faceted map
+  (directory or events), change a filter and check that the markers follow
+  the results ([details](plone-formwidget-geolocation.md#verification)).
 - [ ] collective.privacy: the JavaScript consent banner (its only tests are
   gone).
 - [ ] collective.anysurfer: the search page and the breadcrumb (Plone 5
@@ -176,6 +188,10 @@ release can't depend on a git branch, so the order matters:
   collective.exportimport (and any multipart content import) on Plone 6.2.3:
   fix it there, or work around it in exportimport
   ([details](native-namespaces-packages.md#collectiveexportimport)).
+- [ ] pat-leaflet: rebase the `leaflet.refresh` handler of
+  [#36](https://github.com/Patternslib/pat-leaflet/pull/36) onto 2.2.2, and
+  get it merged and released. The faceted maps need it
+  ([details](plone-formwidget-geolocation.md#recommended-path)).
 
 ### Not started
 
