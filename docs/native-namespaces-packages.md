@@ -925,9 +925,9 @@ Migrated by a colleague on 2026-11-16 (`4b8ec68`).
   constraints). The GitHub Actions matrix is Plone 6.2 on Python 3.13, and it
   passes. `test-6.2.cfg` checks out collective.behavior.talcondition's
   `plone62` branch, a test dependency.
-- The branch is 2 commits behind `master`: 1.3.19 was released from `master`
-  the same day, without the migration. `CHANGES.rst` on `plone62` still adds
-  the entry under 1.3.19: merge `master` into `plone62` and move the entry.
+- 1.3.19 was released from `master` the same day, without the migration.
+  `master` is merged into `plone62` (2026-11-18, `7c640c8`): the branch is no
+  longer behind, and the `CHANGES.rst` entry is now under 1.3.20 (unreleased).
 - **Used by many other iMio applications**, not only SmartWeb. Release 2.0.0,
   not 1.3.20. `master` still releases 1.3.x for the other applications: agree
   with its maintainers on a 1.3.x maintenance branch before merging `plone62`
@@ -987,8 +987,9 @@ Migrated 2026-11-17 (`52d308d`), like imio.omnia.core: release them together.
 - Tested with buildout: new `test_plone62.cfg` and `requirements-6.2.txt`
   (`buildout.cfg` now extends `test_plone62.cfg`), and a GitHub Actions
   workflow (`IMIO/gha-workflows` `package-full-test`, Python 3.12 and 3.13).
-- **1.1 was released from `master` on 2026-11-16, without the migration**:
-  `plone62` is 4 commits behind `master`, merge it.
+- **1.1 was released from `master` on 2026-11-16, without the migration.**
+  `master` is merged into `plone62` (2026-11-18, `785d77f`): the branch is no
+  longer behind. `CHANGES.rst` now announces 1.2.
 - `sources.cfg` checked out `OIA-30-structure-simplify-text` before. Its
   commit `a9c4c86` (replaces make-accessible by simplify-text and
   structure-text) is in neither `master` nor `plone62`: SmartWeb doesn't have

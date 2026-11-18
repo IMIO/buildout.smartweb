@@ -91,11 +91,11 @@ depends on it, so it doesn't need to be migrated
 
 ### Update the branches
 
-- [ ] imio.helpers: merge `master` into `plone62` (2 commits behind, 1.3.19
-  was released from `master`), and move the `CHANGES.rst` entry out of 1.3.19.
-- [ ] imio.omnia.tinymce: merge `master` into `plone62` (4 commits behind, 1.1
-  was released from `master` on 2026-11-16, without the migration). Commit
-  `a9c4c86` (simplify-text and structure-text) is still in neither.
+- [x] imio.helpers: `master` (1.3.19) merged into `plone62` (2026-11-18,
+  `7c640c8`), the `CHANGES.rst` entry is now under 1.3.20 (unreleased).
+- [x] imio.omnia.tinymce: `master` (1.1) merged into `plone62` (2026-11-18,
+  `785d77f`). Commit `a9c4c86` (simplify-text and structure-text) is still in
+  neither.
 - [ ] plone.formwidget.geolocation: create an IMIO `plone62` branch
   (collective `master` plus the bundle rebuilt with the patched pat-leaflet),
   point `sources.cfg` at it with a fixed `rev`, then re-clone `src/`, which
