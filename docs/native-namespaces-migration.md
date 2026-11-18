@@ -24,7 +24,7 @@ yet · **3 not started** (none of them blocks Plone 6.2.3)
 | [collective.autopublishing](native-namespaces-packages.md#collectiveautopublishing) | ✅ | ✅ | [#12](https://github.com/collective/collective.autopublishing/pull/12) | ⬜ | ⬜ | ⬜ |
 | [collective.autoscaling](native-namespaces-packages.md#collectiveautoscaling) | ✅ | ✅ | [#9](https://github.com/collective/collective.autoscaling/pull/9) | ✅ | ✅ | ✅ |
 | [collective.behavior.talcondition](native-namespaces-packages.md#collectivebehaviortalcondition) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
-| [collective.complexrecordsproxy](native-namespaces-packages.md#collectivecomplexrecordsproxy) | ✅ | ✅ | [#3](https://github.com/collective/collective.complexrecordsproxy/pull/3) | ⬜ | ⬜ | ⬜ |
+| [collective.complexrecordsproxy](native-namespaces-packages.md#collectivecomplexrecordsproxy) | ✅ | ✅ | [#3](https://github.com/collective/collective.complexrecordsproxy/pull/3) | ✅ | ⬜ | ⬜ |
 | [collective.exportimport](native-namespaces-packages.md#collectiveexportimport) 🚧 | ✅ | ✅ | [#287](https://github.com/collective/collective.exportimport/pull/287) | ⬜ | ⬜ | ⬜ |
 | [collective.faceted.map](native-namespaces-packages.md#collectivefacetedmap) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [collective.fingerpointing](native-namespaces-packages.md#collectivefingerpointing) 🚧 | ✅ | ✅ | [#110](https://github.com/collective/collective.fingerpointing/pull/110) | ✅ | ⬜ | ⬜ |
