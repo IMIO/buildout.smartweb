@@ -20,7 +20,7 @@ yet · **3 not started** (none of them blocks Plone 6.2.3)
 
 | Package | Branch | Checked | PR | Merged | Released | Pinned |
 |---|:-:|:-:|:-:|:-:|:-:|:-:|
-| [collective.anysurfer](native-namespaces-packages.md#collectiveanysurfer) | ✅ | ✅ | [#9](https://github.com/collective/collective.anysurfer/pull/9) | ✅ | ⬜ | ⬜ |
+| [collective.anysurfer](native-namespaces-packages.md#collectiveanysurfer) | ✅ | ✅ | [#9](https://github.com/collective/collective.anysurfer/pull/9) | ✅ | ✅ | ✅ |
 | [collective.autopublishing](native-namespaces-packages.md#collectiveautopublishing) | ✅ | ✅ | [#12](https://github.com/collective/collective.autopublishing/pull/12) | ⬜ | ⬜ | ⬜ |
 | [collective.autoscaling](native-namespaces-packages.md#collectiveautoscaling) | ✅ | ✅ | [#9](https://github.com/collective/collective.autoscaling/pull/9) | ⬜ | ⬜ | ⬜ |
 | [collective.behavior.talcondition](native-namespaces-packages.md#collectivebehaviortalcondition) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |

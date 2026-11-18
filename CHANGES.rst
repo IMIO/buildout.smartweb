@@ -2,6 +2,7 @@
 -------------------
 
 - WEB-4533 : Bump packages for PEP 420 native namespaces and drop of ``pkg_resources``
+    - collective.anysurfer 2.0.0
     - collective.geolocationbehavior 2.0.0
     - collective.preventactions 0.4.0
     - collective.taxonomy 4.0.0
