@@ -45,7 +45,7 @@ yet · **3 not started** (none of them blocks Plone 6.2.3)
 | [collective.z3cform.select2](native-namespaces-packages.md#collectivez3cformselect2) | ✅ | ✅ | [#15](https://github.com/collective/collective.z3cform.select2/pull/15) | ✅ | ⬜ | ⬜ |
 | [eea.facetednavigation](native-namespaces-packages.md#eeafacetednavigation) | ✅ | ✅ | [#65](https://github.com/collective/eea.facetednavigation/pull/65) | ⬜ | ⬜ | ⬜ |
 | [hurry.filesize](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| [iaweb.privacy](native-namespaces-packages.md#iawebprivacy) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [iaweb.privacy](native-namespaces-packages.md#iawebprivacy) | ✅ | ✅ | [#2](https://github.com/IMIO/iaweb.privacy/pull/2) | ⬜ | ⬜ | ⬜ |
 | [imio.gdpr](native-namespaces-packages.md#imiogdpr) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [imio.helpers](native-namespaces-packages.md#imiohelpers) 🚧 | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [imio.omnia.core](native-namespaces-packages.md#imioomniacore) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
