@@ -97,12 +97,14 @@ Migrated 2026-11-16, following collective.anysurfer.
 
 **Namespace** `collective` · **Repository**
 [collective/collective.autoscaling](https://github.com/collective/collective.autoscaling),
-branch `plone62` · **Variant**
+branch `master` · **Variant**
 [plone.meta](native-namespaces-migration.md#variant-plonemeta) · **Checked
-out by** `dev.cfg`, `prod.cfg` · **Older stacks** (Plone 4.3 to 6.0) stay on
-1.x
+out by** none · **Older stacks** (Plone 4.3 to 6.0) stay on 1.x
 
-Migrated 2026-11-16, following pas.plugins.kimug.
+Migrated on `plone62` on 2026-11-16, following pas.plugins.kimug, merged into
+`master` ([#9](https://github.com/collective/collective.autoscaling/pull/9))
+and released as **2.0.0** on 2026-11-18. `versions.cfg` pins 2.0.0, and no
+config checks it out any more (`sources.cfg` points to `master` again).
 
 - plone.meta 2.12.0 configures it, and the metadata moved to `pyproject.toml`.
   `setup.py` is now only `setup()`. The buildout configuration (`base.cfg`,
@@ -120,8 +122,7 @@ Migrated 2026-11-16, following pas.plugins.kimug.
   (Selenium, headless Chrome).
 - Checked from buildout.smartweb: `.venv/bin/buildout -N` no longer lists it
   as old-style, `bin/zopepy` imports it from the `src/` checkout, and the
-  wheel has no namespace marker. `versions.cfg` still pins 1.2, as for the
-  other checked-out packages.
+  wheel has no namespace marker.
 
 ## collective.behavior.talcondition
 
@@ -197,7 +198,9 @@ user in SmartWeb.
 
 **Namespace** `collective` · **Repository**
 [collective/collective.exportimport](https://github.com/collective/collective.exportimport),
-branches `plone62` (ours) and `importlib-metadata` (upstream PR) · **Variant**
+branch `plone62`, draft PR
+[#287](https://github.com/collective/collective.exportimport/pull/287) ·
+**Variant**
 [plone.meta](native-namespaces-migration.md#variant-plonemeta) · **Checked
 out by** `dev.cfg`, `prod.cfg` · **Older stacks** (Plone 6.0 or older) stay on
 1.x
@@ -208,13 +211,14 @@ out by** `dev.cfg`, `prod.cfg` · **Older stacks** (Plone 6.0 or older) stay on
 Migrated 2026-11-16, then modernized like collective.messagesviewlet
 (2026-11-17).
 
-- **Two branches.** exportimport also runs on Plone 4 and Python 2 sites to
-  export them, so upstream must keep Python 2: the `importlib-metadata` branch
-  (`importlib.metadata` with the [Python 2.7
-  fallback](native-namespaces-migration.md#variant-keep-python-2)) is the
-  upstream PR. `plone62` is the full modernization below, for SmartWeb: open
-  a PR with it too, or keep it for SmartWeb if upstream keeps Python 2 on
-  `main`.
+- **One PR.** The `importlib-metadata` branch (`importlib.metadata` with the
+  [Python 2.7 fallback](native-namespaces-migration.md#variant-keep-python-2))
+  kept Python 2 for the sites exportimport exports from. Its PR
+  [#286](https://github.com/collective/collective.exportimport/pull/286) is
+  closed. `plone62`, the full modernization below, is
+  [#287](https://github.com/collective/collective.exportimport/pull/287) into
+  `main` (2.0.0), a draft until plone.restapi 10.3.1 is out (see below).
+  Exporting from Python 2 sites stays on 1.x.
 - `src/collective/__init__.py` is gone. `__init__.py` imports `get_version`
   and `PackageNotFoundError` from `importlib.metadata` only (the
   `pkg_resources` fallback for Python 2.7 is gone), and the
@@ -228,8 +232,10 @@ Migrated 2026-11-16, then modernized like collective.messagesviewlet
   `setup-to-pyproject`, the `sys.version_info` branch (Python 2 pins),
   `packages` and `package_dir` were removed from `setup.py`, and
   `install_requires` written inline.
-- **Breaking: Plone 6.1 and 6.2 only, Python 3.10 to 3.13** (version
-  `2.0.0.dev0`). The README explains that exporting from Plone 4.3 to 6.0 or
+- **Breaking: Plone 6.1 on Python 3.10 to 3.13, Plone 6.2 on Python 3.10 to
+  3.14** (version `2.0.0.dev0`). 3.14 is set up like collective.anysurfer:
+  in the Plone 6.2 `test_matrix` of `.meta.toml`, the `py314-plone62` tox env,
+  the CI job (3.14 and 3.10 for Plone 6.2) and the classifier. The README explains that exporting from Plone 4.3 to 6.0 or
   Python 2 needs 1.x in the old site, and that 2.x imports the result (same
   json format).
 - `six` is dropped. pyupgrade rewrote most uses (`six.moves.urllib`,
@@ -258,19 +264,26 @@ Migrated 2026-11-16, then modernized like collective.messagesviewlet
   creates the site: the `@@export_*` and `@@import_*` views work as soon as the
   package is loaded. Checked: `make install` then `make create-site` build the
   environment and create the site.
+- `hurry.filesize` is dropped: the large file and image log messages use
+  `plone.base.utils.human_readable_size` (`2.0 KB` instead of `2K`).
+  `plone.base` is declared instead.
 - Tests (zope.testrunner through tox): Plone 6.1 on Python 3.10, 52 tests
-  pass. Plone 6.2.3 on Python 3.12, 4 fail (`test_import_contenttree`,
+  pass. Plone 6.2.3 on Python 3.12 and 3.14, 4 fail (`test_import_contenttree`,
   `test_import_imports_but_ignores_constrains`, `test_import_workflow_history`,
-  `test_reset_dates`), with the 1.x code too.
+  `test_reset_dates`), with the 1.x code too: the plone.restapi bug below.
+  With plone.restapi at the #2094 merge commit, the 52 tests pass on both.
 - **plone.restapi bug: image and file import broken on Plone 6.2.3.**
-  plone.restapi 10.2.1 (pinned by Plone 6.2.3, still in 10.3.0 and `main`):
+  plone.restapi 10.2.1 (pinned by Plone 6.2.3, still in 10.3.0):
   `NamedFieldDeserializer` reads `request.form[value["part"]]` whenever the
   request is `multipart/form-data`, even if the value carries inline `data`.
   The `@@import_content` form always posts multipart, so every image and file
   is dropped (`KeyError: 'part'`, "Didn't add Image"). This affects any
-  content import on the Plone 6.2 stack. To fix in plone.restapi (only use
-  the multipart branch when `"part" in value`), or work around in
-  exportimport.
+  content import on the Plone 6.2 stack. Fixed in plone.restapi by
+  [#2094](https://github.com/plone/plone.restapi/pull/2094) (only use the
+  multipart branch when `"part" in value`), merged 2026-11-18, first
+  released in 10.3.1 (not out yet). Then pin it in `versions.cfg`, and get
+  the tox Plone 6.2 envs on it (newer Plone 6.2 constraints, or an override
+  in `.meta.toml`) before marking #287 ready.
 - Checked from buildout.smartweb: `.venv/bin/buildout -N` no longer lists it
   as old-style, `bin/zopepy` imports it from the `src/` checkout, and the
   wheel has no namespace marker. `versions.cfg` still pins 1.16, as for the
@@ -690,7 +703,9 @@ The fragment tile isn't loaded: plone.tiles isn't installed.
 
 **Namespace** `collective` · **Repository**
 [collective/collective.timedevents](https://github.com/collective/collective.timedevents),
-branch `plone62` · **Variant**
+branch `master` (`plone62` merged by
+[#13](https://github.com/collective/collective.timedevents/pull/13),
+2026-11-18) · **Variant**
 [plone.meta](native-namespaces-migration.md#variant-plonemeta) · **Checked
 out by** `dev.cfg`, `prod.cfg` · **Older stacks** (Python 2, Plone 4.3 to 6.0)
 stay on 1.1
@@ -747,13 +762,14 @@ branch `plone61` (upstream) · **Checked out by** `dev.cfg`, `prod.cfg`
 
 Migrated upstream on `plone61` (native namespace, `bootstrap.py` gone).
 `versions.cfg` doesn't pin it: every config checks out the branch. Upstream
-PRs, all open:
-[#17](https://github.com/collective/collective.upgrade/pull/17) (`plone61`
+PRs [#17](https://github.com/collective/collective.upgrade/pull/17) (`plone61`
 into `master`),
 [#18](https://github.com/collective/collective.upgrade/pull/18) (PEP 420
 native namespace, into `master`) and
 [#19](https://github.com/collective/collective.upgrade/pull/19) (Plone 6.2
-support, into `plone61`). Delete the stale `src/collective/__pycache__` and
+support, into `plone61`) are closed: their work is combined in
+[#20](https://github.com/collective/collective.upgrade/pull/20)
+(`combined-prs` into `master`, open). Delete the stale `src/collective/__pycache__` and
 `collective_*-nspkg.pth` files
 ([step 5](native-namespaces-migration.md#5-clean-up-and-check)).
 
@@ -1251,4 +1267,4 @@ each one: [not started](native-namespaces-migration.md#not-started).
 |---|---|---|---|
 | collective.prometheus | 1.6.1 | 1.6.1 (2022) | `plone.observability` now provides metrics: check whether it is still needed |
 | plone.gallery | 1.1.6 | 1.1.6 (2023) | |
-| hurry.filesize | 0.9 | 0.9 (2009) | Unmaintained: find which package requires it |
+| hurry.filesize | 0.9 | 0.9 (2009) | Unmaintained. Only collective.exportimport 1.x requires it, 2.x (`plone62`) drops it: remove the pin once 2.x is pinned |

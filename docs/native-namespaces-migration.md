@@ -9,8 +9,8 @@ Last updated: 2026-11-18.
 
 ## Status
 
-**9 pinned** (2 migrated, 7 bumped) · **5 merged**, not released · **12 PRs
-open** · **12 branches pushed**, no PR yet · **3 branches local**, not pushed
+**11 pinned** (4 migrated, 7 bumped) · **6 merged**, not released · **10 PRs
+open** · **11 branches pushed**, no PR yet · **3 branches local**, not pushed
 yet · **3 not started** (none of them blocks Plone 6.2.3)
 
 ✅ done · ⬜ to do · ➖ not applicable · 🚧 its pinned release calls
@@ -22,10 +22,10 @@ yet · **3 not started** (none of them blocks Plone 6.2.3)
 |---|:-:|:-:|:-:|:-:|:-:|:-:|
 | [collective.anysurfer](native-namespaces-packages.md#collectiveanysurfer) | ✅ | ✅ | [#9](https://github.com/collective/collective.anysurfer/pull/9) | ✅ | ✅ | ✅ |
 | [collective.autopublishing](native-namespaces-packages.md#collectiveautopublishing) | ✅ | ✅ | [#12](https://github.com/collective/collective.autopublishing/pull/12) | ⬜ | ⬜ | ⬜ |
-| [collective.autoscaling](native-namespaces-packages.md#collectiveautoscaling) | ✅ | ✅ | [#9](https://github.com/collective/collective.autoscaling/pull/9) | ⬜ | ⬜ | ⬜ |
+| [collective.autoscaling](native-namespaces-packages.md#collectiveautoscaling) | ✅ | ✅ | [#9](https://github.com/collective/collective.autoscaling/pull/9) | ✅ | ✅ | ✅ |
 | [collective.behavior.talcondition](native-namespaces-packages.md#collectivebehaviortalcondition) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [collective.complexrecordsproxy](native-namespaces-packages.md#collectivecomplexrecordsproxy) | ✅ | ✅ | [#3](https://github.com/collective/collective.complexrecordsproxy/pull/3) | ⬜ | ⬜ | ⬜ |
-| [collective.exportimport](native-namespaces-packages.md#collectiveexportimport) 🚧 | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [collective.exportimport](native-namespaces-packages.md#collectiveexportimport) 🚧 | ✅ | ✅ | [#287](https://github.com/collective/collective.exportimport/pull/287) | ⬜ | ⬜ | ⬜ |
 | [collective.faceted.map](native-namespaces-packages.md#collectivefacetedmap) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [collective.fingerpointing](native-namespaces-packages.md#collectivefingerpointing) 🚧 | ✅ | ✅ | [#110](https://github.com/collective/collective.fingerpointing/pull/110) | ✅ | ⬜ | ⬜ |
 | [collective.geolocationbehavior](native-namespaces-packages.md#bumped-to-a-native-release) | ➖ | ⬜ | ➖ | ➖ | 2.0.0 | ✅ |
@@ -40,8 +40,8 @@ yet · **3 not started** (none of them blocks Plone 6.2.3)
 | [collective.solr](native-namespaces-packages.md#collectivesolr) | ✅ | ✅ | [#408](https://github.com/collective/collective.solr/pull/408) | ⬜ | ⬜ | ⬜ |
 | [collective.taxonomy](native-namespaces-packages.md#bumped-to-a-native-release) | ➖ | ⬜ | ➖ | ➖ | 4.0.0 | ✅ |
 | [collective.themefragments](native-namespaces-packages.md#collectivethemefragments) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
-| [collective.timedevents](native-namespaces-packages.md#collectivetimedevents) 🚧 | ✅ | ✅ | [#13](https://github.com/collective/collective.timedevents/pull/13) | ⬜ | ⬜ | ⬜ |
-| [collective.upgrade](native-namespaces-packages.md#collectiveupgrade) | ✅ | ✅ | [#17](https://github.com/collective/collective.upgrade/pull/17) | ✅ | ⬜ | ⬜ |
+| [collective.timedevents](native-namespaces-packages.md#collectivetimedevents) 🚧 | ✅ | ✅ | [#13](https://github.com/collective/collective.timedevents/pull/13) | ✅ | ⬜ | ⬜ |
+| [collective.upgrade](native-namespaces-packages.md#collectiveupgrade) | ✅ | ✅ | [#20](https://github.com/collective/collective.upgrade/pull/20) | ⬜ | ⬜ | ⬜ |
 | [collective.z3cform.select2](native-namespaces-packages.md#collectivez3cformselect2) | ✅ | ✅ | [#15](https://github.com/collective/collective.z3cform.select2/pull/15) | ✅ | ⬜ | ⬜ |
 | [eea.facetednavigation](native-namespaces-packages.md#eeafacetednavigation) | ✅ | ✅ | [#65](https://github.com/collective/eea.facetednavigation/pull/65) | ⬜ | ⬜ | ⬜ |
 | [hurry.filesize](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
@@ -113,9 +113,6 @@ Rows with ⬜ in the PR column:
   for the other iMio applications
 - [ ] collective.behavior.talcondition (collective)
 - [ ] collective.faceted.map (affinitic)
-- [ ] collective.exportimport (collective): upstream keeps Python 2, so the
-  `importlib-metadata` branch is the PR, and `plone62` may stay ours
-  ([details](native-namespaces-packages.md#collectiveexportimport))
 - [ ] collective.geotransform (collective): push the local `plone62` branch
   first ([details](native-namespaces-packages.md#collectivegeotransform))
 - [ ] collective.instancebehavior (collective): push the local `plone62`
@@ -185,9 +182,13 @@ release can't depend on a git branch, so the order matters:
 ### Fix upstream
 
 - [ ] plone.restapi 10.2.1 drops every image and file imported by
-  collective.exportimport (and any multipart content import) on Plone 6.2.3:
-  fix it there, or work around it in exportimport
-  ([details](native-namespaces-packages.md#collectiveexportimport)).
+  collective.exportimport (and any multipart content import) on Plone 6.2.3.
+  Fixed by [#2094](https://github.com/plone/plone.restapi/pull/2094), merged
+  2026-11-18, first released in 10.3.1 (not out yet). Once it is out, pin
+  `plone.restapi` in `versions.cfg` (Plone 6.2.3 pins 10.2.1) and mark
+  collective.exportimport
+  [#287](https://github.com/collective/collective.exportimport/pull/287) ready
+  for review ([details](native-namespaces-packages.md#collectiveexportimport)).
 - [ ] pat-leaflet: rebase the `leaflet.refresh` handler of
   [#36](https://github.com/Patternslib/pat-leaflet/pull/36) onto 2.2.2, and
   get it merged and released. The faceted maps need it
@@ -213,6 +214,8 @@ release can't depend on a git branch, so the order matters:
   pinned, and no config checks it out any more.
 - [ ] Drop the `collective.sendinblue` pin from `versions.cfg`: nothing
   requires it once imio.smartweb.core's `plone62` branch drops it.
+- [ ] Drop the `hurry.filesize` pin from `versions.cfg` once
+  collective.exportimport 2.x is pinned: only exportimport 1.x requires it.
 - [ ] Once the last old-style package is gone, remove `horse-with-no-namespace`
   from `base.cfg` (`eggs` and `initialization`). Plone's `requirements.txt`
   still installs it.
