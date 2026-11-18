@@ -9,9 +9,9 @@ Last updated: 2026-11-18.
 
 ## Status
 
-**11 pinned** (4 migrated, 7 bumped) · **6 merged**, not released · **10 PRs
-open** · **11 branches pushed**, no PR yet · **3 branches local**, not pushed
-yet · **3 not started** (none of them blocks Plone 6.2.3)
+**13 pinned** (6 migrated, 7 bumped) · **6 merged**, not released · **13 PRs
+open** · **9 branches pushed**, no PR yet · **3 not started** (none of them
+blocks Plone 6.2.3)
 
 ✅ done · ⬜ to do · ➖ not applicable · 🚧 its pinned release calls
 `pkg_resources` and fails on Plone 6.2.3 ([blockers](#blockers-for-plone-623)) ·
@@ -104,22 +104,21 @@ depends on it, so it doesn't need to be migrated
 
 ### Open pull requests
 
-Rows with ⬜ in the PR column:
+Rows with ⬜ in the PR column, and open questions on existing PRs:
 
 - [ ] imio.smartweb.core, .locales, .policy (common has one already)
-- [ ] collective.pivot, imio.gdpr, imio.omnia.core, imio.omnia.tinymce,
-  iaweb.privacy (IMIO)
+- [ ] imio.gdpr, imio.omnia.core, imio.omnia.tinymce (IMIO)
 - [ ] imio.helpers, once its maintainers agree on a 1.3.x maintenance branch
   for the other iMio applications
 - [ ] collective.behavior.talcondition (collective)
 - [ ] collective.faceted.map (affinitic)
-- [ ] collective.geotransform (collective): push the local `plone62` branch
-  first ([details](native-namespaces-packages.md#collectivegeotransform))
-- [ ] collective.instancebehavior (collective): push the local `plone62`
-  branch first, and ask upstream which license applies
+- [ ] collective.instancebehavior
+  ([#7](https://github.com/collective/collective.instancebehavior/pull/7)):
+  ask upstream which license applies
   ([details](native-namespaces-packages.md#collectiveinstancebehavior))
-- [ ] collective.themefragments (collective): push the local `plone62`
-  branch first, and ask upstream about the license version
+- [ ] collective.themefragments
+  ([#20](https://github.com/collective/collective.themefragments/pull/20)):
+  ask upstream about the license version
   ([details](native-namespaces-packages.md#collectivethemefragments))
 
 ### Release
