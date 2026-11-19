@@ -9,8 +9,8 @@ Last updated: 2026-11-19.
 
 ## Status
 
-**15 pinned** (8 migrated, 7 bumped) · **4 merged**, not released · **13 PRs
-open** · **9 branches pushed**, no PR yet · **3 not started** (none of them
+**16 pinned** (9 migrated, 7 bumped) · **4 merged**, not released · **13 PRs
+open** · **8 branches pushed**, no PR yet · **3 not started** (none of them
 blocks Plone 6.2.3)
 
 ✅ done · ⬜ to do · ➖ not applicable · 🚧 its pinned release calls
@@ -46,7 +46,7 @@ blocks Plone 6.2.3)
 | [eea.facetednavigation](native-namespaces-packages.md#eeafacetednavigation) | ✅ | ✅ | [#65](https://github.com/collective/eea.facetednavigation/pull/65) | ⬜ | ⬜ | ⬜ |
 | [hurry.filesize](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [iaweb.privacy](native-namespaces-packages.md#iawebprivacy) | ✅ | ✅ | [#2](https://github.com/IMIO/iaweb.privacy/pull/2) | ⬜ | ⬜ | ⬜ |
-| [imio.gdpr](native-namespaces-packages.md#imiogdpr) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [imio.gdpr](native-namespaces-packages.md#imiogdpr) | ✅ | ✅ | [#5](https://github.com/IMIO/imio.gdpr/pull/5) | ✅ | 2.0.0 | ✅ |
 | [imio.helpers](native-namespaces-packages.md#imiohelpers) 🚧 | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [imio.omnia.core](native-namespaces-packages.md#imioomniacore) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [imio.omnia.tinymce](native-namespaces-packages.md#imioomniatinymce) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
@@ -107,7 +107,7 @@ depends on it, so it doesn't need to be migrated
 Rows with ⬜ in the PR column, and open questions on existing PRs:
 
 - [ ] imio.smartweb.core, .locales, .policy (common has one already)
-- [ ] imio.gdpr, imio.omnia.core, imio.omnia.tinymce (IMIO)
+- [ ] imio.omnia.core, imio.omnia.tinymce (IMIO)
 - [ ] imio.helpers, once its maintainers agree on a 1.3.x maintenance branch
   for the other iMio applications
 - [ ] collective.behavior.talcondition (collective)

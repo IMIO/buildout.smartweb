@@ -890,12 +890,15 @@ Migrated 2026-11-16, following collective.autoscaling.
 ## imio.gdpr
 
 **Namespace** `imio` · **Repository**
-[IMIO/imio.gdpr](https://github.com/IMIO/imio.gdpr), branch `plone62` ·
+[IMIO/imio.gdpr](https://github.com/IMIO/imio.gdpr), branch `master` ·
 **Variant** [setup.py](native-namespaces-migration.md#the-migration-recipe) ·
-**Checked out by** `dev.cfg`, `prod.cfg` · **Older stacks** (Python 2, older
-Plone) stay on 1.2.x
+**Checked out by** none · **Older stacks** (Python 2, older Plone) stay on
+1.2.x
 
-Migrated 2026-11-16.
+Migrated on `plone62` on 2026-11-16, merged into `master`
+([#5](https://github.com/IMIO/imio.gdpr/pull/5)) and released as **2.0.0**
+on 2026-11-19. `versions.cfg` pins 2.0.0, and no config checks it out any
+more (`sources.cfg` points to `master` again).
 
 - `find_namespace_packages`, no more `namespace_packages`, and
   `src/imio/__init__.py` is gone. `python_requires='>=3.10'`, classifiers
@@ -909,12 +912,11 @@ Migrated 2026-11-16.
   3.12 and 3.13) replaces Travis.
 - `six` and the `HAS_PLONE_5_AND_MORE` check are still there: they can go in
   a later cleanup.
-- **Breaking: Python 3.10+ and Plone 6.2 only.** `CHANGES.rst` announces
-  1.2.4: release 2.0.0.
-- Checked from buildout.smartweb: `.venv/bin/buildout -N` no longer lists it
-  as old-style, `bin/zopepy` imports it from the `src/` checkout, and the
-  wheel has no namespace marker. `versions.cfg` still pins 1.2.3, as for the
-  other checked-out packages.
+- **Breaking: Python 3.10+ and Plone 6.2 only**, hence 2.0.0. It also
+  ships German translations, merged into `master` before the migration.
+- Checked from buildout.smartweb on the `src/` checkout: `.venv/bin/buildout
+  -N` no longer listed it as old-style, `bin/zopepy` imported it, and the
+  wheel had no namespace marker.
 
 ## imio.helpers
 
