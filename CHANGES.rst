@@ -15,6 +15,7 @@
     - eea.facetednavigation 16.5
     - iaweb.privacy 2.0.0
     - imio.gdpr 2.0.0
+    - imio.smartweb.common 2.0.0
     - imio.smartweb.locales 2.0.0
     - imio.smartweb.policy 2.0.0
     - pas.plugins.kimug 2.0.0
@@ -25,6 +26,24 @@
     - zope.minmax 4.0
     - zope.session 5.1
   [boulch, bsuttor, remdub]
+
+- imio.smartweb.common 1.2.65 (included in 2.0.0)
+
+  - Add ``@vocabulary-translations/<vocabulary_name>`` endpoint.
+    It gives the token and the title in fr, nl, de and en of each term of a vocabulary.
+    [boulch]
+
+  - WEB-4530 : Load the "JavaScript integration (head)" snippet through
+    ``@@get_analytics``, after cookie consent, like the footer one. It was
+    rendered in the page head, so trackers pasted there ran before consent.
+    [remdub]
+
+- imio.smartweb.common 2.0.0
+
+  - Fix ``@search-filters``: it always gave an empty result on Plone 6.2. Since
+    plone.restapi 10, the catalog query adapter removes ``metadata_fields`` from
+    the query. Read ``metadata_fields`` before the query is parsed.
+    [boulch]
 
 - imio.smartweb.policy 1.2.24 (included in 2.0.0)
 
