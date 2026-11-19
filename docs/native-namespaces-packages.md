@@ -327,21 +327,20 @@ Migrated 2026-11-17 (`c5c4b5a`).
 
 **Namespace** `collective` · **Repository**
 [collective/collective.fingerpointing](https://github.com/collective/collective.fingerpointing),
-branch `master` (upstream) · **Checked out by** `dev.cfg`, `prod.cfg` ·
-**Older stacks** stay on 1.8.x
+branch `master` (upstream) · **Checked out by** none · **Older stacks** stay
+on 1.8.x
 
-🚧 1.8.3 calls `get_distribution()` in `subscribers/__init__.py`.
+1.8.3 calls `get_distribution()` in `subscribers/__init__.py`: fixed in 2.0.0.
 
 Migrated upstream: `master` (2.0.0.dev0) is Plone 6.2 only, Python 3.10+ and
 native, merged on 2026-11-16 ([#110](https://github.com/collective/collective.fingerpointing/pull/110)).
-Our `importlib-metadata` PR (#111) was closed in favor of it. `sources.cfg`
-checks out `master` until 2.0.0 is released: then drop the checkout and pin
-it.
+Our `importlib-metadata` PR (#111) was closed in favor of it. Released as
+**2.0.0** on 2026-11-19: `versions.cfg` pins it, and no config checks it out
+any more (removed from `sources.cfg`).
 
 - Checked from buildout.smartweb: `.venv/bin/buildout -N` no longer lists it
   as old-style, `bin/zopepy` imports it from the `src/` checkout, and the
-  wheel has no namespace marker. `versions.cfg` still pins 1.8.3, as for the
-  other checked-out packages.
+  wheel has no namespace marker.
 
 ## collective.geotransform
 

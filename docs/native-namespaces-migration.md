@@ -9,7 +9,7 @@ Last updated: 2026-11-19.
 
 ## Status
 
-**21 pinned** (14 migrated, 7 bumped) · **4 merged**, not released · **11 PRs
+**22 pinned** (15 migrated, 7 bumped) · **3 merged**, not released · **11 PRs
 open** · **5 branches pushed**, no PR yet · **3 not started** (none of them
 blocks Plone 6.2.3)
 
@@ -27,7 +27,7 @@ blocks Plone 6.2.3)
 | [collective.complexrecordsproxy](native-namespaces-packages.md#collectivecomplexrecordsproxy) | ✅ | ✅ | [#3](https://github.com/collective/collective.complexrecordsproxy/pull/3) | ✅ | ⬜ | ⬜ |
 | [collective.exportimport](native-namespaces-packages.md#collectiveexportimport) 🚧 | ✅ | ✅ | [#287](https://github.com/collective/collective.exportimport/pull/287) | ⬜ | ⬜ | ⬜ |
 | [collective.faceted.map](native-namespaces-packages.md#collectivefacetedmap) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
-| [collective.fingerpointing](native-namespaces-packages.md#collectivefingerpointing) 🚧 | ✅ | ✅ | [#110](https://github.com/collective/collective.fingerpointing/pull/110) | ✅ | ⬜ | ⬜ |
+| [collective.fingerpointing](native-namespaces-packages.md#collectivefingerpointing) | ✅ | ✅ | [#110](https://github.com/collective/collective.fingerpointing/pull/110) | ✅ | ✅ | ✅ |
 | [collective.geolocationbehavior](native-namespaces-packages.md#bumped-to-a-native-release) | ➖ | ⬜ | ➖ | ➖ | 2.0.0 | ✅ |
 | [collective.geotransform](native-namespaces-packages.md#collectivegeotransform) | ✅ | ✅ | [#25](https://github.com/collective/collective.geotransform/pull/25) | ⬜ | ⬜ | ⬜ |
 | [collective.instancebehavior](native-namespaces-packages.md#collectiveinstancebehavior) | ✅ | ✅ | [#7](https://github.com/collective/collective.instancebehavior/pull/7) | ⬜ | ⬜ | ⬜ |
@@ -142,8 +142,7 @@ release can't depend on a git branch, so the order matters:
   collective.instancebehavior as 0.6 (never released, 0.5 is the latest).
   collective.themefragments as 3.0.0 (2.12, from 2019, is the latest).
   Every other package as 2.0.0.
-- [ ] Ask upstream for collective.fingerpointing 2.0.0, and for
-  collective.solr 11.0.0 once
+- [ ] Ask upstream for collective.solr 11.0.0 once
   [#408](https://github.com/collective/collective.solr/pull/408) is merged.
 - [ ] Ask upstream for plone.formwidget.geolocation 4.0.0 once pat-leaflet
   has released the `leaflet.refresh` handler, with its bundle rebuilt against
