@@ -578,7 +578,9 @@ Fixed and migrated 2026-11-16, then modernized like collective.messagesviewlet
   (`setup.py` is now only `setup()`). The z3c.autoinclude entry point became a
   `plone.autoinclude.plugin` one, and the license is SPDX `GPL-2.0-only`.
   Version 2.0.0.dev0.
-- **Breaking: Plone 6.1 and 6.2 only, Python 3.10 to 3.13.**
+- **Breaking: Plone 6.2 only, Python 3.10 to 3.14, without
+  `horse-with-no-namespace`** (2026-11-19: Plone 6.1 dropped from the tox and
+  GitHub Actions matrix and the classifiers, Python 3.14 added).
 - Gone: Travis, GitLab CI, the buildout configuration (`base.cfg`,
   `buildout.cfg`, `travis.cfg`, `plone-4.3.x.cfg` to `plone-5.2.x.cfg`,
   `versions.cfg`, `requirements.txt`), `setup.cfg`, `.coveragerc`,
@@ -597,8 +599,9 @@ Fixed and migrated 2026-11-16, then modernized like collective.messagesviewlet
   `portal_quickinstaller` API (`isProductInstalled`, `uninstallProducts`),
   and the cookie test expected the old cookie keys (`max_age`, Zope now
   returns `Max-Age`). They are fixed, and new tests render `@@consent` and
-  `@@consent-json` (9 tests). They pass on Plone 6.2.3 / Python 3.13 and
-  Plone 6.1 / Python 3.10, with lint, dependencies and circular checks.
+  `@@consent-json` (9 tests). They pass on Plone 6.2.3 with Python 3.14 and
+  3.10, with lint and dependency checks. Neither tox environment installs
+  `horse-with-no-namespace` or has a `pkg_resources` module.
 - Codespell fixed `separeted` in a ZCML field description, which is also a
   msgid: the `.pot` and `.po` files follow.
 - `make install` builds a uv development environment on Plone 6.2.3
