@@ -9,7 +9,7 @@ Last updated: 2026-11-19.
 
 ## Status
 
-**16 pinned** (9 migrated, 7 bumped) · **4 merged**, not released · **13 PRs
+**17 pinned** (10 migrated, 7 bumped) · **4 merged**, not released · **12 PRs
 open** · **8 branches pushed**, no PR yet · **3 not started** (none of them
 blocks Plone 6.2.3)
 
@@ -45,7 +45,7 @@ blocks Plone 6.2.3)
 | [collective.z3cform.select2](native-namespaces-packages.md#collectivez3cformselect2) | ✅ | ✅ | [#15](https://github.com/collective/collective.z3cform.select2/pull/15) | ✅ | ✅ | ✅ |
 | [eea.facetednavigation](native-namespaces-packages.md#eeafacetednavigation) | ✅ | ✅ | [#65](https://github.com/collective/eea.facetednavigation/pull/65) | ⬜ | ⬜ | ⬜ |
 | [hurry.filesize](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
-| [iaweb.privacy](native-namespaces-packages.md#iawebprivacy) | ✅ | ✅ | [#2](https://github.com/IMIO/iaweb.privacy/pull/2) | ⬜ | ⬜ | ⬜ |
+| [iaweb.privacy](native-namespaces-packages.md#iawebprivacy) | ✅ | ✅ | [#2](https://github.com/IMIO/iaweb.privacy/pull/2) | ✅ | 2.0.0 | ✅ |
 | [imio.gdpr](native-namespaces-packages.md#imiogdpr) | ✅ | ✅ | [#5](https://github.com/IMIO/imio.gdpr/pull/5) | ✅ | 2.0.0 | ✅ |
 | [imio.helpers](native-namespaces-packages.md#imiohelpers) 🚧 | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [imio.omnia.core](native-namespaces-packages.md#imioomniacore) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
@@ -128,7 +128,9 @@ release can't depend on a git branch, so the order matters:
 
 - [ ] collective.timedevents, then collective.autopublishing (replace the
   branch in its `mx.ini` and tox).
-- [ ] collective.privacy, then iaweb.privacy (same).
+- [ ] collective.privacy, then replace its branch in iaweb.privacy's
+  `mx.ini` and tox. iaweb.privacy 2.0.0 is already out: it requires
+  collective.privacy without a version, so it doesn't wait for it.
 - [ ] imio.omnia.core and imio.omnia.tinymce together (shared `imio.omnia`
   namespace).
 - [ ] The four imio.smartweb.* together, pinned in one commit. Drop Plone 6.0

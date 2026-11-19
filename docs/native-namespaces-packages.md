@@ -854,12 +854,14 @@ pas.plugins.kimug, on 2026-11-17.
 ## iaweb.privacy
 
 **Namespace** `iaweb` · **Repository**
-[IMIO/iaweb.privacy](https://github.com/IMIO/iaweb.privacy), branch `plone62`
+[IMIO/iaweb.privacy](https://github.com/IMIO/iaweb.privacy), branch `master`
 · **Variant** [plone.meta](native-namespaces-migration.md#variant-plonemeta) ·
-**Checked out by** `dev.cfg`, `prod.cfg` · **Older stacks** (Plone 4.3 to
-6.0) stay on 1.0a2
+**Checked out by** none · **Older stacks** (Plone 4.3 to 6.0) stay on 1.0a2
 
-Migrated 2026-11-16, following collective.autoscaling.
+Migrated on `plone62` on 2026-11-16, following collective.autoscaling, merged
+into `master` ([#2](https://github.com/IMIO/iaweb.privacy/pull/2)) and
+released as **2.0.0** on 2026-11-19. `versions.cfg` pins 2.0.0, and no config
+checks it out any more (`sources.cfg` points to `master` again).
 
 - plone.meta 2.12.0 configures it, and the metadata moved to `pyproject.toml`.
   `setup.py` is now only `setup()`. The Plone 4.3 buildout, Travis, GitLab CI
@@ -873,7 +875,9 @@ Migrated 2026-11-16, following collective.autoscaling.
 - **Depends on collective.privacy**, whose 1.1.0b2 release blocks Plone 6.2.3.
   Until it is released, the package's `mx.ini` and tox (`test_deps_additional`
   in `.meta.toml`) install its `plone62` branch from GitHub. Replace both
-  with a version pin once it is out.
+  with a version pin once it is out. 2.0.0 requires collective.privacy
+  without a version, so it was released first: in buildout.smartweb,
+  collective.privacy stays checked out from its `plone62` branch.
 - `configure.zcml` now includes the CMFCore permissions that collective.privacy
   uses (`cmf.ManagePortal`), as in collective.autoscaling: the package failed
   to load when it was included before Plone (`zcml_package_includes`). In
@@ -882,10 +886,9 @@ Migrated 2026-11-16, following collective.autoscaling.
   load. Now fixed. Nothing in SmartWeb includes `all.zcml`.
 - Tested with tox and zope.testrunner: the plone.meta test matrix covers
   Plone 6.2.3 and 6.1 on Python 3.10 to 3.13.
-- Checked from buildout.smartweb: `.venv/bin/buildout -N` no longer lists it
-  as old-style, `bin/zopepy` imports it from the `src/` checkout, and the
-  wheel has no namespace marker. `versions.cfg` still pins 1.0a2, as for the
-  other checked-out packages.
+- Checked from buildout.smartweb on the `src/` checkout: `.venv/bin/buildout
+  -N` no longer listed it as old-style, `bin/zopepy` imported it, and the
+  wheel had no namespace marker.
 
 ## imio.gdpr
 

@@ -12,6 +12,7 @@
     - collective.timedevents 2.0.0
     - collective.z3cform.select2 4.0.0
     - eea.facetednavigation 16.5
+    - iaweb.privacy 2.0.0
     - imio.gdpr 2.0.0
     - pas.plugins.kimug 2.0.0
     - pas.plugins.oidc 2.1.0
