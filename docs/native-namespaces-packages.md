@@ -1100,15 +1100,14 @@ applications still run on Python 2, and PEP 420 doesn't exist there. So
 [core](https://github.com/IMIO/imio.smartweb.core),
 [locales](https://github.com/IMIO/imio.smartweb.locales),
 [policy](https://github.com/IMIO/imio.smartweb.policy), branch `plone62`
-(locales, policy: `main`) · **Variant**
+(common, locales, policy: `main`) · **Variant**
 [setup.py](native-namespaces-migration.md#the-migration-recipe) · **Checked
-out by** `dev.cfg`, `prod.cfg` (locales, policy: `dev.cfg` only)
+out by** `dev.cfg`, `prod.cfg` (common, locales, policy: `dev.cfg` only)
 
 🚧 imio.smartweb.core calls `resource_filename()` in `browser/anysurfer.py`.
 
-imio.smartweb.locales and imio.smartweb.policy are already released (see
-below). Release common and core together and pin the new versions in one
-commit. Same change in all four:
+imio.smartweb.common, .locales and .policy are already released (see below).
+Only core is left. Same change in all four:
 
 ```diff
 -    packages=find_packages("src", exclude=["ez_setup"]),
@@ -1175,9 +1174,14 @@ Plone 6.2 breakages:
   to override (plone.restapi, z3c.form, protobuf, collective.taxonomy,
   eea.facetednavigation…). buildout.smartweb now pins Plone 6.2.3, so these
   overrides can go.
-- `setup.py` classifiers: Plone 6.2 added next to 6.1. 6.1 still works only
-  with `horse-with-no-namespace` installed, as for the other migrated
-  packages.
+- `setup.py` classifiers: Plone 6.2 only, Python 3.12+.
+
+Merged into `main`
+([#37](https://github.com/IMIO/imio.smartweb.common/pull/37)) and released as
+**2.0.0** on 2026-11-19 (it also brings 1.2.65). `versions.cfg` pins 2.0.0,
+`prod.cfg` no longer checks it out, and `sources.cfg` points to `main` again.
+`dev.cfg` still checks it out. Its `base.cfg` still has the `[versions]`
+overrides above ([clean up](native-namespaces-migration.md#clean-up)).
 
 **imio.smartweb.locales**: its own buildout (releaser, i18ndude) moved to
 Plone 6.2.3. Merged into `main`
