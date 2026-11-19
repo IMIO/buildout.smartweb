@@ -9,7 +9,7 @@ Last updated: 2026-11-19.
 
 ## Status
 
-**22 pinned** (15 migrated, 7 bumped) · **3 merged**, not released · **11 PRs
+**23 pinned** (16 migrated, 7 bumped) · **3 merged**, not released · **10 PRs
 open** · **5 branches pushed**, no PR yet · **3 not started** (none of them
 blocks Plone 6.2.3)
 
@@ -35,7 +35,7 @@ blocks Plone 6.2.3)
 | [collective.messagesviewlet](native-namespaces-packages.md#collectivemessagesviewlet) | ✅ | ✅ | [#24](https://github.com/collective/collective.messagesviewlet/pull/24) | ✅ | 2.0.0 | ✅ |
 | [collective.pivot](native-namespaces-packages.md#collectivepivot) | ✅ | ✅ | [#4](https://github.com/IMIO/collective.pivot/pull/4) | ✅ | 2.0.0 | ✅ |
 | [collective.preventactions](native-namespaces-packages.md#collectivepreventactions) | ✅ | ✅ | [#2](https://github.com/collective/collective.preventactions/pull/2) | ✅ | 0.4.0 | ✅ |
-| [collective.privacy](native-namespaces-packages.md#collectiveprivacy) 🚧 | ✅ | ✅ | [#22](https://github.com/collective/collective.privacy/pull/22) | ⬜ | ⬜ | ⬜ |
+| [collective.privacy](native-namespaces-packages.md#collectiveprivacy) | ✅ | ✅ | [#22](https://github.com/collective/collective.privacy/pull/22) | ✅ | 2.0.0 | ✅ |
 | [collective.prometheus](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [collective.solr](native-namespaces-packages.md#collectivesolr) | ✅ | ✅ | [#408](https://github.com/collective/collective.solr/pull/408) | ⬜ | ⬜ | ⬜ |
 | [collective.taxonomy](native-namespaces-packages.md#bumped-to-a-native-release) | ➖ | ⬜ | ➖ | ➖ | 4.0.0 | ✅ |
@@ -127,9 +127,8 @@ release can't depend on a git branch, so the order matters:
 
 - [ ] collective.timedevents, then collective.autopublishing (replace the
   branch in its `mx.ini` and tox).
-- [ ] collective.privacy, then replace its branch in iaweb.privacy's
-  `mx.ini` and tox. iaweb.privacy 2.0.0 is already out: it requires
-  collective.privacy without a version, so it doesn't wait for it.
+- [ ] Replace the collective.privacy branch in iaweb.privacy's `mx.ini` and
+  tox by the 2.0.0 release.
 - [ ] imio.omnia.core and imio.omnia.tinymce together (shared `imio.omnia`
   namespace).
 - [ ] imio.smartweb.core

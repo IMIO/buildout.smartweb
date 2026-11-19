@@ -558,16 +558,18 @@ files ([step 5](native-namespaces-migration.md#5-clean-up-and-check)).
 
 **Namespace** `collective` · **Repository**
 [collective/collective.privacy](https://github.com/collective/collective.privacy),
-branch `plone62` · **Variant**
+branch `master` · **Variant**
 [plone.meta](native-namespaces-migration.md#variant-plonemeta) · **Checked
-out by** `dev.cfg`, `prod.cfg` · **Older stacks** (Python 2, Plone 4.3 to 6.0)
-stay on 1.1.0b2
+out by** none · **Older stacks** (Python 2, Plone 4.3 to 6.0) stay on 1.1.0b2
 
-🚧 1.1.0b2 calls `get_distribution()` in `storage.py` and
-`browser/consent.py`.
+1.1.0b2 calls `get_distribution()` in `storage.py` and `browser/consent.py`:
+fixed in 2.0.0.
 
 Fixed and migrated 2026-11-16, then modernized like collective.messagesviewlet
-(2026-11-17).
+(2026-11-17). Merged into `master`
+([#22](https://github.com/collective/collective.privacy/pull/22)) and released
+as **2.0.0** on 2026-11-19: `versions.cfg` pins it, and no config checks it
+out any more (`sources.cfg` points to `master`).
 
 - Its first commit (`bb46b06`, `importlib.metadata` with the [Python 2.7
   fallback](native-namespaces-migration.md#variant-keep-python-2)) still works
@@ -614,8 +616,8 @@ Fixed and migrated 2026-11-16, then modernized like collective.messagesviewlet
   checkout (2.0.0.dev0) with the `plone.autoinclude` entry point, `collective`
   is a native namespace (not in horse-with-no-namespace's list), and the
   wheel has no namespace marker.
-- iaweb.privacy's `mx.ini` and tox install this branch from GitHub: release
-  privacy first, then replace the branch there.
+- iaweb.privacy's `mx.ini` and tox still install the `plone62` branch (now
+  deleted) from GitHub: replace it by the 2.0.0 release there.
 
 ## collective.solr
 
@@ -876,11 +878,10 @@ checks it out any more (`sources.cfg` points to `master` again).
   run on any Plone since 5.2: they now use `get_installer`. The unused robot
   acceptance layer is gone.
 - **Depends on collective.privacy**, whose 1.1.0b2 release blocks Plone 6.2.3.
-  Until it is released, the package's `mx.ini` and tox (`test_deps_additional`
-  in `.meta.toml`) install its `plone62` branch from GitHub. Replace both
-  with a version pin once it is out. 2.0.0 requires collective.privacy
-  without a version, so it was released first: in buildout.smartweb,
-  collective.privacy stays checked out from its `plone62` branch.
+  The package's `mx.ini` and tox (`test_deps_additional` in `.meta.toml`)
+  install its `plone62` branch from GitHub: replace both with the 2.0.0 pin,
+  released on 2026-11-19 (the branch is now deleted). 2.0.0 requires
+  collective.privacy without a version, so it was released first.
 - `configure.zcml` now includes the CMFCore permissions that collective.privacy
   uses (`cmf.ManagePortal`), as in collective.autoscaling: the package failed
   to load when it was included before Plone (`zcml_package_includes`). In
