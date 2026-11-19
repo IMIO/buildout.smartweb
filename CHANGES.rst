@@ -16,6 +16,7 @@
     - iaweb.privacy 2.0.0
     - imio.gdpr 2.0.0
     - imio.smartweb.locales 2.0.0
+    - imio.smartweb.policy 2.0.0
     - pas.plugins.kimug 2.0.0
     - pas.plugins.oidc 2.1.0
     - plone.app.imagecropping 4.0.0
@@ -24,6 +25,11 @@
     - zope.minmax 4.0
     - zope.session 5.1
   [boulch, bsuttor, remdub]
+
+- imio.smartweb.policy 1.2.24 (included in 2.0.0)
+
+  - WEB-4523 : Only Managers can delete a language root folder (LRF) on a multilingual site.
+    [boulch]
 
 - WEB-4533 : Plone 6.2.3 migration
   [boulch, bsuttor, remdub]
