@@ -9,8 +9,8 @@ Last updated: 2026-11-19.
 
 ## Status
 
-**21 pinned** (14 migrated, 7 bumped) · **4 merged**, not released · **10 PRs
-open** · **6 branches pushed**, no PR yet · **3 not started** (none of them
+**21 pinned** (14 migrated, 7 bumped) · **4 merged**, not released · **11 PRs
+open** · **5 branches pushed**, no PR yet · **3 not started** (none of them
 blocks Plone 6.2.3)
 
 ✅ done · ⬜ to do · ➖ not applicable · 🚧 its pinned release calls
@@ -53,7 +53,7 @@ blocks Plone 6.2.3)
 | [imio.prometheus](native-namespaces-packages.md#imioprometheus) | ✅ | ✅ | [#2](https://github.com/IMIO/imio.prometheus/pull/2) | ⬜ | ⬜ | ⬜ |
 | [imio.pyutils](native-namespaces-packages.md#imiopyutils) | ✅ | ✅ | [#4](https://github.com/IMIO/imio.pyutils/pull/4) | ✅ | ⬜ | ⬜ |
 | [imio.smartweb.common](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy) | ✅ | ✅ | [#37](https://github.com/IMIO/imio.smartweb.common/pull/37) | ✅ | 2.0.0 | ✅ |
-| [imio.smartweb.core](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy) 🚧 | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [imio.smartweb.core](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy) 🚧 | ✅ | ✅ | [#102](https://github.com/IMIO/imio.smartweb.core/pull/102) | ⬜ | ⬜ | ⬜ |
 | [imio.smartweb.locales](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy) | ✅ | ✅ | [#4](https://github.com/IMIO/imio.smartweb.locales/pull/4) | ✅ | 2.0.0 | ✅ |
 | [imio.smartweb.policy](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy) | ✅ | ✅ | [#28](https://github.com/IMIO/imio.smartweb.policy/pull/28) | ✅ | 2.0.0 | ✅ |
 | [pas.plugins.kimug](native-namespaces-packages.md#paspluginskimug) | ✅ | ✅ | [#34](https://github.com/IMIO/pas.plugins.kimug/pull/34) | ✅ | 2.0.0 | ✅ |
@@ -106,7 +106,6 @@ depends on it, so it doesn't need to be migrated
 
 Rows with ⬜ in the PR column, and open questions on existing PRs:
 
-- [ ] imio.smartweb.core
 - [ ] imio.omnia.core, imio.omnia.tinymce (IMIO)
 - [ ] imio.helpers, once its maintainers agree on a 1.3.x maintenance branch
   for the other iMio applications
@@ -133,7 +132,8 @@ release can't depend on a git branch, so the order matters:
   collective.privacy without a version, so it doesn't wait for it.
 - [ ] imio.omnia.core and imio.omnia.tinymce together (shared `imio.omnia`
   namespace).
-- [ ] imio.smartweb.core. Drop Plone 6.0 from its classifiers first.
+- [ ] imio.smartweb.core
+  ([#102](https://github.com/IMIO/imio.smartweb.core/pull/102)).
   imio.smartweb.common, .locales and .policy 2.0.0 are already out: they
   require the other imio.smartweb.* packages without a version, so they
   don't wait for core.

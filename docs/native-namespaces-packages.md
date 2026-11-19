@@ -1146,9 +1146,8 @@ The `plone62` branch (2026-11-16) also fixes two Plone 6.2 breakages:
   (imio.helpers, collective.privacy, collective.fingerpointing,
   collective.exportimport, collective.timedevents,
   collective.behavior.talcondition) to `auto-checkout`.
-- `setup.py` classifiers: Plone 6.1 replaced by 6.2. Plone 6.0 is still
-  listed: drop it before the release, since native namespaces and the
-  imports above need Plone 6.2.
+- `setup.py` classifiers: Plone 6.2 only, Python 3.10 to 3.14 (3.14 added to
+  the CI matrix too).
 
 It also drops collective.sendinblue from `install_requires`, so that package
 (still old-style upstream) doesn't need to be migrated. The Sendinblue
@@ -1157,6 +1156,9 @@ add-on. Before releasing, check that every site has run step 1073 (on an
 older site, the step no longer finds the uninstall profile), and that no
 site still has a Sendinblue portlet assigned (the uninstall leaves them, as
 broken objects).
+
+Open as [#102](https://github.com/IMIO/imio.smartweb.core/pull/102) against
+`main`.
 
 **imio.smartweb.common**: the `plone62` branch (2026-11-16) also fixes two
 Plone 6.2 breakages:
