@@ -1,0 +1,56 @@
+name: Publish and deploy plone62 staging image
+on:
+  push:
+    branches:
+      - plone62
+    tags:
+      - '!**'
+  workflow_dispatch:
+env:
+  IMAGE_NAME: 'web/smartweb/mutual'
+  REGISTRY_URL: ${{ secrets.HARBOR_URL }}
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  build-push:
+    runs-on: gha-runners-smartweb
+    if: contains(github.event.head_commit.message, 'Back to development:') == false && contains(github.event.head_commit.message, 'Preparing release') == false
+    steps:
+      - name: Build tags
+        run: |
+          SHORT_SHA=$(echo ${{ github.sha }} | cut -c1-7)
+          {
+            echo 'IMAGE_TAGS<<EOF'
+            echo '${{ env.REGISTRY_URL }}/${{ env.IMAGE_NAME }}:plone62'
+            echo '${{ env.REGISTRY_URL }}/${{ env.IMAGE_NAME }}:plone62-${{ github.run_number }}'
+            echo '${{ env.REGISTRY_URL }}/${{ env.IMAGE_NAME }}:'$SHORT_SHA
+            echo EOF
+          } >> $GITHUB_ENV
+      - name: Build push and notify
+        uses: IMIO/gha/build-push-notify@v7
+        with:
+          IMAGE_NAME: ${{ env.IMAGE_NAME }}
+          IMAGE_TAGS: ${{ env.IMAGE_TAGS }}
+          REGISTRY_URL: ${{ env.REGISTRY_URL}}
+          REGISTRY_USERNAME: ${{ secrets.SMARTWEB_HARBOR_USERNAME }}
+          REGISTRY_PASSWORD: ${{ secrets.SMARTWEB_HARBOR_PASSWORD }}
+          MATTERMOST_WEBHOOK_URL: ${{ secrets.SMARTWEB_MATTERMOST_WEBHOOK_URL }}
+  deploy-on-k8s:
+    needs: build-push
+    environment: staging
+    runs-on: gha-runners-smartweb
+    steps:
+      - name: Build short SHA
+        run: echo "SHORT_SHA=$(echo ${{ github.sha }} | cut -c1-7)" >> $GITHUB_ENV
+      - name: Update Kubernetes tag
+        uses: IMIO/gha/k8s-update-tag@v5
+        with:
+          TAG: ${{ env.SHORT_SHA }}
+          REPO_TOKEN_NAME: ${{ secrets.SMARTWEB_ARGOCD_TOKEN_NAME }}
+          REPO_ACCESS_TOKEN: ${{ secrets.SMARTWEB_ARGOCD_ACCESS_TOKEN }}
+          REPO_URL: ${{ secrets.SMARTWEB_ARGOCD_REPO_URL }}
+          TARGET_BRANCH: main
+          VALUES_FILE_PATH: staging/common/values.yaml

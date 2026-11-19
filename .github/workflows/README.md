@@ -22,6 +22,10 @@ flowchart TD
     F --> G[Push to Harbor]
     G --> H[Deploy to staging via Rundeck]
 
+    P[push to plone62 branch] -->|staging-plone62.yml| Q[Build image :plone62]
+    Q --> R[Push to Harbor]
+    R --> S[Update k8s staging tag via ArgoCD repo]
+
     I[push a git tag] -->|prod.yml| J{quick release?\ntag ends with -quick}
     J -- No --> K[Schedule deploy\nnext day at 3:00 AM]
     J -- Yes --> L[Deploy immediately]
@@ -152,6 +156,27 @@ sequenceDiagram
 
 ---
 
+## staging-plone62.yml — Publish and deploy plone62 staging image
+
+**Trigger:** push to the `plone62` branch (tags excluded), or manual via `workflow_dispatch`.
+
+**Skip condition:** same as `dev.yml` — zest.releaser commits are ignored.
+
+Builds the Plone 6.2 image and deploys it to the Kubernetes staging: `IMIO/gha/k8s-update-tag` writes the commit's short SHA into `staging/common/values.yaml` of the ArgoCD repository, and ArgoCD rolls it out. Its tags never touch `:staging`, so `prod.yml` keeps promoting the `main` image. While this workflow exists, the `deploy-on-k8s` job of `staging.yml` is commented out; delete this workflow once `plone62` is merged into `main`.
+
+| Step | Action used |
+|------|-------------|
+| Build & push image | `IMIO/gha/build-push-notify@v7` |
+| Image and filesystem scans | `IMIO/gha/trivy-scan-notify@v7` |
+| Update k8s staging tag | `IMIO/gha/k8s-update-tag@v5` |
+
+**Image tags produced:**
+- `:plone62`
+- `:plone62-{run_number}`
+- `:{short_sha}`
+
+---
+
 ## tests.yml — Test the image
 
 **Trigger:** pull request, or manual via `workflow_dispatch`. It does not gate `dev.yml` and `staging.yml` yet: on Plone 6.1.5, `collective.z3cform.datagridfield` 3.0.5 leaves a pending upgrade step on every fresh site, so `test_no_pending_upgrades` fails. Once Plone 6.2 (datagridfield 4.0.3) is merged, `build-push` will need this job, so a failing image never gets the `:dev` or `:staging` tag.
@@ -185,6 +210,9 @@ This workflow does **not** rebuild the image. It promotes the already-validated 
 | `SMARTWEB_RUNDECK_TOKEN` | all | Rundeck API token |
 | `RUNDECK_DEPLOY_DEV_JOB_ID` | dev.yml | Rundeck job ID for dev deployment |
 | `RUNDECK_DEPLOY_STAGING_JOB_ID` | staging.yml, testharden.yml | Rundeck job ID for staging deployment |
+| `SMARTWEB_ARGOCD_TOKEN_NAME` | staging-plone62.yml | ArgoCD repository token name |
+| `SMARTWEB_ARGOCD_ACCESS_TOKEN` | staging-plone62.yml | ArgoCD repository access token |
+| `SMARTWEB_ARGOCD_REPO_URL` | staging-plone62.yml | ArgoCD repository URL |
 
 ### Repository variables
 
