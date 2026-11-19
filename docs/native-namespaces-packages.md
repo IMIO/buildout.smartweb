@@ -716,7 +716,7 @@ branch `master` (`plone62` merged by
 out by** `dev.cfg`, `prod.cfg` · **Older stacks** (Python 2, Plone 4.3 to 6.0)
 stay on 1.1
 
-🚧 1.1 calls `get_distribution()` in `__init__.py`.
+1.1 calls `get_distribution()` in `__init__.py`: fixed in 2.0.0.
 
 Migrated 2026-11-16, then modernized like collective.messagesviewlet
 (2026-11-17). Its upstream PR is the whole branch.
