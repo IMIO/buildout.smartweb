@@ -9,8 +9,8 @@ Last updated: 2026-11-19.
 
 ## Status
 
-**19 pinned** (12 migrated, 7 bumped) · **4 merged**, not released · **11 PRs
-open** · **7 branches pushed**, no PR yet · **3 not started** (none of them
+**20 pinned** (13 migrated, 7 bumped) · **4 merged**, not released · **11 PRs
+open** · **6 branches pushed**, no PR yet · **3 not started** (none of them
 blocks Plone 6.2.3)
 
 ✅ done · ⬜ to do · ➖ not applicable · 🚧 its pinned release calls
@@ -55,7 +55,7 @@ blocks Plone 6.2.3)
 | [imio.smartweb.common](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy) | ✅ | ✅ | [#37](https://github.com/IMIO/imio.smartweb.common/pull/37) | ⬜ | ⬜ | ⬜ |
 | [imio.smartweb.core](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy) 🚧 | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [imio.smartweb.locales](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy) | ✅ | ✅ | [#4](https://github.com/IMIO/imio.smartweb.locales/pull/4) | ✅ | 2.0.0 | ✅ |
-| [imio.smartweb.policy](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [imio.smartweb.policy](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy) | ✅ | ✅ | [#28](https://github.com/IMIO/imio.smartweb.policy/pull/28) | ✅ | 2.0.0 | ✅ |
 | [pas.plugins.kimug](native-namespaces-packages.md#paspluginskimug) | ✅ | ✅ | [#34](https://github.com/IMIO/pas.plugins.kimug/pull/34) | ✅ | 2.0.0 | ✅ |
 | [plone.app.imagecropping](native-namespaces-packages.md#bumped-to-a-native-release) | ➖ | ⬜ | ➖ | ➖ | 4.0.0 | ✅ |
 | [plone.formwidget.geolocation](native-namespaces-packages.md#ploneformwidgetgeolocation) ⚠️ | ✅ | ⬜ | ➖ | ✅ | ⬜ | ⬜ |
@@ -106,7 +106,7 @@ depends on it, so it doesn't need to be migrated
 
 Rows with ⬜ in the PR column, and open questions on existing PRs:
 
-- [ ] imio.smartweb.core, .policy (common has one already)
+- [ ] imio.smartweb.core (common has one already)
 - [ ] imio.omnia.core, imio.omnia.tinymce (IMIO)
 - [ ] imio.helpers, once its maintainers agree on a 1.3.x maintenance branch
   for the other iMio applications
@@ -133,10 +133,11 @@ release can't depend on a git branch, so the order matters:
   collective.privacy without a version, so it doesn't wait for it.
 - [ ] imio.omnia.core and imio.omnia.tinymce together (shared `imio.omnia`
   namespace).
-- [ ] imio.smartweb.common, .core and .policy together, pinned in one
-  commit. Drop Plone 6.0 from imio.smartweb.core's classifiers first.
-  imio.smartweb.locales 2.0.0 is already out: it only requires setuptools,
-  so it doesn't wait for the other three.
+- [ ] imio.smartweb.common and .core together, pinned in one commit. Drop
+  Plone 6.0 from imio.smartweb.core's classifiers first.
+  imio.smartweb.locales 2.0.0 and imio.smartweb.policy 2.0.0 are already
+  out: locales only requires setuptools, and policy requires
+  imio.smartweb.core without a version, so neither waits for the other two.
 - [ ] imio.pyutils as 1.3.0 (not breaking; `master` says 1.2.4.dev0).
   collective.geotransform as 4.0.0 (3.0 is its Plone 6.0 release).
   collective.instancebehavior as 0.6 (never released, 0.5 is the latest).
