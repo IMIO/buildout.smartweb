@@ -7,6 +7,7 @@
     - collective.geolocationbehavior 2.0.0
     - collective.js.jqueryui 3.0.0
     - collective.messagesviewlet 2.0.0
+    - collective.pivot 2.0.0
     - collective.preventactions 0.4.0
     - collective.taxonomy 4.0.0
     - collective.timedevents 2.0.0

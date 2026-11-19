@@ -519,23 +519,27 @@ Migrated 2026-11-16, then modernized like pas.plugins.kimug (2026-11-17). Its
 
 **Namespace** `collective` · **Repository**
 [IMIO/collective.pivot](https://github.com/IMIO/collective.pivot), branch
-`plone62` · **Variant**
+`main` · **Variant**
 [setup.py](native-namespaces-migration.md#the-migration-recipe) · **Checked
-out by** `dev.cfg`, `prod.cfg` · **Older stacks** (Plone 4.3) stay on the
-current releases
+out by** none · **Older stacks** (Python 2, Plone 4.3 to 6.1) stay on 1.0b2
+
+Migrated on `plone62`, merged into `main`
+([#4](https://github.com/IMIO/collective.pivot/pull/4)) and released as
+**2.0.0** on 2026-11-19. `versions.cfg` pins 2.0.0, and no config checks it
+out any more (`sources.cfg` points to `main` again).
 
 - Standard recipe, then `git rm src/collective/__init__.py`.
 - `locales/update.py` uses `str(files(domain))` instead of
   `pkg_resources.resource_filename(domain, "")`.
-- **Breaking: drops Python 2.** Native namespaces need Python 3, so the
-  Python 2.7 job (Plone 4.3) is removed from the CI matrix and the
-  classifiers. Its config files (`test_plone4.3.cfg`,
-  `requirements_plone-4.3.x.txt`…) are still there: delete them when the
-  branch is merged.
-- New Plone 6.2.3 test config (`test_plone6.2.cfg` and
-  `requirements_plone-6.2.x.txt`) and CI job. The Plone 5.2 and 6.0
-  requirements now install `horse-with-no-namespace`, which those Plone
-  releases don't ship.
+- **Breaking: Python 3.10+ and Plone 6.2 only**, hence 2.0.0. Plone 5.2,
+  6.0, Python 2 and 3.8–3.9 are dropped, with their CI jobs, `.travis.yml`,
+  `ci.cfg` and the 4.3/5.2/6.0 buildout and requirements files. CI tests
+  Python 3.10 to 3.14 on Plone 6.2 (`test_plone6.2.cfg`,
+  `requirements_plone-6.2.x.txt`).
+- The Plone 4/5 code paths are gone (`HAS_PLONE_5_AND_MORE`, the `plone4`
+  and `plone5` profiles, the zcml conditions): the `plone6` profile became
+  `profiles/default`. The profile id and version are unchanged, so no
+  upgrade step is needed.
 
 ## collective.preventactions
 

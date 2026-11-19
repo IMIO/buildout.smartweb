@@ -9,7 +9,7 @@ Last updated: 2026-11-19.
 
 ## Status
 
-**17 pinned** (10 migrated, 7 bumped) · **4 merged**, not released · **12 PRs
+**18 pinned** (11 migrated, 7 bumped) · **4 merged**, not released · **11 PRs
 open** · **8 branches pushed**, no PR yet · **3 not started** (none of them
 blocks Plone 6.2.3)
 
@@ -33,7 +33,7 @@ blocks Plone 6.2.3)
 | [collective.instancebehavior](native-namespaces-packages.md#collectiveinstancebehavior) | ✅ | ✅ | [#7](https://github.com/collective/collective.instancebehavior/pull/7) | ⬜ | ⬜ | ⬜ |
 | [collective.js.jqueryui](native-namespaces-packages.md#collectivejsjqueryui) | ✅ | ✅ | [#57](https://github.com/collective/collective.js.jqueryui/pull/57) | ✅ | ✅ | ✅ |
 | [collective.messagesviewlet](native-namespaces-packages.md#collectivemessagesviewlet) | ✅ | ✅ | [#24](https://github.com/collective/collective.messagesviewlet/pull/24) | ✅ | 2.0.0 | ✅ |
-| [collective.pivot](native-namespaces-packages.md#collectivepivot) | ✅ | ✅ | [#4](https://github.com/IMIO/collective.pivot/pull/4) | ⬜ | ⬜ | ⬜ |
+| [collective.pivot](native-namespaces-packages.md#collectivepivot) | ✅ | ✅ | [#4](https://github.com/IMIO/collective.pivot/pull/4) | ✅ | 2.0.0 | ✅ |
 | [collective.preventactions](native-namespaces-packages.md#collectivepreventactions) | ✅ | ✅ | [#2](https://github.com/collective/collective.preventactions/pull/2) | ✅ | 0.4.0 | ✅ |
 | [collective.privacy](native-namespaces-packages.md#collectiveprivacy) 🚧 | ✅ | ✅ | [#22](https://github.com/collective/collective.privacy/pull/22) | ⬜ | ⬜ | ⬜ |
 | [collective.prometheus](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
@@ -208,7 +208,6 @@ release can't depend on a git branch, so the order matters:
 
 - [ ] imio.smartweb.common's own `base.cfg`: drop the `[versions]` that restore
   Plone 6.2.3 pins, buildout.smartweb pins 6.2.3 now.
-- [ ] collective.pivot: delete the Plone 4.3 config files when merging.
 - [ ] collective.preventactions: `sources.cfg` still names its old `plone6`
   branch, switch it to `master`. Like pas.plugins.kimug, it is released and
   pinned, and no config checks it out any more.
