@@ -1,6 +1,18 @@
 name: Test image
 on:
   pull_request:
+  workflow_call:
+    inputs:
+      image_name:
+        description: 'Image to test instead of building it, relative to the registry. Empty to build it'
+        type: string
+        required: false
+        default: ''
+      image_tag:
+        description: 'Tag of image_name'
+        type: string
+        required: false
+        default: ''
   workflow_dispatch:
 
 permissions:
@@ -11,6 +23,8 @@ jobs:
     uses: IMIO/gha-workflows/.github/workflows/plone-image-test.yml@v1
     with:
       addons: imio.smartweb.policy
+      image_name: ${{ inputs.image_name }}
+      image_tag: ${{ inputs.image_tag }}
       log_allowlist: tests/log_allowlist.txt
       runner_label: gha-runners-smartweb
     secrets:
