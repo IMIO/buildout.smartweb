@@ -9,8 +9,8 @@ Last updated: 2026-11-19.
 
 ## Status
 
-**18 pinned** (11 migrated, 7 bumped) · **4 merged**, not released · **11 PRs
-open** · **8 branches pushed**, no PR yet · **3 not started** (none of them
+**19 pinned** (12 migrated, 7 bumped) · **4 merged**, not released · **11 PRs
+open** · **7 branches pushed**, no PR yet · **3 not started** (none of them
 blocks Plone 6.2.3)
 
 ✅ done · ⬜ to do · ➖ not applicable · 🚧 its pinned release calls
