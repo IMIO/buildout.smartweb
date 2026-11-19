@@ -1099,14 +1099,16 @@ applications still run on Python 2, and PEP 420 doesn't exist there. So
 [common](https://github.com/IMIO/imio.smartweb.common),
 [core](https://github.com/IMIO/imio.smartweb.core),
 [locales](https://github.com/IMIO/imio.smartweb.locales),
-[policy](https://github.com/IMIO/imio.smartweb.policy), branch `plone62` ·
-**Variant** [setup.py](native-namespaces-migration.md#the-migration-recipe) ·
-**Checked out by** `dev.cfg`, `prod.cfg`
+[policy](https://github.com/IMIO/imio.smartweb.policy), branch `plone62`
+(locales: `main`) · **Variant**
+[setup.py](native-namespaces-migration.md#the-migration-recipe) · **Checked
+out by** `dev.cfg`, `prod.cfg` (locales: `dev.cfg` only)
 
 🚧 imio.smartweb.core calls `resource_filename()` in `browser/anysurfer.py`.
 
-Release the four together and pin the new versions in one commit. Same change
-in all four:
+imio.smartweb.locales is already released (see below). Release the other
+three together and pin the new versions in one commit. Same change in all
+four:
 
 ```diff
 -    packages=find_packages("src", exclude=["ez_setup"]),
@@ -1178,7 +1180,12 @@ Plone 6.2 breakages:
   packages.
 
 **imio.smartweb.locales**: its own buildout (releaser, i18ndude) moved to
-Plone 6.2.3.
+Plone 6.2.3. Merged into `main`
+([#4](https://github.com/IMIO/imio.smartweb.locales/pull/4)) and released as
+**2.0.0** on 2026-11-19 (Python 3.10+, Plone 6.2 only; it only requires
+setuptools). `versions.cfg` pins 2.0.0, `prod.cfg` no longer checks it out,
+and `sources.cfg` points to `main` again. `dev.cfg` still checks it out, to
+work on translations.
 
 **imio.smartweb.policy**: its own buildout moved to Plone 6.2.3 and
 buildout.smartweb `plone62`.

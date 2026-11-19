@@ -106,7 +106,7 @@ depends on it, so it doesn't need to be migrated
 
 Rows with ⬜ in the PR column, and open questions on existing PRs:
 
-- [ ] imio.smartweb.core, .locales, .policy (common has one already)
+- [ ] imio.smartweb.core, .policy (common has one already)
 - [ ] imio.omnia.core, imio.omnia.tinymce (IMIO)
 - [ ] imio.helpers, once its maintainers agree on a 1.3.x maintenance branch
   for the other iMio applications
@@ -133,8 +133,10 @@ release can't depend on a git branch, so the order matters:
   collective.privacy without a version, so it doesn't wait for it.
 - [ ] imio.omnia.core and imio.omnia.tinymce together (shared `imio.omnia`
   namespace).
-- [ ] The four imio.smartweb.* together, pinned in one commit. Drop Plone 6.0
-  from imio.smartweb.core's classifiers first.
+- [ ] imio.smartweb.common, .core and .policy together, pinned in one
+  commit. Drop Plone 6.0 from imio.smartweb.core's classifiers first.
+  imio.smartweb.locales 2.0.0 is already out: it only requires setuptools,
+  so it doesn't wait for the other three.
 - [ ] imio.pyutils as 1.3.0 (not breaking; `master` says 1.2.4.dev0).
   collective.geotransform as 4.0.0 (3.0 is its Plone 6.0 release).
   collective.instancebehavior as 0.6 (never released, 0.5 is the latest).
