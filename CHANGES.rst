@@ -5,10 +5,12 @@
     - collective.anysurfer 2.0.0
     - collective.autoscaling 2.0.0
     - collective.geolocationbehavior 2.0.0
+    - collective.js.jqueryui 3.0.0
     - collective.messagesviewlet 2.0.0
     - collective.preventactions 0.4.0
     - collective.taxonomy 4.0.0
     - collective.timedevents 2.0.0
+    - collective.z3cform.select2 4.0.0
     - eea.facetednavigation 16.5
     - pas.plugins.kimug 2.0.0
     - pas.plugins.oidc 2.1.0

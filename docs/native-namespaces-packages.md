@@ -461,8 +461,8 @@ behaviors to a single page or procedure.
 
 **Namespaces** `collective`, `collective.js` · **Repository**
 [collective/collective.js.jqueryui](https://github.com/collective/collective.js.jqueryui),
-branch `master` (upstream) · **Checked out by** `dev.cfg`, `prod.cfg` ·
-**Older stacks** stay on 2.2.x
+branch `master` (upstream) · **Checked out by** none · **Older stacks** stay
+on 2.2.x
 
 Migrated upstream: `master` (3.0.0.dev0) is Plone 6.2 only, Python 3.10+ and
 native, merged on 2026-11-17
@@ -470,8 +470,8 @@ native, merged on 2026-11-17
 `pkg_resources` use. [#58](https://github.com/collective/collective.js.jqueryui/pull/58),
 merged the same day, fixes the plugin resource ids of the aggregated
 JavaScript: until then, jQuery UI was never loaded. Check what uses it on a
-SmartWeb site. `sources.cfg` checks out `master` until 3.0.0 is released:
-then drop the checkout and pin it.
+SmartWeb site. Released as **3.0.0** on 2026-11-19: `versions.cfg` pins it,
+and no config checks it out any more (removed from `sources.cfg`).
 
 ## collective.messagesviewlet
 
@@ -777,8 +777,8 @@ support, into `plone61`) are closed: their work is combined in
 
 **Namespaces** `collective`, `collective.z3cform` · **Repository**
 [collective/collective.z3cform.select2](https://github.com/collective/collective.z3cform.select2),
-branch `master` (upstream) · **Checked out by** `dev.cfg`, `prod.cfg` ·
-**Older stacks** stay on 3.0.0b9
+branch `master` (upstream) · **Checked out by** none · **Older stacks** stay
+on 3.0.0b9
 
 Migrated upstream: `master` (4.0.0b1.dev0) is Plone 6.2 only, Python 3.10+ and
 native, merged on 2026-11-17
@@ -786,8 +786,9 @@ native, merged on 2026-11-17
 `pkg_resources` use. `master` also carries unreleased changes made since
 3.0.0b9: Plone 6.1 support, without Plone 4 and 5
 ([#14](https://github.com/collective/collective.z3cform.select2/pull/14)).
-Check the select2 widgets on a SmartWeb site. `sources.cfg` checks out
-`master` until 4.0.0b1 is released: then drop the checkout and pin it.
+Check the select2 widgets on a SmartWeb site. Released as **4.0.0** (not
+4.0.0b1) on 2026-11-19: `versions.cfg` pins it, and no config checks it out
+any more (removed from `sources.cfg`).
 
 ## eea.facetednavigation
 

@@ -5,11 +5,11 @@ from old-style namespace packages: where each package stands, what's left to
 do, and how to migrate one. What changed in each package, and its gotchas:
 [package details](native-namespaces-packages.md).
 
-Last updated: 2026-11-18.
+Last updated: 2026-11-19.
 
 ## Status
 
-**13 pinned** (6 migrated, 7 bumped) · **6 merged**, not released · **13 PRs
+**15 pinned** (8 migrated, 7 bumped) · **4 merged**, not released · **13 PRs
 open** · **9 branches pushed**, no PR yet · **3 not started** (none of them
 blocks Plone 6.2.3)
 
@@ -31,7 +31,7 @@ blocks Plone 6.2.3)
 | [collective.geolocationbehavior](native-namespaces-packages.md#bumped-to-a-native-release) | ➖ | ⬜ | ➖ | ➖ | 2.0.0 | ✅ |
 | [collective.geotransform](native-namespaces-packages.md#collectivegeotransform) | ✅ | ✅ | [#25](https://github.com/collective/collective.geotransform/pull/25) | ⬜ | ⬜ | ⬜ |
 | [collective.instancebehavior](native-namespaces-packages.md#collectiveinstancebehavior) | ✅ | ✅ | [#7](https://github.com/collective/collective.instancebehavior/pull/7) | ⬜ | ⬜ | ⬜ |
-| [collective.js.jqueryui](native-namespaces-packages.md#collectivejsjqueryui) | ✅ | ✅ | [#57](https://github.com/collective/collective.js.jqueryui/pull/57) | ✅ | ⬜ | ⬜ |
+| [collective.js.jqueryui](native-namespaces-packages.md#collectivejsjqueryui) | ✅ | ✅ | [#57](https://github.com/collective/collective.js.jqueryui/pull/57) | ✅ | ✅ | ✅ |
 | [collective.messagesviewlet](native-namespaces-packages.md#collectivemessagesviewlet) | ✅ | ✅ | [#24](https://github.com/collective/collective.messagesviewlet/pull/24) | ✅ | 2.0.0 | ✅ |
 | [collective.pivot](native-namespaces-packages.md#collectivepivot) | ✅ | ✅ | [#4](https://github.com/IMIO/collective.pivot/pull/4) | ⬜ | ⬜ | ⬜ |
 | [collective.preventactions](native-namespaces-packages.md#collectivepreventactions) | ✅ | ✅ | [#2](https://github.com/collective/collective.preventactions/pull/2) | ✅ | 0.4.0 | ✅ |
@@ -42,7 +42,7 @@ blocks Plone 6.2.3)
 | [collective.themefragments](native-namespaces-packages.md#collectivethemefragments) | ✅ | ✅ | [#20](https://github.com/collective/collective.themefragments/pull/20) | ⬜ | ⬜ | ⬜ |
 | [collective.timedevents](native-namespaces-packages.md#collectivetimedevents) 🚧 | ✅ | ✅ | [#13](https://github.com/collective/collective.timedevents/pull/13) | ✅ | ✅ | ✅ |
 | [collective.upgrade](native-namespaces-packages.md#collectiveupgrade) | ✅ | ✅ | [#20](https://github.com/collective/collective.upgrade/pull/20) | ⬜ | ⬜ | ⬜ |
-| [collective.z3cform.select2](native-namespaces-packages.md#collectivez3cformselect2) | ✅ | ✅ | [#15](https://github.com/collective/collective.z3cform.select2/pull/15) | ✅ | ⬜ | ⬜ |
+| [collective.z3cform.select2](native-namespaces-packages.md#collectivez3cformselect2) | ✅ | ✅ | [#15](https://github.com/collective/collective.z3cform.select2/pull/15) | ✅ | ✅ | ✅ |
 | [eea.facetednavigation](native-namespaces-packages.md#eeafacetednavigation) | ✅ | ✅ | [#65](https://github.com/collective/eea.facetednavigation/pull/65) | ⬜ | ⬜ | ⬜ |
 | [hurry.filesize](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [iaweb.privacy](native-namespaces-packages.md#iawebprivacy) | ✅ | ✅ | [#2](https://github.com/IMIO/iaweb.privacy/pull/2) | ⬜ | ⬜ | ⬜ |
@@ -138,9 +138,8 @@ release can't depend on a git branch, so the order matters:
   collective.instancebehavior as 0.6 (never released, 0.5 is the latest).
   collective.themefragments as 3.0.0 (2.12, from 2019, is the latest).
   Every other package as 2.0.0.
-- [ ] Ask upstream for collective.fingerpointing 2.0.0,
-  collective.js.jqueryui 3.0.0 and collective.z3cform.select2 4.0.0b1, and
-  for collective.solr 11.0.0 once
+- [ ] Ask upstream for collective.fingerpointing 2.0.0, and for
+  collective.solr 11.0.0 once
   [#408](https://github.com/collective/collective.solr/pull/408) is merged.
 - [ ] Ask upstream for plone.formwidget.geolocation 4.0.0 once pat-leaflet
   has released the `leaflet.refresh` handler, with its bundle rebuilt against
@@ -165,13 +164,13 @@ release can't depend on a git branch, so the order matters:
 - [ ] collective.solr 11.0.0.dev0 (two major versions from 9.4.0): search,
   faceted navigation and indexing. Check the production Solr version too
   ([details](native-namespaces-packages.md#collectivesolr)).
-- [ ] collective.z3cform.select2: the select2 widgets.
+- [ ] collective.z3cform.select2 4.0.0: the select2 widgets.
 - [ ] collective.instancebehavior: imio.smartweb.core's instance behaviors
   form (enable then disable a taxonomy on a page).
 - [ ] eea.facetednavigation 17.0.0.dev0: the faceted views, their widgets and
   the faceted edit form (zpretty reformatted every template, and the JS
   bundles moved under `src/`).
-- [ ] collective.js.jqueryui: whatever uses jQuery UI, which the bundle never
+- [ ] collective.js.jqueryui 3.0.0: whatever uses jQuery UI, which the bundle never
   loaded before
   [#58](https://github.com/collective/collective.js.jqueryui/pull/58).
 - [ ] collective.themefragments: the theme fragments and their Python
