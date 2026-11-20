@@ -1100,6 +1100,11 @@ applications still run on Python 2, and PEP 420 doesn't exist there. So
   `bin/zopepy` imports it with the `imio.smartweb.*` packages.
 - No other `pkg_resources` use. **No breaking change**: release 1.3.0 (minor
   bump; `master` says 1.2.4.dev0).
+- `versions.cfg` pins 1.2.3 (2026-11-20), as for the other checked-out
+  packages. Its `CHANGES.rst` lists the native namespace entry, but the
+  release isn't native: the wheel still ships an `nspkg.pth` file and
+  `namespace_packages.txt`, and its `setup.py` declares
+  `namespace_packages=["imio"]`. Keep the checkout until 1.3.0.
 
 ## imio.smartweb.common, .core, .locales, .policy
 

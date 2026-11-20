@@ -33,6 +33,11 @@
     - zope.session 5.1
   [boulch, bsuttor, remdub]
 
+- imio.pyutils 1.2.3
+
+  - Added ``utils.is_true_value`` to check if a value (like an environment variable) is considered as true.
+    [sgeulette]
+
 - imio.smartweb.core 2.0.0
 
   - Migrate to Plone 6.2.3 : Update import, remove init, remove pkg_resources
