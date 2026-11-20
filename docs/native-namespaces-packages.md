@@ -53,7 +53,9 @@ Migrated 2026-11-16, following collective.autoscaling.
 
 **Namespace** `collective` · **Repository**
 [collective/collective.autopublishing](https://github.com/collective/collective.autopublishing),
-branch `plone62` · **Variant**
+branch `master` (`plone62` merged by
+[#12](https://github.com/collective/collective.autopublishing/pull/12),
+2026-11-20) · **Variant**
 [plone.meta](native-namespaces-migration.md#variant-plonemeta) · **Checked
 out by** `dev.cfg`, `prod.cfg` · **Older stacks** (Plone 5.2, 6.0) stay on
 1.1b1
@@ -77,17 +79,17 @@ Migrated 2026-11-16, following collective.anysurfer.
 - The report view (`@@autopublish-report`) used the `eva.content` i18n
   domain and had no i18n markup: it is now translatable, with French
   translations.
-- **Depends on collective.timedevents**, whose 1.1 release blocks Plone 6.2.3.
-  Until it is released, the package's `mx.ini` and tox (`test_deps_additional`
-  in `.meta.toml`) install its `plone62` branch from GitHub. Release
-  timedevents first (a PyPI release can't depend on a git branch), then
-  replace both with a version pin.
+- **Depends on collective.timedevents 2.0.0**: its 1.1 release blocks Plone
+  6.2.3, so `pyproject.toml` requires `>=2.0.0`. Since that release,
+  `mx.ini` and tox (`test_deps_additional` in `.meta.toml`) no longer install
+  its branch from GitHub.
 - Also depends on collective.complexrecordsproxy. Its 1.1 release is still
   old-style, but its wheel imports next to the native portions without
   horse-with-no-namespace (its `nspkg.pth`, no `pkg_resources` call).
 - Tested with tox and zope.testrunner: the plone.meta test matrix covers
-  Plone 6.2.3 and 6.1 on Python 3.10 to 3.13. Checked on a Plone 6.2.3
-  classic site: installation, control panel, report view and `@@tick_hourly`.
+  Plone 6.2.3 on Python 3.10 to 3.14, and 6.1 on 3.10 to 3.13. Checked on a
+  Plone 6.2.3 classic site: installation, control panel, report view and
+  `@@tick_hourly`.
 - Checked from buildout.smartweb: `.venv/bin/buildout -N` no longer lists it
   as old-style, `bin/zopepy` imports it from the `src/` checkout, and the
   wheel has no namespace marker. `versions.cfg` still pins 1.1b1, as for the
@@ -397,7 +399,7 @@ checks it out any more (`sources.cfg` points to `master`).
 
 **Namespace** `collective` · **Repository**
 [collective/collective.instancebehavior](https://github.com/collective/collective.instancebehavior),
-branch `plone62` (**local, not pushed yet**) · **Variant**
+branch `plone62` · **Variant**
 [plone.meta](native-namespaces-migration.md#variant-plonemeta) · **Checked
 out by** `dev.cfg`, `prod.cfg` · **Older stacks** (Plone 6.1 and older,
 Python 2.7) stay on 0.5
@@ -407,10 +409,9 @@ imio.smartweb.core requires it and includes its ZCML: its instance behaviors
 form calls `enable_behaviors` / `disable_behaviors` to add collective.taxonomy
 behaviors to a single page or procedure.
 
-- **The branch only exists in `~/github-collective/collective.instancebehavior`**,
-  cloned into `src/` by hand (with the GitHub `origin` that `sources.cfg`
-  names). Push it before anyone else runs buildout: mr.developer can't
-  clone a branch that isn't on GitHub. Then open the PR.
+Its upstream PR, [#7](https://github.com/collective/collective.instancebehavior/pull/7)
+(opened 2026-11-18), is the whole branch.
+
 - plone.meta 2.12.0 configures it, and the metadata moved to `pyproject.toml`,
   written by hand (`setup-to-pyproject` can't parse the `long_description`
   built by `read_file()`). `setup.py` is now only `setup()`. The package was
@@ -438,8 +439,8 @@ behaviors to a single page or procedure.
   string instead of a tuple: CMFCore's indexing queue drops it, so every
   index is reindexed instead of `object_provides` only.
 - Tested with tox and zope.testrunner: the plone.meta test matrix covers
-  Plone 6.2.3 and 6.1 on Python 3.10 to 3.13. The only test asserted
-  `1 == 1`: five functional tests now cover `enable_behaviors`,
+  Plone 6.2.3 on Python 3.10 to 3.14, and 6.1 on 3.10 to 3.13. The only test
+  asserted `1 == 1`: five functional tests now cover `enable_behaviors`,
   `disable_behaviors`, `instance_behaviors_of` and the behavior assignable,
   with a test behavior and Dexterity type. Run locally: the whole matrix,
   plus lint, coverage, dependencies, circular and release-check.
@@ -644,7 +645,9 @@ and it was never checked out.
 
 **Namespace** `collective` · **Repository**
 [collective/collective.themefragments](https://github.com/collective/collective.themefragments),
-branch `plone62` (**local, not pushed yet**) · **Variant**
+branch `master` (`plone62` merged by
+[#20](https://github.com/collective/collective.themefragments/pull/20),
+2026-11-20) · **Variant**
 [plone.meta](native-namespaces-migration.md#variant-plonemeta) · **Checked
 out by** `dev.cfg`, `prod.cfg` · **Older stacks** (Plone 4.3 to 6.0, Python
 2.7) stay on 2.12
@@ -653,10 +656,9 @@ Migrated 2026-11-17. In SmartWeb, imio.smartweb.policy requires it, includes
 its ZCML and allows `requests` in RestrictedPython for the fragment modules.
 The fragment tile isn't loaded: plone.tiles isn't installed.
 
-- **The branch only exists in `~/github-collective/collective.themefragments`**,
-  cloned into `src/` by hand (with the GitHub `origin` that `sources.cfg`
-  names). Push it before anyone else runs buildout: mr.developer can't
-  clone a branch that isn't on GitHub. Then open the PR.
+The upstream maintainer approved the PR, no longer uses the package and
+suggested that iMio take it over. The 3.0.0 release is asked on the PR.
+
 - plone.meta 2.12.0 configures it, and the metadata moved to `pyproject.toml`,
   written by hand (`setup-to-pyproject` can't parse the `long_description`
   concatenation). `setup.py` is now only `setup()`. The package was already
@@ -665,8 +667,8 @@ The fragment tile isn't loaded: plone.tiles isn't installed.
   and a `CONTRIBUTORS.md` lists the git authors.
 - **License**: `setup.py` only said "GPL", and there was no license file.
   The metadata says SPDX `GPL-2.0-only` and `LICENSE.md` / `LICENSE.GPL` were
-  added, like plone.app.theming, which the fragments come from. Ask upstream
-  before releasing.
+  added, like plone.app.theming, which the fragments come from. Upstream
+  approved it with the PR.
 - Gone: Travis (Plone 4.3 to 5.2, Python 2.7 to 3.7), the buildout
   configurations based on buildout.plonetest, and `bootstrap.py`.
 - No other `pkg_resources` use. The Python 2 and Plone 4 code is gone: `six`
@@ -688,12 +690,12 @@ The fragment tile isn't loaded: plone.tiles isn't installed.
   `cmf.ModifyPortalContent`), and the tests use `plone.testing.zope`.
 - **Version 3.0.0, not 2.0.0**: 2.12 is already a 2.x release.
 - Tested with tox and zope.testrunner: the plone.meta test matrix covers
-  Plone 6.2.3 and 6.1 on Python 3.10 to 3.13 (11 functional tests of the
-  traversal views, which already passed on 6.2.3 before the changes). Run
-  locally: the whole matrix, plus lint, coverage, dependencies, circular and
-  release-check. **Not covered by the tests**: the fragment tile (no tile
-  tests, 31% coverage of `tiles.py`) and the theme cache, which only runs
-  with debug mode off (the tests force it on).
+  Plone 6.2.3 on Python 3.10 to 3.14, and 6.1 on 3.10 to 3.13 (11 functional
+  tests of the traversal views, which already passed on 6.2.3 before the
+  changes). Run locally: the whole matrix, plus lint, coverage, dependencies,
+  circular and release-check. **Not covered by the tests**: the fragment tile
+  (no tile tests, 31% coverage of `tiles.py`) and the theme cache, which only
+  runs with debug mode off (the tests force it on).
 - `make install` builds a uv development environment on Plone 6.2.3 (the
   Makefile of collective.complexrecordsproxy: the package doesn't depend on
   Products.CMFPlone, so it adds it and plone.app.contenttypes), and the
@@ -754,8 +756,7 @@ Migrated 2026-11-16, then modernized like collective.messagesviewlet
   marker. The old develop egg (1.2.dev0, root layout) is replaced by
   buildout: delete the stale `collective.timedevents.egg-info` at the
   repository root if it is still there.
-- collective.autopublishing's `mx.ini` and tox install this branch from
-  GitHub: release timedevents first, then replace the branch there.
+- collective.autopublishing requires the 2.0.0 release (`>=2.0.0`).
 - The README still documents the Zope 2 `<clock-server>`, which WSGI Zope
   no longer has: on Plone 6 the views are called by cron (or any HTTP
   client) with a Manager account.

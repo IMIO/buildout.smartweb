@@ -9,7 +9,7 @@ Last updated: 2026-11-20.
 
 ## Status
 
-**25 pinned** (18 migrated, 7 bumped) · **3 merged**, not released · **8 PRs
+**25 pinned** (18 migrated, 7 bumped) · **5 merged**, not released · **6 PRs
 open** · **5 branches pushed**, no PR yet · **3 not started** (none of them
 blocks Plone 6.2.3)
 
@@ -21,7 +21,7 @@ blocks Plone 6.2.3)
 | Package | Branch | Checked | PR | Merged | Released | Pinned |
 |---|:-:|:-:|:-:|:-:|:-:|:-:|
 | [collective.anysurfer](native-namespaces-packages.md#collectiveanysurfer) | ✅ | ✅ | [#9](https://github.com/collective/collective.anysurfer/pull/9) | ✅ | ✅ | ✅ |
-| [collective.autopublishing](native-namespaces-packages.md#collectiveautopublishing) | ✅ | ✅ | [#12](https://github.com/collective/collective.autopublishing/pull/12) | ⬜ | ⬜ | ⬜ |
+| [collective.autopublishing](native-namespaces-packages.md#collectiveautopublishing) | ✅ | ✅ | [#12](https://github.com/collective/collective.autopublishing/pull/12) | ✅ | ⬜ | ⬜ |
 | [collective.autoscaling](native-namespaces-packages.md#collectiveautoscaling) | ✅ | ✅ | [#9](https://github.com/collective/collective.autoscaling/pull/9) | ✅ | ✅ | ✅ |
 | [collective.behavior.talcondition](native-namespaces-packages.md#collectivebehaviortalcondition) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [collective.complexrecordsproxy](native-namespaces-packages.md#collectivecomplexrecordsproxy) | ✅ | ✅ | [#3](https://github.com/collective/collective.complexrecordsproxy/pull/3) | ✅ | ⬜ | ⬜ |
@@ -39,7 +39,7 @@ blocks Plone 6.2.3)
 | [collective.prometheus](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [collective.solr](native-namespaces-packages.md#collectivesolr) | ✅ | ✅ | [#408](https://github.com/collective/collective.solr/pull/408) | ⬜ | ⬜ | ⬜ |
 | [collective.taxonomy](native-namespaces-packages.md#bumped-to-a-native-release) | ➖ | ⬜ | ➖ | ➖ | 4.0.0 | ✅ |
-| [collective.themefragments](native-namespaces-packages.md#collectivethemefragments) | ✅ | ✅ | [#20](https://github.com/collective/collective.themefragments/pull/20) | ⬜ | ⬜ | ⬜ |
+| [collective.themefragments](native-namespaces-packages.md#collectivethemefragments) | ✅ | ✅ | [#20](https://github.com/collective/collective.themefragments/pull/20) | ✅ | ⬜ | ⬜ |
 | [collective.timedevents](native-namespaces-packages.md#collectivetimedevents) | ✅ | ✅ | [#13](https://github.com/collective/collective.timedevents/pull/13) | ✅ | ✅ | ✅ |
 | [collective.upgrade](native-namespaces-packages.md#collectiveupgrade) | ✅ | ✅ | [#20](https://github.com/collective/collective.upgrade/pull/20) | ⬜ | ⬜ | ⬜ |
 | [collective.z3cform.select2](native-namespaces-packages.md#collectivez3cformselect2) | ✅ | ✅ | [#15](https://github.com/collective/collective.z3cform.select2/pull/15) | ✅ | ✅ | ✅ |
@@ -115,18 +115,15 @@ Rows with ⬜ in the PR column, and open questions on existing PRs:
   ([#7](https://github.com/collective/collective.instancebehavior/pull/7)):
   ask upstream which license applies
   ([details](native-namespaces-packages.md#collectiveinstancebehavior))
-- [ ] collective.themefragments
-  ([#20](https://github.com/collective/collective.themefragments/pull/20)):
-  ask upstream about the license version
-  ([details](native-namespaces-packages.md#collectivethemefragments))
 
 ### Release
 
 When the Plone 6.2 stack goes to production ([step 6](#6-release)). A PyPI
 release can't depend on a git branch, so the order matters:
 
-- [ ] collective.timedevents, then collective.autopublishing (replace the
-  branch in its `mx.ini` and tox).
+- [x] collective.timedevents 2.0.0 is released: collective.autopublishing's
+  `master` requires it, and its `mx.ini` and tox no longer install the
+  branch.
 - [ ] Replace the collective.privacy branch in iaweb.privacy's `mx.ini` and
   tox by the 2.0.0 release.
 - [ ] imio.omnia.core and imio.omnia.tinymce together (shared `imio.omnia`
@@ -135,7 +132,8 @@ release can't depend on a git branch, so the order matters:
   pinned (core on 2026-11-20).
 - [ ] imio.pyutils as 1.3.0 (not breaking; `master` says 1.2.4.dev0).
   collective.instancebehavior as 0.6 (never released, 0.5 is the latest).
-  collective.themefragments as 3.0.0 (2.12, from 2019, is the latest).
+  collective.themefragments as 3.0.0 (2.12, from 2019, is the latest; asked
+  upstream on [#20](https://github.com/collective/collective.themefragments/pull/20)).
   Every other package as 2.0.0.
 - [ ] Ask upstream for collective.solr 11.0.0 once
   [#408](https://github.com/collective/collective.solr/pull/408) is merged.
