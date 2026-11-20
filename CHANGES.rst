@@ -1,6 +1,77 @@
 1.5.55 (unreleased)
 -------------------
 
+- WEB-4533 : Bump packages for PEP 420 native namespaces and drop of ``pkg_resources``
+    - collective.anysurfer 2.0.0
+    - collective.autoscaling 2.0.0
+    - collective.behavior.talcondition 2.0.0
+    - collective.fingerpointing 2.0.0
+    - collective.geolocationbehavior 2.0.0
+    - collective.geotransform 4.0.0
+    - collective.js.jqueryui 3.0.0
+    - collective.messagesviewlet 2.0.0
+    - collective.pivot 2.0.0
+    - collective.preventactions 0.4.0
+    - collective.privacy 2.0.0
+    - collective.taxonomy 4.0.0
+    - collective.timedevents 2.0.0
+    - collective.z3cform.select2 4.0.0
+    - eea.facetednavigation 16.5
+    - iaweb.privacy 2.0.0
+    - imio.gdpr 2.0.0
+    - imio.prometheus 2.0.0
+    - imio.smartweb.common 2.0.0
+    - imio.smartweb.core 2.0.0
+    - imio.smartweb.locales 2.0.0
+    - imio.smartweb.policy 2.0.0
+    - pas.plugins.kimug 2.0.0
+    - pas.plugins.oidc 2.1.0
+    - plone.app.imagecropping 4.0.0
+    - plone.formwidget.recaptcha 4.0.0
+    - plone.patternslib 9.11.1
+    - zope.minmax 4.0
+    - zope.session 5.1
+  [boulch, bsuttor, remdub]
+
+- imio.smartweb.core 2.0.0
+
+  - Migrate to Plone 6.2.3 : Update import, remove init, remove pkg_resources
+    Fix ``sitemap.xml.gz`` on Plone 6.2: plone.app.layout 6 paginates the
+    sitemap. Without a ``page`` parameter, the view gives an index of pages. The
+    smartweb items (authentic sources included) now go through ``_objects``, so
+    the index counts them and each ``?page=N`` gives its part of them.
+    [boulch]
+
+  - Remove ``collective.sendinblue`` from dependencies: it has already been
+    uninstalled by upgrade step 1073 (core 1.4.13).
+    [remdub]
+
+- imio.smartweb.common 1.2.65 (included in 2.0.0)
+
+  - Add ``@vocabulary-translations/<vocabulary_name>`` endpoint.
+    It gives the token and the title in fr, nl, de and en of each term of a vocabulary.
+    [boulch]
+
+  - WEB-4530 : Load the "JavaScript integration (head)" snippet through
+    ``@@get_analytics``, after cookie consent, like the footer one. It was
+    rendered in the page head, so trackers pasted there ran before consent.
+    [remdub]
+
+- imio.smartweb.common 2.0.0
+
+  - Fix ``@search-filters``: it always gave an empty result on Plone 6.2. Since
+    plone.restapi 10, the catalog query adapter removes ``metadata_fields`` from
+    the query. Read ``metadata_fields`` before the query is parsed.
+    [boulch]
+
+- imio.smartweb.policy 1.2.24 (included in 2.0.0)
+
+  - WEB-4523 : Only Managers can delete a language root folder (LRF) on a multilingual site.
+    [boulch]
+
+- WEB-4533 : Plone 6.2.3 migration
+  [boulch, bsuttor, remdub]
+
 - WEB-3639 : Add ``make test``: build the production image, boot it with Postgres, Solr and
   memcached, and run smoke tests (``IMIO/gha`` ``plone-image-test-notify`` checks plus
   ``tests/test_smartweb.py``). CI runs them on pull requests. Replaces the docker-compose v1
