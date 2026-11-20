@@ -1040,12 +1040,14 @@ Migrated 2026-11-17 (`52d308d`), like imio.omnia.core: release them together.
 
 **Namespace** `imio` · **Repository**
 [IMIO/imio.prometheus](https://github.com/IMIO/imio.prometheus), branch
-`plone62` · **Variant**
+`master` · **Variant**
 [plone.meta](native-namespaces-migration.md#variant-plonemeta) · **Checked
-out by** `dev.cfg`, `prod.cfg` · **Older stacks** (Python 2, Plone 4.3 to
-6.0) stay on 1.0.x
+out by** none · **Older stacks** (Python 2, Plone 4.3 to 6.1) stay on 1.0.x
 
-Migrated 2026-11-16, following pas.plugins.kimug.
+Migrated 2026-11-16, following pas.plugins.kimug. Merged into `master`
+([#2](https://github.com/IMIO/imio.prometheus/pull/2)) and released as
+**2.0.0** on 2026-11-20: `versions.cfg` pins it, and no config checks it out
+any more (`sources.cfg` points to `master`).
 
 - plone.meta 2.12.0 configures it, and the metadata moved to `pyproject.toml`.
   `setup.py` is now only `setup()`.
@@ -1056,12 +1058,12 @@ Migrated 2026-11-16, following pas.plugins.kimug.
 - Drops the dependencies the code never imported (z3c.jbot,
   plone.app.dexterity, plone.restapi) and the unused robot acceptance layer.
 - Tested with tox and zope.testrunner: the plone.meta test matrix covers
-  Plone 6.2.3 and 6.1 on Python 3.10 to 3.13, and `make install` builds a uv
-  development environment on Plone 6.2.3 (`mx.ini`, `instance.yaml`).
+  Plone 6.2.3 on Python 3.10 to 3.14 (Plone 6.1 was dropped before the
+  release), and `make install` builds a uv development environment on Plone
+  6.2.3 (`mx.ini`, `instance.yaml`).
 - Checked from buildout.smartweb: `.venv/bin/buildout -N` no longer lists it
   as old-style, `bin/zopepy` imports it from the `src/` checkout, and the
-  wheel has no namespace marker. `versions.cfg` still pins 1.0.1, as for the
-  other checked-out packages.
+  wheel has no namespace marker.
 
 ## imio.pyutils
 

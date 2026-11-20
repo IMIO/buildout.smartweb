@@ -9,7 +9,7 @@ Last updated: 2026-11-20.
 
 ## Status
 
-**26 pinned** (19 migrated, 7 bumped) · **7 merged**, not released · **4 PRs
+**27 pinned** (20 migrated, 7 bumped) · **7 merged**, not released · **3 PRs
 open** · **4 branches pushed**, no PR yet · **3 not started** (none of them
 blocks Plone 6.2.3)
 
@@ -50,7 +50,7 @@ blocks Plone 6.2.3)
 | [imio.helpers](native-namespaces-packages.md#imiohelpers) 🚧 | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [imio.omnia.core](native-namespaces-packages.md#imioomniacore) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [imio.omnia.tinymce](native-namespaces-packages.md#imioomniatinymce) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
-| [imio.prometheus](native-namespaces-packages.md#imioprometheus) | ✅ | ✅ | [#2](https://github.com/IMIO/imio.prometheus/pull/2) | ⬜ | ⬜ | ⬜ |
+| [imio.prometheus](native-namespaces-packages.md#imioprometheus) | ✅ | ✅ | [#2](https://github.com/IMIO/imio.prometheus/pull/2) | ✅ | 2.0.0 | ✅ |
 | [imio.pyutils](native-namespaces-packages.md#imiopyutils) | ✅ | ✅ | [#4](https://github.com/IMIO/imio.pyutils/pull/4) | ✅ | ⬜ | ⬜ |
 | [imio.smartweb.common](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy) | ✅ | ✅ | [#37](https://github.com/IMIO/imio.smartweb.common/pull/37) | ✅ | 2.0.0 | ✅ |
 | [imio.smartweb.core](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy) | ✅ | ✅ | [#102](https://github.com/IMIO/imio.smartweb.core/pull/102) | ✅ | 2.0.0 | ✅ |

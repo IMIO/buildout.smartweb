@@ -19,6 +19,7 @@
     - eea.facetednavigation 16.5
     - iaweb.privacy 2.0.0
     - imio.gdpr 2.0.0
+    - imio.prometheus 2.0.0
     - imio.smartweb.common 2.0.0
     - imio.smartweb.core 2.0.0
     - imio.smartweb.locales 2.0.0
