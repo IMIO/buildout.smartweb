@@ -6,6 +6,7 @@
     - collective.autoscaling 2.0.0
     - collective.fingerpointing 2.0.0
     - collective.geolocationbehavior 2.0.0
+    - collective.geotransform 4.0.0
     - collective.js.jqueryui 3.0.0
     - collective.messagesviewlet 2.0.0
     - collective.pivot 2.0.0

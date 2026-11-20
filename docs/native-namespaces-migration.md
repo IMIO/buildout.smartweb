@@ -5,11 +5,11 @@ from old-style namespace packages: where each package stands, what's left to
 do, and how to migrate one. What changed in each package, and its gotchas:
 [package details](native-namespaces-packages.md).
 
-Last updated: 2026-11-19.
+Last updated: 2026-11-20.
 
 ## Status
 
-**23 pinned** (16 migrated, 7 bumped) · **3 merged**, not released · **10 PRs
+**24 pinned** (17 migrated, 7 bumped) · **3 merged**, not released · **9 PRs
 open** · **5 branches pushed**, no PR yet · **3 not started** (none of them
 blocks Plone 6.2.3)
 
@@ -29,7 +29,7 @@ blocks Plone 6.2.3)
 | [collective.faceted.map](native-namespaces-packages.md#collectivefacetedmap) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [collective.fingerpointing](native-namespaces-packages.md#collectivefingerpointing) | ✅ | ✅ | [#110](https://github.com/collective/collective.fingerpointing/pull/110) | ✅ | ✅ | ✅ |
 | [collective.geolocationbehavior](native-namespaces-packages.md#bumped-to-a-native-release) | ➖ | ⬜ | ➖ | ➖ | 2.0.0 | ✅ |
-| [collective.geotransform](native-namespaces-packages.md#collectivegeotransform) | ✅ | ✅ | [#25](https://github.com/collective/collective.geotransform/pull/25) | ⬜ | ⬜ | ⬜ |
+| [collective.geotransform](native-namespaces-packages.md#collectivegeotransform) | ✅ | ✅ | [#25](https://github.com/collective/collective.geotransform/pull/25) | ✅ | 4.0.0 | ✅ |
 | [collective.instancebehavior](native-namespaces-packages.md#collectiveinstancebehavior) | ✅ | ✅ | [#7](https://github.com/collective/collective.instancebehavior/pull/7) | ⬜ | ⬜ | ⬜ |
 | [collective.js.jqueryui](native-namespaces-packages.md#collectivejsjqueryui) | ✅ | ✅ | [#57](https://github.com/collective/collective.js.jqueryui/pull/57) | ✅ | ✅ | ✅ |
 | [collective.messagesviewlet](native-namespaces-packages.md#collectivemessagesviewlet) | ✅ | ✅ | [#24](https://github.com/collective/collective.messagesviewlet/pull/24) | ✅ | 2.0.0 | ✅ |
@@ -137,7 +137,6 @@ release can't depend on a git branch, so the order matters:
   require the other imio.smartweb.* packages without a version, so they
   don't wait for core.
 - [ ] imio.pyutils as 1.3.0 (not breaking; `master` says 1.2.4.dev0).
-  collective.geotransform as 4.0.0 (3.0 is its Plone 6.0 release).
   collective.instancebehavior as 0.6 (never released, 0.5 is the latest).
   collective.themefragments as 3.0.0 (2.12, from 2019, is the latest).
   Every other package as 2.0.0.

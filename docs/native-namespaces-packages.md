@@ -346,17 +346,16 @@ any more (removed from `sources.cfg`).
 
 **Namespace** `collective` · **Repository**
 [collective/collective.geotransform](https://github.com/collective/collective.geotransform),
-branch `plone62` (**local, not pushed yet**) · **Variant**
+branch `master` · **Variant**
 [plone.meta](native-namespaces-migration.md#variant-plonemeta) · **Checked
-out by** `dev.cfg`, `prod.cfg` · **Older stacks** (Plone 6.0) stay on 3.0
+out by** none · **Older stacks** (Plone 6.0) stay on 3.0
 
 Migrated 2026-11-17, like collective.complexrecordsproxy. In SmartWeb,
-imio.smartweb.policy requires it and includes its ZCML.
+imio.smartweb.policy requires it and includes its ZCML. Merged into `master`
+([#25](https://github.com/collective/collective.geotransform/pull/25)) and
+released as **4.0.0** on 2026-11-20: `versions.cfg` pins it, and no config
+checks it out any more (`sources.cfg` points to `master`).
 
-- **The branch only exists in `~/github-collective/collective.geotransform`**,
-  cloned into `src/` by hand (with the GitHub `origin` that `sources.cfg`
-  names). Push it before anyone else runs buildout: mr.developer can't
-  clone a branch that isn't on GitHub. Then open the PR.
 - plone.meta 2.12.0 configures it, and the metadata moved to `pyproject.toml`,
   written by hand (`setup-to-pyproject` can't parse the `long_description`
   concatenation). `setup.py` is now only `setup()`. The package moved from
@@ -392,8 +391,7 @@ imio.smartweb.policy requires it and includes its ZCML.
   collective.complexrecordsproxy, so zest.releaser isn't a dependency.
 - Checked from buildout.smartweb: `.venv/bin/buildout -N` no longer lists it as
   old-style, `bin/zopepy` imports it from the `src/` checkout, and the wheel
-  has no namespace marker. `versions.cfg` still pins 3.0, as for the other
-  checked-out packages.
+  has no namespace marker.
 
 ## collective.instancebehavior
 
