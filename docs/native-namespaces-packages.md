@@ -130,14 +130,16 @@ config checks it out any more (`sources.cfg` points to `master` again).
 
 **Namespaces** `collective`, `collective.behavior` · **Repository**
 [collective/collective.behavior.talcondition](https://github.com/collective/collective.behavior.talcondition),
-branch `plone62` · **Variant**
+branch `master` · **Variant**
 [setup.py](native-namespaces-migration.md#the-migration-recipe) · **Checked
-out by** `dev.cfg`, `prod.cfg` · **Older stacks** (Python 2, Plone 4.3 to
-6.1) stay on 1.1.x
+out by** none · **Older stacks** (Python 2, Plone 4.3 to 6.1) stay on 1.1.x
 
 Migrated by a colleague on 2026-11-16 (`81b5782`). In SmartWeb, it is a
 dependency of collective.messagesviewlet (used by imio.smartweb.core's
-`rest/messages.py`), and a test dependency of imio.helpers.
+`rest/messages.py`), and a test dependency of imio.helpers. Merged into
+`master` ([#17](https://github.com/collective/collective.behavior.talcondition/pull/17))
+and released as **2.0.0** on 2026-11-20: `versions.cfg` pins it, and no
+config checks it out any more (`sources.cfg` points to `master`).
 
 - `find_namespace_packages`, no more `namespace_packages`, and
   `src/collective/__init__.py` and `src/collective/behavior/__init__.py` are
@@ -149,11 +151,13 @@ dependency of collective.messagesviewlet (used by imio.smartweb.core's
   classifiers).
 - Tested with buildout: new `test-6.2.cfg` and `requirements-6.2.txt`. The
   GitHub Actions matrix is Plone 6.2 on Python 3.13, and it passes.
-- `CHANGES.rst` announces 1.1.4, but the change is breaking: release 2.0.0.
+- `CHANGES.rst` announced 1.1.4, but the change is breaking: released as
+  2.0.0.
 - Checked from buildout.smartweb: `.venv/bin/buildout -N` no longer lists it
   as old-style, `bin/zopepy` imports it from the `src/` checkout, and the
-  wheel has no namespace marker. `versions.cfg` still pins 1.1.3, as for the
-  other checked-out packages.
+  wheel has no namespace marker.
+- imio.helpers' `test-6.2.cfg` still checks out the `plone62` branch (now
+  deleted) from GitHub: replace it by the 2.0.0 release there.
 
 ## collective.complexrecordsproxy
 
@@ -765,7 +769,9 @@ Migrated 2026-11-16, then modernized like collective.messagesviewlet
 
 **Namespace** `collective` · **Repository**
 [collective/collective.upgrade](https://github.com/collective/collective.upgrade),
-branch `plone61` (upstream) · **Checked out by** `dev.cfg`, `prod.cfg`
+branch `master` (upstream; `combined-prs` merged by
+[#20](https://github.com/collective/collective.upgrade/pull/20), 2026-11-20) ·
+**Checked out by** `dev.cfg`, `prod.cfg`
 
 Migrated upstream on `plone61` (native namespace, `bootstrap.py` gone).
 `versions.cfg` doesn't pin it: every config checks out the branch. Upstream
@@ -776,8 +782,8 @@ native namespace, into `master`) and
 [#19](https://github.com/collective/collective.upgrade/pull/19) (Plone 6.2
 support, into `plone61`) are closed: their work is combined in
 [#20](https://github.com/collective/collective.upgrade/pull/20)
-(`combined-prs` into `master`, open). Delete the stale `src/collective/__pycache__` and
-`collective_*-nspkg.pth` files
+(`combined-prs` into `master`, merged 2026-11-20, not released yet). Delete
+the stale `src/collective/__pycache__` and `collective_*-nspkg.pth` files
 ([step 5](native-namespaces-migration.md#5-clean-up-and-check)).
 
 ## collective.z3cform.select2
@@ -801,9 +807,9 @@ any more (removed from `sources.cfg`).
 
 **Namespace** `eea` · **Repository**
 [collective/eea.facetednavigation](https://github.com/collective/eea.facetednavigation),
-branch `plone62`
-([#65](https://github.com/collective/eea.facetednavigation/pull/65)) ·
-**Variant** [plone.meta](native-namespaces-migration.md#variant-plonemeta) · **Checked
+branch `main` (`plone62` merged by
+[#65](https://github.com/collective/eea.facetednavigation/pull/65),
+2026-11-20) · **Variant** [plone.meta](native-namespaces-migration.md#variant-plonemeta) · **Checked
 out by** `dev.cfg`, `prod.cfg` · **Older stacks** (Plone 5.2 and 6.0) stay
 on 16.x
 
@@ -952,7 +958,8 @@ Migrated by a colleague on 2026-11-16 (`4b8ec68`).
   `test-6.2.x.cfg`) and `requirements-6.2.txt` (Plone `6.2-latest`
   constraints). The GitHub Actions matrix is Plone 6.2 on Python 3.13, and it
   passes. `test-6.2.cfg` checks out collective.behavior.talcondition's
-  `plone62` branch, a test dependency.
+  `plone62` branch, a test dependency. That branch is deleted since the
+  2.0.0 release: pin 2.0.0 instead.
 - 1.3.19 was released from `master` the same day, without the migration.
   `master` is merged into `plone62` (2026-11-18, `7c640c8`): the branch is no
   longer behind, and the `CHANGES.rst` entry is now under 1.3.20 (unreleased).

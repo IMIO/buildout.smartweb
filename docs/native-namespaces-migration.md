@@ -9,8 +9,8 @@ Last updated: 2026-11-20.
 
 ## Status
 
-**25 pinned** (18 migrated, 7 bumped) · **5 merged**, not released · **6 PRs
-open** · **5 branches pushed**, no PR yet · **3 not started** (none of them
+**26 pinned** (19 migrated, 7 bumped) · **7 merged**, not released · **4 PRs
+open** · **4 branches pushed**, no PR yet · **3 not started** (none of them
 blocks Plone 6.2.3)
 
 ✅ done · ⬜ to do · ➖ not applicable · 🚧 its pinned release calls
@@ -23,7 +23,7 @@ blocks Plone 6.2.3)
 | [collective.anysurfer](native-namespaces-packages.md#collectiveanysurfer) | ✅ | ✅ | [#9](https://github.com/collective/collective.anysurfer/pull/9) | ✅ | ✅ | ✅ |
 | [collective.autopublishing](native-namespaces-packages.md#collectiveautopublishing) | ✅ | ✅ | [#12](https://github.com/collective/collective.autopublishing/pull/12) | ✅ | ⬜ | ⬜ |
 | [collective.autoscaling](native-namespaces-packages.md#collectiveautoscaling) | ✅ | ✅ | [#9](https://github.com/collective/collective.autoscaling/pull/9) | ✅ | ✅ | ✅ |
-| [collective.behavior.talcondition](native-namespaces-packages.md#collectivebehaviortalcondition) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [collective.behavior.talcondition](native-namespaces-packages.md#collectivebehaviortalcondition) | ✅ | ✅ | [#17](https://github.com/collective/collective.behavior.talcondition/pull/17) | ✅ | 2.0.0 | ✅ |
 | [collective.complexrecordsproxy](native-namespaces-packages.md#collectivecomplexrecordsproxy) | ✅ | ✅ | [#3](https://github.com/collective/collective.complexrecordsproxy/pull/3) | ✅ | ⬜ | ⬜ |
 | [collective.exportimport](native-namespaces-packages.md#collectiveexportimport) 🚧 | ✅ | ✅ | [#287](https://github.com/collective/collective.exportimport/pull/287) | ⬜ | ⬜ | ⬜ |
 | [collective.faceted.map](native-namespaces-packages.md#collectivefacetedmap) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
@@ -41,9 +41,9 @@ blocks Plone 6.2.3)
 | [collective.taxonomy](native-namespaces-packages.md#bumped-to-a-native-release) | ➖ | ⬜ | ➖ | ➖ | 4.0.0 | ✅ |
 | [collective.themefragments](native-namespaces-packages.md#collectivethemefragments) | ✅ | ✅ | [#20](https://github.com/collective/collective.themefragments/pull/20) | ✅ | ⬜ | ⬜ |
 | [collective.timedevents](native-namespaces-packages.md#collectivetimedevents) | ✅ | ✅ | [#13](https://github.com/collective/collective.timedevents/pull/13) | ✅ | ✅ | ✅ |
-| [collective.upgrade](native-namespaces-packages.md#collectiveupgrade) | ✅ | ✅ | [#20](https://github.com/collective/collective.upgrade/pull/20) | ⬜ | ⬜ | ⬜ |
+| [collective.upgrade](native-namespaces-packages.md#collectiveupgrade) | ✅ | ✅ | [#20](https://github.com/collective/collective.upgrade/pull/20) | ✅ | ⬜ | ⬜ |
 | [collective.z3cform.select2](native-namespaces-packages.md#collectivez3cformselect2) | ✅ | ✅ | [#15](https://github.com/collective/collective.z3cform.select2/pull/15) | ✅ | ✅ | ✅ |
-| [eea.facetednavigation](native-namespaces-packages.md#eeafacetednavigation) | ✅ | ✅ | [#65](https://github.com/collective/eea.facetednavigation/pull/65) | ⬜ | ⬜ | ⬜ |
+| [eea.facetednavigation](native-namespaces-packages.md#eeafacetednavigation) | ✅ | ✅ | [#65](https://github.com/collective/eea.facetednavigation/pull/65) | ✅ | ⬜ | ⬜ |
 | [hurry.filesize](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [iaweb.privacy](native-namespaces-packages.md#iawebprivacy) | ✅ | ✅ | [#2](https://github.com/IMIO/iaweb.privacy/pull/2) | ✅ | 2.0.0 | ✅ |
 | [imio.gdpr](native-namespaces-packages.md#imiogdpr) | ✅ | ✅ | [#5](https://github.com/IMIO/imio.gdpr/pull/5) | ✅ | 2.0.0 | ✅ |
@@ -109,7 +109,6 @@ Rows with ⬜ in the PR column, and open questions on existing PRs:
 - [ ] imio.omnia.core, imio.omnia.tinymce (IMIO)
 - [ ] imio.helpers, once its maintainers agree on a 1.3.x maintenance branch
   for the other iMio applications
-- [ ] collective.behavior.talcondition (collective)
 - [ ] collective.faceted.map (affinitic)
 - [ ] collective.instancebehavior
   ([#7](https://github.com/collective/collective.instancebehavior/pull/7)):
@@ -126,6 +125,8 @@ release can't depend on a git branch, so the order matters:
   branch.
 - [ ] Replace the collective.privacy branch in iaweb.privacy's `mx.ini` and
   tox by the 2.0.0 release.
+- [ ] Replace the collective.behavior.talcondition `plone62` branch (now
+  deleted) in imio.helpers' `test-6.2.cfg` by the 2.0.0 release.
 - [ ] imio.omnia.core and imio.omnia.tinymce together (shared `imio.omnia`
   namespace).
 - [x] imio.smartweb.common, .core, .locales and .policy: 2.0.0 released and
