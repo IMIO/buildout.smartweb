@@ -9,7 +9,7 @@ Last updated: 2026-11-20.
 
 ## Status
 
-**24 pinned** (17 migrated, 7 bumped) · **3 merged**, not released · **9 PRs
+**25 pinned** (18 migrated, 7 bumped) · **3 merged**, not released · **8 PRs
 open** · **5 branches pushed**, no PR yet · **3 not started** (none of them
 blocks Plone 6.2.3)
 
@@ -53,7 +53,7 @@ blocks Plone 6.2.3)
 | [imio.prometheus](native-namespaces-packages.md#imioprometheus) | ✅ | ✅ | [#2](https://github.com/IMIO/imio.prometheus/pull/2) | ⬜ | ⬜ | ⬜ |
 | [imio.pyutils](native-namespaces-packages.md#imiopyutils) | ✅ | ✅ | [#4](https://github.com/IMIO/imio.pyutils/pull/4) | ✅ | ⬜ | ⬜ |
 | [imio.smartweb.common](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy) | ✅ | ✅ | [#37](https://github.com/IMIO/imio.smartweb.common/pull/37) | ✅ | 2.0.0 | ✅ |
-| [imio.smartweb.core](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy) 🚧 | ✅ | ✅ | [#102](https://github.com/IMIO/imio.smartweb.core/pull/102) | ⬜ | ⬜ | ⬜ |
+| [imio.smartweb.core](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy) | ✅ | ✅ | [#102](https://github.com/IMIO/imio.smartweb.core/pull/102) | ✅ | 2.0.0 | ✅ |
 | [imio.smartweb.locales](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy) | ✅ | ✅ | [#4](https://github.com/IMIO/imio.smartweb.locales/pull/4) | ✅ | 2.0.0 | ✅ |
 | [imio.smartweb.policy](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy) | ✅ | ✅ | [#28](https://github.com/IMIO/imio.smartweb.policy/pull/28) | ✅ | 2.0.0 | ✅ |
 | [pas.plugins.kimug](native-namespaces-packages.md#paspluginskimug) | ✅ | ✅ | [#34](https://github.com/IMIO/pas.plugins.kimug/pull/34) | ✅ | 2.0.0 | ✅ |
@@ -131,11 +131,8 @@ release can't depend on a git branch, so the order matters:
   tox by the 2.0.0 release.
 - [ ] imio.omnia.core and imio.omnia.tinymce together (shared `imio.omnia`
   namespace).
-- [ ] imio.smartweb.core
-  ([#102](https://github.com/IMIO/imio.smartweb.core/pull/102)).
-  imio.smartweb.common, .locales and .policy 2.0.0 are already out: they
-  require the other imio.smartweb.* packages without a version, so they
-  don't wait for core.
+- [x] imio.smartweb.common, .core, .locales and .policy: 2.0.0 released and
+  pinned (core on 2026-11-20).
 - [ ] imio.pyutils as 1.3.0 (not breaking; `master` says 1.2.4.dev0).
   collective.instancebehavior as 0.6 (never released, 0.5 is the latest).
   collective.themefragments as 3.0.0 (2.12, from 2019, is the latest).
@@ -210,8 +207,8 @@ release can't depend on a git branch, so the order matters:
 - [ ] collective.preventactions: `sources.cfg` still names its old `plone6`
   branch, switch it to `master`. Like pas.plugins.kimug, it is released and
   pinned, and no config checks it out any more.
-- [ ] Drop the `collective.sendinblue` pin from `versions.cfg`: nothing
-  requires it once imio.smartweb.core's `plone62` branch drops it.
+- [x] collective.sendinblue: `versions.cfg` no longer pins it, and
+  imio.smartweb.core 2.0.0 no longer requires it.
 - [ ] Drop the `hurry.filesize` pin from `versions.cfg` once
   collective.exportimport 2.x is pinned: only exportimport 1.x requires it.
 - [ ] Once the last old-style package is gone, remove `horse-with-no-namespace`

@@ -1097,15 +1097,12 @@ applications still run on Python 2, and PEP 420 doesn't exist there. So
 [common](https://github.com/IMIO/imio.smartweb.common),
 [core](https://github.com/IMIO/imio.smartweb.core),
 [locales](https://github.com/IMIO/imio.smartweb.locales),
-[policy](https://github.com/IMIO/imio.smartweb.policy), branch `plone62`
-(common, locales, policy: `main`) · **Variant**
-[setup.py](native-namespaces-migration.md#the-migration-recipe) · **Checked
-out by** `dev.cfg`, `prod.cfg` (common, locales, policy: `dev.cfg` only)
+[policy](https://github.com/IMIO/imio.smartweb.policy), branch `main` ·
+**Variant** [setup.py](native-namespaces-migration.md#the-migration-recipe)
+· **Checked out by** `dev.cfg`
 
-🚧 imio.smartweb.core calls `resource_filename()` in `browser/anysurfer.py`.
-
-imio.smartweb.common, .locales and .policy are already released (see below).
-Only core is left. Same change in all four:
+All four are released as 2.0.0 and pinned in `versions.cfg` (see below), so
+the image installs the releases. Same change in all four:
 
 ```diff
 -    packages=find_packages("src", exclude=["ez_setup"]),
@@ -1155,8 +1152,12 @@ older site, the step no longer finds the uninstall profile), and that no
 site still has a Sendinblue portlet assigned (the uninstall leaves them, as
 broken objects).
 
-Open as [#102](https://github.com/IMIO/imio.smartweb.core/pull/102) against
-`main`.
+Merged into `main`
+([#102](https://github.com/IMIO/imio.smartweb.core/pull/102)) and released as
+**2.0.0** on 2026-11-20 (Python 3.10+, Plone 6.2 only). `versions.cfg` pins
+2.0.0 in place of 1.4.66, `prod.cfg` no longer checks it out, and
+`sources.cfg` points to `main` again (its `plone62` branch was deleted).
+`dev.cfg` still checks it out.
 
 **imio.smartweb.common**: the `plone62` branch (2026-11-16) also fixes two
 Plone 6.2 breakages:
