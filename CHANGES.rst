@@ -19,6 +19,7 @@
     - iaweb.privacy 2.0.0
     - imio.gdpr 2.0.0
     - imio.smartweb.common 2.0.0
+    - imio.smartweb.core 2.0.0
     - imio.smartweb.locales 2.0.0
     - imio.smartweb.policy 2.0.0
     - pas.plugins.kimug 2.0.0
@@ -29,6 +30,19 @@
     - zope.minmax 4.0
     - zope.session 5.1
   [boulch, bsuttor, remdub]
+
+- imio.smartweb.core 2.0.0
+
+  - Migrate to Plone 6.2.3 : Update import, remove init, remove pkg_resources
+    Fix ``sitemap.xml.gz`` on Plone 6.2: plone.app.layout 6 paginates the
+    sitemap. Without a ``page`` parameter, the view gives an index of pages. The
+    smartweb items (authentic sources included) now go through ``_objects``, so
+    the index counts them and each ``?page=N`` gives its part of them.
+    [boulch]
+
+  - Remove ``collective.sendinblue`` from dependencies: it has already been
+    uninstalled by upgrade step 1073 (core 1.4.13).
+    [remdub]
 
 - imio.smartweb.common 1.2.65 (included in 2.0.0)
 
