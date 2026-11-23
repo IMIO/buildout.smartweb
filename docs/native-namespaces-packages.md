@@ -13,12 +13,14 @@ must stay on.
 
 **Namespace** `collective` · **Repository**
 [collective/collective.anysurfer](https://github.com/collective/collective.anysurfer),
-branch `plone62` · **Variant**
+branch `master` · **Variant**
 [plone.meta](native-namespaces-migration.md#variant-plonemeta) · **Checked
-out by** `dev.cfg`, `prod.cfg` · **Older stacks** (Plone 4.3 to 6.0) stay on
-1.4.x
+out by** none · **Older stacks** (Plone 4.3 to 6.0) stay on 1.4.x
 
-Migrated 2026-11-16, following collective.autoscaling.
+Migrated 2026-11-16, following collective.autoscaling. Merged into `master`
+([#9](https://github.com/collective/collective.anysurfer/pull/9)) and released
+as **2.0.0** on 2026-11-18: `versions.cfg` pins it, and no config checks it out
+any more.
 
 - plone.meta 2.12.0 configures it, and the metadata moved to `pyproject.toml`.
   `setup.py` is now only `setup()`. The buildout configuration (Plone 4.3 and
@@ -46,8 +48,7 @@ Migrated 2026-11-16, following collective.autoscaling.
   panel.
 - Checked from buildout.smartweb: `.venv/bin/buildout -N` no longer lists it
   as old-style, `bin/zopepy` imports it from the `src/` checkout, and the
-  wheel has no namespace marker. `versions.cfg` still pins 1.4.7, as for the
-  other checked-out packages.
+  wheel has no namespace marker.
 
 ## collective.autopublishing
 
@@ -479,13 +480,16 @@ and no config checks it out any more (removed from `sources.cfg`).
 
 **Namespace** `collective` · **Repository**
 [collective/collective.messagesviewlet](https://github.com/collective/collective.messagesviewlet),
-branch `plone62` · **Variant**
+branch `master` · **Variant**
 [plone.meta](native-namespaces-migration.md#variant-plonemeta) · **Checked
-out by** `dev.cfg`, `prod.cfg` · **Older stacks** (Plone 4.3 to 6.0) stay on
-1.0b5
+out by** none · **Older stacks** (Plone 4.3 to 6.0) stay on 1.0b5
 
 Migrated 2026-11-16, then modernized like pas.plugins.kimug (2026-11-17). Its
-`Makefile` and uv environment are the template for the later packages.
+`Makefile` and uv environment are the template for the later packages. Merged
+into `master`
+([#24](https://github.com/collective/collective.messagesviewlet/pull/24)) and
+released as **2.0.0** on 2026-11-18: `versions.cfg` pins it, and no config
+checks it out any more.
 
 - `src/collective/__init__.py` is gone, and the Python 2 branches in
   `__init__.py` (the last `pkg_resources` reference) too.
@@ -719,13 +723,13 @@ branch `master` (`plone62` merged by
 [#13](https://github.com/collective/collective.timedevents/pull/13),
 2026-11-18) · **Variant**
 [plone.meta](native-namespaces-migration.md#variant-plonemeta) · **Checked
-out by** `dev.cfg`, `prod.cfg` · **Older stacks** (Python 2, Plone 4.3 to 6.0)
-stay on 1.1
+out by** none · **Older stacks** (Python 2, Plone 4.3 to 6.0) stay on 1.1
 
 1.1 calls `get_distribution()` in `__init__.py`: fixed in 2.0.0.
 
 Migrated 2026-11-16, then modernized like collective.messagesviewlet
-(2026-11-17). Its upstream PR is the whole branch.
+(2026-11-17). Its upstream PR is the whole branch. Released as **2.0.0** on
+2026-11-18: `versions.cfg` pins it, and no config checks it out any more.
 
 - `collective/__init__.py` is gone, and `__init__.py` reads its version with
   `importlib.metadata` only (the `pkg_resources` fallback for Python 2.7 is

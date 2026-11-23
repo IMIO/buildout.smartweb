@@ -5,7 +5,7 @@ from old-style namespace packages: where each package stands, what's left to
 do, and how to migrate one. What changed in each package, and its gotchas:
 [package details](native-namespaces-packages.md).
 
-Last updated: 2026-11-20.
+Last updated: 2026-11-23.
 
 ## Status
 
@@ -20,18 +20,18 @@ blocks Plone 6.2.3)
 
 | Package | Branch | Checked | PR | Merged | Released | Pinned |
 |---|:-:|:-:|:-:|:-:|:-:|:-:|
-| [collective.anysurfer](native-namespaces-packages.md#collectiveanysurfer) | ✅ | ✅ | [#9](https://github.com/collective/collective.anysurfer/pull/9) | ✅ | ✅ | ✅ |
+| [collective.anysurfer](native-namespaces-packages.md#collectiveanysurfer) | ✅ | ✅ | [#9](https://github.com/collective/collective.anysurfer/pull/9) | ✅ | 2.0.0 | ✅ |
 | [collective.autopublishing](native-namespaces-packages.md#collectiveautopublishing) | ✅ | ✅ | [#12](https://github.com/collective/collective.autopublishing/pull/12) | ✅ | ⬜ | ⬜ |
-| [collective.autoscaling](native-namespaces-packages.md#collectiveautoscaling) | ✅ | ✅ | [#9](https://github.com/collective/collective.autoscaling/pull/9) | ✅ | ✅ | ✅ |
+| [collective.autoscaling](native-namespaces-packages.md#collectiveautoscaling) | ✅ | ✅ | [#9](https://github.com/collective/collective.autoscaling/pull/9) | ✅ | 2.0.0 | ✅ |
 | [collective.behavior.talcondition](native-namespaces-packages.md#collectivebehaviortalcondition) | ✅ | ✅ | [#17](https://github.com/collective/collective.behavior.talcondition/pull/17) | ✅ | 2.0.0 | ✅ |
 | [collective.complexrecordsproxy](native-namespaces-packages.md#collectivecomplexrecordsproxy) | ✅ | ✅ | [#3](https://github.com/collective/collective.complexrecordsproxy/pull/3) | ✅ | ⬜ | ⬜ |
 | [collective.exportimport](native-namespaces-packages.md#collectiveexportimport) 🚧 | ✅ | ✅ | [#287](https://github.com/collective/collective.exportimport/pull/287) | ⬜ | ⬜ | ⬜ |
 | [collective.faceted.map](native-namespaces-packages.md#collectivefacetedmap) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
-| [collective.fingerpointing](native-namespaces-packages.md#collectivefingerpointing) | ✅ | ✅ | [#110](https://github.com/collective/collective.fingerpointing/pull/110) | ✅ | ✅ | ✅ |
+| [collective.fingerpointing](native-namespaces-packages.md#collectivefingerpointing) | ✅ | ✅ | [#110](https://github.com/collective/collective.fingerpointing/pull/110) | ✅ | 2.0.0 | ✅ |
 | [collective.geolocationbehavior](native-namespaces-packages.md#bumped-to-a-native-release) | ➖ | ⬜ | ➖ | ➖ | 2.0.0 | ✅ |
 | [collective.geotransform](native-namespaces-packages.md#collectivegeotransform) | ✅ | ✅ | [#25](https://github.com/collective/collective.geotransform/pull/25) | ✅ | 4.0.0 | ✅ |
 | [collective.instancebehavior](native-namespaces-packages.md#collectiveinstancebehavior) | ✅ | ✅ | [#7](https://github.com/collective/collective.instancebehavior/pull/7) | ⬜ | ⬜ | ⬜ |
-| [collective.js.jqueryui](native-namespaces-packages.md#collectivejsjqueryui) | ✅ | ✅ | [#57](https://github.com/collective/collective.js.jqueryui/pull/57) | ✅ | ✅ | ✅ |
+| [collective.js.jqueryui](native-namespaces-packages.md#collectivejsjqueryui) | ✅ | ✅ | [#57](https://github.com/collective/collective.js.jqueryui/pull/57) | ✅ | 3.0.0 | ✅ |
 | [collective.messagesviewlet](native-namespaces-packages.md#collectivemessagesviewlet) | ✅ | ✅ | [#24](https://github.com/collective/collective.messagesviewlet/pull/24) | ✅ | 2.0.0 | ✅ |
 | [collective.pivot](native-namespaces-packages.md#collectivepivot) | ✅ | ✅ | [#4](https://github.com/IMIO/collective.pivot/pull/4) | ✅ | 2.0.0 | ✅ |
 | [collective.preventactions](native-namespaces-packages.md#collectivepreventactions) | ✅ | ✅ | [#2](https://github.com/collective/collective.preventactions/pull/2) | ✅ | 0.4.0 | ✅ |
@@ -40,9 +40,9 @@ blocks Plone 6.2.3)
 | [collective.solr](native-namespaces-packages.md#collectivesolr) | ✅ | ✅ | [#408](https://github.com/collective/collective.solr/pull/408) | ⬜ | ⬜ | ⬜ |
 | [collective.taxonomy](native-namespaces-packages.md#bumped-to-a-native-release) | ➖ | ⬜ | ➖ | ➖ | 4.0.0 | ✅ |
 | [collective.themefragments](native-namespaces-packages.md#collectivethemefragments) | ✅ | ✅ | [#20](https://github.com/collective/collective.themefragments/pull/20) | ✅ | ⬜ | ⬜ |
-| [collective.timedevents](native-namespaces-packages.md#collectivetimedevents) | ✅ | ✅ | [#13](https://github.com/collective/collective.timedevents/pull/13) | ✅ | ✅ | ✅ |
+| [collective.timedevents](native-namespaces-packages.md#collectivetimedevents) | ✅ | ✅ | [#13](https://github.com/collective/collective.timedevents/pull/13) | ✅ | 2.0.0 | ✅ |
 | [collective.upgrade](native-namespaces-packages.md#collectiveupgrade) | ✅ | ✅ | [#20](https://github.com/collective/collective.upgrade/pull/20) | ✅ | ⬜ | ⬜ |
-| [collective.z3cform.select2](native-namespaces-packages.md#collectivez3cformselect2) | ✅ | ✅ | [#15](https://github.com/collective/collective.z3cform.select2/pull/15) | ✅ | ✅ | ✅ |
+| [collective.z3cform.select2](native-namespaces-packages.md#collectivez3cformselect2) | ✅ | ✅ | [#15](https://github.com/collective/collective.z3cform.select2/pull/15) | ✅ | 4.0.0 | ✅ |
 | [eea.facetednavigation](native-namespaces-packages.md#eeafacetednavigation) | ✅ | ✅ | [#65](https://github.com/collective/eea.facetednavigation/pull/65) | ✅ | ⬜ | ⬜ |
 | [hurry.filesize](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [iaweb.privacy](native-namespaces-packages.md#iawebprivacy) | ✅ | ✅ | [#2](https://github.com/IMIO/iaweb.privacy/pull/2) | ✅ | 2.0.0 | ✅ |
