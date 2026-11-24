@@ -659,15 +659,16 @@ branch `master` (`plone62` merged by
 [#20](https://github.com/collective/collective.themefragments/pull/20),
 2026-11-20) · **Variant**
 [plone.meta](native-namespaces-migration.md#variant-plonemeta) · **Checked
-out by** `dev.cfg`, `prod.cfg` · **Older stacks** (Plone 4.3 to 6.0, Python
-2.7) stay on 2.12
+out by** none · **Older stacks** (Plone 4.3 to 6.0, Python 2.7) stay on 2.12
 
 Migrated 2026-11-17. In SmartWeb, imio.smartweb.policy requires it, includes
 its ZCML and allows `requests` in RestrictedPython for the fragment modules.
 The fragment tile isn't loaded: plone.tiles isn't installed.
 
 The upstream maintainer approved the PR, no longer uses the package and
-suggested that iMio take it over. The 3.0.0 release is asked on the PR.
+suggested that iMio take it over. Released as **3.0.0** on 2026-11-24:
+`versions.cfg` pins it, and no config checks it out any more (`sources.cfg`
+points to `master`).
 
 - plone.meta 2.12.0 configures it, and the metadata moved to `pyproject.toml`,
   written by hand (`setup-to-pyproject` can't parse the `long_description`
@@ -714,8 +715,7 @@ suggested that iMio take it over. The 3.0.0 release is asked on the PR.
   dependency.
 - Checked from buildout.smartweb: `.venv/bin/buildout -N` doesn't list it as
   old-style, `bin/zopepy` imports it from the `src/` checkout, and the wheel
-  has no namespace marker. `versions.cfg` still pins 2.12, as for the other
-  checked-out packages.
+  has no namespace marker.
 
 ## collective.timedevents
 

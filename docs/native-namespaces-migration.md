@@ -9,7 +9,7 @@ Last updated: 2026-11-24.
 
 ## Status
 
-**28 pinned** (21 migrated, 7 bumped) · **6 merged**, not released · **3 PRs
+**29 pinned** (22 migrated, 7 bumped) · **5 merged**, not released · **3 PRs
 open** · **4 branches pushed**, no PR yet · **3 not started** (none of them
 blocks Plone 6.2.3)
 
@@ -39,7 +39,7 @@ blocks Plone 6.2.3)
 | [collective.prometheus](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [collective.solr](native-namespaces-packages.md#collectivesolr) | ✅ | ✅ | [#408](https://github.com/collective/collective.solr/pull/408) | ⬜ | ⬜ | ⬜ |
 | [collective.taxonomy](native-namespaces-packages.md#bumped-to-a-native-release) | ➖ | ⬜ | ➖ | ➖ | 4.0.0 | ✅ |
-| [collective.themefragments](native-namespaces-packages.md#collectivethemefragments) | ✅ | ✅ | [#20](https://github.com/collective/collective.themefragments/pull/20) | ✅ | ⬜ | ⬜ |
+| [collective.themefragments](native-namespaces-packages.md#collectivethemefragments) | ✅ | ✅ | [#20](https://github.com/collective/collective.themefragments/pull/20) | ✅ | 3.0.0 | ✅ |
 | [collective.timedevents](native-namespaces-packages.md#collectivetimedevents) | ✅ | ✅ | [#13](https://github.com/collective/collective.timedevents/pull/13) | ✅ | 2.0.0 | ✅ |
 | [collective.upgrade](native-namespaces-packages.md#collectiveupgrade) | ✅ | ✅ | [#20](https://github.com/collective/collective.upgrade/pull/20) | ✅ | ⬜ | ⬜ |
 | [collective.z3cform.select2](native-namespaces-packages.md#collectivez3cformselect2) | ✅ | ✅ | [#15](https://github.com/collective/collective.z3cform.select2/pull/15) | ✅ | 4.0.0 | ✅ |
@@ -133,8 +133,6 @@ release can't depend on a git branch, so the order matters:
   pinned (core on 2026-11-20).
 - [ ] imio.pyutils as 1.3.0 (not breaking; `master` says 1.2.4.dev0).
   collective.instancebehavior as 0.6 (never released, 0.5 is the latest).
-  collective.themefragments as 3.0.0 (2.12, from 2019, is the latest; asked
-  upstream on [#20](https://github.com/collective/collective.themefragments/pull/20)).
   Every other package as 2.0.0.
 - [ ] Ask upstream for collective.solr 11.0.0 once
   [#408](https://github.com/collective/collective.solr/pull/408) is merged.
@@ -170,7 +168,7 @@ release can't depend on a git branch, so the order matters:
 - [ ] collective.js.jqueryui 3.0.0: whatever uses jQuery UI, which the bundle never
   loaded before
   [#58](https://github.com/collective/collective.js.jqueryui/pull/58).
-- [ ] collective.themefragments: the theme fragments and their Python
+- [ ] collective.themefragments 3.0.0: the theme fragments and their Python
   modules, with debug mode off (the theme cache, which the tests don't
   cover).
 
