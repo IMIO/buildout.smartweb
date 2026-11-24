@@ -58,10 +58,11 @@ branch `master` (`plone62` merged by
 [#12](https://github.com/collective/collective.autopublishing/pull/12),
 2026-11-20) · **Variant**
 [plone.meta](native-namespaces-migration.md#variant-plonemeta) · **Checked
-out by** `dev.cfg`, `prod.cfg` · **Older stacks** (Plone 5.2, 6.0) stay on
-1.1b1
+out by** none · **Older stacks** (Plone 5.2, 6.0) stay on 1.1b1
 
-Migrated 2026-11-16, following collective.anysurfer.
+Migrated 2026-11-16, following collective.anysurfer. Released as **2.0.0** on
+2026-11-24: `versions.cfg` pins it, and no config checks it out any more
+(`sources.cfg` points to `master`).
 
 - plone.meta 2.12.0 configures it, and the metadata moved to `pyproject.toml`.
   `setup.py` is now only `setup()`. The package moved from the repository
@@ -94,8 +95,7 @@ Migrated 2026-11-16, following collective.anysurfer.
   `@@tick_hourly`.
 - Checked from buildout.smartweb: `.venv/bin/buildout -N` no longer lists it
   as old-style, `bin/zopepy` imports it from the `src/` checkout, and the
-  wheel has no namespace marker. `versions.cfg` still pins 1.1b1, as for the
-  other checked-out packages.
+  wheel has no namespace marker.
 
 ## collective.autoscaling
 
@@ -211,7 +211,7 @@ branch `plone62`, draft PR
 [#287](https://github.com/collective/collective.exportimport/pull/287) ·
 **Variant**
 [plone.meta](native-namespaces-migration.md#variant-plonemeta) · **Checked
-out by** `dev.cfg`, `prod.cfg` · **Older stacks** (Plone 6.0 or older) stay on
+out by** `base.cfg` · **Older stacks** (Plone 6.0 or older) stay on
 1.x
 
 🚧 Every release calls `get_distribution()` / `DistributionNotFound` in
@@ -304,7 +304,7 @@ Migrated 2026-11-16, then modernized like collective.messagesviewlet
 [affinitic/collective.faceted.map](https://github.com/affinitic/collective.faceted.map),
 branch `plone62` · **Variant**
 [setup.py](native-namespaces-migration.md#the-migration-recipe) · **Checked
-out by** `dev.cfg`, `prod.cfg` (`affinitic` remote in `sources.cfg`) ·
+out by** `base.cfg` (`affinitic` remote in `sources.cfg`) ·
 **Older stacks** (Python 2, Plone before 6.2) stay on 1.0.x
 
 Migrated 2026-11-17 (`c5c4b5a`).
@@ -408,7 +408,7 @@ checks it out any more (`sources.cfg` points to `master`).
 [collective/collective.instancebehavior](https://github.com/collective/collective.instancebehavior),
 branch `plone62` · **Variant**
 [plone.meta](native-namespaces-migration.md#variant-plonemeta) · **Checked
-out by** `dev.cfg`, `prod.cfg` · **Older stacks** (Plone 6.1 and older,
+out by** `base.cfg` · **Older stacks** (Plone 6.1 and older,
 Python 2.7) stay on 0.5
 
 Migrated 2026-11-17, like collective.geotransform. In SmartWeb,
@@ -632,8 +632,8 @@ out any more (`sources.cfg` points to `master`).
 
 **Namespace** `collective` · **Repository**
 [collective/collective.solr](https://github.com/collective/collective.solr),
-branch `pep-420-native-namespace` (upstream) · **Checked out by** `dev.cfg`,
-`prod.cfg` · **Older stacks** stay on 10.x (Plone 6.0 and 6.1)
+branch `pep-420-native-namespace` (upstream) · **Checked out by** `base.cfg`
+· **Older stacks** stay on 10.x (Plone 6.0 and 6.1)
 
 Migrated upstream on `pep-420-native-namespace` (11.0.0.dev0: Plone 6.2 only,
 Python 3.10+, native), still open
@@ -777,11 +777,14 @@ Migrated 2026-11-16, then modernized like collective.messagesviewlet
 [collective/collective.upgrade](https://github.com/collective/collective.upgrade),
 branch `master` (upstream; `combined-prs` merged by
 [#20](https://github.com/collective/collective.upgrade/pull/20), 2026-11-20) ·
-**Checked out by** none · **Older stacks** stay on 1.7
+**Checked out by** none · **Older stacks**: Plone 6.1 on 2.0.0, older ones on
+1.7
 
-Migrated upstream on `plone61` (native namespace, `bootstrap.py` gone).
-Released as **2.0.0** on 2026-11-24: `versions.cfg` pins it, and no config
-checks it out any more (`sources.cfg` points to `master`). Upstream
+Migrated upstream on `plone61` (native namespace, `bootstrap.py` gone), and
+released from that branch as **2.0.0** on 2026-11-24, for Plone 6.1. `master`
+(Plone 6.2 only, Python 3.10 to 3.14) was released the same day as **3.0.0**:
+`versions.cfg` pins it, and no config checks it out any more (`sources.cfg`
+points to `master`). Upstream
 PRs [#17](https://github.com/collective/collective.upgrade/pull/17) (`plone61`
 into `master`),
 [#18](https://github.com/collective/collective.upgrade/pull/18) (PEP 420
@@ -789,8 +792,10 @@ native namespace, into `master`) and
 [#19](https://github.com/collective/collective.upgrade/pull/19) (Plone 6.2
 support, into `plone61`) are closed: their work is combined in
 [#20](https://github.com/collective/collective.upgrade/pull/20)
-(`combined-prs` into `master`, merged 2026-11-20, released as 2.0.0). Delete
-the stale `src/collective/__pycache__` and `collective_*-nspkg.pth` files
+(`combined-prs` into `master`, merged 2026-11-20, released as 3.0.0). The
+3.0.0 `CHANGES.rst` has no 3.0.0 section: the `news/` fragments of #18 and
+#19 are still on `master`, uncompiled. Delete the stale
+`src/collective/__pycache__` and `collective_*-nspkg.pth` files
 ([step 5](native-namespaces-migration.md#5-clean-up-and-check)).
 
 ## collective.z3cform.select2
@@ -817,7 +822,7 @@ any more (removed from `sources.cfg`).
 branch `main` (`plone62` merged by
 [#65](https://github.com/collective/eea.facetednavigation/pull/65),
 2026-11-20) · **Variant** [plone.meta](native-namespaces-migration.md#variant-plonemeta) · **Checked
-out by** `dev.cfg`, `prod.cfg` · **Older stacks** (Plone 5.2 and 6.0) stay
+out by** `base.cfg` · **Older stacks** (Plone 5.2 and 6.0) stay
 on 16.x
 
 EEA archived [eea/eea.facetednavigation](https://github.com/eea/eea.facetednavigation):
@@ -942,7 +947,7 @@ more (`sources.cfg` points to `master` again).
 **Namespace** `imio` · **Repository**
 [IMIO/imio.helpers](https://github.com/IMIO/imio.helpers), branch `plone62` ·
 **Variant** [setup.py](native-namespaces-migration.md#the-migration-recipe) ·
-**Checked out by** `dev.cfg`, `prod.cfg` · **Older stacks** (Python 2, Plone
+**Checked out by** `base.cfg` · **Older stacks** (Python 2, Plone
 before 6.2) stay on 1.3.x
 
 🚧 Every release up to 1.3.19, and `master`, call `get_distribution()` in
@@ -985,7 +990,7 @@ Migrated by a colleague on 2026-11-16 (`4b8ec68`).
 [IMIO/imio.omnia.core](https://github.com/IMIO/imio.omnia.core), branch
 `plone62` · **Variant**
 [setup.py](native-namespaces-migration.md#the-migration-recipe) · **Checked
-out by** `dev.cfg`, `prod.cfg`
+out by** `base.cfg`
 
 Migrated 2026-11-16 (`ff59325`). Shares the `imio.omnia` namespace with
 imio.omnia.tinymce: release them together, since an old-style
@@ -1016,7 +1021,7 @@ imio.omnia.tinymce: release them together, since an old-style
 [IMIO/imio.omnia.tinymce](https://github.com/IMIO/imio.omnia.tinymce), branch
 `plone62` · **Variant**
 [setup.py](native-namespaces-migration.md#the-migration-recipe) · **Checked
-out by** `dev.cfg`, `prod.cfg`
+out by** `base.cfg`
 
 Migrated 2026-11-17 (`52d308d`), like imio.omnia.core: release them together.
 
@@ -1083,7 +1088,7 @@ it.
 **Namespace** `imio` · **Repository**
 [IMIO/imio.pyutils](https://github.com/IMIO/imio.pyutils), branch `master` ·
 **Variant** [keep Python 2](native-namespaces-migration.md#variant-keep-python-2)
-· **Checked out by** `dev.cfg`, `prod.cfg`
+· **Checked out by** `base.cfg`
 
 Migrated on `plone62` on 2026-11-16, merged into `master` the same day
 ([#4](https://github.com/IMIO/imio.pyutils/pull/4)). 1.2.3 was released a few

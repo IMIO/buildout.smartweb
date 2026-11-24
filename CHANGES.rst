@@ -3,6 +3,7 @@
 
 - WEB-4533 : Bump packages for PEP 420 native namespaces and drop of ``pkg_resources``
     - collective.anysurfer 2.0.0
+    - collective.autopublishing 2.0.0
     - collective.autoscaling 2.0.0
     - collective.behavior.talcondition 2.0.0
     - collective.complexrecordsproxy 2.0.0
@@ -17,6 +18,7 @@
     - collective.taxonomy 4.0.0
     - collective.themefragments 3.0.0
     - collective.timedevents 2.0.0
+    - collective.upgrade 3.0.0
     - collective.z3cform.select2 4.0.0
     - eea.facetednavigation 16.5
     - iaweb.privacy 2.0.0

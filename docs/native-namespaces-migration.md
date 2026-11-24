@@ -9,8 +9,8 @@ Last updated: 2026-11-24.
 
 ## Status
 
-**29 pinned** (22 migrated, 7 bumped) · **5 merged**, not released · **3 PRs
-open** · **4 branches pushed**, no PR yet · **3 not started** (none of them
+**30 pinned** (23 migrated, 7 bumped) · **3 merged**, not released · **3 PRs
+open** · **4 branches pushed**, no PR yet · **2 not started** (none of them
 blocks Plone 6.2.3)
 
 ✅ done · ⬜ to do · ➖ not applicable · 🚧 its pinned release calls
@@ -21,7 +21,7 @@ blocks Plone 6.2.3)
 | Package | Branch | Checked | PR | Merged | Released | Pinned |
 |---|:-:|:-:|:-:|:-:|:-:|:-:|
 | [collective.anysurfer](native-namespaces-packages.md#collectiveanysurfer) | ✅ | ✅ | [#9](https://github.com/collective/collective.anysurfer/pull/9) | ✅ | 2.0.0 | ✅ |
-| [collective.autopublishing](native-namespaces-packages.md#collectiveautopublishing) | ✅ | ✅ | [#12](https://github.com/collective/collective.autopublishing/pull/12) | ✅ | ⬜ | ⬜ |
+| [collective.autopublishing](native-namespaces-packages.md#collectiveautopublishing) | ✅ | ✅ | [#12](https://github.com/collective/collective.autopublishing/pull/12) | ✅ | 2.0.0 | ✅ |
 | [collective.autoscaling](native-namespaces-packages.md#collectiveautoscaling) | ✅ | ✅ | [#9](https://github.com/collective/collective.autoscaling/pull/9) | ✅ | 2.0.0 | ✅ |
 | [collective.behavior.talcondition](native-namespaces-packages.md#collectivebehaviortalcondition) | ✅ | ✅ | [#17](https://github.com/collective/collective.behavior.talcondition/pull/17) | ✅ | 2.0.0 | ✅ |
 | [collective.complexrecordsproxy](native-namespaces-packages.md#collectivecomplexrecordsproxy) | ✅ | ✅ | [#3](https://github.com/collective/collective.complexrecordsproxy/pull/3) | ✅ | 2.0.0 | ✅ |
@@ -40,7 +40,7 @@ blocks Plone 6.2.3)
 | [collective.taxonomy](native-namespaces-packages.md#bumped-to-a-native-release) | ➖ | ⬜ | ➖ | ➖ | 4.0.0 | ✅ |
 | [collective.themefragments](native-namespaces-packages.md#collectivethemefragments) | ✅ | ✅ | [#20](https://github.com/collective/collective.themefragments/pull/20) | ✅ | 3.0.0 | ✅ |
 | [collective.timedevents](native-namespaces-packages.md#collectivetimedevents) | ✅ | ✅ | [#13](https://github.com/collective/collective.timedevents/pull/13) | ✅ | 2.0.0 | ✅ |
-| [collective.upgrade](native-namespaces-packages.md#collectiveupgrade) | ✅ | ✅ | [#20](https://github.com/collective/collective.upgrade/pull/20) | ✅ | 2.0.0 | ✅ |
+| [collective.upgrade](native-namespaces-packages.md#collectiveupgrade) | ✅ | ✅ | [#20](https://github.com/collective/collective.upgrade/pull/20) | ✅ | 3.0.0 | ✅ |
 | [collective.z3cform.select2](native-namespaces-packages.md#collectivez3cformselect2) | ✅ | ✅ | [#15](https://github.com/collective/collective.z3cform.select2/pull/15) | ✅ | 4.0.0 | ✅ |
 | [eea.facetednavigation](native-namespaces-packages.md#eeafacetednavigation) | ✅ | ✅ | [#65](https://github.com/collective/eea.facetednavigation/pull/65) | ✅ | ⬜ | ⬜ |
 | [hurry.filesize](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
@@ -410,7 +410,7 @@ otherwise keeps forcing the old-style namespace, see
 [blockers](#blockers-for-plone-623).
 
 Then, from `buildout.smartweb`, with the package in `auto-checkout` in
-`dev.cfg`:
+`base.cfg`:
 
 1. Run `.venv/bin/buildout -N`. The package must no longer be listed in the
    *"old style namespace packages"* warning.
