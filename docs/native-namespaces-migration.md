@@ -36,7 +36,6 @@ blocks Plone 6.2.3)
 | [collective.pivot](native-namespaces-packages.md#collectivepivot) | ✅ | ✅ | [#4](https://github.com/IMIO/collective.pivot/pull/4) | ✅ | 2.0.0 | ✅ |
 | [collective.preventactions](native-namespaces-packages.md#collectivepreventactions) | ✅ | ✅ | [#2](https://github.com/collective/collective.preventactions/pull/2) | ✅ | 0.4.0 | ✅ |
 | [collective.privacy](native-namespaces-packages.md#collectiveprivacy) | ✅ | ✅ | [#22](https://github.com/collective/collective.privacy/pull/22) | ✅ | 2.0.0 | ✅ |
-| [collective.prometheus](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [collective.solr](native-namespaces-packages.md#collectivesolr) | ✅ | ✅ | [#408](https://github.com/collective/collective.solr/pull/408) | ⬜ | ⬜ | ⬜ |
 | [collective.taxonomy](native-namespaces-packages.md#bumped-to-a-native-release) | ➖ | ⬜ | ➖ | ➖ | 4.0.0 | ✅ |
 | [collective.themefragments](native-namespaces-packages.md#collectivethemefragments) | ✅ | ✅ | [#20](https://github.com/collective/collective.themefragments/pull/20) | ✅ | 3.0.0 | ✅ |
@@ -50,7 +49,6 @@ blocks Plone 6.2.3)
 | [imio.helpers](native-namespaces-packages.md#imiohelpers) 🚧 | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [imio.omnia.core](native-namespaces-packages.md#imioomniacore) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [imio.omnia.tinymce](native-namespaces-packages.md#imioomniatinymce) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
-| [imio.prometheus](native-namespaces-packages.md#imioprometheus) | ✅ | ✅ | [#2](https://github.com/IMIO/imio.prometheus/pull/2) | ✅ | 2.0.0 | ✅ |
 | [imio.pyutils](native-namespaces-packages.md#imiopyutils) | ✅ | ✅ | [#4](https://github.com/IMIO/imio.pyutils/pull/4) | ✅ | ⬜ | ⬜ |
 | [imio.smartweb.common](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy) | ✅ | ✅ | [#37](https://github.com/IMIO/imio.smartweb.common/pull/37) | ✅ | 2.0.0 | ✅ |
 | [imio.smartweb.core](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy) | ✅ | ✅ | [#102](https://github.com/IMIO/imio.smartweb.core/pull/102) | ✅ | 2.0.0 | ✅ |
@@ -86,6 +84,10 @@ of plone.app.content, plone.autoform, plone.restapi and Paste. PasteDeploy
 collective.sendinblue isn't listed either: imio.smartweb.core no longer
 depends on it, so it doesn't need to be migrated
 ([details](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy)).
+
+collective.prometheus and imio.prometheus aren't listed any more:
+plone.observability serves `@@metrics`, so they are removed
+([details](native-namespaces-packages.md#imioprometheus)).
 
 ## What's left
 
@@ -189,7 +191,7 @@ release can't depend on a git branch, so the order matters:
 
 ### Not started
 
-- [ ] The 3 [still old-style](native-namespaces-packages.md#still-old-style-upstream)
+- [ ] The 2 [still old-style](native-namespaces-packages.md#still-old-style-upstream)
   third-party packages. For each one, in order of preference:
   1. Check the repository's main branch: the migration may already be merged
      and only waiting for a release. Ask the maintainers for a release.
@@ -206,6 +208,11 @@ release can't depend on a git branch, so the order matters:
   pinned, and no config checks it out any more.
 - [x] collective.sendinblue: `versions.cfg` no longer pins it, and
   imio.smartweb.core 2.0.0 no longer requires it.
+- [ ] collective.prometheus and imio.prometheus: `versions.cfg` and
+  `sources.cfg` no longer name them, and imio.smartweb.policy no longer
+  requires imio.prometheus (`main`, committed, not released). Release the
+  policy and pin it: until then a `prod.cfg` build fails, as policy 2.0.0
+  still requires the unpinned imio.prometheus.
 - [ ] Drop the `hurry.filesize` pin from `versions.cfg` once
   collective.exportimport 2.x is pinned: only exportimport 1.x requires it.
 - [ ] Once the last old-style package is gone, remove `horse-with-no-namespace`

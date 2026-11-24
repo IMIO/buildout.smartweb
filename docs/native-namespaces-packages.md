@@ -1056,6 +1056,12 @@ Migrated 2026-11-16, following pas.plugins.kimug. Merged into `master`
 **2.0.0** on 2026-11-20: `versions.cfg` pins it, and no config checks it out
 any more (`sources.cfg` points to `master`).
 
+**Removed** on 2026-11-24, with collective.prometheus, the base of its
+view: plone.observability serves `@@metrics` on the Zope root, and both
+views fought over the single ZODB activity monitor. imio.smartweb.policy
+no longer requires it, and `versions.cfg` and `sources.cfg` no longer name
+it.
+
 - plone.meta 2.12.0 configures it, and the metadata moved to `pyproject.toml`.
   `setup.py` is now only `setup()`.
 - `pkg_resources` was only used by the `update_locale` script
@@ -1318,6 +1324,5 @@ each one: [not started](native-namespaces-migration.md#not-started).
 
 | Package | Pinned | Latest on PyPI | Notes |
 |---|---|---|---|
-| collective.prometheus | 1.6.1 | 1.6.1 (2022) | `plone.observability` now provides metrics: check whether it is still needed |
 | plone.gallery | 1.1.6 | 1.1.6 (2023) | |
 | hurry.filesize | 0.9 | 0.9 (2009) | Unmaintained. Only collective.exportimport 1.x requires it, 2.x (`plone62`) drops it: remove the pin once 2.x is pinned |
