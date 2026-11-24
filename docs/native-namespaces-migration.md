@@ -26,7 +26,7 @@ blocks Plone 6.2.3)
 | [collective.behavior.talcondition](native-namespaces-packages.md#collectivebehaviortalcondition) | ✅ | ✅ | [#17](https://github.com/collective/collective.behavior.talcondition/pull/17) | ✅ | 2.0.0 | ✅ |
 | [collective.complexrecordsproxy](native-namespaces-packages.md#collectivecomplexrecordsproxy) | ✅ | ✅ | [#3](https://github.com/collective/collective.complexrecordsproxy/pull/3) | ✅ | 2.0.0 | ✅ |
 | [collective.exportimport](native-namespaces-packages.md#collectiveexportimport) 🚧 | ✅ | ✅ | [#287](https://github.com/collective/collective.exportimport/pull/287) | ⬜ | ⬜ | ⬜ |
-| [collective.faceted.map](native-namespaces-packages.md#collectivefacetedmap) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
+| [collective.faceted.map](native-namespaces-packages.md#collectivefacetedmap) | ✅ | ✅ | [#3](https://github.com/affinitic/collective.faceted.map/pull/3) | ✅ | 2.0.0 | ✅ |
 | [collective.fingerpointing](native-namespaces-packages.md#collectivefingerpointing) | ✅ | ✅ | [#110](https://github.com/collective/collective.fingerpointing/pull/110) | ✅ | 2.0.0 | ✅ |
 | [collective.geolocationbehavior](native-namespaces-packages.md#bumped-to-a-native-release) | ➖ | ⬜ | ➖ | ➖ | 2.0.0 | ✅ |
 | [collective.geotransform](native-namespaces-packages.md#collectivegeotransform) | ✅ | ✅ | [#25](https://github.com/collective/collective.geotransform/pull/25) | ✅ | 4.0.0 | ✅ |
@@ -111,7 +111,6 @@ Rows with ⬜ in the PR column, and open questions on existing PRs:
 - [ ] imio.omnia.core, imio.omnia.tinymce (IMIO)
 - [ ] imio.helpers, once its maintainers agree on a 1.3.x maintenance branch
   for the other iMio applications
-- [ ] collective.faceted.map (affinitic)
 - [ ] collective.instancebehavior
   ([#7](https://github.com/collective/collective.instancebehavior/pull/7)):
   ask upstream which license applies

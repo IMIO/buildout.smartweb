@@ -302,17 +302,22 @@ Migrated 2026-11-16, then modernized like collective.messagesviewlet
 
 **Namespaces** `collective`, `collective.faceted` · **Repository**
 [affinitic/collective.faceted.map](https://github.com/affinitic/collective.faceted.map),
-branch `plone62` · **Variant**
+branch `master` (`plone62` merged by
+[#3](https://github.com/affinitic/collective.faceted.map/pull/3),
+2026-11-24) · **Variant**
 [setup.py](native-namespaces-migration.md#the-migration-recipe) · **Checked
-out by** `base.cfg` (`affinitic` remote in `sources.cfg`) ·
-**Older stacks** (Python 2, Plone before 6.2) stay on 1.0.x
+out by** none (`affinitic` remote in `sources.cfg`) · **Older stacks**
+(Python 2, Plone before 6.2) stay on 1.0.x
 
-Migrated 2026-11-17 (`c5c4b5a`).
+Migrated 2026-11-17 (`c5c4b5a`). Released as **2.0.0** on 2026-11-24:
+`versions.cfg` pins it, and no config checks it out any more (`sources.cfg`
+points to `master`).
 
-- `find_namespace_packages`, no more `namespace_packages`, and
-  `src/collective/__init__.py` and `src/collective/faceted/__init__.py` are
-  gone. `python_requires='>=3.10'`, classifiers updated (Plone 6.2, Python
-  3.10 to 3.13).
+- No more `namespace_packages`, and `src/collective/__init__.py` and
+  `src/collective/faceted/__init__.py` are gone. `setup.py` no longer lists
+  the packages: setuptools finds them in the `src/` layout (`5eccc51`).
+  `python_requires='>=3.10'`, classifiers updated (Plone 6.2, Python 3.10 to
+  3.14).
 - `locales/update.py` uses `importlib.resources` instead of
   `pkg_resources`.
 - `test_map_view` fixed for Plone 6: it renders the map view through
@@ -322,15 +327,14 @@ Migrated 2026-11-17 (`c5c4b5a`).
 - Tested with buildout: new `plone6.2.x.cfg` and `requirements6.2.x.txt`. The
   GitHub Actions matrix is Plone 6.2 on Python 3.12 and 3.13; Travis CI is
   gone.
-- **Breaking: drops Python before 3.10 and Plone before 6.2** (classifiers).
-  `CHANGES.rst` announces 1.0.1: release 2.0.0.
+- **Breaking: drops Python before 3.10 and Plone before 6.2** (classifiers),
+  hence 2.0.0.
 - Its map viewlet triggers `leaflet.refresh` after each search, which only
   the iMio plone.formwidget.geolocation bundle handles
   ([details](plone-formwidget-geolocation.md)).
 - Checked from buildout.smartweb: `.venv/bin/buildout -N` no longer lists it
   as old-style, `bin/zopepy` imports it from the `src/` checkout, and the
-  wheel has no namespace marker. `versions.cfg` still pins 1.0.0, as for the
-  other checked-out packages.
+  wheel has no namespace marker.
 
 ## collective.fingerpointing
 
