@@ -53,7 +53,7 @@ blocks Plone 6.2.3)
 | [imio.smartweb.common](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy) | ✅ | ✅ | [#37](https://github.com/IMIO/imio.smartweb.common/pull/37) | ✅ | 2.0.0 | ✅ |
 | [imio.smartweb.core](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy) | ✅ | ✅ | [#102](https://github.com/IMIO/imio.smartweb.core/pull/102) | ✅ | 2.0.0 | ✅ |
 | [imio.smartweb.locales](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy) | ✅ | ✅ | [#4](https://github.com/IMIO/imio.smartweb.locales/pull/4) | ✅ | 2.0.0 | ✅ |
-| [imio.smartweb.policy](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy) | ✅ | ✅ | [#28](https://github.com/IMIO/imio.smartweb.policy/pull/28) | ✅ | 2.0.0 | ✅ |
+| [imio.smartweb.policy](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy) | ✅ | ✅ | [#28](https://github.com/IMIO/imio.smartweb.policy/pull/28) | ✅ | 2.0.1 | ✅ |
 | [pas.plugins.kimug](native-namespaces-packages.md#paspluginskimug) | ✅ | ✅ | [#34](https://github.com/IMIO/pas.plugins.kimug/pull/34) | ✅ | 2.0.0 | ✅ |
 | [plone.app.imagecropping](native-namespaces-packages.md#bumped-to-a-native-release) | ➖ | ⬜ | ➖ | ➖ | 4.0.0 | ✅ |
 | [plone.formwidget.geolocation](native-namespaces-packages.md#ploneformwidgetgeolocation) ⚠️ | ✅ | ⬜ | ➖ | ✅ | ⬜ | ⬜ |

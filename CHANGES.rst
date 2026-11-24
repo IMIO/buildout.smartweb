@@ -24,7 +24,7 @@
     - imio.smartweb.common 2.0.0
     - imio.smartweb.core 2.0.0
     - imio.smartweb.locales 2.0.0
-    - imio.smartweb.policy 2.0.0
+    - imio.smartweb.policy 2.0.1
     - pas.plugins.kimug 2.0.0
     - pas.plugins.oidc 2.1.0
     - plone.app.imagecropping 4.0.0
