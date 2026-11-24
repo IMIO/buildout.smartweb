@@ -777,10 +777,11 @@ Migrated 2026-11-16, then modernized like collective.messagesviewlet
 [collective/collective.upgrade](https://github.com/collective/collective.upgrade),
 branch `master` (upstream; `combined-prs` merged by
 [#20](https://github.com/collective/collective.upgrade/pull/20), 2026-11-20) ·
-**Checked out by** `dev.cfg`, `prod.cfg`
+**Checked out by** none · **Older stacks** stay on 1.7
 
 Migrated upstream on `plone61` (native namespace, `bootstrap.py` gone).
-`versions.cfg` doesn't pin it: every config checks out the branch. Upstream
+Released as **2.0.0** on 2026-11-24: `versions.cfg` pins it, and no config
+checks it out any more (`sources.cfg` points to `master`). Upstream
 PRs [#17](https://github.com/collective/collective.upgrade/pull/17) (`plone61`
 into `master`),
 [#18](https://github.com/collective/collective.upgrade/pull/18) (PEP 420
@@ -788,7 +789,7 @@ native namespace, into `master`) and
 [#19](https://github.com/collective/collective.upgrade/pull/19) (Plone 6.2
 support, into `plone61`) are closed: their work is combined in
 [#20](https://github.com/collective/collective.upgrade/pull/20)
-(`combined-prs` into `master`, merged 2026-11-20, not released yet). Delete
+(`combined-prs` into `master`, merged 2026-11-20, released as 2.0.0). Delete
 the stale `src/collective/__pycache__` and `collective_*-nspkg.pth` files
 ([step 5](native-namespaces-migration.md#5-clean-up-and-check)).
 

@@ -41,7 +41,7 @@ blocks Plone 6.2.3)
 | [collective.taxonomy](native-namespaces-packages.md#bumped-to-a-native-release) | ➖ | ⬜ | ➖ | ➖ | 4.0.0 | ✅ |
 | [collective.themefragments](native-namespaces-packages.md#collectivethemefragments) | ✅ | ✅ | [#20](https://github.com/collective/collective.themefragments/pull/20) | ✅ | 3.0.0 | ✅ |
 | [collective.timedevents](native-namespaces-packages.md#collectivetimedevents) | ✅ | ✅ | [#13](https://github.com/collective/collective.timedevents/pull/13) | ✅ | 2.0.0 | ✅ |
-| [collective.upgrade](native-namespaces-packages.md#collectiveupgrade) | ✅ | ✅ | [#20](https://github.com/collective/collective.upgrade/pull/20) | ✅ | ⬜ | ⬜ |
+| [collective.upgrade](native-namespaces-packages.md#collectiveupgrade) | ✅ | ✅ | [#20](https://github.com/collective/collective.upgrade/pull/20) | ✅ | 2.0.0 | ✅ |
 | [collective.z3cform.select2](native-namespaces-packages.md#collectivez3cformselect2) | ✅ | ✅ | [#15](https://github.com/collective/collective.z3cform.select2/pull/15) | ✅ | 4.0.0 | ✅ |
 | [eea.facetednavigation](native-namespaces-packages.md#eeafacetednavigation) | ✅ | ✅ | [#65](https://github.com/collective/eea.facetednavigation/pull/65) | ✅ | ⬜ | ⬜ |
 | [hurry.filesize](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
@@ -441,6 +441,14 @@ When the Plone 6.2 stack goes to production:
   [`8ec39db`](https://github.com/collective/collective.big.bang/commit/8ec39db).
 - Pin the new version in `buildout.smartweb/versions.cfg`, and remove the
   package from `auto-checkout`.
+- Then check that `bin/instance` uses the release
+  (`grep <package> bin/instance` shows `~/.buildout/eggs/...-<version>-...egg`,
+  not `src/`). If it still points to `src/`, delete the package's stale
+  `~/.buildout/develop-eggs/<package>.egg-link` and run buildout again. When the
+  checkout's `egg-info` still carries the released version (generated before
+  the *"Back to development"* bump), that link satisfies the new pin, so
+  buildout keeps the checkout and never downloads the release
+  (collective.upgrade 2.0.0, 2026-11-24).
 
 ### Variant: plone.meta
 
