@@ -84,7 +84,8 @@ Migrated 2026-11-16, following collective.anysurfer.
   6.2.3, so `pyproject.toml` requires `>=2.0.0`. Since that release,
   `mx.ini` and tox (`test_deps_additional` in `.meta.toml`) no longer install
   its branch from GitHub.
-- Also depends on collective.complexrecordsproxy. Its 1.1 release is still
+- Also depends on collective.complexrecordsproxy, released as 2.0.0 and
+  pinned. `pyproject.toml` doesn't require `>=2.0.0`: the 1.1 release is
   old-style, but its wheel imports next to the native portions without
   horse-with-no-namespace (its `nspkg.pth`, no `pkg_resources` call).
 - Tested with tox and zope.testrunner: the plone.meta test matrix covers
@@ -164,13 +165,15 @@ config checks it out any more (`sources.cfg` points to `master`).
 
 **Namespace** `collective` · **Repository**
 [collective/collective.complexrecordsproxy](https://github.com/collective/collective.complexrecordsproxy),
-branch `plone62` · **Variant**
+branch `master` · **Variant**
 [plone.meta](native-namespaces-migration.md#variant-plonemeta) · **Checked
-out by** `dev.cfg`, `prod.cfg` · **Older stacks** (Plone 4.3 to 6.0, Python
-2.7) stay on 1.1
+out by** none · **Older stacks** (Plone 4.3 to 6.0, Python 2.7) stay on 1.1
 
 Migrated 2026-11-17, following collective.autopublishing, which is its only
-user in SmartWeb.
+user in SmartWeb. Merged into `master`
+([#3](https://github.com/collective/collective.complexrecordsproxy/pull/3))
+and released as **2.0.0** on 2026-11-23: `versions.cfg` pins it, and no
+config checks it out any more (`sources.cfg` points to `master`).
 
 - plone.meta 2.12.0 configures it, and the metadata moved to `pyproject.toml`.
   `setup.py` is now only `setup()`. The package moved from the repository
@@ -198,8 +201,7 @@ user in SmartWeb.
   read back through the site's `portal_registry`.
 - Checked from buildout.smartweb: `.venv/bin/buildout -N` no longer lists it
   as old-style, `bin/zopepy` imports it from the `src/` checkout, and the
-  wheel has no namespace marker. `versions.cfg` still pins 1.1, as for the
-  other checked-out packages.
+  wheel has no namespace marker.
 
 ## collective.exportimport
 
