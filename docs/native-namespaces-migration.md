@@ -5,12 +5,12 @@ from old-style namespace packages: where each package stands, what's left to
 do, and how to migrate one. What changed in each package, and its gotchas:
 [package details](native-namespaces-packages.md).
 
-Last updated: 2026-11-24.
+Last updated: 2026-11-26.
 
 ## Status
 
-**30 pinned** (23 migrated, 7 bumped) · **3 merged**, not released · **3 PRs
-open** · **4 branches pushed**, no PR yet · **2 not started** (none of them
+**31 pinned** (24 migrated, 7 bumped) · **3 merged**, not released · **3 PRs
+open** · **3 branches pushed**, no PR yet · **2 not started** (none of them
 blocks Plone 6.2.3)
 
 ✅ done · ⬜ to do · ➖ not applicable · 🚧 its pinned release calls
@@ -95,6 +95,9 @@ plone.observability serves `@@metrics`, so they are removed
 
 - [x] imio.helpers: `master` (1.3.19) merged into `plone62` (2026-11-18,
   `7c640c8`), the `CHANGES.rst` entry is now under 1.3.20 (unreleased).
+- [ ] imio.helpers: merge `master` into `plone62` again. It is 5 commits
+  ahead ([#52](https://github.com/IMIO/imio.helpers/pull/52), DMS-1243,
+  merged 2026-11-23).
 - [x] imio.omnia.tinymce: `master` (1.1) merged into `plone62` (2026-11-18,
   `785d77f`). Commit `a9c4c86` (simplify-text and structure-text) is still in
   neither.
@@ -136,7 +139,8 @@ release can't depend on a git branch, so the order matters:
   collective.instancebehavior as 0.6 (never released, 0.5 is the latest).
   Every other package as 2.0.0.
 - [ ] Ask upstream for collective.solr 11.0.0 once
-  [#408](https://github.com/collective/collective.solr/pull/408) is merged.
+  [#408](https://github.com/collective/collective.solr/pull/408) is merged
+  (approved on 2026-11-17, not merged yet).
 - [ ] Ask upstream for plone.formwidget.geolocation 4.0.0 once pat-leaflet
   has released the `leaflet.refresh` handler, with its bundle rebuilt against
   it ([details](plone-formwidget-geolocation.md#recommended-path)).
@@ -205,18 +209,21 @@ release can't depend on a git branch, so the order matters:
 - [ ] collective.preventactions: `sources.cfg` still names its old `plone6`
   branch, switch it to `master`. Like pas.plugins.kimug, it is released and
   pinned, and no config checks it out any more.
+- [ ] collective.anysurfer and collective.messagesviewlet: `sources.cfg` still
+  names their `plone62` branches, deleted after the merge. Switch them to
+  `master`.
 - [x] collective.sendinblue: `versions.cfg` no longer pins it, and
   imio.smartweb.core 2.0.0 no longer requires it.
-- [ ] collective.prometheus and imio.prometheus: `versions.cfg` and
-  `sources.cfg` no longer name them, and imio.smartweb.policy no longer
-  requires imio.prometheus (`main`, committed, not released). Release the
-  policy and pin it: until then a `prod.cfg` build fails, as policy 2.0.0
-  still requires the unpinned imio.prometheus.
+- [x] collective.prometheus and imio.prometheus: `versions.cfg` and
+  `sources.cfg` no longer name them, and imio.smartweb.policy 2.0.1
+  (2026-11-24, pinned) no longer requires imio.prometheus.
 - [ ] Drop the `hurry.filesize` pin from `versions.cfg` once
   collective.exportimport 2.x is pinned: only exportimport 1.x requires it.
-- [ ] Once the last old-style package is gone, remove `horse-with-no-namespace`
-  from `base.cfg` (`eggs` and `initialization`). Plone's `requirements.txt`
-  still installs it.
+- [x] `horse-with-no-namespace` is removed from `base.cfg` (`eggs` and
+  `initialization`, 2026-11-19, `c4a2538`): the remaining old-style eggs
+  import without it
+  ([details](native-namespaces-packages.md#still-old-style-upstream)).
+  Plone's `requirements.txt` still installs it in `.venv`.
 
 ## Why
 
