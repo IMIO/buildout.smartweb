@@ -10,8 +10,8 @@ Last updated: 2026-11-27.
 ## Status
 
 **33 pinned** (26 migrated, 7 bumped) · **1 merged**, not released · **3 PRs
-open** · **3 branches pushed**, no PR yet · **2 not started** (none of them
-blocks Plone 6.2.3)
+open** · **3 branches pushed**, no PR yet · **1 not started** (doesn't block
+Plone 6.2.3)
 
 ✅ done · ⬜ to do · ➖ not applicable · 🚧 its pinned release calls
 `pkg_resources` and fails on Plone 6.2.3 ([blockers](#blockers-for-plone-623)) ·
@@ -43,7 +43,6 @@ blocks Plone 6.2.3)
 | [collective.upgrade](native-namespaces-packages.md#collectiveupgrade) | ✅ | ✅ | [#20](https://github.com/collective/collective.upgrade/pull/20) | ✅ | 3.0.0 | ✅ |
 | [collective.z3cform.select2](native-namespaces-packages.md#collectivez3cformselect2) | ✅ | ✅ | [#15](https://github.com/collective/collective.z3cform.select2/pull/15) | ✅ | 4.0.0 | ✅ |
 | [eea.facetednavigation](native-namespaces-packages.md#eeafacetednavigation) | ✅ | ✅ | [#65](https://github.com/collective/eea.facetednavigation/pull/65) | ✅ | 17.0.0 | ✅ |
-| [hurry.filesize](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [iaweb.privacy](native-namespaces-packages.md#iawebprivacy) | ✅ | ✅ | [#2](https://github.com/IMIO/iaweb.privacy/pull/2) | ✅ | 2.0.0 | ✅ |
 | [imio.gdpr](native-namespaces-packages.md#imiogdpr) | ✅ | ✅ | [#5](https://github.com/IMIO/imio.gdpr/pull/5) | ✅ | 2.0.0 | ✅ |
 | [imio.helpers](native-namespaces-packages.md#imiohelpers) 🚧 | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
@@ -84,6 +83,10 @@ of plone.app.content, plone.autoform, plone.restapi and Paste. PasteDeploy
 collective.sendinblue isn't listed either: imio.smartweb.core no longer
 depends on it, so it doesn't need to be migrated
 ([details](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy)).
+
+hurry.filesize isn't listed either: only collective.exportimport 1.x
+requires it, and [#287](https://github.com/collective/collective.exportimport/pull/287)
+drops it, so its pin goes once 2.x is pinned ([clean up](#clean-up)).
 
 collective.prometheus and imio.prometheus aren't listed any more:
 plone.observability serves `@@metrics`, so they are removed
@@ -193,8 +196,8 @@ release can't depend on a git branch, so the order matters:
 
 ### Not started
 
-- [ ] The 2 [still old-style](native-namespaces-packages.md#still-old-style-upstream)
-  third-party packages. For each one, in order of preference:
+- [ ] plone.gallery, the last [still old-style](native-namespaces-packages.md#still-old-style-upstream)
+  third-party package. In order of preference:
   1. Check the repository's main branch: the migration may already be merged
      and only waiting for a release. Ask the maintainers for a release.
   2. Open a PR applying [the recipe](#the-migration-recipe).
