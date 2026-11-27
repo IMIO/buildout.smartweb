@@ -1115,7 +1115,8 @@ it.
 **Namespace** `imio` · **Repository**
 [IMIO/imio.pyutils](https://github.com/IMIO/imio.pyutils), branch `master` ·
 **Variant** [keep Python 2](native-namespaces-migration.md#variant-keep-python-2)
-· **Checked out by** `base.cfg`
+· **Checked out by** none (buildout.directory, buildout.events and buildout.news
+still do, so `sources.cfg` keeps it)
 
 Migrated on `plone62` on 2026-11-16, merged into `master` the same day
 ([#4](https://github.com/IMIO/imio.pyutils/pull/4)). 1.2.3 was released a few
@@ -1143,13 +1144,11 @@ applications still run on Python 2, and PEP 420 doesn't exist there. So
   old `nspkg.pth`; the 22 tests pass on Python 2.7 and 3.12 (editable install,
   as in CI); buildout.smartweb no longer lists it as old-style, and
   `bin/zopepy` imports it with the `imio.smartweb.*` packages.
-- No other `pkg_resources` use. **No breaking change**: release 1.3.0 (minor
-  bump; `master` says 1.2.4.dev0).
-- `versions.cfg` pins 1.2.3 (2026-11-20), as for the other checked-out
-  packages. Its `CHANGES.rst` lists the native namespace entry, but the
-  release isn't native: the wheel still ships an `nspkg.pth` file and
-  `namespace_packages.txt`, and its `setup.py` declares
-  `namespace_packages=["imio"]`. Keep the checkout until 1.3.0.
+- No other `pkg_resources` use. **No breaking change**: minor bump.
+- 1.2.3 was released from `master` before #4 was merged, so it is still
+  old-style (`nspkg.pth`, `namespace_packages=["imio"]`). Released as
+  **1.3.0** on 2026-11-27: its wheel has no namespace marker. `versions.cfg`
+  pins it, and `base.cfg` no longer checks it out.
 
 ## imio.smartweb.common, .core, .locales, .policy
 

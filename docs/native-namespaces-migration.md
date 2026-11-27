@@ -48,7 +48,7 @@ Plone 6.2.3)
 | [imio.helpers](native-namespaces-packages.md#imiohelpers) 🚧 | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [imio.omnia.core](native-namespaces-packages.md#imioomniacore) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [imio.omnia.tinymce](native-namespaces-packages.md#imioomniatinymce) | ✅ | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |
-| [imio.pyutils](native-namespaces-packages.md#imiopyutils) | ✅ | ✅ | [#4](https://github.com/IMIO/imio.pyutils/pull/4) | ✅ | ⬜ | ⬜ |
+| [imio.pyutils](native-namespaces-packages.md#imiopyutils) | ✅ | ✅ | [#4](https://github.com/IMIO/imio.pyutils/pull/4) | ✅ | 1.3.0 | ✅ |
 | [imio.smartweb.common](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy) | ✅ | ✅ | [#37](https://github.com/IMIO/imio.smartweb.common/pull/37) | ✅ | 2.0.0 | ✅ |
 | [imio.smartweb.core](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy) | ✅ | ✅ | [#102](https://github.com/IMIO/imio.smartweb.core/pull/102) | ✅ | 2.0.0 | ✅ |
 | [imio.smartweb.locales](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy) | ✅ | ✅ | [#4](https://github.com/IMIO/imio.smartweb.locales/pull/4) | ✅ | 2.0.0 | ✅ |
@@ -133,7 +133,7 @@ release can't depend on a git branch, so the order matters:
   namespace).
 - [x] imio.smartweb.common, .core, .locales and .policy: 2.0.0 released and
   pinned (core on 2026-11-20).
-- [ ] imio.pyutils as 1.3.0 (not breaking; `master` says 1.2.4.dev0).
+- [x] imio.pyutils as 1.3.0 (not breaking): released and pinned on 2026-11-27.
   collective.instancebehavior as 0.6 (never released, 0.5 is the latest).
   Every other package as 2.0.0.
 - [ ] Ask upstream for collective.solr 11.0.0 once
