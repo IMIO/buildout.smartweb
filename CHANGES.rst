@@ -114,7 +114,14 @@
 
 - WEB-4533 : Plone 6.2.3 migration
   [boulch, bsuttor, remdub]
-- Nothing changed yet.
+
+- Trace less: plone.observability is checked out from a fork until a release names
+  the root request span after the HTTP method alone (a path in the name gave
+  spanmetrics one series per URL). The image no longer traces ``/ok`` and static
+  resources (``++webresource++``, ``++resource++``, ``++plone++``, ``++theme++``) and
+  keeps 1 trace in 10 (``OTEL_TRACES_SAMPLER=parentbased_traceidratio``,
+  ``OTEL_TRACES_SAMPLER_ARG=0.1``); spanmetrics then count 1 request in 10
+  [remdub]
 
 
 1.5.55 (2026-11-25)
