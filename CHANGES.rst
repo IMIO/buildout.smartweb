@@ -20,7 +20,7 @@
     - collective.timedevents 2.0.0
     - collective.upgrade 3.0.0
     - collective.z3cform.select2 4.0.0
-    - eea.facetednavigation 16.5
+    - eea.facetednavigation 17.0.0
     - iaweb.privacy 2.0.0
     - imio.gdpr 2.0.0
     - imio.smartweb.common 2.0.0

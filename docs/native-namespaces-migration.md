@@ -5,11 +5,11 @@ from old-style namespace packages: where each package stands, what's left to
 do, and how to migrate one. What changed in each package, and its gotchas:
 [package details](native-namespaces-packages.md).
 
-Last updated: 2026-11-26.
+Last updated: 2026-11-27.
 
 ## Status
 
-**31 pinned** (24 migrated, 7 bumped) · **3 merged**, not released · **3 PRs
+**32 pinned** (25 migrated, 7 bumped) · **2 merged**, not released · **3 PRs
 open** · **3 branches pushed**, no PR yet · **2 not started** (none of them
 blocks Plone 6.2.3)
 
@@ -42,7 +42,7 @@ blocks Plone 6.2.3)
 | [collective.timedevents](native-namespaces-packages.md#collectivetimedevents) | ✅ | ✅ | [#13](https://github.com/collective/collective.timedevents/pull/13) | ✅ | 2.0.0 | ✅ |
 | [collective.upgrade](native-namespaces-packages.md#collectiveupgrade) | ✅ | ✅ | [#20](https://github.com/collective/collective.upgrade/pull/20) | ✅ | 3.0.0 | ✅ |
 | [collective.z3cform.select2](native-namespaces-packages.md#collectivez3cformselect2) | ✅ | ✅ | [#15](https://github.com/collective/collective.z3cform.select2/pull/15) | ✅ | 4.0.0 | ✅ |
-| [eea.facetednavigation](native-namespaces-packages.md#eeafacetednavigation) | ✅ | ✅ | [#65](https://github.com/collective/eea.facetednavigation/pull/65) | ✅ | ⬜ | ⬜ |
+| [eea.facetednavigation](native-namespaces-packages.md#eeafacetednavigation) | ✅ | ✅ | [#65](https://github.com/collective/eea.facetednavigation/pull/65) | ✅ | 17.0.0 | ✅ |
 | [hurry.filesize](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [iaweb.privacy](native-namespaces-packages.md#iawebprivacy) | ✅ | ✅ | [#2](https://github.com/IMIO/iaweb.privacy/pull/2) | ✅ | 2.0.0 | ✅ |
 | [imio.gdpr](native-namespaces-packages.md#imiogdpr) | ✅ | ✅ | [#5](https://github.com/IMIO/imio.gdpr/pull/5) | ✅ | 2.0.0 | ✅ |
@@ -167,7 +167,7 @@ release can't depend on a git branch, so the order matters:
 - [ ] collective.z3cform.select2 4.0.0: the select2 widgets.
 - [ ] collective.instancebehavior: imio.smartweb.core's instance behaviors
   form (enable then disable a taxonomy on a page).
-- [ ] eea.facetednavigation 17.0.0.dev0: the faceted views, their widgets and
+- [ ] eea.facetednavigation 17.0.0: the faceted views, their widgets and
   the faceted edit form (zpretty reformatted every template, and the JS
   bundles moved under `src/`).
 - [ ] collective.js.jqueryui 3.0.0: whatever uses jQuery UI, which the bundle never

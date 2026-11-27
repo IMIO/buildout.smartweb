@@ -842,16 +842,15 @@ any more (removed from `sources.cfg`).
 branch `main` (`plone62` merged by
 [#65](https://github.com/collective/eea.facetednavigation/pull/65),
 2026-11-20) · **Variant** [plone.meta](native-namespaces-migration.md#variant-plonemeta) · **Checked
-out by** `base.cfg` · **Older stacks** (Plone 5.2 and 6.0) stay
-on 16.x
+out by** none · **Older stacks** (Plone 5.2 and 6.0) stay on 16.x
 
 EEA archived [eea/eea.facetednavigation](https://github.com/eea/eea.facetednavigation):
 collective's repository is now the main one, and released 16.5. 16.5 already
 dropped its `get_distribution()` call (`subtypes/subtyper.py`), which blocked
 Plone 6.2.3, so only the namespace was left. Migrated, then modernized like
-pas.plugins.kimug, on 2026-11-17. Merged into `main` on 2026-11-20, not
-released yet (`main` says 17.0.0.dev0): `base.cfg` checks out `main`, and
-`versions.cfg` still pins 16.5.
+pas.plugins.kimug, on 2026-11-17. Merged into `main` on 2026-11-20 and
+released as **17.0.0** on 2026-11-26: `versions.cfg` pins it, and no config
+checks it out any more (`sources.cfg` points to `main`).
 
 - `eea/__init__.py` is gone, and the package moved to a `src/` layout. The
   webpack, sass, eslint and prettier paths (`package.json`,
@@ -891,11 +890,12 @@ released yet (`main` says 17.0.0.dev0): `base.cfg` checks out `main`, and
 - Checked from buildout.smartweb: `.venv/bin/buildout -N` no longer lists it
   as old-style, and `bin/zopepy` imports it from the checkout
   (`src/eea.facetednavigation/src`) with the `plone.autoinclude` entry point.
+  Since the pin (2026-11-27), `bin/zopepy` imports the 17.0.0 egg.
 - Tests: the plone.meta test matrix passed on Plone 6.2.3 and 6.1 with
   Python 3.10 to 3.13 (24 tests), and so did `lint` and `dependencies`.
   Before the merge, `64ed2ec` (2026-11-19) dropped Plone 6.1 and added
   Python 3.14: the matrix is now Plone 6.2.3 only.
-- **Breaking: Plone 6.2 only, Python 3.10 to 3.14.** Release 17.0.0.
+- **Breaking: Plone 6.2 only, Python 3.10 to 3.14**, hence 17.0.0.
 
 ## iaweb.privacy
 
