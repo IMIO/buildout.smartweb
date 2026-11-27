@@ -9,13 +9,13 @@ Last updated: 2026-11-27.
 
 ## Status
 
-**32 pinned** (25 migrated, 7 bumped) · **2 merged**, not released · **3 PRs
+**33 pinned** (26 migrated, 7 bumped) · **1 merged**, not released · **3 PRs
 open** · **3 branches pushed**, no PR yet · **2 not started** (none of them
 blocks Plone 6.2.3)
 
 ✅ done · ⬜ to do · ➖ not applicable · 🚧 its pinned release calls
 `pkg_resources` and fails on Plone 6.2.3 ([blockers](#blockers-for-plone-623)) ·
-⚠️ its native branch drops an iMio fix
+⚠️ its native release drops an iMio fix
 ([details](plone-formwidget-geolocation.md))
 
 | Package | Branch | Checked | PR | Merged | Released | Pinned |
@@ -56,7 +56,7 @@ blocks Plone 6.2.3)
 | [imio.smartweb.policy](native-namespaces-packages.md#imiosmartwebcommon-core-locales-policy) | ✅ | ✅ | [#28](https://github.com/IMIO/imio.smartweb.policy/pull/28) | ✅ | 2.0.1 | ✅ |
 | [pas.plugins.kimug](native-namespaces-packages.md#paspluginskimug) | ✅ | ✅ | [#34](https://github.com/IMIO/pas.plugins.kimug/pull/34) | ✅ | 2.0.0 | ✅ |
 | [plone.app.imagecropping](native-namespaces-packages.md#bumped-to-a-native-release) | ➖ | ⬜ | ➖ | ➖ | 4.0.0 | ✅ |
-| [plone.formwidget.geolocation](native-namespaces-packages.md#ploneformwidgetgeolocation) ⚠️ | ✅ | ⬜ | ➖ | ✅ | ⬜ | ⬜ |
+| [plone.formwidget.geolocation](native-namespaces-packages.md#ploneformwidgetgeolocation) ⚠️ | ✅ | ✅ | ➖ | ✅ | 4.0.0 | ✅ |
 | [plone.formwidget.recaptcha](native-namespaces-packages.md#bumped-to-a-native-release) | ➖ | ⬜ | ➖ | ➖ | 4.0.0 | ✅ |
 | [plone.gallery](native-namespaces-packages.md#still-old-style-upstream) | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | [plone.patternslib](native-namespaces-packages.md#bumped-to-a-native-release) | ➖ | ⬜ | ➖ | ➖ | 9.11.1 | ✅ |
@@ -101,11 +101,6 @@ plone.observability serves `@@metrics`, so they are removed
 - [x] imio.omnia.tinymce: `master` (1.1) merged into `plone62` (2026-11-18,
   `785d77f`). Commit `a9c4c86` (simplify-text and structure-text) is still in
   neither.
-- [ ] plone.formwidget.geolocation: create an IMIO `plone62` branch
-  (collective `master` plus the bundle rebuilt with the patched pat-leaflet),
-  point `sources.cfg` at it with a fixed `rev`, then re-clone `src/`, which
-  is still the old-style `fix-geosearch` fork
-  ([details](plone-formwidget-geolocation.md#recommended-path)).
 
 ### Open pull requests
 
@@ -141,9 +136,12 @@ release can't depend on a git branch, so the order matters:
 - [ ] Ask upstream for collective.solr 11.0.0 once
   [#408](https://github.com/collective/collective.solr/pull/408) is merged
   (approved on 2026-11-17, not merged yet).
-- [ ] Ask upstream for plone.formwidget.geolocation 4.0.0 once pat-leaflet
-  has released the `leaflet.refresh` handler, with its bundle rebuilt against
-  it ([details](plone-formwidget-geolocation.md#recommended-path)).
+- [x] plone.formwidget.geolocation 4.0.0: released and pinned (2026-11-27),
+  no longer checked out.
+- [ ] Ask upstream for a plone.formwidget.geolocation release with its bundle
+  rebuilt against a pat-leaflet that has the `leaflet.refresh` handler: 4.0.0
+  still bundles pat-leaflet 2.2.0
+  ([details](plone-formwidget-geolocation.md#recommended-path)).
 
 ### Check by hand on a SmartWeb site
 
@@ -153,10 +151,11 @@ release can't depend on a git branch, so the order matters:
 - [ ] plone.patternslib 9.11.1: the front-end JavaScript.
 - [ ] collective.geolocationbehavior 2.0.0, zope.minmax 4.0, zope.session 6.0:
   major bumps.
-- [ ] plone.formwidget.geolocation: run the "Add zoom for input and display"
-  upgrade step, and check that the zoom values are kept. On a faceted map
-  (directory or events), change a filter and check that the markers follow
-  the results ([details](plone-formwidget-geolocation.md#verification)).
+- [ ] plone.formwidget.geolocation 4.0.0: run the "Add zoom for input and
+  display" upgrade step, and check that the zoom values are kept. On a
+  faceted map (directory or events), change a filter and check whether the
+  markers follow the results: 4.0.0 has no `leaflet.refresh` handler
+  ([details](plone-formwidget-geolocation.md#verification)).
 - [ ] collective.privacy: the JavaScript consent banner (its only tests are
   gone).
 - [ ] collective.anysurfer: the search page and the breadcrumb (Plone 5
@@ -273,7 +272,7 @@ and they make the namespace module (`plone`, `collective`…) look only in the
 `horse-with-no-namespace` doesn't fix this.
 
 - `plone`: fixed by switching plone.formwidget.geolocation to upstream
-  `master`, which is native.
+  `master`, which is native (released as 4.0.0, pinned since 2026-11-27).
 - `collective`: fixed by migrating the `collective.*` checkouts, which broke
   `collective.recipe.omelette`, `collective.recipe.vscode`, etc. An old-style
   `collective.*` checkout breaks buildout again: migrate it before checking it

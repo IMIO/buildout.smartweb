@@ -343,8 +343,8 @@ points to `master`).
 - **Breaking: drops Python before 3.10 and Plone before 6.2** (classifiers),
   hence 2.0.0.
 - Its map viewlet triggers `leaflet.refresh` after each search, which only
-  the iMio plone.formwidget.geolocation bundle handles
-  ([details](plone-formwidget-geolocation.md)).
+  the iMio fork of plone.formwidget.geolocation handled: the pinned 4.0.0
+  ignores it ([details](plone-formwidget-geolocation.md)).
 - Checked from buildout.smartweb: `.venv/bin/buildout -N` no longer lists it
   as old-style, `bin/zopepy` imports it from the `src/` checkout, and the
   wheel has no namespace marker.
@@ -1297,15 +1297,17 @@ migrated with plone.meta:
 
 **Namespaces** `plone`, `plone.formwidget` · **Repository**
 [collective/plone.formwidget.geolocation](https://github.com/collective/plone.formwidget.geolocation),
-branch `master` (upstream) · **Checked out by** `base.cfg` (so prod too)
+branch `master` (upstream) · **Checked out by** none
 
 Done by switching from the IMIO fork (branch `fix-geosearch`) to upstream
-`master` in `sources.cfg`. Upstream `master` (4.0.0, unreleased) is already
-migrated: native namespaces, `src/` layout, Plone 6.2 only. It also fixed
-buildout for the `plone` namespace
-([blockers](native-namespaces-migration.md#blockers-for-plone-623)).
+`master` in `sources.cfg` (2026-11-16), which upstream had already migrated:
+native namespaces, `src/` layout, Plone 6.2 only. It also fixed buildout for
+the `plone` namespace
+([blockers](native-namespaces-migration.md#blockers-for-plone-623)). Released
+as **4.0.0** on 2026-11-27 (sdist only, no wheel): `versions.cfg` pins it,
+no config checks it out any more, and `sources.cfg` no longer names it.
 
-Why it is still checked out, and why it can't be pinned yet:
+What the pin costs, and what's left to do:
 [plone.formwidget.geolocation](plone-formwidget-geolocation.md).
 
 - **Lost: the faceted map refresh (WEB-4028).** The fork's bundle was built
@@ -1313,25 +1315,26 @@ Why it is still checked out, and why it can't be pinned yet:
   `leaflet.refresh` handler that collective.faceted.map and
   imio.smartweb.core's faceted map trigger after each search. Upstream
   pat-leaflet never merged it
-  ([#36](https://github.com/Patternslib/pat-leaflet/pull/36)), so `master`'s
-  bundle ignores the event, and the markers probably stay on the first
-  results. Found by reading the code, not yet checked in a browser. The
-  fork's other commits (pat-leaflet upgrade, and the `default_input_zoom` /
-  `default_display_zoom` control panel options) were released upstream in
-  3.0.6 and 3.0.7, and are on `master`.
+  ([#36](https://github.com/Patternslib/pat-leaflet/pull/36)). The 4.0.0
+  bundle is built from pat-leaflet 2.2.0, and no file of its sdist mentions
+  `leaflet.refresh` (checked 2026-11-27): it ignores the event, and the
+  markers probably stay on the first results. Not yet checked in a browser.
+  The fork's other commits (pat-leaflet upgrade, and the
+  `default_input_zoom` / `default_display_zoom` control panel options) were
+  released upstream in 3.0.6 and 3.0.7, and are in 4.0.0.
 - **Upgrade step**: the fork's profile is 2001, upstream's is 2002. Existing
   sites get one pending upgrade, "Add zoom for input and display", which
   re-imports the registry records of the zoom options. Run it and check that
   the zoom values set in the control panel are kept.
-- **Production**: `versions.cfg` still pins 3.0.6, but the checkout in
-  `base.cfg` overrides it, so every prod build clones the moving `master`.
-  No release has the refresh fix, neither 3.0.x nor a future 4.0.0: until
-  pat-leaflet releases it, check out an IMIO `plone62` branch with a rebuilt
-  bundle ([recommended path](plone-formwidget-geolocation.md#recommended-path)).
-- The old fork checkout must be moved away before mr.developer can clone the
-  new URL (`bin/develop co plone.formwidget.geolocation`). Until then, dev
-  still runs the old-style fork (3.0.4.dev0), with the fix, while a fresh
-  build gets `master`, without it.
+- **Production**: before the pin, the checkout in `base.cfg` overrode the
+  3.0.6 pin, so every prod build cloned the moving `master`. Builds are
+  reproducible again, still without the refresh fix: no release has it
+  ([recommended path](plone-formwidget-geolocation.md#recommended-path)).
+- Checked from buildout.smartweb: `.venv/bin/buildout -N` downloads the 4.0.0
+  sdist, and `bin/instance` and `bin/zopepy` import the 4.0.0 egg, not the old
+  `src/` fork checkout (3.0.4.dev0), which is no longer developed and can be
+  deleted.
+- **Breaking: Plone 6.2 only** (`Products.CMFPlone >= 6.2.0a1`), hence 4.0.0.
 
 ## Bumped to a native release
 

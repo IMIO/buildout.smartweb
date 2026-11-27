@@ -30,6 +30,7 @@
     - pas.plugins.kimug 2.0.0
     - pas.plugins.oidc 2.1.0
     - plone.app.imagecropping 4.0.0
+    - plone.formwidget.geolocation 4.0.0
     - plone.formwidget.recaptcha 4.0.0
     - plone.patternslib 9.11.1
     - zope.minmax 4.0
