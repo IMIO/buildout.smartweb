@@ -22,6 +22,11 @@ flowchart TD
     F --> G[Push to Harbor]
     G --> H[Deploy to staging via Rundeck]
 
+    P[push to plone62 branch] -->|staging-plone62.yml| Q[Build & push image :short_sha]
+    Q --> T[Test image :short_sha]
+    T --> R[Tag image :plone62]
+    R --> S[Update k8s staging tag via ArgoCD repo]
+
     I[push a git tag] -->|prod.yml| J{quick release?\ntag ends with -quick}
     J -- No --> K[Schedule deploy\nnext day at 3:00 AM]
     J -- Yes --> L[Deploy immediately]
@@ -152,9 +157,31 @@ sequenceDiagram
 
 ---
 
+## staging-plone62.yml — Publish and deploy plone62 staging image
+
+**Trigger:** push to the `plone62` branch (tags excluded), or manual via `workflow_dispatch`.
+
+**Skip condition:** same as `dev.yml` — zest.releaser commits are ignored.
+
+Builds the Plone 6.2 image once and pushes it as `:{short_sha}`. `tests.yml` tests that image without building it again; only if the tests pass does `promote` add the `:plone62` tags, so a failing image is never tagged nor deployed. Then it deploys to the Kubernetes staging: `IMIO/gha/k8s-update-tag` writes the commit's short SHA into `staging/common/values.yaml` of the ArgoCD repository, and ArgoCD rolls it out. Its tags never touch `:staging`, so `prod.yml` keeps promoting the `main` image. While this workflow exists, the `deploy-on-k8s` job of `staging.yml` is commented out; delete this workflow once `plone62` is merged into `main`.
+
+| Step | Action used |
+|------|-------------|
+| Build & push image | `IMIO/gha/build-push-notify@v7` |
+| Test image | `tests.yml` |
+| Image and filesystem scans | `IMIO/gha/trivy-scan-notify@v7` |
+| Tag image | `IMIO/gha/tag-notify@v8` |
+| Update k8s staging tag | `IMIO/gha/k8s-update-tag@v5` |
+
+**Image tags produced:**
+- `:{short_sha}` (build)
+- `:plone62` and `:plone62-{run_number}` (once the tests pass)
+
+---
+
 ## tests.yml — Test the image
 
-**Trigger:** pull request, or manual via `workflow_dispatch`. It does not gate `dev.yml` and `staging.yml` yet: on Plone 6.1.5, `collective.z3cform.datagridfield` 3.0.5 leaves a pending upgrade step on every fresh site, so `test_no_pending_upgrades` fails. Once Plone 6.2 (datagridfield 4.0.3) is merged, `build-push` will need this job, so a failing image never gets the `:dev` or `:staging` tag.
+**Trigger:** pull request, manual via `workflow_dispatch`, or called by `staging-plone62.yml` (`workflow_call`), which passes `image_name`/`image_tag` so the pushed image is tested instead of being built again. It does not gate `dev.yml` and `staging.yml` yet: on Plone 6.1.5, `collective.z3cform.datagridfield` 3.0.5 leaves a pending upgrade step on every fresh site, so `test_no_pending_upgrades` fails. Once Plone 6.2 (datagridfield 4.0.3) is merged, `build-push` will need this job, so a failing image never gets the `:dev` or `:staging` tag.
 
 It calls the reusable workflow `IMIO/gha-workflows/.github/workflows/plone-image-test.yml`, which builds the image from `tests/docker-compose.test.yml`, boots it and runs the generic checks of `IMIO/gha/plone-image-test-notify` plus `tests/test_smartweb.py`. Locally: `make test`.
 
@@ -185,12 +212,15 @@ This workflow does **not** rebuild the image. It promotes the already-validated 
 | `SMARTWEB_RUNDECK_TOKEN` | all | Rundeck API token |
 | `RUNDECK_DEPLOY_DEV_JOB_ID` | dev.yml | Rundeck job ID for dev deployment |
 | `RUNDECK_DEPLOY_STAGING_JOB_ID` | staging.yml, testharden.yml | Rundeck job ID for staging deployment |
+| `SMARTWEB_ARGOCD_TOKEN_NAME` | staging-plone62.yml | ArgoCD repository token name |
+| `SMARTWEB_ARGOCD_ACCESS_TOKEN` | staging-plone62.yml | ArgoCD repository access token |
+| `SMARTWEB_ARGOCD_REPO_URL` | staging-plone62.yml | ArgoCD repository URL |
 
 ### Repository variables
 
 | Variable | Used by | Purpose |
 |----------|---------|---------|
-| `IMAGE_NAME` | prod.yml | Docker image name (`web/smartweb/mutual`) |
+| `IMAGE_NAME` | prod.yml, staging-plone62.yml | Docker image name (`web/smartweb/mutual`) |
 | `IMAGE_TAG_STAGING` | prod.yml | Source tag to promote from staging |
 | `IMAGE_TAG_PRODUCTION` | prod.yml | Target tag for production |
 | `RUNDECK_JOB_ID` | prod.yml | Rundeck job ID for production deployment |

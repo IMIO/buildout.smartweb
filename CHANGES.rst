@@ -1,6 +1,119 @@
 1.5.56 (unreleased)
 -------------------
 
+- imio.smartweb.policy 2.0.2
+
+  - Install imio.omnia.assistant (Omnia AI assistant). It stays off until a site
+    turns it on in its control panel; sites that installed it by hand keep
+    their settings. Upgrade step 1047.
+    [thomlamb]
+
+- WEB-4533 : Bump packages for PEP 420 native namespaces and drop of ``pkg_resources``
+    - collective.anysurfer 2.0.0
+    - collective.autopublishing 2.0.0
+    - collective.autoscaling 2.0.0
+    - collective.behavior.talcondition 2.0.0
+    - collective.complexrecordsproxy 2.0.0
+    - collective.fingerpointing 2.0.0
+    - collective.geolocationbehavior 2.0.0
+    - collective.geotransform 4.0.0
+    - collective.js.jqueryui 3.0.0
+    - collective.messagesviewlet 2.0.0
+    - collective.pivot 2.0.0
+    - collective.preventactions 0.4.0
+    - collective.privacy 2.0.0
+    - collective.taxonomy 4.0.0
+    - collective.themefragments 3.0.0
+    - collective.timedevents 2.0.0
+    - collective.upgrade 3.0.0
+    - collective.z3cform.select2 4.0.0
+    - eea.facetednavigation 17.0.0
+    - iaweb.privacy 2.0.0
+    - imio.gdpr 2.0.0
+    - imio.smartweb.common 2.0.0
+    - imio.smartweb.core 2.0.0
+    - imio.smartweb.locales 2.0.0
+    - imio.smartweb.policy 2.0.1
+    - pas.plugins.kimug 2.0.0
+    - pas.plugins.oidc 2.1.0
+    - plone.app.imagecropping 4.0.0
+    - plone.formwidget.geolocation 4.0.0
+    - plone.formwidget.recaptcha 4.0.0
+    - plone.patternslib 9.11.1
+    - zope.minmax 4.0
+    - zope.session 5.1
+  [boulch, bsuttor, remdub]
+
+- WEB-4533 : Remove collective.prometheus and imio.prometheus: plone.observability serves
+  ``@@metrics`` on the Zope root.
+  [remdub]
+
+- imio.pyutils 1.3.0
+
+  - Added ``utils.is_true_value`` to check if a value (like an environment variable) is considered as true.
+    [sgeulette]
+
+  - Use a PEP 420 native namespace on Python 3; Python 2.7 keeps the ``pkg_resources``-style namespace.
+    [bsuttor]
+- imio.smartweb.core 2.1.0
+
+  - Add the ``@prefect`` REST endpoint on Page, PortalPage and Procedure. It gives
+    the editorial content of the page as JSON for the Prefect ETL: metadata
+    (minisite, subsite, category, topics, I am) and the sections in the order of
+    the page. The endpoint does not use the rendering views and does not call
+    external services. It removes the active code from the HTML and does not give
+    the URL of a content that the user cannot see.
+    [boulch]
+
+  - Update the modification date of a page when an editor hides or shows the
+    title of a section, and when a publication in a files section changes. When
+    an editor adds a section, reindex the page one time, not two times.
+    [boulch]
+
+  - In ``@prefect``, give the data of the contacts of a contact section, as the
+    section shows them: only the blocks that the editor made visible. The data
+    comes from imio.directory. If imio.directory does not answer, the section
+    gets the status "error".
+    [boulch]
+
+- imio.smartweb.core 2.0.0
+
+  - Migrate to Plone 6.2.3 : Update import, remove init, remove pkg_resources
+    Fix ``sitemap.xml.gz`` on Plone 6.2: plone.app.layout 6 paginates the
+    sitemap. Without a ``page`` parameter, the view gives an index of pages. The
+    smartweb items (authentic sources included) now go through ``_objects``, so
+    the index counts them and each ``?page=N`` gives its part of them.
+    [boulch]
+
+  - Remove ``collective.sendinblue`` from dependencies: it has already been
+    uninstalled by upgrade step 1073 (core 1.4.13).
+    [remdub]
+
+- imio.smartweb.common 1.2.65 (included in 2.0.0)
+
+  - Add ``@vocabulary-translations/<vocabulary_name>`` endpoint.
+    It gives the token and the title in fr, nl, de and en of each term of a vocabulary.
+    [boulch]
+
+  - WEB-4530 : Load the "JavaScript integration (head)" snippet through
+    ``@@get_analytics``, after cookie consent, like the footer one. It was
+    rendered in the page head, so trackers pasted there ran before consent.
+    [remdub]
+
+- imio.smartweb.common 2.0.0
+
+  - Fix ``@search-filters``: it always gave an empty result on Plone 6.2. Since
+    plone.restapi 10, the catalog query adapter removes ``metadata_fields`` from
+    the query. Read ``metadata_fields`` before the query is parsed.
+    [boulch]
+
+- imio.smartweb.policy 1.2.24 (included in 2.0.0)
+
+  - WEB-4523 : Only Managers can delete a language root folder (LRF) on a multilingual site.
+    [boulch]
+
+- WEB-4533 : Plone 6.2.3 migration
+  [boulch, bsuttor, remdub]
 - Nothing changed yet.
 
 

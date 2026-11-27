@@ -35,6 +35,7 @@ services:
       - COLLECTIVE_SOLR_PASSWORD=SolrRocks
     ports:
       - "127.0.0.1::8080"
+      - "127.0.0.1::8081"
     healthcheck:
       # big.bang creates the site before Zope serves, which takes longer than the
       # Dockerfile healthcheck allows.
