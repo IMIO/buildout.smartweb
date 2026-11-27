@@ -39,7 +39,9 @@ Checked out via mr.developer. The core SmartWeb packages:
 - **imio.smartweb.policy** — Site policy (GenericSetup profiles, dependencies)
 - **imio.smartweb.locales** — i18n translations
 
-Supporting packages: `collective.pivot`, `collective.preventactions`, `collective.upgrade`, `pas.plugins.kimug`, `plone.formwidget.geolocation`
+Supporting packages: `collective.exportimport`, `collective.instancebehavior`, `collective.solr`, `imio.helpers`, `imio.omnia.core`, `imio.omnia.tinymce`, `imio.pyutils`, `plone.formwidget.geolocation`
+
+`sources.cfg` is also extended by buildout.directory, buildout.events and buildout.news (raw GitHub URL, `plone62` branch): it only lists packages that one of these four buildouts auto-checks out.
 
 ## Testing
 

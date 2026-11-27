@@ -206,12 +206,11 @@ release can't depend on a git branch, so the order matters:
 
 - [ ] imio.smartweb.common's own `base.cfg`: drop the `[versions]` that restore
   Plone 6.2.3 pins, buildout.smartweb pins 6.2.3 now.
-- [ ] collective.preventactions: `sources.cfg` still names its old `plone6`
-  branch, switch it to `master`. Like pas.plugins.kimug, it is released and
-  pinned, and no config checks it out any more.
-- [ ] collective.anysurfer and collective.messagesviewlet: `sources.cfg` still
-  names their `plone62` branches, deleted after the merge. Switch them to
-  `master`.
+- [x] `sources.cfg` only names the packages that buildout.smartweb,
+  buildout.directory, buildout.events or buildout.news check out
+  (2026-11-27). The others, among them collective.preventactions (old `plone6`
+  branch), collective.anysurfer and collective.messagesviewlet (deleted
+  `plone62` branches), are released and pinned, so their sources are gone.
 - [x] collective.sendinblue: `versions.cfg` no longer pins it, and
   imio.smartweb.core 2.0.0 no longer requires it.
 - [x] collective.prometheus and imio.prometheus: `versions.cfg` and
