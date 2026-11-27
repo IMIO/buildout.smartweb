@@ -48,6 +48,26 @@
 
   - Use a PEP 420 native namespace on Python 3; Python 2.7 keeps the ``pkg_resources``-style namespace.
     [bsuttor]
+- imio.smartweb.core 2.1.0
+
+  - Add the ``@prefect`` REST endpoint on Page, PortalPage and Procedure. It gives
+    the editorial content of the page as JSON for the Prefect ETL: metadata
+    (minisite, subsite, category, topics, I am) and the sections in the order of
+    the page. The endpoint does not use the rendering views and does not call
+    external services. It removes the active code from the HTML and does not give
+    the URL of a content that the user cannot see.
+    [boulch]
+
+  - Update the modification date of a page when an editor hides or shows the
+    title of a section, and when a publication in a files section changes. When
+    an editor adds a section, reindex the page one time, not two times.
+    [boulch]
+
+  - In ``@prefect``, give the data of the contacts of a contact section, as the
+    section shows them: only the blocks that the editor made visible. The data
+    comes from imio.directory. If imio.directory does not answer, the section
+    gets the status "error".
+    [boulch]
 
 - imio.smartweb.core 2.0.0
 
