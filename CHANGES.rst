@@ -1,6 +1,13 @@
 1.5.55 (unreleased)
 -------------------
 
+- imio.smartweb.policy 2.0.2
+
+  - Install imio.omnia.assistant (Omnia AI assistant). It stays off until a site
+    turns it on in its control panel; sites that installed it by hand keep
+    their settings. Upgrade step 1047.
+    [thomlamb]
+
 - WEB-4533 : Bump packages for PEP 420 native namespaces and drop of ``pkg_resources``
     - collective.anysurfer 2.0.0
     - collective.autopublishing 2.0.0
